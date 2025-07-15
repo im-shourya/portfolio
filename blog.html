@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Shourya Parashar</title>
+    <link rel="icon" href="Logo/SG_GoldBpng.png" type="image/png">
+    <link rel="stylesheet" href="blog.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-nav">
+        <div class="logo"> <a href="index.html">Shourya<span>↗</span></a></div>
+        <nav class="nav-links">
+            <a href="projects.html">My Projects<span>↗</span></a>
+            <a id="open" href="blog.html">Blog<span>↗</span></a>
+            <a href="skill.html">Skill<span>↗</span></a>
+            <a href="contacts.html">Contact Me<span>↗</span></a>
+        </nav>
+    </header>
+   <main>
+    <section class="contacts">
+        <div class="contacts-top">
+            <h1>Blog</h1>
+        </div>
+        <section class="container">
+            <div class="left-box">
+                <h2>Socalize</h2>
+                <div class="icon" >
+                    <a href="https://www.linkedin.com/company/auraibs/"><i class="fab fa-linkedin-in"></i></a>
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div></div>
+            <div class="right-box">
+                <h2>Get in touch</h2>
+                <div class="form">
+                    <form id="contactForm" >
+                        <input type="text" id="name" name="fname" placeholder="Name*" required />
+                        <input type="text" id="name" name="lname" placeholder="Last Name"/><br>
+                        <input type="tel" name="phone" id="phone" placeholder="Contacts No."/><br>
+                        <input type="email" id="email" name="email" placeholder="Email*" required /><br>
+                        <textarea name="reason" id="reason" placeholder="Reason*" required></textarea><br>
+                        <input type="submit" value="Send Me">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
+    <div id="popup" class="popup-overlay hidden">
+        <div class="popup-box">
+            <p>Thanks For Contacting.</p>
+            <button id="popup-ok">OK</button>
+        </div>
+    </div>
+   </main>
+
+<footer>
+    <p>&copy; 2025 Shourya Parashar. All rights reserved.</p>
+</footer>
+<script src="contact.js"></script>
+</body>
+</html>
