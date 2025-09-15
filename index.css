@@ -234,76 +234,6 @@ main {
 .cv:hover{
   transform: scale(1.1);
 }
-
-@media (max-width: 768px) {
-  /* Navigation */
-  .top-nav {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .nav-links a {
-    font-size: 1rem;
-  }
-
-  /* Name Section */
-  .name {
-    flex-direction: column;
-    margin-top: 100px;
-    text-align: left;
-    gap: 5px;
-  }
-
-  .name h1 {
-    font-size: 2.5rem !important;
-  }
-
-  /* Info Section */
-  .info {
-    margin: 10px 0;
-    padding: 0 10px;
-  }
-
-  .info p {
-    padding-left: 0;
-    font-size: 1rem;
-  }
-
-  /* About Section */
-  .about {
-    margin: 30px 10px 10px 10px;
-  }
-
-  .about p {
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  /* CV Download Button */
-  .cv {
-    width: 90%;
-    margin: 40px auto;
-    padding: 12px 24px;
-  }
-
-  .cv a {
-    font-size: 1rem;
-  }
-
-  /* Footer */
-  footer {
-    font-size: 0.75rem;
-    padding: 10px;
-  }
-}
   
 /* Footer */
 footer {
@@ -314,4 +244,12 @@ footer {
   border-top: 1px solid #333;
   position: relative;
   color: #777;
+  transition: all 0.2s ease; 
+}
+footer p:hover{
+  background-color:#fff ;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;;
+  transform: scale(1.05);
+  transition: all 0.2s ease; 
 }
