@@ -1,4 +1,4 @@
-## Shourya Parashar - Portfolio Website Devploment
+## Shourya Parashar - Portfolio Website
 
 A responsive personal portfolio built to showcase my projects, skills, and engineering journey. Designed with a custom **"Deep Space"** aesthetic, this site features interactive animations, a timeline of my experience, and a developer-focused user interface.
 
