@@ -24,15 +24,6 @@ const timeline = [
     icon: Code,
   },
   {
-    id: 2,
-    year: "2025",
-    title: "Full Stack Developer",
-    organization: "Open Source & Freelance",
-    description: "Architected full-stack applications using the MERN stack. contributed to community repositories and built high-performance web solutions focused on SEO and accessibility.",
-    tags: ["Node.js", "MongoDB", "React", "Docker"],
-    icon: Code,
-  },
-  {
     id: 3,
     year: "2025",
     title: "B.Tech in Computer Science",
