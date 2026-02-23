@@ -56,7 +56,7 @@ const Home = () => (
       >
         <MagneticWrapper>
           <a
-            href="#"
+            href="/Shourya_Parashar.pdf"
             className="gradient-border inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-foreground transition-all duration-300 hover:scale-110"
           >
             Download CV
