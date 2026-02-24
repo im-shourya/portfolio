@@ -9,10 +9,10 @@ A responsive personal portfolio built to showcase my projects, skills, and engin
 * **Smooth Animations:** Powered by **Framer Motion** for page transitions and hover effects.
 * **Responsive Design:** Fully optimized for mobile, tablet, and desktop screens.
 
-## Tech Stack
+## Tech Stack 
 
 * **Frontend:** React + TypeScript
-* **Build Tool:** Vite
+* **Build Tool:** Vite aaaa
 * **Styling:** Tailwind CSS
 * **UI Components:** Shadcn/UI
 * **Animations:** Framer Motion & TSParticles
