@@ -51,19 +51,19 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" ref={heroRef} className="min-h-screen relative overflow-hidden grid grid-rows-[1fr_auto] pt-[90px] md:pt-[110px] pb-[50px] md:pb-[60px] px-5 md:px-10">
+    <section id="hero" ref={heroRef} className="py-[156px] px-5 md:px-10 relative overflow-hidden">
       <HeroCanvas />
 
       {/* Main hero grid */}
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-6 md:gap-10 relative z-[1]">
-        <div>
-          <div
+      <span className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-6 md:gap-10 relative z-[1]">
+        <span>
+          <span
             className="font-mono text-[9.5px] tracking-[0.22em] uppercase flex items-center gap-4 mb-5.5 opacity-0"
             style={{ color: "hsl(var(--lime))", animation: "fadeInUp .8s ease .5s forwards" }}
           >
             <span className="w-7 h-px" style={{ background: "hsl(var(--lime))" }} />
             Full Stack Dev · CSE Student · Founder
-          </div>
+          </span>
           <h1 className="font-display leading-[0.86] tracking-[0.02em] relative py-6 md:py-10" style={{ fontSize: "clamp(56px,15vw,200px)" }}>
             <span className="overflow-hidden block">
               <span className="block" style={{ transform: "translateY(110%)", animation: "slideUp .95s var(--ease-out) .55s forwards" }}>
@@ -73,7 +73,7 @@ const Hero = () => {
             <span className="overflow-hidden block">
               <span
                 ref={lastNameRef}
-                className="block cursor-pointer"
+                className="cursor-pointer"
                 style={{
                   transform: "translateY(110%)",
                   animation: "slideUp .95s var(--ease-out) .68s forwards",
@@ -99,9 +99,9 @@ const Hero = () => {
               </span>
             </span>
           </h1>
-        </div>
+        </span>
 
-        <div
+        <span
           className="flex flex-col items-start md:items-end gap-5 pb-1.5 opacity-0 relative z-[1]"
           style={{ animation: "fadeInUp .8s ease .9s forwards" }}
         >
@@ -125,11 +125,11 @@ const Hero = () => {
               backdropFilter: "blur(4px)",
             }}
           >
-            <span className="w-[7px] h-[7px] rounded-full flex-shrink-0" style={{ background: "hsl(var(--lime))", animation: "blink 2.8s ease-in-out infinite" }} />
+          <div className="w-[7px] h-[7px] rounded-full flex-shrink-0" style={{ background: "hsl(var(--lime))", animation: "blink 2.8s ease-in-out infinite" }} />
             Open to Opportunities
           </div>
-        </div>
-      </div>
+        </span>
+      </span>
 
       {/* Bottom strip */}
       <div
@@ -169,11 +169,11 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator
       <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 text-[9px] tracking-[0.2em] uppercase font-mono z-[1]" style={{ color: "rgba(242,239,230,.3)" }}>
         <div className="w-px h-14" style={{ background: "linear-gradient(to bottom, transparent, rgba(242,239,230,.2))", animation: "scrollPulse 2.2s ease-in-out infinite" }} />
         <span>Scroll</span>
-      </div>
+      </div> */}
     </section>
   );
 };

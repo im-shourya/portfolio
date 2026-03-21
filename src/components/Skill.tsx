@@ -27,28 +27,34 @@ const Skills = () => (
   <section id="skill" className="py-[15px] px-5 md:px-10">
     <SectionHeader num="04 — Skills" title="Skills" aside="Builder / Founder / Student" />
 
-    {/* Skills Bento */}
-    <div className="r font-mono text-[9.5px] tracking-[0.2em] uppercase flex items-center " style={{ color: "rgba(242,239,230,.35)" }}>
+    <div className="r font-mono text-[9px] md:text-[9.5px] tracking-[0.2em] uppercase flex items-center gap-3 mb-3" style={{ color: "rgba(242,239,230,.35)" }}>
       <span className="flex-1 h-px" style={{ background: "rgba(242,239,230,.07)" }} />
       Stack
     </div>
+
     <div
-      className="r rd1 grid grid-cols-2 md:grid-cols-4 gap-[3px]"
+      className="r rd1 grid grid-cols-2 md:grid-cols-4 gap-[2px] md:gap-[3px]"
       style={{ background: "rgba(242,239,230,.04)" }}
     >
       {skills.map((s) => (
         <div
           key={s.name}
-          className={`sk group relative overflow-hidden p-4 md:p-6 cursor-none ${s.wide ? "md:col-span-2" : ""}`}
+          className={`sk group relative overflow-hidden p-3.5 md:p-6 cursor-none ${s.wide ? "md:col-span-2" : ""}`}
           style={{ background: "hsl(var(--ink2))", transition: "all .3s ease" }}
         >
           <div
             className="absolute inset-0 origin-bottom scale-y-0 group-hover:scale-y-100 z-0"
             style={{ background: "hsl(var(--lime))", transition: "transform .4s var(--ease-out)" }}
           />
-          <span className="block mb-2.5 relative z-[1] opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all text-paper group-hover:text-ink">{s.icon}</span>
-          <span className={`font-display tracking-[0.04em] block mb-0.5 relative z-[1] text-paper group-hover:text-ink transition-colors ${s.wide ? "text-[26px] md:text-[34px]" : "text-[22px] md:text-[26px]"}`}>{s.name}</span>
-          <span className="font-mono text-[8.5px] tracking-[0.16em] uppercase relative z-[1] group-hover:text-ink transition-colors" style={{ color: "rgba(242,239,230,.45)" }}>{s.cat}</span>
+          <span className="block mb-2 relative z-[1] opacity-40 group-hover:opacity-100 transition-all text-paper group-hover:text-ink">
+            {s.icon}
+          </span>
+          <span className={`font-display tracking-[0.04em] block mb-0.5 relative z-[1] text-paper group-hover:text-ink transition-colors ${s.wide ? "text-[22px] md:text-[34px]" : "text-[18px] md:text-[26px]"}`}>
+            {s.name}
+          </span>
+          <span className="font-mono text-[7.5px] md:text-[8.5px] tracking-[0.14em] uppercase relative z-[1] group-hover:text-ink transition-colors leading-tight" style={{ color: "rgba(242,239,230,.45)" }}>
+            {s.cat}
+          </span>
         </div>
       ))}
     </div>
