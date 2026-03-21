@@ -31,11 +31,13 @@ const About = () => (
           CS Engineering student at SRM Institute. I build things that ship — from competitive DSA grind to full-stack production systems. Every project is a chance to do something I've never done before.
         </p>
         <p className="r rd2 font-mono text-[11.5px] md:text-[12.5px] font-light leading-7 md:leading-8 mb-5" style={{ color: "rgba(242,239,230,.6)" }}>
-          Currently Founder &amp; Lead Dev at{" "}
+          Currently Technical Member at 
+          {/* &amp; Lead Dev  */}
+          {" "}
           <a href="https://github.com/im-shourya" target="_blank" rel="noreferrer" className="text-lime no-underline hover:underline">
-            Team Hypothesis
+            HackerRanck Campus Crew
           </a>
-          , building NEXUS — a platform digitizing digitizes athelet discovery operations. HackerRank Campus Crew, open-source contributor, and occasional hackathon troublemaker.
+          , &amp; building NEXUS — a platform digitizing digitizes athelet discovery operations. HackerRank Campus Crew, open-source contributor, and occasional hackathon troublemaker.
         </p>
       </div>
 
