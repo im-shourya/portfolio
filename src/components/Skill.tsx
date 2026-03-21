@@ -1,6 +1,5 @@
 import SectionHeader from "./SectionHeader";
 
-/* Real SVG logos for each tech — all ~20px */
 const ReactIcon = () => <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 10.11c1.03 0 1.87.84 1.87 1.89 0 1-.84 1.85-1.87 1.85S10.13 13 10.13 12c0-1.05.84-1.89 1.87-1.89M7.37 20c.63.38 2.01-.2 3.6-1.7-.52-.59-1.03-1.23-1.51-1.9a22.7 22.7 0 01-2.4-.36c-.51 2.14-.32 3.61.31 3.96m.71-5.74l-.29-.51a21.6 21.6 0 00-.34 1.17c.38.09.77.16 1.16.22l-.53-.88m6.09-.85l.81-1.41-.81-1.41c-.3-.52-.62-1.01-.95-1.47-.6-.04-1.22-.06-1.84-.06s-1.23.02-1.84.06c-.33.46-.65.95-.95 1.47L7.63 12l.81 1.41c.3.52.62 1.01.95 1.47.6.04 1.22.06 1.84.06s1.24-.02 1.84-.06c.33-.46.65-.95.95-1.47m-1.17 2.1l-.53.88c.39-.06.78-.13 1.16-.22l-.34-1.17-.29.51m-4.37-8.02c.52-.59 1.03-1.23 1.51-1.9.5.03 1.01.05 1.52.05s1.03-.02 1.52-.05c.48.67.99 1.31 1.51 1.9.77.05 1.52.13 2.24.25a14.36 14.36 0 00-.52-1.72c.64-.38.96-1.36.46-3.12-.5-1.73-1.38-2.6-2.02-2.23-.63.38-.95 1.61-.58 3.34a22.7 22.7 0 00-2.96.23c-.35-.62-.71-1.22-1.1-1.77-.77-1.11-1.55-1.97-2.13-2.32C9.17 1.7 8.08 2.07 7.12 4c-.42.86-.73 1.9-.89 2.93.72-.12 1.47-.2 2.24-.25M6.8 9.83a21.1 21.1 0 00-.34 1.17l-.29-.51-.53-.88c.38.06.77.13 1.16.22m9.83-3.79c.37-1.73.05-2.96-.58-3.34-.64-.37-1.52.5-2.02 2.23-.51 1.76-.18 2.74.46 3.12a14.4 14.4 0 00-.52 1.72c.72.12 1.47.2 2.24.25.48-.67.99-1.31 1.51-1.9-.77-.05-1.52-.13-2.24-.25a22.9 22.9 0 00.66-1.6m.65 3.63c-.38-.09-.77-.16-1.16-.22l.53.88.29.51c.12-.39.24-.78.34-1.17m1.35 2.33c-.63-.38-2.01.2-3.6 1.7.52.59 1.03 1.23 1.51 1.9.87-.05 1.7-.14 2.48-.27.28-1.08.31-2.67-.39-3.33"/></svg>;
 const NodeIcon = () => <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 1.85c-.27 0-.55.07-.78.2l-7.44 4.3c-.48.28-.78.8-.78 1.36v8.58c0 .56.3 1.08.78 1.36l1.95 1.12c.95.46 1.27.46 1.71.46 1.4 0 2.21-.85 2.21-2.33V8.44c0-.12-.09-.21-.21-.21H8.22c-.12 0-.21.09-.21.21v8.06c0 .66-.68 1.31-1.77.76L4.16 16.2a.27.27 0 01-.14-.23V7.39c0-.1.05-.18.14-.23l7.44-4.3a.27.27 0 01.28 0l7.44 4.3c.09.05.14.14.14.23v8.58c0 .1-.05.18-.14.23l-7.44 4.3a.27.27 0 01-.28 0l-1.91-1.13c-.07-.04-.15-.05-.22-.02-.6.24-.71.27-1.27.41-.14.04-.35.1.08.28l2.48 1.47c.24.14.51.21.78.21s.55-.07.78-.2l7.44-4.3c.48-.28.78-.8.78-1.36V7.71c0-.56-.3-1.08-.78-1.36l-7.44-4.3c-.24-.13-.51-.2-.78-.2z"/></svg>;
 const PythonIcon = () => <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.585 11.692h4.328s2.432.039 2.432-2.35V5.391S16.714 3 11.936 3C7.362 3 7.647 4.986 7.647 4.986l.006 2.055h4.363v.617H5.92S3 7.283 3 11.909s2.555 4.459 2.555 4.459h1.524v-2.145s-.082-2.555 2.514-2.555l4.327.024s2.432.039 2.432-2.354V5.391S16.714 3 11.936 3c-2.394 0-3.648.986-4.243 1.768-.603.792-.862 1.897-.862 1.897v2.626h4.328v.617H5.92S3 7.283 3 11.909c0 4.626 2.555 4.459 2.555 4.459h1.524v-2.145s-.082-2.555 2.514-2.555m-.327-6.082a.78.78 0 110-1.56.78.78 0 010 1.56"/><path d="M14.415 12.308h-4.328s-2.432-.039-2.432 2.35v3.951S7.286 21 12.064 21c4.574 0 4.289-1.986 4.289-1.986l-.006-2.055h-4.363v-.617h6.096S21 16.717 21 12.091s-2.555-4.459-2.555-4.459H16.92v2.145s.082 2.555-2.514 2.555m.327 6.082a.78.78 0 110 1.56.78.78 0 010-1.56"/></svg>;
@@ -24,31 +23,37 @@ const skills = [
 ];
 
 const Skills = () => (
-  <section id="skill" className="py-[15px] px-5 md:px-10">
+  <section id="skill" className="py-12 md:py-20 px-5 md:px-10">
     <SectionHeader num="04 — Skills" title="Skills" aside="Builder / Founder / Student" />
 
-    {/* Skills Bento */}
-    <div className="r font-mono text-[9.5px] tracking-[0.2em] uppercase flex items-center " style={{ color: "rgba(242,239,230,.35)" }}>
+    <div className="r font-mono text-[9px] md:text-[9.5px] tracking-[0.2em] uppercase flex items-center gap-3 mb-3" style={{ color: "rgba(242,239,230,.35)" }}>
       <span className="flex-1 h-px" style={{ background: "rgba(242,239,230,.07)" }} />
       Stack
     </div>
+
     <div
-      className="r rd1 grid grid-cols-2 md:grid-cols-4 gap-[3px]"
+      className="r rd1 grid grid-cols-2 md:grid-cols-4 gap-[2px] md:gap-[3px]"
       style={{ background: "rgba(242,239,230,.04)" }}
     >
       {skills.map((s) => (
         <div
           key={s.name}
-          className={`sk group relative overflow-hidden p-4 md:p-6 cursor-none ${s.wide ? "md:col-span-2" : ""}`}
+          className={`sk group relative overflow-hidden p-3.5 md:p-6 cursor-none ${s.wide ? "md:col-span-2" : ""}`}
           style={{ background: "hsl(var(--ink2))", transition: "all .3s ease" }}
         >
           <div
             className="absolute inset-0 origin-bottom scale-y-0 group-hover:scale-y-100 z-0"
             style={{ background: "hsl(var(--lime))", transition: "transform .4s var(--ease-out)" }}
           />
-          <span className="block mb-2.5 relative z-[1] opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all text-paper group-hover:text-ink">{s.icon}</span>
-          <span className={`font-display tracking-[0.04em] block mb-0.5 relative z-[1] text-paper group-hover:text-ink transition-colors ${s.wide ? "text-[26px] md:text-[34px]" : "text-[22px] md:text-[26px]"}`}>{s.name}</span>
-          <span className="font-mono text-[8.5px] tracking-[0.16em] uppercase relative z-[1] group-hover:text-ink transition-colors" style={{ color: "rgba(242,239,230,.45)" }}>{s.cat}</span>
+          <span className="block mb-2 relative z-[1] opacity-40 group-hover:opacity-100 transition-all text-paper group-hover:text-ink">
+            {s.icon}
+          </span>
+          <span className={`font-display tracking-[0.04em] block mb-0.5 relative z-[1] text-paper group-hover:text-ink transition-colors ${s.wide ? "text-[22px] md:text-[34px]" : "text-[18px] md:text-[26px]"}`}>
+            {s.name}
+          </span>
+          <span className="font-mono text-[7.5px] md:text-[8.5px] tracking-[0.14em] uppercase relative z-[1] group-hover:text-ink transition-colors leading-tight" style={{ color: "rgba(242,239,230,.45)" }}>
+            {s.cat}
+          </span>
         </div>
       ))}
     </div>
