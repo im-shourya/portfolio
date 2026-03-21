@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const sections = ["hero", "about", "projects", "experience", "contact"];
+const sections = ["hero", "about", "projects", "experience","skill", "contact"];
 
 const NavDots = () => {
   const [active, setActive] = useState(0);

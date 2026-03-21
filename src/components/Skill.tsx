@@ -24,7 +24,7 @@ const skills = [
 ];
 
 const Skills = () => (
-  <section id="about" className="py-[15px] px-5 md:px-10">
+  <section id="skill" className="py-[15px] px-5 md:px-10">
     <SectionHeader num="04 — Skills" title="Skills" aside="Builder / Founder / Student" />
 
     {/* Skills Bento */}

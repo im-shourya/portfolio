@@ -35,7 +35,7 @@ const About = () => (
           <a href="https://github.com/im-shourya" target="_blank" rel="noreferrer" className="text-lime no-underline hover:underline">
             Team Hypothesis
           </a>
-          , building PharmaGo — a SaaS platform digitizing pharmacy operations. HackerRank Campus Crew, open-source contributor, and occasional hackathon troublemaker.
+          , building NEXUS — a platform digitizing digitizes athelet discovery operations. HackerRank Campus Crew, open-source contributor, and occasional hackathon troublemaker.
         </p>
       </div>
 

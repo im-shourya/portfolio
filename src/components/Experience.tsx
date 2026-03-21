@@ -5,9 +5,9 @@ const experiences = [
     year: "26",
     now: true,
     title: "Founder & Lead Developer",
-    where: "Team Hypothesis",
-    highlight: "PharmaGo SaaS",
-    desc: "Spearheading a SaaS platform that digitizes pharmacy operations. Inventory, billing, reporting — end to end. Leading cross-functional team, system design, architecture decisions.",
+    where: "Team NEXUS",
+    highlight: "NEXUS",
+    desc: "Spearheading a Athelete platform that digitizes athelet discovery operations. Injury Risk Assessment, Tournaments, Oportunity — end to end. Leading cross-functional team, system design, architecture decisions.",
     chips: [{ label: "Current", green: true }, { label: "Next.js" }, { label: "PostgreSQL" }, { label: "System Design" }, { label: "Entrepreneurship" }],
   },
   {

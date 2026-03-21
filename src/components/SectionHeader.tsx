@@ -13,8 +13,8 @@ const SectionHeader = ({ num, title, aside }: SectionHeaderProps) => (
       {num}
     </span>
     <div
-      className="flex items-baseline justify-between flex-wrap gap-3 pb-5"
-      style={{ borderBottom: "1px solid rgba(242,239,230,.08)" }}
+      className="flex items-baseline justify-between flex-wrap gap-1 pb-5"
+      style={{ borderBottom: "2px solid rgba(242,239,230,.08)" }}
     >
       <h2 className="r font-display tracking-[0.03em]" style={{ fontSize: "clamp(36px,7vw,84px)" }}>
         {title}

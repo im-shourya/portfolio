@@ -2,7 +2,7 @@ import Skill from "@/components/Skill";
 import Ticker from "@/components/Ticker";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
-const words2 = ["NEXUS", "KanbanFlow", "Task API", "PharmaGo", "Open Source", "HackerRank", "SRMIST"];
+const words2 = ["NEXUS", "KanbanFlow", "Task API", "Shourya", "Open Source", "HackerRank", "SRMIST"];
 
 const SkillsPage = () => {
   useScrollReveal();
