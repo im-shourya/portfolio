@@ -38,12 +38,12 @@ const links = [
 
 const Contact = () => (
   <section id="contact" className="py-[15px] px-5 md:px-10 relative overflow-hidden">
-    <div
+    <span
       className="absolute font-display leading-none pointer-events-none select-none"
       style={{ fontSize: "clamp(120px,22vw,280px)", color: "rgba(242,239,230,.025)", letterSpacing: "-0.02em", bottom: "-30px", right: "-10px", whiteSpace: "nowrap" }}
     >
       BUILD.
-    </div>
+    </span>
 
     <div className="max-w-[640px]">
       <div
@@ -59,26 +59,28 @@ const Contact = () => (
         style={{ fontSize: "clamp(52px,14vw,180px)" }}
       >
         LET'S
-        <span
-          className="block transition-all duration-400"
-          style={{
-            WebkitTextStroke: "1.5px rgba(200,240,32,.4)",
-            color: "transparent",
-          }}
-          onMouseEnter={(e) => {
-            const s = e.currentTarget.style as any;
-            s.webkitTextFillColor = "hsl(var(--lime))";
-            s.webkitTextStroke = "1.5px hsl(var(--lime))";
-            s.textShadow = "0 0 80px rgba(200,240,32,.15)";
-          }}
-          onMouseLeave={(e) => {
-            const s = e.currentTarget.style as any;
-            s.webkitTextFillColor = "transparent";
-            s.webkitTextStroke = "1.5px rgba(200,240,32,.4)";
-            s.textShadow = "none";
-          }}
-        >
-          BUILD.
+        <span className="block">
+          <span
+            className="transition-all duration-400"
+            style={{
+              WebkitTextStroke: "1.5px rgba(200,240,32,.4)",
+              color: "transparent",
+            }}
+            onMouseEnter={(e) => {
+              const s = e.currentTarget.style as any;
+              s.webkitTextFillColor = "hsl(var(--lime))";
+              s.webkitTextStroke = "1.5px hsl(var(--lime))";
+              s.textShadow = "0 0 80px rgba(200,240,32,.15)";
+            }}
+            onMouseLeave={(e) => {
+              const s = e.currentTarget.style as any;
+              s.webkitTextFillColor = "transparent";
+              s.webkitTextStroke = "1.5px rgba(200,240,32,.4)";
+              s.textShadow = "none";
+            }}
+          >
+            BUILD.
+          </span>
         </span>
       </h2>
 
