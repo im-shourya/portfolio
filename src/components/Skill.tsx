@@ -23,16 +23,16 @@ const skills = [
 ];
 
 const Skills = () => (
-  <section id="skill" className="py-12 md:py-20 px-5 md:px-10">
+  <section id="skill" className="py-[15px] px-5 md:px-10">
     <SectionHeader num="04 — Skills" title="Skills" aside="Builder / Founder / Student" />
 
-    <div className="r font-mono text-[9px] md:text-[9.5px] tracking-[0.2em] uppercase flex items-center gap-3 mb-3" style={{ color: "rgba(242,239,230,.35)" }}>
+    <div className="r font-mono text-[9.5px] tracking-[0.2em] uppercase flex items-center " style={{ color: "rgba(242,239,230,.35)" }}>
       <span className="flex-1 h-px" style={{ background: "rgba(242,239,230,.07)" }} />
       Stack
     </div>
 
     <div
-      className="r rd1 grid grid-cols-2 md:grid-cols-4 gap-[2px] md:gap-[3px]"
+      className="r rd1 grid grid-cols-2 md:grid-cols-4 gap-[3px]"
       style={{ background: "rgba(242,239,230,.04)" }}
     >
       {skills.map((s) => (
