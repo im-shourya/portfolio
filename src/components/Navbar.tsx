@@ -159,7 +159,7 @@ const Navbar = () => {
           transition: "opacity .35s ease",
         }}
       >
-        <div className="py-[5px]"></div>
+        <div className="py-[50px]"></div>
         {links.map((l, i) => (
           <a
             key={l.label}
