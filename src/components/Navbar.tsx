@@ -150,7 +150,7 @@ const Navbar = () => {
 
       {/* Mobile full-screen menu overlay */}
       <div
-        className="fixed inset-0 z-[490] flex flex-col items-center justify-center gap-8 md:hidden"
+        className="fixed inset-0 z-[490] flex flex-col items-center justify-center gap-7 md:hidden"
         style={{
           background: "rgba(6,6,8,.97)",
           backdropFilter: "blur(24px)",
@@ -159,6 +159,7 @@ const Navbar = () => {
           transition: "opacity .35s ease",
         }}
       >
+        <div></div>
         {links.map((l, i) => (
           <a
             key={l.label}
