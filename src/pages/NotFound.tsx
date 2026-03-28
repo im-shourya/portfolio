@@ -62,7 +62,7 @@ const NotFound = () => {
     <>
       <CustomCursor />
       <main
-        className="min-h-screen flex flex-col justify-center px-5 md:px-10 py-24 relative overflow-hidden"
+        className="min-h-screen flex flex-col justify-center px-5 md:px-10 py-10 relative overflow-hidden"
         style={{ background: "hsl(var(--ink))" }}
       >
         {/* Scan line overlay */}
