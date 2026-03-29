@@ -35,7 +35,14 @@ const About = () => (
           {/* &amp; Lead Dev  */}
           {" "}
           <a href="https://github.com/im-shourya" target="_blank" rel="noreferrer" className="text-lime no-underline hover:underline">
-            HackerRanck Campus Crew
+            HackerRanck Campus Crew 
+          </a>
+          , &amp;
+          Front-end Developer at 
+          {/* &amp; Lead Dev  */}
+          {" "}
+          <a href="https://github.com/im-shourya" target="_blank" rel="noreferrer" className="text-lime no-underline hover:underline">
+            Google Developer Group On Campus SRM
           </a>
           , &amp; building NEXUS — a platform digitizing digitizes athelet discovery operations. HackerRank Campus Crew, open-source contributor, and occasional hackathon troublemaker.
         </p>
