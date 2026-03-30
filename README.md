@@ -2,7 +2,7 @@
 
 A responsive personal portfolio built to showcase my projects, skills, and engineering journey. Designed with a custom **"Deep Space"** aesthetic, this site features interactive animations, a timeline of my experience, and a developer-focused user interface.
 
-## Features
+## Features 
 
 * **Interactive Timeline:** A vertical visual journey tracking my education and startup experience.
 * **Project Showcase:** A responsive grid displaying my work with tech stack indicators.
