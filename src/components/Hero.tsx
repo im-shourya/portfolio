@@ -68,6 +68,11 @@ const Hero = () => {
             <span className="overflow-hidden block">
               <span className="block" style={{ transform: "translateY(110%)", animation: "slideUp .95s var(--ease-out) .55s forwards" }}>
                 SHOURYA
+                <img
+                  src="/Shourya_Parashar.jpeg"
+                  alt="Shourya Parashar - Full Stack Developer"
+                  style={{ display: 'none' }} /* Remove this style if you want it visible */
+                />
               </span>
             </span>
             <span className="overflow-hidden block">
@@ -125,7 +130,7 @@ const Hero = () => {
               backdropFilter: "blur(4px)",
             }}
           >
-          <div className="w-[7px] h-[7px] rounded-full flex-shrink-0" style={{ background: "hsl(var(--lime))", animation: "blink 2.8s ease-in-out infinite" }} />
+            <div className="w-[7px] h-[7px] rounded-full flex-shrink-0" style={{ background: "hsl(var(--lime))", animation: "blink 2.8s ease-in-out infinite" }} />
             Open to Opportunities
           </div>
         </span>
@@ -145,7 +150,7 @@ const Hero = () => {
           <a
             href="https://www.linkedin.com/in/im-shourya/"
             target="_blank"
-            rel="noreferrer"
+            rel="me noreferrer"
             className="soc w-10 h-10 flex items-center justify-center text-xs font-mono font-medium no-underline"
             style={{ border: "1px solid rgba(242,239,230,.15)", color: "rgba(242,239,230,.5)", transition: "all .25s var(--ease-out)" }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "hsl(var(--lime))"; e.currentTarget.style.color = "hsl(var(--lime))"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(200,240,32,.15)"; }}
@@ -157,7 +162,7 @@ const Hero = () => {
           <a
             href="https://github.com/im-shourya"
             target="_blank"
-            rel="noreferrer"
+            rel="me noreferrer"
             className="soc w-10 h-10 flex items-center justify-center text-xs font-mono font-medium no-underline"
             style={{ border: "1px solid rgba(242,239,230,.15)", color: "rgba(242,239,230,.5)", transition: "all .25s var(--ease-out)" }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "hsl(var(--lime))"; e.currentTarget.style.color = "hsl(var(--lime))"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(200,240,32,.15)"; }}
@@ -170,6 +175,7 @@ const Hero = () => {
             Github
           </a>
         </div>
+
       </div>
     </section>
   );
