@@ -2,62 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Homepage -->
   <url>
     <loc>https://shouryaparashar.in/</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://shouryaparashar.in/Shourya_Parashar.jpeg</image:loc>
-      <image:title>Shourya Parashar — Full Stack Developer</image:title>
+      <image:loc>https://shouryaparashar.in/image.png</image:loc>
+      <image:title>Shourya Parashar</image:title>
       <image:caption>Shourya Parashar, Full Stack Developer and Founder</image:caption>
     </image:image>
   </url>
-
-  <!-- About -->
   <url>
-    <loc>https://shouryaparashar.in/about</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://shouryaparashar.in/Shourya_Parashar.jpeg</image:loc>
-      <image:title>About Shourya Parashar</image:title>
-      <image:caption>Shourya Parashar, Full Stack Developer and Founder</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Projects -->
-  <url>
-    <loc>https://shouryaparashar.in/projects</loc>
-    <lastmod>2026-04-25</lastmod>
+    <loc>https://shouryaparashar.in/blog</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Skills -->
-  <url>
-    <loc>https://shouryaparashar.in/skills</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-
-  <!-- Journey -->
-  <url>
-    <loc>https://shouryaparashar.in/journey</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Contact -->
-  <url>
-    <loc>https://shouryaparashar.in/contact</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
   </url>
 
 </urlset>
