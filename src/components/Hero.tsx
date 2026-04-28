@@ -64,7 +64,7 @@ const Hero = () => {
             <span className="w-7 h-px" style={{ background: "hsl(var(--lime))" }} />
             Full Stack Dev · CSE Student · Founder
           </span>
-          <h1 className="font-display leading-[0.86] tracking-[0.02em] relative py-6 md:py-10" style={{ fontSize: "clamp(40px,13vw,200px)" }}>
+          <h1 className="font-display leading-[0.86] tracking-[0.02em] relative py-6 md:py-10" style={{ fontSize: "clamp(100px,13vw,200px)" }}>
             <span className="overflow-hidden block">
               <span className="block" style={{ transform: "translateY(110%)", animation: "slideUp .95s var(--ease-out) .55s forwards" }}>
                 SHOURYA
