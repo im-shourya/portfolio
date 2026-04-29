@@ -86,7 +86,7 @@ export default function Hero() {
               className="relative z-20 w-full h-[105%] flex justify-center items-end"
             >
               <Image
-                src="/image.png"
+                src="/image.webp"
                 alt="Shourya Parashar - Full Stack Developer"
                 width={600}
                 height={800}
@@ -226,7 +226,7 @@ export default function Hero() {
               className="relative z-20 w-full flex justify-center h-full items-end"
             >
               <Image
-                src="/image.png"
+                src="/image.webp"
                 alt="Shourya Parashar - Full Stack Developer"
                 width={600}
                 height={800}
