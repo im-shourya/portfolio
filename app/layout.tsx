@@ -192,6 +192,8 @@ const organizationJsonLd = {
     "https://www.linkedin.com/in/im-shourya/",
     "https://shouryaparashar.in",
     "https://x.com/im_SParashar",
+    "https://shouryaparashar.in/",
+    "https://x.com/im_SParashar/",
   ]
 };
 
