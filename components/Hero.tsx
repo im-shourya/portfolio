@@ -92,6 +92,7 @@ export default function Hero() {
                 height={800}
                 className="w-auto h-full max-w-[120%] sm:max-w-[90%] object-contain object-bottom pointer-events-auto block"
                 priority
+                fetchPriority="high"
               />
             </motion.div>
           </div>
@@ -230,6 +231,7 @@ export default function Hero() {
                 height={800}
                 className="w-[90%] xl:w-[100%] max-w-[500px] h-auto object-contain object-bottom pointer-events-auto block"
                 priority
+                fetchPriority="high"
               />
             </motion.div>
 
