@@ -25,10 +25,11 @@ export default function About() {
           <div className="relative w-full aspect-[4/5] rounded-t-full rounded-b-[40px] overflow-hidden bg-[#1B4A44]/20 border border-[#E8A325]/10 shadow-2xl isolate">
             <div className="absolute inset-0 bg-gradient-to-b from-[#151F1E]/20 to-transparent z-10 pointer-events-none" />
             <Image
-              src="/image.png"
+              src="/image.webp"
               alt="Shourya Parashar"
               width={500}
               height={600}
+              sizes="(max-width: 1024px) 100vw, 500px"
               className="w-full h-full object-cover object-top relative z-0"
               quality={95}
             />

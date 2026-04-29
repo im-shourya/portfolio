@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.',
     images: [
       {
-        url: '/Shourya_Parashar.jpeg',
+        url: '/Shourya_Parashar.webp',
         width: 800,
         height: 800,
         alt: 'Shourya Parashar - Full Stack Developer',
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Shourya Parashar | Full Stack Developer & Founder',
     description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.',
-    images: ['/Shourya_Parashar.jpeg'],
+    images: ['/Shourya_Parashar.webp'],
   },
   icons: {
     icon: [
@@ -113,8 +113,8 @@ const personJsonLd = {
   "image": {
     "@type": "ImageObject",
     "@id": "https://shouryaparashar.in/#photo",
-    "url": "https://shouryaparashar.in/Shourya_Parashar.jpeg",
-    "contentUrl": "https://shouryaparashar.in/Shourya_Parashar.jpeg",
+    "url": "https://shouryaparashar.in/Shourya_Parashar.webp",
+    "contentUrl": "https://shouryaparashar.in/Shourya_Parashar.webp",
     "width": 800,
     "height": 800,
     "caption": "Shourya Parashar — Full Stack Developer",
@@ -181,7 +181,7 @@ const organizationJsonLd = {
   "url": "https://shouryaparashar.in/",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://shouryaparashar.in/Shourya_Parashar.jpeg",
+    "url": "https://shouryaparashar.in/Shourya_Parashar.webp",
     "width": 800,
     "height": 800
   },
