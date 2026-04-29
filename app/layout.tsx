@@ -94,11 +94,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', type: 'image/x-icon' },
-      { url: '/favicon.png', type: 'image/png' },
+      { url: '/favicon.svg?v=2', type: 'image/svg+xml' },
+      { url: '/favicon.ico?v=2', type: 'image/x-icon' },
+      { url: '/favicon.png?v=2', type: 'image/png' },
     ],
-    apple: '/favicon.png',
+    apple: '/favicon.png?v=2',
   },
 }
 
