@@ -4,7 +4,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    qualities: [75, 95],
   },
   devIndicators: false,
 }

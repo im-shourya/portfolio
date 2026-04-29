@@ -216,6 +216,7 @@ export default function RootLayout({
   return (
     <html 
       lang="en" 
+      data-scroll-behavior="smooth"
       className={`bg-background ${dmSerif.variable} ${syne.variable} ${dmSans.variable} ${caveat.variable}`}
     >
       <head>
