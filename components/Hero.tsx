@@ -90,6 +90,7 @@ export default function Hero() {
                 alt="Shourya Parashar - Full Stack Developer"
                 width={600}
                 height={800}
+                sizes="(max-width: 1024px) 90vw, 500px"
                 className="w-auto h-full max-w-[120%] sm:max-w-[90%] object-contain object-bottom pointer-events-auto block"
                 priority
                 fetchPriority="high"
@@ -229,6 +230,7 @@ export default function Hero() {
                 alt="Shourya Parashar - Full Stack Developer"
                 width={600}
                 height={800}
+                sizes="(max-width: 1024px) 90vw, 500px"
                 className="w-[90%] xl:w-[100%] max-w-[500px] h-auto object-contain object-bottom pointer-events-auto block"
                 priority
                 fetchPriority="high"
