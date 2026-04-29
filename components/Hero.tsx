@@ -38,14 +38,14 @@ export default function Hero() {
           </div>
 
           {/* Mobile Image & Brush (Fills remaining space) */}
-          <div className="flex-1 w-full relative flex items-end justify-center pointer-events-none z-10 -mt-10 overflow-hidden">
+          <div className="flex-1 w-full relative flex items-end justify-center pointer-events-none z-10 -mt-5 overflow-visible">
             
             {/* Brush SVG */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center top-[10%]"
+              className="absolute inset-0 flex items-center justify-center top-[5%]"
             >
               <svg 
                 viewBox="0 0 800 800" 
@@ -83,14 +83,14 @@ export default function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="relative z-20 w-full h-[110%] flex justify-center items-end"
+              className="relative z-20 w-full h-[105%] flex justify-center items-end"
             >
               <Image
                 src="/image.png"
                 alt="Shourya Parashar - Full Stack Developer"
                 width={600}
                 height={800}
-                className="w-[120%] sm:w-[90%] max-w-[550px] h-auto object-contain object-bottom pointer-events-auto block translate-y-2"
+                className="w-auto h-full max-w-[120%] sm:max-w-[90%] object-contain object-bottom pointer-events-auto block"
                 priority
               />
             </motion.div>
