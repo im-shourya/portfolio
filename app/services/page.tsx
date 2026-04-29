@@ -1,13 +1,13 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import About from '@/components/About';
+import Services from '@/components/Services';
 
-export default function AboutPage() {
+export default function ServicesPage() {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
       <div className="flex-1">
-        <About />
+        <Services />
       </div>
       <Footer />
     </main>

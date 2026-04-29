@@ -1,13 +1,13 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import About from '@/components/About';
+import Certifications from '@/components/Certifications';
 
-export default function AboutPage() {
+export default function CertificationsPage() {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
       <div className="flex-1">
-        <About />
+        <Certifications />
       </div>
       <Footer />
     </main>
