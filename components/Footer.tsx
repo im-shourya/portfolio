@@ -11,7 +11,20 @@ export default function Footer() {
         
         {/* Left: Logo */}
         <div className="flex items-center gap-4">
-          <span className="font-script text-[28px] text-[#E8A325] leading-none">Shourya</span>
+          <button 
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                if (window.location.pathname === '/') {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                  window.location.href = '/';
+                }
+              }
+            }}
+            className="font-script text-[28px] text-[#E8A325] leading-none hover:opacity-80 transition-opacity cursor-pointer"
+          >
+            Shourya
+          </button>
           <div className="w-px h-6 bg-white/10 hidden sm:block" />
           <span className="font-syne text-[10px] font-bold tracking-[2px] uppercase text-[#F4EFE6]/40 hidden sm:block mt-1">
             Full Stack Developer

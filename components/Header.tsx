@@ -39,8 +39,14 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-script text-[26px] lg:text-[28px] text-[#1B4A44] hover:text-[#E8A325] transition-colors duration-300 relative z-50"
-            onClick={() => setIsOpen(false)}
+            className="font-script text-[26px] lg:text-[28px] text-[#1B4A44] hover:text-[#E8A325] transition-colors duration-300 relative z-50 cursor-pointer"
+            onClick={(e) => {
+              if (typeof window !== 'undefined' && window.location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+              setIsOpen(false);
+            }}
           >
             Shourya
           </Link>
