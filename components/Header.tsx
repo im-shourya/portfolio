@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#tech' },
-  { label: 'Journey', href: '#journey' },
+  { label: 'About', href: '/#about' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Skills', href: '/#tech' },
+  { label: 'Journey', href: '/#journey' },
   { label: 'Blog', href: '/blog' },
 ];
 
@@ -54,25 +54,25 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-10 bg-white/40 backdrop-blur-md px-8 py-3.5 rounded-full border border-[#1B4A44]/5">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="font-syne text-[10px] font-bold uppercase tracking-[2px] text-[#1B4A44]/70 hover:text-[#E8A325] relative group transition-colors duration-300"
               >
                 {link.label}
                 <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E8A325] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </a>
+              </Link>
             ))}
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center">
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="inline-flex items-center justify-center bg-[#1B4A44] text-[#F4EFE6] px-6 py-3 rounded-full font-syne text-[10px] font-bold tracking-[1.5px] uppercase hover:bg-[#E8A325] hover:text-[#151F1E] hover:-translate-y-0.5 hover:shadow-[0_10px_20px_rgba(232,163,37,0.2)] transition-all duration-300"
             >
               Get In Touch
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
@@ -98,31 +98,38 @@ export default function Header() {
           >
             <div className="flex flex-col items-center gap-8 w-full px-6">
               {navLinks.map((link, idx) => (
-                <motion.a
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.4, delay: idx * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="font-serif text-[3rem] text-[#F4EFE6] hover:text-[#E8A325] transition-colors leading-none tracking-tight"
                 >
-                  {link.label}
-                </motion.a>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="font-serif text-[3rem] text-[#F4EFE6] hover:text-[#E8A325] transition-colors leading-none tracking-tight block"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
               
-              <motion.a
-                href="#contact"
-                onClick={() => setIsOpen(false)}
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.4, delay: navLinks.length * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
-                className="mt-8 inline-flex items-center justify-center bg-[#E8A325] text-[#151F1E] w-full max-w-[280px] px-6 py-4 rounded-full font-syne text-[11px] font-bold tracking-[2px] uppercase active:scale-95 transition-transform"
+                className="w-full flex justify-center mt-8"
               >
-                Get In Touch
-              </motion.a>
+                <Link
+                  href="/#contact"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center bg-[#E8A325] text-[#151F1E] w-full max-w-[280px] px-6 py-4 rounded-full font-syne text-[11px] font-bold tracking-[2px] uppercase active:scale-95 transition-transform"
+                >
+                  Get In Touch
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}
