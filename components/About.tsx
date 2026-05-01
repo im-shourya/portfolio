@@ -29,9 +29,9 @@ export default function About() {
               alt="Shourya Parashar"
               width={500}
               height={600}
-              sizes="(max-width: 1024px) 100vw, 500px"
+              sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 450px"
               className="w-full h-full object-cover object-top relative z-0"
-              quality={95}
+              quality={75}
             />
           </div>
 
