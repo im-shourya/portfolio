@@ -212,3 +212,14 @@
 .animate-fadeIn {
   animation: fadeIn 0.25s ease-out;
 }
+
+/* Hero LCP image animation — CSS-only for zero render delay */
+@keyframes heroSlideUp {
+  from { transform: translateY(12px); }
+  to { transform: translateY(0); }
+}
+
+.hero-image-animate {
+  animation: heroSlideUp 0.4s ease-out both;
+  will-change: transform;
+}

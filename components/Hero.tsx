@@ -80,9 +80,9 @@ export default function Hero() {
 
             {/* Mobile Portrait */}
             <motion.div 
-              initial={{ y: 15 }}
+              initial={{ y: 40 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
               className="relative z-20 w-full h-[105%] flex justify-center items-end"
             >
               <Image
