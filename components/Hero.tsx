@@ -79,12 +79,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Mobile Portrait */}
-            <motion.div 
-              initial={{ y: 40 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              className="relative z-20 w-full h-[105%] flex justify-center items-end"
-            >
+            <div className="relative z-20 w-full h-[105%] flex justify-center items-end hero-image-animate">
               <Image
                 src="/image.webp"
                 alt="Shourya Parashar - Full Stack Developer"
@@ -95,7 +90,7 @@ export default function Hero() {
                 priority
                 fetchPriority="high"
               />
-            </motion.div>
+            </div>
           </div>
 
         </div>
