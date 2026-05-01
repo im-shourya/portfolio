@@ -19,18 +19,18 @@ export default function Hero() {
           {/* Mobile Text (Top) */}
           <div className="flex-none px-6 text-center relative z-20">
             <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.35 }}
               className="font-sans text-[clamp(4rem,16vw,6rem)] font-extrabold text-[#143B36] leading-[1.02] tracking-tight"
             >
               Hey There,<br/>
               I&apos;m Shourya
             </motion.h1>
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.35, delay: 0.1 }}
               className="mt-5 text-[#2A3E3B] text-[18px] leading-relaxed max-w-[320px] mx-auto font-medium"
             >
               I build production-ready web applications. Clean code, modern design.
@@ -42,9 +42,9 @@ export default function Hero() {
             
             {/* Brush SVG */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
+              initial={{ scale: 0.97 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               className="absolute inset-0 flex items-center justify-center top-[5%]"
             >
               <svg 
@@ -80,9 +80,9 @@ export default function Hero() {
 
             {/* Mobile Portrait */}
             <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              initial={{ y: 15 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className="relative z-20 w-full h-[105%] flex justify-center items-end"
             >
               <Image
@@ -90,7 +90,7 @@ export default function Hero() {
                 alt="Shourya Parashar - Full Stack Developer"
                 width={600}
                 height={800}
-                sizes="(max-width: 1024px) 90vw, 500px"
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 500px"
                 className="w-auto h-full max-w-[120%] sm:max-w-[90%] object-contain object-bottom pointer-events-auto block"
                 priority
                 fetchPriority="high"
@@ -230,7 +230,7 @@ export default function Hero() {
                 alt="Shourya Parashar - Full Stack Developer"
                 width={600}
                 height={800}
-                sizes="(max-width: 1024px) 90vw, 500px"
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 500px"
                 className="w-[90%] xl:w-[100%] max-w-[500px] h-auto object-contain object-bottom pointer-events-auto block"
                 priority
                 fetchPriority="high"
