@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 interface ScrollAnimationProps {
@@ -20,13 +20,13 @@ export function FadeInOnScroll({ children, offset = 50, className = '' }: Scroll
   const y = useTransform(scrollYProgress, [0, 0.5, 1], [offset, 0, 0]);
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       style={{ opacity, y }}
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -40,13 +40,13 @@ export function ParallaxSection({ children, className = '' }: ScrollAnimationPro
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <motion.section
+    <m.section
       ref={ref}
       style={{ y }}
       className={className}
     >
       {children}
-    </motion.section>
+    </m.section>
   );
 }
 
@@ -61,12 +61,12 @@ export function ScaleOnScroll({ children, className = '' }: ScrollAnimationProps
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 1]);
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       style={{ scale, opacity }}
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

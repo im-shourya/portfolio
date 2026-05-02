@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Mail, Linkedin, Github, Globe, MapPin, Clock, Briefcase, ArrowUpRight } from 'lucide-react';
 
 export default function Contact() {
@@ -12,7 +12,7 @@ export default function Contact() {
 
       <div className="relative z-10 max-w-[1400px] mx-auto flex flex-col items-center">
         <div className="text-center w-full max-w-[900px]">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
@@ -33,10 +33,10 @@ export default function Contact() {
             <p className="text-[#F4EFE6]/60 text-[16px] lg:text-[18px] max-w-[500px] mx-auto leading-relaxed mb-12 font-light">
               I&apos;m open to internship opportunities, freelance projects, and collaboration on ambitious ideas.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* CTA Buttons */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
@@ -66,13 +66,13 @@ export default function Contact() {
                 <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300" />
               </span>
             </a>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Info & Socials Grid */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-10 border-t border-white/5 pt-12">
           {/* Social Links Box */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -93,7 +93,7 @@ export default function Contact() {
                 <Globe size={16} /> Portfolio <ArrowUpRight size={14} className="ml-auto opacity-50" />
               </a>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Quick Info Boxes */}
           {[
@@ -101,7 +101,7 @@ export default function Contact() {
             { Icon: Briefcase, label: 'Open To', value: 'Internships & Collabs' },
             { Icon: Clock, label: 'Response Time', value: 'Within 24 hours' },
           ].map((item, idx) => (
-            <motion.div
+            <m.div
               key={item.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ export default function Contact() {
               <div className="text-[#F4EFE6] text-[15px] font-light leading-snug">
                 {item.value}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

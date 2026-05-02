@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   FileCode2, FileJson, Terminal, Code, Coffee, Palette,
   Atom, Globe, Server, Zap, Wind, Bolt,
@@ -56,7 +56,7 @@ export default function TechStack() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#1B4A44]/30 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -74,12 +74,12 @@ export default function TechStack() {
           <p className="text-[#F4EFE6]/50 text-[14px] max-w-[300px] leading-relaxed font-light md:text-right">
             Technologies and tools I use to build robust, scalable, and high-performance applications.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Editorial Layout for Categories */}
         <div className="flex flex-col border-b border-white/[0.06] mb-12">
           {categories.map((cat, idx) => (
-            <motion.div
+            <m.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -106,12 +106,12 @@ export default function TechStack() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Currently Learning Bar */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -136,7 +136,7 @@ export default function TechStack() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

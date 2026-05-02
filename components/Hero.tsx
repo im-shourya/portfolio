@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 
 export default function Hero() {
@@ -18,7 +18,7 @@ export default function Hero() {
           
           {/* Mobile Text (Top) */}
           <div className="flex-none px-6 text-center relative z-20">
-            <motion.h1 
+            <m.h1 
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
@@ -26,22 +26,22 @@ export default function Hero() {
             >
               Hey There,<br/>
               I&apos;m Shourya
-            </motion.h1>
-            <motion.p 
+            </m.h1>
+            <m.p 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: 0.1 }}
               className="mt-5 text-[#2A3E3B] text-[18px] leading-relaxed max-w-[320px] mx-auto font-medium"
             >
               I build production-ready web applications. Clean code, modern design.
-            </motion.p>
+            </m.p>
           </div>
 
           {/* Mobile Image & Brush (Fills remaining space) */}
           <div className="flex-1 w-full relative flex items-end justify-center pointer-events-none z-10 -mt-5 overflow-visible">
             
             {/* Brush SVG */}
-            <motion.div 
+            <m.div 
               initial={{ scale: 0.97 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
@@ -76,7 +76,7 @@ export default function Hero() {
                   <circle cx="750" cy="400" r="10" />
                 </g>
               </svg>
-            </motion.div>
+            </m.div>
 
             {/* Mobile Portrait */}
             <div className="relative z-20 w-full h-[105%] flex justify-center items-end hero-image-animate">
@@ -102,7 +102,7 @@ export default function Hero() {
         <div className="hidden lg:block w-full h-full relative">
           
           {/* Top Left Title */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -112,10 +112,10 @@ export default function Hero() {
               Hey There,<br/>
               I&apos;m Shourya
             </h1>
-          </motion.div>
+          </m.div>
 
           {/* Middle Left Email */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -127,10 +127,10 @@ export default function Hero() {
             >
               parasharshourya07@gmail.com
             </a>
-          </motion.div>
+          </m.div>
 
           {/* Bottom Left Stats */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -142,10 +142,10 @@ export default function Hero() {
             <div className="text-[12px] font-bold tracking-[1.5px] uppercase text-[#143B36] leading-snug">
               PROJECTS<br/>DEPLOYED
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Top Right Description */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -154,10 +154,10 @@ export default function Hero() {
             <p className="text-[#2A3E3B] text-[17px] leading-relaxed font-medium">
               I build production-ready web applications. Clean code, modern design, and performance-first engineering.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Bottom Right Stats/Badge */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -172,12 +172,12 @@ export default function Hero() {
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#143B36] text-center leading-snug">
               ACTIVE<br/>ROLES
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Desktop Brush Strokes & Photo */}
           <div className="absolute bottom-0 left-1/2 translate-x-[-40%] xl:translate-x-[-45%] w-[650px] xl:w-[750px] h-[80%] flex items-end justify-center pointer-events-none z-10">
             
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
@@ -212,9 +212,9 @@ export default function Hero() {
                   <circle cx="750" cy="400" r="10" />
                 </g>
               </svg>
-            </motion.div>
+            </m.div>
 
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -230,7 +230,7 @@ export default function Hero() {
                 priority
                 fetchPriority="high"
               />
-            </motion.div>
+            </m.div>
 
           </div>
         </div>
