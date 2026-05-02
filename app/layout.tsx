@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   keywords: [
     'Shourya Parashar', 'Shaurya Parashar', 'Full Stack Developer', 'Software Engineer', 
     'React Developer', 'Node.js Developer', 'Next.js', 'TypeScript', 'im-shourya', 
-    'Recurit AI', 'KanbanFlow','Shourya Parashar',
+    'Recurit AI', 'KanbanFlow',
     'Full Stack Developer',
     'React Developer',
     'Next.js Developer',
@@ -125,17 +125,46 @@ const personJsonLd = {
   "description": "Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.",
   "email": "parasharshourya07@gmail.com",
   "knowsAbout": [
-    "React", "Node.js", "Next.js", "TypeScript", "Full Stack Development",
-    "JavaScript", "MongoDB", "Express.js", "Tailwind CSS", "REST APIs", "Web Development"
+    { "@type": "Thing", "name": "React", "sameAs": "https://en.wikipedia.org/wiki/React_(JavaScript_library)" },
+    { "@type": "Thing", "name": "Node.js", "sameAs": "https://en.wikipedia.org/wiki/Node.js" },
+    { "@type": "Thing", "name": "Next.js", "sameAs": "https://en.wikipedia.org/wiki/Next.js" },
+    { "@type": "Thing", "name": "TypeScript", "sameAs": "https://en.wikipedia.org/wiki/TypeScript" },
+    { "@type": "Thing", "name": "JavaScript", "sameAs": "https://en.wikipedia.org/wiki/JavaScript" },
+    { "@type": "Thing", "name": "MongoDB", "sameAs": "https://en.wikipedia.org/wiki/MongoDB" },
+    { "@type": "Thing", "name": "Express.js", "sameAs": "https://en.wikipedia.org/wiki/Express.js" },
+    { "@type": "Thing", "name": "Tailwind CSS", "sameAs": "https://en.wikipedia.org/wiki/Tailwind_CSS" },
+    { "@type": "Thing", "name": "REST APIs", "sameAs": "https://en.wikipedia.org/wiki/REST" },
+    { "@type": "Thing", "name": "Web Development", "sameAs": "https://en.wikipedia.org/wiki/Web_development" }
   ],
   "alumniOf": {
     "@type": "EducationalOrganization",
     "name": "SRM Institute of Science and Technology",
-    "url": "https://www.srmist.edu.in"
+    "url": "https://www.srmist.edu.in",
+    "sameAs": [
+      "https://en.wikipedia.org/wiki/SRM_Institute_of_Science_and_Technology",
+      "https://www.wikidata.org/wiki/Q1053006"
+    ]
   },
+  "award": [
+    {
+      "@type": "Thing",
+      "name": "HackerRank Campus Crew — Transformer 1.0 Winner",
+      "description": "Won HackerRank Campus Crew Transformer 1.0 hackathon"
+    },
+    {
+      "@type": "Thing",
+      "name": "Google Developer Group Kernel Panic — Winner",
+      "description": "Won GDG on Campus Kernel Panic event"
+    }
+  ],
   "sameAs": [
     "https://github.com/im-shourya",
-    "https://www.linkedin.com/in/im-shourya/"
+    "https://www.linkedin.com/in/im-shourya/",
+    "https://x.com/im_SParashar/",
+    "https://dev.to/im-shourya",
+    "https://forem.com/im-shourya",
+    "https://www.instagram.com/imshourya.in",
+    "https://medium.com/@im-shourya"
   ],
   "owns": [
     {
@@ -145,7 +174,13 @@ const personJsonLd = {
       "description": "AI-powered recruitment platform built by Shourya Parashar",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "author": { "@id": "https://shouryaparashar.in/#person" }
+      "author": { "@id": "https://shouryaparashar.in/#person" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/OnlineOnly"
+      }
     },
     {
       "@type": "WebApplication",
@@ -154,9 +189,46 @@ const personJsonLd = {
       "description": "Kanban-based project management tool built by Shourya Parashar",
       "applicationCategory": "ProductivityApplication",
       "operatingSystem": "Web",
-      "author": { "@id": "https://shouryaparashar.in/#person" }
+      "author": { "@id": "https://shouryaparashar.in/#person" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/OnlineOnly"
+      }
     }
-  ]
+  ],
+  "birthPlace": {
+  "@type": "Country",
+  "name": "India",
+  "sameAs": "https://www.wikidata.org/wiki/Q668"
+},
+"nationality": {
+  "@type": "Country",
+  "name": "India",
+  "sameAs": "https://www.wikidata.org/wiki/Q668"
+},
+"address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Chennai",
+  "addressCountry": "India"
+},
+"mainEntityOfPage": {
+  "@type": "ProfilePage",
+  "@id": "https://shouryaparashar.in/#webpage"
+},
+"knowsLanguage": [
+  {
+    "@type": "Language",
+    "name": "English",
+    "sameAs": "https://www.wikidata.org/wiki/Q1860"
+  },
+  {
+    "@type": "Language",
+    "name": "Hindi",
+    "sameAs": "https://www.wikidata.org/wiki/Q1568"
+  }
+],
 };
 
 
@@ -173,31 +245,6 @@ const websiteJsonLd = {
   "mainEntity": { "@id": "https://shouryaparashar.in/#person" }
 };
 
-// JSON-LD Structured Data: Organization
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://shouryaparashar.in/#organization",
-  "name": "Shourya Parashar",
-  "url": "https://shouryaparashar.in/",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "https://shouryaparashar.in/Shourya_Parashar.jpeg",
-    "width": 800,
-    "height": 800
-  },
-  "founder": { "@id": "https://shouryaparashar.in/#person" },
-  "mainEntity": { "@id": "https://shouryaparashar.in/#person" },
-  "sameAs": [
-    "https://github.com/im-shourya",
-    "https://www.linkedin.com/in/im-shourya/",
-    "https://shouryaparashar.in",
-    "https://x.com/im_SParashar",
-    "https://shouryaparashar.in/",
-    "https://x.com/im_SParashar/",
-  ]
-};
-
 // JSON-LD Structured Data: ProfilePage
 const profilePageJsonLd = {
   "@context": "https://schema.org",
@@ -205,11 +252,24 @@ const profilePageJsonLd = {
   "@id": "https://shouryaparashar.in/#webpage",
   "url": "https://shouryaparashar.in/",
   "name": "Shourya Parashar | Full Stack Developer & Founder",
+  "inLanguage": "en",
   "isPartOf": { "@id": "https://shouryaparashar.in/#website" },
   "about": { "@id": "https://shouryaparashar.in/#person" },
   "mainEntity": { "@id": "https://shouryaparashar.in/#person" },
   "primaryImageOfPage": { "@id": "https://shouryaparashar.in/#photo" },
-  "dateModified": new Date().toISOString()
+  "datePublished": "2024-01-01T00:00:00Z",
+  "dateModified": new Date().toISOString(),
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Shourya Parashar",
+        "item": "https://shouryaparashar.in/"
+      }
+    ]
+  }
 };
 
 export default function RootLayout({
@@ -232,10 +292,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <script
           type="application/ld+json"
