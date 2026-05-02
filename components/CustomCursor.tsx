@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -38,7 +38,7 @@ export default function CustomCursor() {
   return (
     <>
       {/* Solid center dot */}
-      <motion.div
+      <m.div
         className="fixed top-0 left-0 w-2.5 h-2.5 bg-[#E8A325] rounded-full pointer-events-none z-[9999] mix-blend-difference"
         animate={{
           x: mousePosition.x - 5,
@@ -54,7 +54,7 @@ export default function CustomCursor() {
       />
 
       {/* Expanding hollow ring */}
-      <motion.div
+      <m.div
         className="fixed top-0 left-0 w-8 h-8 border-[1.5px] border-[#E8A325] rounded-full pointer-events-none z-[9999] mix-blend-difference"
         animate={{
           x: mousePosition.x - 16,

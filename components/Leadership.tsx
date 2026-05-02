@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const roles = [
@@ -29,7 +29,7 @@ export default function Leadership() {
   return (
     <section id="leadership" className="py-20 lg:py-28 px-6 lg:px-16 bg-white">
       <div className="max-w-[1400px] mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -40,11 +40,11 @@ export default function Leadership() {
           <h2 className="font-serif text-[clamp(2rem,4vw,3.2rem)] text-[#1B4A44] leading-tight">
             Leadership & Involvement
           </h2>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {roles.map((role, idx) => (
-            <motion.div
+            <m.div
               key={idx}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function Leadership() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

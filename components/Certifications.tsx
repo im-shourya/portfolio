@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Trophy, GraduationCap } from 'lucide-react';
 
 const certs = [
@@ -28,7 +28,7 @@ export default function Certifications() {
   return (
     <section id="certs" className="py-16 lg:py-20 px-6 lg:px-16 bg-[#EDE8DC]">
       <div className="max-w-[1400px] mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -39,11 +39,11 @@ export default function Certifications() {
           <h2 className="font-serif text-[clamp(2rem,4vw,3.2rem)] text-[#1B4A44] leading-tight">
             Certifications
           </h2>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {certs.map((cert, idx) => (
-            <motion.div
+            <m.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ export default function Certifications() {
                 <div className="text-[12px] text-[#4A6360] mt-1 font-light">{cert.date}</div>
                 <div className="text-[12px] text-[#4A6360] mt-1 font-light">{cert.detail}</div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <>
-      <motion.header
+      <m.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
@@ -84,12 +84,12 @@ export default function Header() {
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-      </motion.header>
+      </m.header>
 
       {/* Fullscreen Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -98,7 +98,7 @@ export default function Header() {
           >
             <div className="flex flex-col items-center gap-8 w-full px-6">
               {navLinks.map((link, idx) => (
-                <motion.div
+                <m.div
                   key={link.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -112,10 +112,10 @@ export default function Header() {
                   >
                     {link.label}
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
               
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -129,9 +129,9 @@ export default function Header() {
                 >
                   Get In Touch
                 </Link>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

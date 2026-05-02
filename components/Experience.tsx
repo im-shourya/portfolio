@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const workItems = [
   {
@@ -84,7 +84,7 @@ function TimelineBlock({ items, label }: { items: typeof workItems; label: strin
         <div className="absolute left-[13px] sm:left-[21px] top-2 bottom-6 w-[1.5px] bg-gradient-to-b from-white/20 via-white/10 to-transparent" />
 
         {items.map((item, idx) => (
-          <motion.div
+          <m.div
             key={idx}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ function TimelineBlock({ items, label }: { items: typeof workItems; label: strin
               </div>
               <p className="text-[14px] text-[#F4EFE6]/70 leading-relaxed font-light">{item.desc}</p>
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </div>
@@ -125,7 +125,7 @@ export default function Experience() {
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#E8A325]/5 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/4" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -138,7 +138,7 @@ export default function Experience() {
           <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-[#F4EFE6] leading-none tracking-tight">
             Work &amp; Education
           </h2>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <TimelineBlock items={workItems} label="Professional Experience" />

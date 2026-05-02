@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Github, Linkedin, Globe, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 
@@ -12,7 +12,7 @@ export default function About() {
 
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-center relative z-10">
         {/* Left - Premium Photo Card */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
@@ -36,7 +36,7 @@ export default function About() {
           </div>
 
           {/* Floating Quote Badge */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -45,12 +45,12 @@ export default function About() {
           >
             <span className="text-[#E8A325] text-2xl leading-none mr-1">&ldquo;</span>
             Building for the web, one commit at a time.
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* Right - Typography & Content */}
         <div className="flex flex-col justify-center pt-8 lg:pt-0">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -63,9 +63,9 @@ export default function About() {
               Full Stack Developer <br className="hidden md:block"/>
               &amp; Digital Builder
             </h2>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -122,7 +122,7 @@ export default function About() {
                 Website
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

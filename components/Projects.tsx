@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 
@@ -45,7 +45,7 @@ function ProjectCard({ project, idx }: { project: typeof projects[0]; idx: numbe
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
@@ -150,7 +150,7 @@ function ProjectCard({ project, idx }: { project: typeof projects[0]; idx: numbe
           </div>
         </div>
       )}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -158,7 +158,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#F4EFE6] relative">
       <div className="max-w-[1400px] mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -176,7 +176,7 @@ export default function Projects() {
           <p className="text-[#4A6360] text-[15px] max-w-[320px] md:text-right leading-relaxed font-light">
             A showcase of production-ready applications, built with clean architecture and modern performance standards.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Mobile: Horizontal scroll container */}
         <div className="md:hidden -mx-6 px-6 relative">
