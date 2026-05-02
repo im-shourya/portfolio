@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Monitor, Server, Brain, Database, Rocket, Code2 } from 'lucide-react';
 
 const services = [
@@ -60,7 +60,7 @@ export default function Services() {
       <div className="max-w-[1400px] mx-auto">
         {/* Header - Binjan style */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 mb-16">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -70,8 +70,8 @@ export default function Services() {
             <h2 className="font-serif text-[clamp(2rem,4vw,3.2rem)] text-[#1B4A44] leading-tight">
               What do I help?
             </h2>
-          </motion.div>
-          <motion.p
+          </m.div>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -79,7 +79,7 @@ export default function Services() {
             className="text-[14px] text-[#4A6360] max-w-[300px] lg:text-right leading-relaxed font-light self-end"
           >
             I help bring ideas to life with clean code and modern technology — from UI to deployment.
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Service Cards - Left list + Right description like Binjan */}
@@ -87,7 +87,7 @@ export default function Services() {
           {/* Left - Service list */}
           <div className="space-y-4">
             {services.map((service, idx) => (
-              <motion.div
+              <m.div
                 key={idx}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -102,12 +102,12 @@ export default function Services() {
                   <div className="font-syne text-[13px] font-bold text-[#151F1E]">{service.title}</div>
                   <div className="text-[11px] text-[#4A6360] font-syne tracking-[0.5px]">{service.tags}</div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
           {/* Right - Description & Stats */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -140,7 +140,7 @@ export default function Services() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

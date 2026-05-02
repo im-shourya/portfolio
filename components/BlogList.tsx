@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Link from 'next/link';
 import { Calendar, Clock, ArrowLeft, ArrowUpRight, PenLine } from 'lucide-react';
 
@@ -69,7 +69,7 @@ export default function BlogList() {
       <div className="max-w-[1400px] mx-auto relative z-10">
         
         {/* Navigation & Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
@@ -92,11 +92,11 @@ export default function BlogList() {
           <p className="text-[16px] text-[#2A3E3B] max-w-[380px] font-medium leading-relaxed pb-2">
             A collection of thoughts on software engineering, UI/UX design, and the things I learn building production-ready applications.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Featured Post (Massive Editorial Layout) */}
         {featuredPost && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
@@ -136,13 +136,13 @@ export default function BlogList() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
 
         {/* Other Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {otherPosts.map((post, idx) => (
-            <motion.div
+            <m.div
               key={post.slug}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -183,12 +183,12 @@ export default function BlogList() {
                   <ArrowUpRight size={16} />
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Coming soon note */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
@@ -200,7 +200,7 @@ export default function BlogList() {
               New articles published weekly
             </span>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
