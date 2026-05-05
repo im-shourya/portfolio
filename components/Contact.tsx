@@ -43,31 +43,31 @@ export default function Contact() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
             viewport={{ once: true }}
-            className="mb-20 w-full px-4 sm:px-0 flex flex-col sm:flex-row gap-5 justify-center items-center"
+            className="mb-20 w-full px-4 sm:px-0 flex flex-col sm:flex-row gap-5 justify-center items-center sm:items-stretch"
           >
             <a
               href="mailto:parasharshourya07@gmail.com"
-              className="group relative inline-flex items-center justify-center bg-[#E8A325] text-[#151F1E] w-full sm:w-auto px-6 py-5 lg:px-10 lg:py-6 rounded-full font-syne text-[12px] sm:text-[12px] lg:text-[14px] font-bold tracking-[1.5px] uppercase overflow-hidden transition-transform duration-300 hover:scale-[1.02] shadow-[0_20px_40px_rgba(232,163,37,0.2)] hover:shadow-[0_20px_50px_rgba(232,163,37,0.3)]"
+              className="group relative inline-flex items-center justify-center bg-[#E8A325] text-[#151F1E] w-full sm:w-auto px-8 py-5 lg:px-10 rounded-full font-syne text-[11px] sm:text-[12px] lg:text-[13px] font-bold tracking-[1.5px] uppercase overflow-hidden transition-transform duration-300 hover:scale-[1.02] shadow-[0_20px_40px_rgba(232,163,37,0.2)] hover:shadow-[0_20px_50px_rgba(232,163,37,0.3)]"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.25,0.1,0.25,1]" />
               <span className="relative z-10 flex items-center gap-3">
-                <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <Mail className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0" />
                 <span className="sm:hidden">Say Hello</span>
                 <span className="hidden sm:inline lg:hidden">Email Me</span>
                 <span className="hidden lg:inline">parasharshourya07@gmail.com</span>
-                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 group-hover:rotate-45 transition-transform duration-300" />
+                <ArrowUpRight className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0 group-hover:rotate-45 transition-transform duration-300" />
               </span>
             </a>
             
             <button
               onClick={() => openCalPopup()}
-              className="group relative inline-flex items-center justify-center bg-[#1B4A44] text-[#F4EFE6] w-full sm:w-auto px-6 py-5 lg:px-10 lg:py-6 rounded-full font-syne text-[12px] sm:text-[14px] lg:text-[16px] font-bold tracking-[2px] uppercase overflow-hidden transition-all duration-300 hover:bg-[#2D7A6E] hover:scale-[1.02] shadow-[0_10px_30px_rgba(27,74,68,0.3)] hover:shadow-[0_15px_40px_rgba(27,74,68,0.4)]"
+              className="group relative inline-flex items-center justify-center bg-[#1B4A44] text-[#F4EFE6] w-full sm:w-auto px-8 py-5 lg:px-10 rounded-full font-syne text-[11px] sm:text-[12px] lg:text-[13px] font-bold tracking-[1.5px] uppercase overflow-hidden transition-all duration-300 hover:bg-[#2D7A6E] hover:scale-[1.02] shadow-[0_10px_30px_rgba(27,74,68,0.3)] hover:shadow-[0_15px_40px_rgba(27,74,68,0.4)]"
             >
               <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.25,0.1,0.25,1]" />
               <span className="relative z-10 flex items-center gap-3">
-                <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Calendar className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0" />
                 <span>Book a Call</span>
-                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-45 transition-transform duration-300" />
+                <ArrowUpRight className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0 group-hover:rotate-45 transition-transform duration-300" />
               </span>
             </button>
 
@@ -75,11 +75,11 @@ export default function Contact() {
               href="/Shourya.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center justify-center bg-transparent border-[1.5px] border-white/20 text-[#F4EFE6] w-full sm:w-auto px-6 py-5 lg:px-10 lg:py-6 rounded-full font-syne text-[12px] sm:text-[14px] lg:text-[16px] font-bold tracking-[2px] uppercase overflow-hidden transition-all duration-300 hover:border-[#E8A325] hover:text-[#E8A325] hover:bg-[#E8A325]/5"
+              className="group relative inline-flex items-center justify-center bg-transparent border-[1.5px] border-white/20 text-[#F4EFE6] w-full sm:w-auto px-8 py-5 lg:px-10 rounded-full font-syne text-[11px] sm:text-[12px] lg:text-[13px] font-bold tracking-[1.5px] uppercase overflow-hidden transition-all duration-300 hover:border-[#E8A325] hover:text-[#E8A325] hover:bg-[#E8A325]/5"
             >
               <span className="relative z-10 flex items-center gap-3">
                 <span>Download CV</span>
-                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300" />
+                <ArrowUpRight className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300" />
               </span>
             </a>
           </m.div>
