@@ -2,7 +2,7 @@
 
 import { m } from 'framer-motion';
 import { Rocket, Palette, Wrench, ArrowUpRight, Calendar } from 'lucide-react';
-import { useCalEmbed, openCalPopup } from './CalEmbed';
+import { useOpenCalPopup } from './CalEmbed';
 
 const freelanceServices = [
   {
@@ -32,7 +32,7 @@ const freelanceServices = [
 ];
 
 export default function Freelance() {
-  useCalEmbed();
+  const openCalPopup = useOpenCalPopup();
 
   return (
     <section id="freelance" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#151F1E] relative overflow-hidden">
@@ -122,7 +122,7 @@ export default function Freelance() {
                   </div>
                 </div>
                 <button
-                  onClick={openCalPopup}
+                  onClick={() => openCalPopup()}
                   className="inline-flex items-center gap-2 bg-white/[0.08] hover:bg-[#E8A325] text-[#F4EFE6] hover:text-[#151F1E] px-5 py-2.5 rounded-full font-syne text-[10px] font-bold tracking-[1.5px] uppercase transition-all duration-300 border border-white/[0.1] hover:border-[#E8A325] hover:scale-105"
                 >
                   Book Call
@@ -142,7 +142,7 @@ export default function Freelance() {
           className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8"
         >
           <button
-            onClick={openCalPopup}
+            onClick={() => openCalPopup()}
             className="group relative inline-flex items-center justify-center bg-[#E8A325] text-[#151F1E] px-10 py-5 rounded-full font-syne text-[13px] font-bold tracking-[2px] uppercase overflow-hidden transition-transform duration-300 hover:scale-[1.02] shadow-[0_20px_40px_rgba(232,163,37,0.15)] hover:shadow-[0_20px_50px_rgba(232,163,37,0.25)]"
           >
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.25,0.1,0.25,1]" />

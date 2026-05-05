@@ -2,10 +2,10 @@
 
 import { m } from 'framer-motion';
 import { Mail, Linkedin, Github, Globe, MapPin, Clock, Briefcase, ArrowUpRight, Calendar } from 'lucide-react';
-import { useCalEmbed, openCalPopup } from './CalEmbed';
+import { useOpenCalPopup } from './CalEmbed';
 
 export default function Contact() {
-  useCalEmbed();
+  const openCalPopup = useOpenCalPopup();
   return (
     <section id="contact" className="relative py-24 lg:py-32 px-6 lg:px-12 bg-[#151F1E] overflow-hidden">
       {/* Decorative background blur */}
@@ -58,7 +58,7 @@ export default function Contact() {
             </a>
             
             <button
-              onClick={openCalPopup}
+              onClick={() => openCalPopup()}
               className="group relative inline-flex items-center justify-center bg-[#1B4A44] text-[#F4EFE6] w-full sm:w-auto px-6 py-5 lg:px-10 lg:py-6 rounded-full font-syne text-[12px] sm:text-[14px] lg:text-[16px] font-bold tracking-[2px] uppercase overflow-hidden transition-all duration-300 hover:bg-[#2D7A6E] hover:scale-[1.02] shadow-[0_10px_30px_rgba(27,74,68,0.3)] hover:shadow-[0_15px_40px_rgba(27,74,68,0.4)]"
             >
               <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.25,0.1,0.25,1]" />
