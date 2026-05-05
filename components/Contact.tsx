@@ -47,13 +47,15 @@ export default function Contact() {
           >
             <a
               href="mailto:parasharshourya07@gmail.com"
-              className="group relative inline-flex items-center justify-center bg-[#E8A325] text-[#151F1E] w-full sm:w-auto px-6 py-5 lg:px-12 lg:py-6 rounded-full font-syne text-[12px] sm:text-[14px] lg:text-[16px] font-bold tracking-[2px] uppercase overflow-hidden transition-transform duration-300 hover:scale-[1.02] shadow-[0_20px_40px_rgba(232,163,37,0.2)] hover:shadow-[0_20px_50px_rgba(232,163,37,0.3)]"
+              className="group relative inline-flex items-center justify-center bg-[#E8A325] text-[#151F1E] w-full sm:w-auto px-6 py-5 lg:px-10 lg:py-6 rounded-full font-syne text-[12px] sm:text-[12px] lg:text-[14px] font-bold tracking-[1.5px] uppercase overflow-hidden transition-transform duration-300 hover:scale-[1.02] shadow-[0_20px_40px_rgba(232,163,37,0.2)] hover:shadow-[0_20px_50px_rgba(232,163,37,0.3)]"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.25,0.1,0.25,1]" />
               <span className="relative z-10 flex items-center gap-3">
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                 <span className="sm:hidden">Say Hello</span>
-                <span className="hidden sm:inline">parasharshourya07@gmail.com</span>
-                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-45 transition-transform duration-300" />
+                <span className="hidden sm:inline lg:hidden">Email Me</span>
+                <span className="hidden lg:inline">parasharshourya07@gmail.com</span>
+                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 group-hover:rotate-45 transition-transform duration-300" />
               </span>
             </a>
             
