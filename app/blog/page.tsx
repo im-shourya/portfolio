@@ -12,8 +12,12 @@ export const metadata: Metadata = {
     url: 'https://shouryaparashar.in/blog',
   },
   alternates: {
-    canonical: 'https://shouryaparashar.in/blog',
+    canonical: '/blog',
   },
+  twitter: {
+    title: 'Blog — Shourya Parashar | Full Stack Developer',
+    description: 'Weekly articles about web development, React, Next.js, Node.js, TypeScript, system design, and software engineering. Written by Shourya Parashar.',
+  }
 };
 
 export default function BlogPage() {
