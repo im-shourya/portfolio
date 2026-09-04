@@ -7,7 +7,7 @@ import { useState } from 'react';
 const projects = [
   {
     label: 'Full-Stack / AI',
-    title: 'RECURIT.AI',
+    title: 'RECRUIT.AI',
     stack: 'Next.js, Node.js, RESTful APIs, ML',
     desc: 'AI-powered recruitment platform automating candidate evaluation. Reduced manual screening by 60-70%. ML-based resume-job matching analyzing 100+ resumes with 2x faster role-fit identification.',
     bg: 'bg-[#1B4A44]', // solid elegant background
