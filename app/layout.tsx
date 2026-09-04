@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   title: 'Shourya Parashar | Full Stack Developer',
   description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript. Explore projects like RecruitAI and KanbanFlow.',
   keywords: [
-    'Shourya Parashar', 'Shaurya Parashar', 'Full Stack Developer', 'Software Engineer', 
+    'Shourya Parashar', 'Full Stack Developer', 'Software Engineer', 
     'React Developer', 'Node.js Developer', 'Next.js', 'TypeScript', 'im-shourya', 
     'RecruitAI', 'KanbanFlow',
     'Full Stack Developer',
@@ -68,9 +68,7 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
     },
   },
-  alternates: {
-    canonical: 'https://shouryaparashar.in/',
-  },
+
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -284,8 +282,6 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#1B4A44" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
