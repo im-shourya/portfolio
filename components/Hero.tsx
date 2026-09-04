@@ -33,7 +33,7 @@ export default function Hero() {
               transition={{ duration: 0.35, delay: 0.1 }}
               className="mt-5 text-[#2A3E3B] text-[18px] leading-relaxed max-w-[320px] mx-auto font-medium"
             >
-              I build production-ready web applications. Clean code, modern design.
+              <span className="font-bold text-[#143B36]">Shourya Parashar</span> — Full-Stack Developer. <br/>I build production-ready web applications. Clean code, modern design.
             </m.p>
           </div>
 
@@ -152,6 +152,7 @@ export default function Hero() {
             className="absolute top-[28%] xl:top-[30%] right-6 lg:right-12 z-30 max-w-[260px]"
           >
             <p className="text-[#2A3E3B] text-[17px] leading-relaxed font-medium">
+              <span className="font-bold text-[#143B36]">Shourya Parashar</span> — Full-Stack Developer.<br/>
               I build production-ready web applications. Clean code, modern design, and performance-first engineering.
             </p>
           </m.div>
