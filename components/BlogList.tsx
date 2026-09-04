@@ -7,7 +7,7 @@ import { Calendar, Clock, ArrowLeft, ArrowUpRight, PenLine } from 'lucide-react'
 const posts = [
   {
     slug: 'building-recruit-ai',
-    title: 'Building RECURIT.AI — How I Built an AI-Powered Recruitment Platform',
+    title: 'Building RECRUIT.AI — How I Built an AI-Powered Recruitment Platform',
     excerpt:
       'A deep dive into the architecture, ML pipeline, and lessons learned building an end-to-end recruitment automation tool with Next.js and Node.js.',
     date: 'Coming Soon',
