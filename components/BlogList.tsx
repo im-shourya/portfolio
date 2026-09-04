@@ -4,58 +4,7 @@ import { m } from 'framer-motion';
 import Link from 'next/link';
 import { Calendar, Clock, ArrowLeft, ArrowUpRight, PenLine } from 'lucide-react';
 
-const posts = [
-  {
-    slug: 'building-recruit-ai',
-    title: 'Building RECRUIT.AI — How I Built an AI-Powered Recruitment Platform',
-    excerpt:
-      'A deep dive into the architecture, ML pipeline, and lessons learned building an end-to-end recruitment automation tool with Next.js and Node.js.',
-    date: 'Coming Soon',
-    readTime: '8 min read',
-    tags: ['Next.js', 'Node.js', 'AI'],
-    featured: true,
-  },
-  {
-    slug: 'kanbanflow-zero-backend',
-    title: 'Zero-Backend Architecture: Building KanbanFlow with Pure Client-Side State',
-    excerpt:
-      'How I achieved instant persistence with localStorage, drag-and-drop with React DnD, and sub-50ms state updates — all without a backend.',
-    date: 'Coming Soon',
-    readTime: '6 min read',
-    tags: ['React', 'Architecture'],
-    featured: false,
-  },
-  {
-    slug: 'rest-api-best-practices',
-    title: 'Production-Grade REST APIs: Patterns I Learned Building Task Management API',
-    excerpt:
-      'Error handling, input validation, response patterns, and performance optimizations for Express.js APIs serving 50+ requests/minute.',
-    date: 'Coming Soon',
-    readTime: '7 min read',
-    tags: ['Node.js', 'Express'],
-    featured: false,
-  },
-  {
-    slug: 'lighthouse-95-plus',
-    title: 'How I Achieved 95+ Lighthouse Scores on My Portfolio',
-    excerpt:
-      'Font loading strategies, image optimization, CSS performance, and the small tweaks that moved my scores from 70s to 95+.',
-    date: 'Coming Soon',
-    readTime: '5 min read',
-    tags: ['Performance', 'SEO'],
-    featured: false,
-  },
-  {
-    slug: 'organizing-techformers',
-    title: 'Organizing TECHFORMERS 1.0: Running a 1,800+ Participant Coding Competition',
-    excerpt:
-      'Behind the scenes of designing algorithmic problems, managing real-time hackathon support, and the tools we used to run everything smoothly.',
-    date: 'Coming Soon',
-    readTime: '6 min read',
-    tags: ['Community', 'Leadership'],
-    featured: false,
-  },
-];
+import { posts } from '@/data/blogs';
 
 export default function BlogList() {
   const featuredPost = posts.find((p) => p.featured);
@@ -102,7 +51,7 @@ export default function BlogList() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
             className="mb-16 lg:mb-24"
           >
-            <div className="group relative bg-[#143B36] rounded-[32px] lg:rounded-[48px] p-8 sm:p-12 lg:p-16 overflow-hidden cursor-pointer flex flex-col justify-between min-h-[450px]">
+            <Link href={featuredPost.date !== 'Coming Soon' ? `/blog/${featuredPost.slug}` : '#'} className="block group relative bg-[#143B36] rounded-[32px] lg:rounded-[48px] p-8 sm:p-12 lg:p-16 overflow-hidden cursor-pointer flex flex-col justify-between min-h-[450px]">
               {/* Background gradient/noise effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#1B4A44] to-[#143B36] opacity-50 pointer-events-none" />
               <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#E8A325]/10 rounded-full blur-[80px] pointer-events-none translate-x-1/3 -translate-y-1/3 group-hover:bg-[#E8A325]/20 transition-colors duration-700" />
@@ -135,7 +84,7 @@ export default function BlogList() {
                   <ArrowUpRight size={28} className="text-[#143B36] group-hover:rotate-45 transition-transform duration-500" />
                 </div>
               </div>
-            </div>
+            </Link>
           </m.div>
         )}
 
@@ -147,8 +96,9 @@ export default function BlogList() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-              className="bg-white rounded-[24px] lg:rounded-[32px] p-8 lg:p-10 border border-[#143B36]/[0.04] hover:shadow-[0_20px_40px_rgba(20,59,54,0.04)] hover:-translate-y-1 transition-all duration-500 cursor-pointer group flex flex-col h-full"
+              className="bg-white rounded-[24px] lg:rounded-[32px] p-8 lg:p-10 border border-[#143B36]/[0.04] hover:shadow-[0_20px_40px_rgba(20,59,54,0.04)] hover:-translate-y-1 transition-all duration-500 cursor-pointer group flex flex-col h-full block"
             >
+              <Link href={post.date !== 'Coming Soon' ? `/blog/${post.slug}` : '#'} className="flex flex-col h-full">
               <div className="flex flex-wrap gap-2 mb-6">
                 {post.tags.map((tag) => (
                   <span
@@ -183,6 +133,7 @@ export default function BlogList() {
                   <ArrowUpRight size={16} />
                 </div>
               </div>
+              </Link>
             </m.div>
           ))}
         </div>
