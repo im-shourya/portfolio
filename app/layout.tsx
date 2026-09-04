@@ -32,12 +32,12 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shouryaparashar.in'),
-  title: 'Shourya Parashar | Full Stack Developer & Founder',
-  description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript. Explore projects like Recurit AI and KanbanFlow.',
+  title: 'Shourya Parashar | Full Stack Developer',
+  description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript. Explore projects like RecruitAI and KanbanFlow.',
   keywords: [
     'Shourya Parashar', 'Shaurya Parashar', 'Full Stack Developer', 'Software Engineer', 
     'React Developer', 'Node.js Developer', 'Next.js', 'TypeScript', 'im-shourya', 
-    'Recurit AI', 'KanbanFlow',
+    'RecruitAI', 'KanbanFlow',
     'Full Stack Developer',
     'React Developer',
     'Next.js Developer',
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://shouryaparashar.in/',
     siteName: 'Shourya Parashar',
-    title: 'Shourya Parashar | Full Stack Developer & Founder',
+    title: 'Shourya Parashar | Full Stack Developer',
     description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.',
     images: [
       {
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shourya Parashar | Full Stack Developer & Founder',
+    title: 'Shourya Parashar | Full Stack Developer',
     description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.',
     images: ['/Shourya_Parashar.jpeg'],
   },
@@ -109,7 +109,6 @@ const personJsonLd = {
   "@type": "Person",
   "@id": "https://shouryaparashar.in/#person",
   "name": "Shourya Parashar",
-  "alternateName": "Shaurya Parashar",
   "url": "https://shouryaparashar.in/",
   "image": {
     "@type": "ImageObject",
@@ -169,8 +168,8 @@ const personJsonLd = {
   "owns": [
     {
       "@type": "WebApplication",
-      "name": "Recurit AI",
-      "url": "https://recuritai.shouryaparashar.in",
+      "name": "RecruitAI",
+      "url": "https://recruitai.shouryaparashar.in",
       "description": "AI-powered recruitment platform built by Shourya Parashar",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
@@ -251,14 +250,13 @@ const profilePageJsonLd = {
   "@type": "ProfilePage",
   "@id": "https://shouryaparashar.in/#webpage",
   "url": "https://shouryaparashar.in/",
-  "name": "Shourya Parashar | Full Stack Developer & Founder",
+  "name": "Shourya Parashar | Full Stack Developer",
   "inLanguage": "en",
   "isPartOf": { "@id": "https://shouryaparashar.in/#website" },
   "about": { "@id": "https://shouryaparashar.in/#person" },
   "mainEntity": { "@id": "https://shouryaparashar.in/#person" },
   "primaryImageOfPage": { "@id": "https://shouryaparashar.in/#photo" },
   "datePublished": "2024-01-01T00:00:00Z",
-  "dateModified": new Date().toISOString(),
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [

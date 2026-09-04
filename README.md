@@ -100,7 +100,7 @@ The portfolio is composed of 11 distinct sections, each accessible via its own r
 
 | Project | Stack | Impact |
 |---|---|---|
-| **Recurit AI** | Next.js, Node.js, RESTful APIs, ML | AI-powered recruitment — 60–70% reduction in manual screening; ML-based resume matching across 100+ resumes |
+| **RecruitAI** | Next.js, Node.js, RESTful APIs, ML | AI-powered recruitment — 60–70% reduction in manual screening; ML-based resume matching across 100+ resumes |
 | **KanbanFlow** | React, TypeScript, Tailwind CSS, Vite | Zero-backend Kanban board with drag-and-drop and `localStorage` persistence |
 | **Task Management API** | Node.js, Express.js, MongoDB | Production REST API handling 50+ req/min with sub-200ms response latency |
 | **Personal Portfolio** | Next.js, TypeScript, Vercel | 95+ Lighthouse score, sub-second load times, automated deployment |
