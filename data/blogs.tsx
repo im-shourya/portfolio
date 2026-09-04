@@ -411,12 +411,112 @@ Dense Retrieval          BM25+ Retrieval
   },
   {
     slug: 'kanbanflow-zero-backend',
-    title: 'Zero-Backend Architecture: Building KanbanFlow with Pure Client-Side State',
-    excerpt: 'How I achieved instant persistence with localStorage, drag-and-drop with React DnD, and sub-50ms state updates — all without a backend.',
-    date: 'Coming Soon',
-    readTime: '6 min read',
-    tags: ['React', 'Architecture'],
+    title: 'I Built a Zero-Backend Kanban Board with React + TypeScript — Here\'s What I Learned',
+    excerpt: 'No server. No database. No login. Just pure React — and it actually works great. How I built KanbanFlow with zero backend architecture.',
+    date: 'Sept 5, 2026',
+    readTime: '4 min read',
+    tags: ['React', 'TypeScript', 'Architecture'],
     featured: false,
+    content: (
+      <>
+        <p>
+          <strong>Why I Built KanbanFlow</strong><br />
+          Every Kanban tool I used asked me to sign up, connect to a server, or pay for features I didn't need. I wanted something that just <strong>opened and worked</strong> — instantly, privately, offline.
+        </p>
+        <p>
+          So I built <a href="https://kanbanflow.shouryaparashar.in" target="_blank" rel="noopener noreferrer">KanbanFlow</a> — a fully-featured Kanban board that lives entirely in your browser. No account. No backend. No setup.
+        </p>
+        
+        <h2>What It Does</h2>
+        <ul>
+          <li><strong>Unlimited columns and tasks</strong> — fully customizable</li>
+          <li><strong>Drag & drop</strong> task movement across columns</li>
+          <li><strong>Priority tagging</strong> — High, Medium, Low, None</li>
+          <li><strong>Due dates</strong> with overdue highlighting</li>
+          <li><strong>Live search</strong> + priority filtering</li>
+          <li><strong>Dark / Light theme</strong> toggle</li>
+          <li><strong>Auto-saves to localStorage</strong> — data persists across sessions</li>
+        </ul>
+        
+        <h2>Tech Stack</h2>
+        <p>
+          React 18 + Vite 5 + TypeScript 5 + Tailwind CSS + React Router v6
+        </p>
+        <p>
+          No Redux. No external state library. Just React's <code>useState</code> and <code>useReducer</code> — keeping it lean.
+        </p>
+        
+        <h2>The Interesting Part — localStorage as a Database</h2>
+        <p>
+          Most people reach for Firebase or Supabase immediately. But for a personal productivity tool, <code>localStorage</code> is genuinely underrated.
+        </p>
+        <pre><code className="language-typescript">{`// Auto-save board state on every change
+useEffect(() => {
+  localStorage.setItem('kanban-board', JSON.stringify(board));
+}, [board]);
+
+// Load on mount
+const [board, setBoard] = useState<Board>(() => {
+  const saved = localStorage.getItem('kanban-board');
+  return saved ? JSON.parse(saved) : defaultBoard;
+});`}</code></pre>
+        <p>
+          This pattern gives you:
+        </p>
+        <ul>
+          <li>Instant persistence with zero latency</li>
+          <li>Works completely offline</li>
+          <li>No auth, no API keys, no cost</li>
+          <li>Data stays on the user's machine (privacy win)</li>
+        </ul>
+        <p>
+          The tradeoff? No cross-device sync. For a personal board, that's totally acceptable.
+        </p>
+
+        <h2>Drag & Drop Without a Library</h2>
+        <p>
+          Instead of reaching for <code>react-beautiful-dnd</code> or <code>dnd-kit</code>, I implemented drag and drop using the native HTML5 Drag and Drop API — which kept the bundle size tiny.
+        </p>
+        <pre><code className="language-typescript">{`const handleDragStart = (e: DragEvent, taskId: string) => {
+  e.dataTransfer.setData('taskId', taskId);
+};
+
+const handleDrop = (e: DragEvent, targetColumnId: string) => {
+  const taskId = e.dataTransfer.getData('taskId');
+  moveTask(taskId, targetColumnId);
+};`}</code></pre>
+
+        <h2>Project Structure</h2>
+        <p>
+          I kept the component tree flat and predictable:
+        </p>
+        <pre><code>{`src/
+├── types/kanban.ts         # All types + constants
+├── components/kanban/
+│   ├── TaskCard.tsx
+│   ├── KanbanColumn.tsx
+│   ├── TaskForm.tsx
+│   ├── Header.tsx
+│   └── Toolbar.tsx
+└── pages/
+    └── Index.tsx           # Main orchestrator`}</code></pre>
+        <p>
+          One rule I followed: <strong>no component does more than one thing</strong>. <code>KanbanColumn</code> renders a column. <code>TaskCard</code> renders a card. <code>Index.tsx</code> wires them together.
+        </p>
+
+        <h2>Try It</h2>
+        <p>
+          <strong>Live:</strong> <a href="https://kanbanflow.shouryaparashar.in" target="_blank" rel="noopener noreferrer">kanbanflow.shouryaparashar.in</a><br />
+          <strong>GitHub:</strong> <a href="https://github.com/im-shourya/KanbanFlow" target="_blank" rel="noopener noreferrer">github.com/im-shourya/KanbanFlow</a>
+        </p>
+        <p>
+          Built by <a href="https://shouryaparashar.in" target="_blank" rel="noopener noreferrer">Shourya Parashar</a> — Full Stack Developer.
+        </p>
+        <p>
+          <em>If you found this useful, drop a ⭐ on GitHub — it genuinely helps!</em>
+        </p>
+      </>
+    )
   },
   {
     slug: 'rest-api-best-practices',
