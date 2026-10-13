@@ -1,12 +1,12 @@
 'use client';
 
-import { Github, Linkedin, Globe, Mail } from 'lucide-react';
+import { Github, Linkedin, PenLine, Mail } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#151F1E] px-6 lg:px-12 py-10 border-t border-white/[0.05]">
+    <footer className="bg-[#151F1E] px-6 lg:px-12 py-10 border-t border-white/[0.06]">
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         
         {/* Left: Logo */}
@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
 
         {/* Center: Copyright */}
-        <div className="font-syne text-[10px] font-bold text-[#F4EFE6]/30 tracking-[1.5px] uppercase text-center order-3 md:order-2">
+        <div className="font-syne text-[10px] font-bold text-[#F4EFE6]/30 tracking-[1.5px] [word-spacing:0.25em] uppercase text-center order-3 md:order-2">
           &copy; {currentYear} Shourya Parashar &middot; All Rights Reserved
         </div>
 
@@ -41,7 +41,7 @@ export default function Footer() {
           {[
             { Icon: Github, href: 'https://github.com/im-shourya', label: 'GitHub' },
             { Icon: Linkedin, href: 'https://linkedin.com/in/im-shourya', label: 'LinkedIn' },
-            { Icon: Globe, href: 'https://shouryaparashar.in', label: 'Website' },
+            { Icon: PenLine, href: 'https://dev.to/im-shourya', label: 'dev.to' },
             { Icon: Mail, href: 'mailto:parasharshourya07@gmail.com', label: 'Email' },
           ].map((link) => (
             <a
@@ -49,10 +49,10 @@ export default function Footer() {
               href={link.href}
               target={link.href.startsWith('mailto') ? undefined : '_blank'}
               rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-[#F4EFE6]/50 hover:bg-[#E8A325] hover:text-[#151F1E] hover:border-[#E8A325] transition-all duration-300 hover:-translate-y-1"
+              className="glass-dark w-10 h-10 rounded-full flex items-center justify-center text-[#F4EFE6]/70 hover:bg-none hover:bg-[#E8A325] hover:text-[#151F1E] transition-all duration-300 hover:-translate-y-1 active:scale-95"
               aria-label={link.label}
             >
-              <link.Icon size={15} strokeWidth={1.5} />
+              <link.Icon size={16} />
             </a>
           ))}
         </div>

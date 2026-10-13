@@ -18,58 +18,99 @@ type Project = {
 
 const projects: Project[] = [
   {
-    label: 'Full-Stack / AI',
-    title: 'RECRUIT.AI',
-    tags: ['Next.js', 'Node.js', 'REST APIs', 'ML'],
-    desc: 'AI-powered recruitment platform that automates candidate evaluation with ML-based resume-to-job matching.',
+    label: 'AI / Retrieval · HH Goa 2026',
+    title: 'Voice RAG',
+    tags: ['Python', 'FastAPI', 'BM25+', 'TypeScript'],
+    desc: 'Speech-to-text → hybrid retrieval → grounded answers over an English/Hindi corpus. Three-layer guardrails decline rather than guess when the corpus has no answer.',
     metrics: [
-      { value: '60–70%', label: 'less manual screening' },
-      { value: '2x', label: 'faster role-fit' },
-      { value: '100+', label: 'resumes analysed' },
+      { value: '7.87ms', label: 'P50 latency' },
+      { value: '25x', label: 'under 200ms budget' },
+      { value: '241', label: 'tests' },
     ],
     gradient: 'from-[#1B4A44] via-[#2D7A6E] to-[#4EADA0]',
-    live: 'https://recruitai.shouryaparashar.in',
-    github: 'https://github.com/im-shourya',
+    live: 'https://hhgoa-task2.onrender.com',
+    github: 'https://github.com/im-shourya/Voice-RAG',
+    caseStudy: '/blog/building-a-voice-rag-system-under-a-200ms-latency-budget',
     featured: true,
+  },
+  {
+    label: 'System Design / AI',
+    title: 'Archie',
+    tags: ['TypeScript', 'Voice', 'Simulation'],
+    desc: 'A system-design board you talk to. Describe changes out loud, watch the diagram update, and a queueing simulator shows where the system saturates and why.',
+    metrics: [
+      { value: '<1ms', label: 'local commands' },
+      { value: '6', label: 'interview problems' },
+    ],
+    gradient: 'from-[#2A44C8] via-[#3B5BDB] to-[#151F1E]',
+    live: 'https://archie-rb2x.onrender.com',
+    github: 'https://github.com/im-shourya/Archie',
+  },
+  {
+    label: 'Full-Stack / Hiring',
+    title: 'RECRUIT.AI',
+    tags: ['Next.js', 'FastAPI', 'MongoDB', 'TypeScript'],
+    desc: 'Recruitment pipeline for clubs and small teams: publish a drive, collect applications and task submissions, run a recorded interview, and decide in one place.',
+    metrics: [
+      { value: '5 min', label: 'per candidate' },
+      { value: '100', label: 'bulk decisions' },
+      { value: '3', label: 'team roles' },
+    ],
+    gradient: 'from-[#E8A325] via-[#F5C842] to-[#E55B3C]',
+    live: 'https://recruitai.shouryaparashar.in',
+    github: 'https://github.com/im-shourya/RECURIT.AI',
+  },
+  {
+    label: 'Full-Stack / Events',
+    title: 'Club Events Platform',
+    tags: ['Next.js', 'Express', 'Supabase', 'Resend'],
+    desc: 'Event platform for student clubs with magic-link auth, one-click registration, QR-code attendance, mass mailing and post-event feedback analytics.',
+    metrics: [
+      { value: 'QR', label: 'check-ins' },
+      { value: 'RLS', label: 'secured data' },
+    ],
+    gradient: 'from-[#E55B3C] via-[#C9443A] to-[#151F1E]',
+    live: 'https://events.shouryaparashar.in',
+    github: 'https://github.com/im-shourya/event-managment-system',
+  },
+  {
+    label: 'AI / Strategy',
+    title: 'StratosAI',
+    tags: ['Next.js', 'NestJS', 'FastAPI', 'XGBoost'],
+    desc: 'AI strategy and readiness assessment engine. An adaptive chatbot interview feeds five ML models that forecast ROI, risk and budget allocation.',
+    metrics: [
+      { value: '5', label: 'ML models' },
+      { value: '14', label: 'question flow' },
+    ],
+    gradient: 'from-[#2D7A6E] via-[#1B4A44] to-[#151F1E]',
+    live: 'https://stratosai.shouryaparashar.in',
+    github: 'https://github.com/im-shourya/StratosAI',
   },
   {
     label: 'Web App / TypeScript',
     title: 'KanbanFlow',
     tags: ['React', 'TypeScript', 'Tailwind', 'Vite'],
-    desc: 'Drag-and-drop Kanban board with unlimited custom columns and a zero-backend architecture persisted in localStorage.',
+    desc: 'Drag-and-drop Kanban board with custom columns, priority tags, live search and themes. Zero backend: everything persists in localStorage.',
     metrics: [
       { value: '0', label: 'backend deps' },
       { value: '∞', label: 'columns' },
     ],
-    gradient: 'from-[#E8A325] via-[#F5C842] to-[#E55B3C]',
+    gradient: 'from-[#4EADA0] via-[#2D7A6E] to-[#E8A325]',
     live: 'https://kanbanflow.shouryaparashar.in',
-    github: 'https://github.com/im-shourya',
+    github: 'https://github.com/im-shourya/KanbanFlow',
     caseStudy: '/blog/kanbanflow-zero-backend',
   },
   {
     label: 'Backend / REST API',
     title: 'Task Management API',
     tags: ['Node.js', 'Express', 'MongoDB'],
-    desc: 'Production-grade RESTful CRUD API with concurrent session support and optimised routing.',
+    desc: 'RESTful CRUD API with validation, robust error handling and concurrent session support.',
     metrics: [
       { value: '<200ms', label: 'avg latency' },
       { value: '50+', label: 'req / min' },
     ],
-    gradient: 'from-[#E55B3C] via-[#C9443A] to-[#151F1E]',
-    github: 'https://github.com/im-shourya',
-  },
-  {
-    label: 'Portfolio / Next.js',
-    title: 'shouryaparashar.in',
-    tags: ['Next.js', 'TypeScript', 'Framer Motion'],
-    desc: 'This site — responsive, SEO-structured portfolio with a liquid-glass UI and sub-second loads.',
-    metrics: [
-      { value: '95+', label: 'Lighthouse' },
-      { value: '<1s', label: 'load time' },
-    ],
-    gradient: 'from-[#2D7A6E] via-[#1B4A44] to-[#151F1E]',
-    live: 'https://shouryaparashar.in',
-    github: 'https://github.com/im-shourya/portfolio',
+    gradient: 'from-[#151F1E] via-[#1B4A44] to-[#E55B3C]',
+    github: 'https://github.com/im-shourya/Task-Management-CRUD-API',
   },
 ];
 
@@ -102,9 +143,9 @@ function ProjectLink({ href, children }: { href: string; children: React.ReactNo
 function ProjectCard({ project, idx }: { project: Project; idx: number }) {
   return (
     <m.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+      initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: '-50px' }}
       className={`group relative overflow-hidden rounded-[28px] bg-gradient-to-br ${project.gradient} p-3 sm:p-4 shadow-[0_10px_30px_rgba(21,31,30,0.12)] hover:shadow-[0_24px_50px_rgba(21,31,30,0.2)] hover:-translate-y-1.5 transition-all duration-500 ${
         project.featured ? 'md:col-span-2' : ''
@@ -189,7 +230,7 @@ export default function Projects() {
           </div>
           <div className="md:text-right max-w-[340px]">
             <p className="text-[#4A6360] text-[15px] leading-relaxed font-light mb-3">
-              Production-ready applications, built with clean architecture and modern performance standards.
+              Things I've shipped: measured, tested, and live.
             </p>
             <a
               href="https://github.com/im-shourya"
