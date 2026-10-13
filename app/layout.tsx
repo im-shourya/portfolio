@@ -114,7 +114,7 @@ const personJsonLd = {
     "contentUrl": "https://shouryaparashar.in/Shourya_Parashar.jpeg",
     "width": 800,
     "height": 800,
-    "caption": "Shourya Parashar — Full Stack Developer",
+    "caption": "Shourya Parashar, Full Stack Developer",
     "representativeOfPage": true
   },
   "jobTitle": "Full Stack Developer",
@@ -144,12 +144,12 @@ const personJsonLd = {
   "award": [
     {
       "@type": "Thing",
-      "name": "HackerRank Campus Crew — Transformer 1.0 Winner",
+      "name": "HackerRank Campus Crew: Transformer 1.0 Winner",
       "description": "Won HackerRank Campus Crew Transformer 1.0 hackathon"
     },
     {
       "@type": "Thing",
-      "name": "Google Developer Group Kernel Panic — Winner",
+      "name": "Google Developer Group Kernel Panic: Winner",
       "description": "Won GDG on Campus Kernel Panic event"
     }
   ],

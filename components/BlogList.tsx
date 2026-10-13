@@ -12,8 +12,8 @@ export default function BlogList() {
 
   return (
     <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#F9F6F0] min-h-screen relative overflow-hidden">
-      {/* Decorative Blur */}
-      <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-[#E8A325]/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="orb w-[600px] h-[600px] bg-[#E8A325]/20 -top-40 -right-40" />
+      <div className="orb w-[520px] h-[520px] bg-[#4EADA0]/20 top-1/2 -left-40 [animation-delay:-9s]" />
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         
@@ -29,7 +29,7 @@ export default function BlogList() {
               href="/"
               className="inline-flex items-center gap-2 font-syne text-[10px] font-bold tracking-[2px] uppercase text-[#143B36]/50 hover:text-[#E8A325] transition-colors mb-10 group"
             >
-              <div className="w-8 h-8 rounded-full border border-[#143B36]/10 flex items-center justify-center group-hover:border-[#E8A325] transition-colors">
+              <div className="glass w-9 h-9 rounded-full flex items-center justify-center">
                 <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
               </div>
               Back to Home
@@ -63,7 +63,7 @@ export default function BlogList() {
                 </div>
                 <div className="flex gap-2">
                   {featuredPost.tags.map((tag) => (
-                    <span key={tag} className="font-syne text-[10px] font-bold tracking-[1.5px] uppercase text-[#F9F6F0]/60 border border-[#F9F6F0]/20 px-4 py-2 rounded-full">
+                    <span key={tag} className="glass-dark font-syne text-[10px] font-bold tracking-[1.5px] uppercase text-[#F9F6F0]/80 px-4 py-2 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -80,7 +80,7 @@ export default function BlogList() {
                   </p>
                 </div>
                 
-                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-[#F9F6F0] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500 shadow-xl">
+                <div className="glass w-16 h-16 lg:w-20 lg:h-20 rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500 shadow-xl">
                   <ArrowUpRight size={28} className="text-[#143B36] group-hover:rotate-45 transition-transform duration-500" />
                 </div>
               </div>
@@ -96,14 +96,14 @@ export default function BlogList() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-              className="bg-white rounded-[24px] lg:rounded-[32px] p-8 lg:p-10 border border-[#143B36]/[0.04] hover:shadow-[0_20px_40px_rgba(20,59,54,0.04)] hover:-translate-y-1 transition-all duration-500 cursor-pointer group flex flex-col h-full block"
+              className="glass glass-sheen rounded-[28px] lg:rounded-[32px] p-8 lg:p-10 hover:-translate-y-1.5 transition-transform duration-500 group flex flex-col h-full"
             >
-              <Link href={post.date !== 'Coming Soon' ? `/blog/${post.slug}` : '#'} className="flex flex-col h-full">
+              <Link href={post.date !== 'Coming Soon' ? `/blog/${post.slug}` : '#'} className="relative z-[2] flex flex-col h-full">
               <div className="flex flex-wrap gap-2 mb-6">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="font-syne text-[9px] font-bold tracking-[1.5px] uppercase text-[#143B36]/60 bg-[#143B36]/5 px-3 py-1.5 rounded-full"
+                    className="font-syne text-[9px] font-bold tracking-[1.5px] uppercase text-[#143B36]/70 bg-white/60 border border-white/80 px-3 py-1.5 rounded-full"
                   >
                     {tag}
                   </span>
@@ -129,7 +129,7 @@ export default function BlogList() {
                     {post.readTime}
                   </span>
                 </div>
-                <div className="w-10 h-10 rounded-full border border-[#143B36]/10 flex items-center justify-center group-hover:bg-[#143B36] group-hover:text-white transition-all duration-300">
+                <div className="w-10 h-10 rounded-full bg-white/60 border border-white/80 flex items-center justify-center group-hover:bg-[#143B36] group-hover:text-white transition-all duration-300">
                   <ArrowUpRight size={16} />
                 </div>
               </div>
@@ -145,7 +145,7 @@ export default function BlogList() {
           transition={{ delay: 0.8, duration: 1 }}
           className="text-center mt-20 lg:mt-28"
         >
-          <div className="inline-flex items-center gap-3 bg-white border border-[#143B36]/5 rounded-full px-6 py-3 shadow-[0_10px_30px_rgba(20,59,54,0.03)]">
+          <div className="glass inline-flex items-center gap-3 rounded-full px-6 py-3">
             <span className="w-2 h-2 bg-[#E8A325] rounded-full animate-ping" />
             <span className="font-syne text-[10px] font-bold tracking-[2.5px] uppercase text-[#143B36]/60">
               New articles published weekly
