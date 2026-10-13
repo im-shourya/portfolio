@@ -1,168 +1,182 @@
 'use client';
 
+import Link from 'next/link';
 import { m } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import { useState } from 'react';
 
-const projects = [
+type Project = {
+  label: string;
+  title: string;
+  tags: string[];
+  desc: string;
+  metrics: { value: string; label: string }[];
+  gradient: string;
+  live?: string;
+  github?: string;
+  caseStudy?: string;
+  featured?: boolean;
+};
+
+const projects: Project[] = [
   {
     label: 'Full-Stack / AI',
     title: 'RECRUIT.AI',
-    stack: 'Next.js, Node.js, RESTful APIs, ML',
-    desc: 'AI-powered recruitment platform automating candidate evaluation. Reduced manual screening by 60-70%. ML-based resume-job matching analyzing 100+ resumes with 2x faster role-fit identification.',
-    bg: 'bg-[#1B4A44]', // solid elegant background
-    live: 'https://github.com/im-shourya',
+    tags: ['Next.js', 'Node.js', 'REST APIs', 'ML'],
+    desc: 'AI-powered recruitment platform that automates candidate evaluation with ML-based resume-to-job matching.',
+    metrics: [
+      { value: '60–70%', label: 'less manual screening' },
+      { value: '2x', label: 'faster role-fit' },
+      { value: '100+', label: 'resumes analysed' },
+    ],
+    gradient: 'from-[#1B4A44] via-[#2D7A6E] to-[#4EADA0]',
+    live: 'https://recruitai.shouryaparashar.in',
     github: 'https://github.com/im-shourya',
+    featured: true,
   },
   {
     label: 'Web App / TypeScript',
     title: 'KanbanFlow',
-    stack: 'React, TypeScript, Tailwind CSS, Vite',
-    desc: 'Dynamic single-page Kanban app with drag-and-drop task management across unlimited customizable columns. Zero-backend architecture with localStorage for instant state persistence.',
-    bg: 'bg-[#E8A325]',
-    live: 'https://github.com/im-shourya',
+    tags: ['React', 'TypeScript', 'Tailwind', 'Vite'],
+    desc: 'Drag-and-drop Kanban board with unlimited custom columns and a zero-backend architecture persisted in localStorage.',
+    metrics: [
+      { value: '0', label: 'backend deps' },
+      { value: '∞', label: 'columns' },
+    ],
+    gradient: 'from-[#E8A325] via-[#F5C842] to-[#E55B3C]',
+    live: 'https://kanbanflow.shouryaparashar.in',
     github: 'https://github.com/im-shourya',
+    caseStudy: '/blog/kanbanflow-zero-backend',
   },
   {
     label: 'Backend / REST API',
     title: 'Task Management API',
-    stack: 'Node.js, Express.js, MongoDB',
-    desc: 'Production-grade RESTful CRUD API handling 50+ requests/minute with concurrent session support. Average response latency of under 200ms with optimized routing.',
-    bg: 'bg-[#E55B3C]',
+    tags: ['Node.js', 'Express', 'MongoDB'],
+    desc: 'Production-grade RESTful CRUD API with concurrent session support and optimised routing.',
+    metrics: [
+      { value: '<200ms', label: 'avg latency' },
+      { value: '50+', label: 'req / min' },
+    ],
+    gradient: 'from-[#E55B3C] via-[#C9443A] to-[#151F1E]',
     github: 'https://github.com/im-shourya',
   },
   {
-    label: 'Portfolio / TypeScript',
-    title: 'Personal Portfolio',
-    stack: 'TypeScript, Responsive Design, Vercel',
-    desc: 'Fully responsive portfolio deployed on Vercel achieving sub-second load times and a 95+ Lighthouse score. Custom animations and professional design.',
-    bg: 'bg-[#2D7A6E]',
+    label: 'Portfolio / Next.js',
+    title: 'shouryaparashar.in',
+    tags: ['Next.js', 'TypeScript', 'Framer Motion'],
+    desc: 'This site — responsive, SEO-structured portfolio with a liquid-glass UI and sub-second loads.',
+    metrics: [
+      { value: '95+', label: 'Lighthouse' },
+      { value: '<1s', label: 'load time' },
+    ],
+    gradient: 'from-[#2D7A6E] via-[#1B4A44] to-[#151F1E]',
     live: 'https://shouryaparashar.in',
+    github: 'https://github.com/im-shourya/portfolio',
   },
 ];
 
-function ProjectCard({ project, idx }: { project: typeof projects[0]; idx: number }) {
-  const [isOpen, setIsOpen] = useState(false);
+function ProjectLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const className =
+    'apple-link inline-flex items-center font-syne text-[12px] font-semibold tracking-[0.5px] text-white';
+  const content = (
+    <>
+      {children}
+      <span className="apple-chevron ml-1" aria-hidden>
+        ›
+      </span>
+    </>
+  );
 
+  if (href.startsWith('/')) {
+    return (
+      <Link href={href} className={className}>
+        {content}
+      </Link>
+    );
+  }
   return (
-    <m.div
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {content}
+    </a>
+  );
+}
+
+function ProjectCard({ project, idx }: { project: Project; idx: number }) {
+  return (
+    <m.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-      viewport={{ once: true, margin: "-50px" }}
-      onClick={() => setIsOpen(!isOpen)}
-      className="group rounded-[24px] overflow-hidden relative cursor-pointer min-w-[300px] w-[300px] md:min-w-0 md:w-auto flex-shrink-0 md:flex-shrink shadow-sm hover:shadow-[0_20px_40px_rgba(21,31,30,0.15)] transition-all duration-500 hover:-translate-y-2"
+      transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+      viewport={{ once: true, margin: '-50px' }}
+      className={`group relative overflow-hidden rounded-[28px] bg-gradient-to-br ${project.gradient} p-3 sm:p-4 shadow-[0_10px_30px_rgba(21,31,30,0.12)] hover:shadow-[0_24px_50px_rgba(21,31,30,0.2)] hover:-translate-y-1.5 transition-all duration-500 ${
+        project.featured ? 'md:col-span-2' : ''
+      }`}
     >
-      <div className={`${project.bg} h-[320px] lg:h-[380px] flex flex-col justify-between p-8 relative isolate overflow-hidden`}>
-        {/* Subtle noise pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay z-[-1]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
-        
-        {/* Top: Category Pill & Hover Arrow */}
-        <div className="flex justify-between items-start relative z-10">
-          <span className="inline-block font-syne text-[10px] font-bold tracking-[2px] uppercase bg-black/15 text-white/95 px-4 py-2 rounded-full backdrop-blur-md border border-white/10">
-            {project.label}
-          </span>
+      {/* Light orbs that the glass refracts */}
+      <div className="absolute -top-16 -right-10 w-64 h-64 rounded-full bg-white/25 blur-3xl pointer-events-none transition-transform duration-700 group-hover:scale-125" />
+      <div className="absolute -bottom-20 -left-10 w-72 h-72 rounded-full bg-black/20 blur-3xl pointer-events-none" />
 
-          {/* Desktop Hover Arrow */}
-          <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-500 ease-[0.25,0.1,0.25,1] shadow-lg hidden md:flex origin-center transform-gpu">
-            <ArrowUpRight className="w-5 h-5" />
+      <div className={`relative flex flex-col ${project.featured ? 'md:flex-row md:items-stretch' : ''} gap-3 h-full`}>
+        {/* Title area */}
+        <div className={`flex flex-col justify-between p-5 sm:p-6 min-h-[200px] ${project.featured ? 'md:flex-1 md:min-h-[340px]' : ''}`}>
+          <div>
+            <span className="glass-dark font-syne text-[10px] font-bold tracking-[2px] uppercase text-white/95 px-4 py-2 rounded-full">
+              {project.label}
+            </span>
           </div>
-        </div>
-
-        {/* Bottom: Titles */}
-        <div className="relative z-10 transition-transform duration-500 ease-[0.25,0.1,0.25,1] group-hover:-translate-y-4">
-          <h3 className="font-serif text-[clamp(1.8rem,3vw,2.5rem)] text-white leading-[1.1] mb-2 tracking-tight">
+          <h3 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-white leading-[1.05] tracking-tight mt-10 drop-shadow-sm">
             {project.title}
           </h3>
-          <p className="text-[13px] text-white/80 font-syne font-medium uppercase tracking-[1px]">{project.stack}</p>
         </div>
 
-        {/* Desktop: Hover info overlay (slides up) */}
-        <div className="absolute inset-0 z-20 bg-black/90 backdrop-blur-md p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-500 ease-[0.25,0.1,0.25,1] hidden md:flex">
-          <h4 className="font-serif text-2xl text-white mb-3 tracking-tight">{project.title}</h4>
-          <p className="text-white/70 text-[14px] leading-relaxed mb-8 font-light line-clamp-4">
-            {project.desc}
-          </p>
-          <div className="flex gap-4">
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center bg-white text-black px-6 py-2.5 rounded-full font-syne text-[10px] font-bold tracking-[1.5px] uppercase hover:bg-[#E8A325] transition-colors duration-300 flex-1"
+        {/* Liquid glass panel */}
+        <div className={`glass-dark glass-sheen rounded-[22px] p-5 sm:p-6 flex flex-col gap-5 ${project.featured ? 'md:w-[48%]' : ''}`}>
+          <p className="relative z-[2] text-white/85 text-[14px] leading-relaxed font-light">{project.desc}</p>
+
+          <div className="relative z-[2] grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {project.metrics.map((metric) => (
+              <div key={metric.label}>
+                <div className="font-serif text-[1.6rem] leading-none text-white">{metric.value}</div>
+                <div className="font-syne text-[9px] font-bold tracking-[1.5px] uppercase text-white/55 mt-1.5">
+                  {metric.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="relative z-[2] flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="font-syne text-[10px] font-semibold tracking-[1px] text-white/90 bg-white/10 border border-white/15 px-3 py-1 rounded-full"
               >
-                Live Demo
-              </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center bg-white/10 text-white border border-white/20 px-6 py-2.5 rounded-full font-syne text-[10px] font-bold tracking-[1.5px] uppercase hover:bg-white hover:text-black transition-colors duration-300 flex-1"
-              >
-                Source Code
-              </a>
-            )}
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="relative z-[2] flex flex-wrap gap-x-6 gap-y-2 pt-4 mt-auto border-t border-white/10">
+            {project.live && <ProjectLink href={project.live}>Visit site</ProjectLink>}
+            {project.caseStudy && <ProjectLink href={project.caseStudy}>Read case study</ProjectLink>}
+            {project.github && <ProjectLink href={project.github}>Source</ProjectLink>}
           </div>
         </div>
       </div>
-
-      {/* Mobile: Tap to reveal overlay */}
-      {isOpen && (
-        <div className="absolute inset-0 z-30 bg-black/95 backdrop-blur-md flex flex-col justify-center p-7 md:hidden animate-fadeIn">
-          <h4 className="font-serif text-[1.6rem] text-white mb-3 tracking-tight">{project.title}</h4>
-          <p className="text-white/75 text-[14px] leading-relaxed mb-8 font-light">
-            {project.desc}
-          </p>
-          <div className="flex flex-col gap-3">
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center w-full bg-white text-black px-5 py-3.5 rounded-full font-syne text-[10px] font-bold tracking-[1.5px] uppercase"
-              >
-                Live Demo
-                <ArrowUpRight size={14} className="ml-2" />
-              </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center w-full bg-white/10 text-white border border-white/20 px-5 py-3.5 rounded-full font-syne text-[10px] font-bold tracking-[1.5px] uppercase"
-              >
-                Source Code
-                <ArrowUpRight size={14} className="ml-2" />
-              </a>
-            )}
-          </div>
-          <div className="mt-6 text-center">
-            <span className="font-syne text-[9px] text-white/40 tracking-[2px] uppercase">
-              Tap anywhere to close
-            </span>
-          </div>
-        </div>
-      )}
-    </m.div>
+    </m.article>
   );
 }
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#F4EFE6] relative">
-      <div className="max-w-[1400px] mx-auto">
+    <section id="projects" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#F4EFE6] relative overflow-hidden">
+      {/* Ambient colour behind the section */}
+      <div className="absolute top-40 -left-40 w-[600px] h-[600px] bg-[#4EADA0]/15 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 -right-40 w-[600px] h-[600px] bg-[#E8A325]/15 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto relative">
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: '-50px' }}
           className="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-16 lg:mb-20"
         >
           <div>
@@ -173,32 +187,24 @@ export default function Projects() {
               Selected Works
             </h2>
           </div>
-          <p className="text-[#4A6360] text-[15px] max-w-[320px] md:text-right leading-relaxed font-light">
-            A showcase of production-ready applications, built with clean architecture and modern performance standards.
-          </p>
+          <div className="md:text-right max-w-[340px]">
+            <p className="text-[#4A6360] text-[15px] leading-relaxed font-light mb-3">
+              Production-ready applications, built with clean architecture and modern performance standards.
+            </p>
+            <a
+              href="https://github.com/im-shourya"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="apple-link font-syne text-[12px] font-semibold text-[#1B4A44]"
+            >
+              More on GitHub <span className="apple-chevron" aria-hidden>›</span>
+            </a>
+          </div>
         </m.div>
 
-        {/* Mobile: Horizontal scroll container */}
-        <div className="md:hidden -mx-6 px-6 relative">
-          <div className="flex gap-4 overflow-x-auto pb-8 pt-4 snap-x snap-mandatory scrollbar-hide">
-            {projects.map((project, idx) => (
-              <div key={idx} className="snap-start py-2">
-                <ProjectCard project={project} idx={idx} />
-              </div>
-            ))}
-          </div>
-          {/* Progress dots for mobile */}
-          <div className="flex justify-center gap-2 mt-[-10px]">
-            {projects.map((_, idx) => (
-              <div key={idx} className="w-1.5 h-1.5 rounded-full bg-[#1B4A44]/20 transition-all duration-300" />
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 gap-6 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {projects.map((project, idx) => (
-            <ProjectCard key={idx} project={project} idx={idx} />
+            <ProjectCard key={project.title} project={project} idx={idx} />
           ))}
         </div>
       </div>
