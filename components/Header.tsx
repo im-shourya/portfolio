@@ -32,7 +32,7 @@ export default function Header() {
         transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'py-3 bg-[#F4EFE6]/80 backdrop-blur-xl border-b border-[#1B4A44]/5 shadow-[0_4px_30px_rgba(21,31,30,0.03)]'
+            ? 'py-3 bg-[#F4EFE6]/60 backdrop-blur-2xl backdrop-saturate-[180%] border-b border-white/50 shadow-[0_4px_30px_rgba(21,31,30,0.05)]'
             : 'py-5 bg-transparent'
         }`}
       >
@@ -53,15 +53,14 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-10 bg-white/40 backdrop-blur-md px-8 py-3.5 rounded-full border border-[#1B4A44]/5">
+          <nav className="glass hidden lg:flex items-center gap-10 px-8 py-3.5 rounded-full">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-syne text-[10px] font-bold uppercase tracking-[2px] text-[#1B4A44]/70 hover:text-[#E8A325] relative group transition-colors duration-300"
+                className="apple-link font-syne text-[10px] font-bold uppercase tracking-[2px] text-[#1B4A44]/70 hover:text-[#1B4A44]"
               >
                 {link.label}
-                <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E8A325] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>
             ))}
           </nav>
@@ -79,7 +78,7 @@ export default function Header() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-11 h-11 rounded-full bg-white/50 backdrop-blur-md border border-[#1B4A44]/10 flex items-center justify-center text-[#1B4A44] relative z-50 transition-colors hover:bg-white"
+            className="glass lg:hidden w-11 h-11 rounded-full flex items-center justify-center text-[#1B4A44] relative z-50 transition-colors hover:bg-white"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
