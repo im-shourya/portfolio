@@ -35,10 +35,10 @@ export default function About() {
           <div className="glass-dark rounded-[44px] p-3">
             <div className="relative w-full aspect-[4/5] rounded-[34px] overflow-hidden bg-gradient-to-b from-[#2D7A6E] to-[#1B4A44]">
               <Image
-                src="/image.webp"
+                src="/shourya-portrait.webp"
                 alt="Shourya Parashar"
-                width={500}
-                height={600}
+                width={878}
+                height={898}
                 sizes="(max-width: 768px) 90vw, 440px"
                 className="w-full h-full object-cover object-top"
                 quality={80}
