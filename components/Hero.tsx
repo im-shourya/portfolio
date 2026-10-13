@@ -1,241 +1,171 @@
 'use client';
 
-import { m } from 'framer-motion';
+import { m, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
+import { ArrowDown, Mail, Sparkles, Users } from 'lucide-react';
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const stats = [
+  { value: '6', label: 'Projects live' },
+  { value: '5+', label: 'Active roles' },
+  { value: '7.87ms', label: 'Fastest P50' },
+];
+
+function rise(delay: number) {
+  return {
+    initial: { opacity: 0, y: 28, filter: 'blur(10px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    transition: { duration: 1, delay, ease },
+  };
+}
+
+function Portrait() {
+  // Gentle 3D tilt that follows the pointer (desktop only; touch never moves it)
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const rotateX = useSpring(useTransform(py, [-0.5, 0.5], [6, -6]), { stiffness: 150, damping: 20 });
+  const rotateY = useSpring(useTransform(px, [-0.5, 0.5], [-6, 6]), { stiffness: 150, damping: 20 });
+
+  return (
+    <div
+      className="relative w-full max-w-[460px] mx-auto [perspective:1200px]"
+      onPointerMove={(e) => {
+        if (e.pointerType !== 'mouse') return;
+        const r = e.currentTarget.getBoundingClientRect();
+        px.set((e.clientX - r.left) / r.width - 0.5);
+        py.set((e.clientY - r.top) / r.height - 0.5);
+      }}
+      onPointerLeave={() => {
+        px.set(0);
+        py.set(0);
+      }}
+    >
+      <m.div style={{ rotateX, rotateY }} className="relative [transform-style:preserve-3d]">
+        {/* Glass frame */}
+        <div className="glass rounded-[44px] p-3 hero-image-animate">
+          <div className="relative overflow-hidden rounded-[34px] aspect-[878/898] bg-[#C98B57]">
+            <Image
+              src="/shourya-portrait.webp"
+              alt="Shourya Parashar, Full Stack Developer"
+              width={878}
+              height={898}
+              sizes="(max-width: 1024px) 88vw, 460px"
+              className="w-full h-full object-cover"
+              priority
+              fetchPriority="high"
+            />
+            {/* Specular highlight across the photo */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/25 pointer-events-none mix-blend-soft-light" />
+          </div>
+        </div>
+
+        {/* Floating glass chips */}
+        <m.div
+          {...rise(0.7)}
+          style={{ translateZ: 40 }}
+          className="glass absolute left-2 sm:-left-10 top-[8%] sm:top-[12%] rounded-2xl px-4 py-3 flex items-center gap-3 max-w-[230px]"
+        >
+          <span className="w-9 h-9 rounded-xl bg-[#1B4A44] text-[#F4EFE6] flex items-center justify-center">
+            <Sparkles size={17} />
+          </span>
+          <span className="leading-tight">
+            <span className="block font-syne text-[12px] font-bold text-[#151F1E]">Associate Tech Lead</span>
+            <span className="block text-[11px] text-[#4A6360]">GDG on Campus SRM</span>
+          </span>
+        </m.div>
+
+        <m.div
+          {...rise(0.85)}
+          style={{ translateZ: 60 }}
+          className="glass absolute right-2 sm:-right-8 bottom-[6%] sm:bottom-[10%] rounded-2xl px-4 py-3 flex items-center gap-3 max-w-[230px]"
+        >
+          <span className="w-9 h-9 rounded-xl bg-[#E8A325] text-[#151F1E] flex items-center justify-center">
+            <Users size={17} />
+          </span>
+          <span className="leading-tight">
+            <span className="block font-syne text-[12px] font-bold text-[#151F1E]">Lead</span>
+            <span className="block text-[11px] text-[#4A6360]">HackerRank Campus Crew</span>
+          </span>
+        </m.div>
+      </m.div>
+    </div>
+  );
+}
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative w-full h-[100dvh] lg:h-screen lg:min-h-[750px] bg-[#F9F6F0] overflow-hidden"
-    >
-      <div className="relative w-full h-full max-w-[1400px] mx-auto">
-        
-        {/* =========================================
-            MOBILE LAYOUT (Hidden on Desktop)
-            ========================================= */}
-        <div className="lg:hidden w-full h-full flex flex-col pt-[110px]">
-          
-          {/* Mobile Text (Top) */}
-          <div className="flex-none px-6 text-center relative z-20">
-            <m.h1 
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="font-sans text-[clamp(4rem,16vw,6rem)] font-extrabold text-[#143B36] leading-[1.02] tracking-tight"
-            >
-              Hey There,<br/>
-              I&apos;m Shourya
-            </m.h1>
-            <m.p 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: 0.1 }}
-              className="mt-5 text-[#2A3E3B] text-[18px] leading-relaxed max-w-[320px] mx-auto font-medium"
-            >
-              <span className="font-bold text-[#143B36]">Shourya Parashar</span> — Full-Stack Developer. <br/>I build production-ready web applications. Clean code, modern design.
-            </m.p>
-          </div>
+    <section id="home" className="relative w-full min-h-[100dvh] bg-[#F9F6F0] overflow-hidden flex items-center">
+      {/* Colour fields the glass refracts */}
+      <div className="orb w-[520px] h-[520px] bg-[#4EADA0]/30 -top-32 -left-24" />
+      <div className="orb w-[460px] h-[460px] bg-[#E8A325]/30 top-1/3 right-[-120px] [animation-delay:-6s]" />
+      <div className="orb w-[380px] h-[380px] bg-[#E55B3C]/15 bottom-[-120px] left-1/3 [animation-delay:-12s]" />
 
-          {/* Mobile Image & Brush (Fills remaining space) */}
-          <div className="flex-1 w-full relative flex items-end justify-center pointer-events-none z-10 -mt-5 overflow-visible">
-            
-            {/* Brush SVG */}
-            <m.div 
-              initial={{ scale: 0.97 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center top-[5%]"
-            >
-              <svg 
-                viewBox="0 0 800 800" 
-                fill="none" 
-                className="w-[180%] sm:w-[120%] max-w-[800px] h-auto opacity-90 text-[#21675E]" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <filter id="rough-edge-mobile" x="-20%" y="-20%" width="140%" height="140%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" result="noise" />
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
-                  </filter>
-                </defs>
-                <g fill="currentColor" filter="url(#rough-edge-mobile)">
-                  <path d="M200,600 L600,200 L640,240 L240,640 Z" />
-                  <path d="M150,500 L550,100 L600,150 L200,550 Z" />
-                  <path d="M250,700 L650,300 L700,350 L300,750 Z" />
-                  <ellipse cx="400" cy="400" rx="250" ry="80" transform="rotate(-45 400 400)" />
-                  <ellipse cx="350" cy="450" rx="280" ry="70" transform="rotate(-45 350 450)" />
-                  <ellipse cx="450" cy="350" rx="200" ry="60" transform="rotate(-45 450 350)" />
-                  <ellipse cx="280" cy="520" rx="150" ry="50" transform="rotate(-45 280 520)" />
-                </g>
-                <g fill="currentColor" filter="url(#rough-edge-mobile)">
-                  <circle cx="650" cy="200" r="15" />
-                  <circle cx="680" cy="150" r="8" />
-                  <circle cx="150" cy="650" r="20" />
-                  <circle cx="200" cy="720" r="12" />
-                  <circle cx="750" cy="400" r="10" />
-                </g>
-              </svg>
-            </m.div>
-
-            {/* Mobile Portrait */}
-            <div className="relative z-20 w-full h-[105%] flex justify-center items-end hero-image-animate">
-              <Image
-                src="/image.webp"
-                alt="Shourya Parashar - Full Stack Developer"
-                width={600}
-                height={800}
-                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 500px"
-                className="w-auto h-full max-w-[120%] sm:max-w-[90%] object-contain object-bottom pointer-events-auto block"
-                priority
-                fetchPriority="high"
-              />
-            </div>
-          </div>
-
-        </div>
-
-
-        {/* =========================================
-            DESKTOP LAYOUT (Hidden on Mobile)
-            ========================================= */}
-        <div className="hidden lg:block w-full h-full relative">
-          
-          {/* Top Left Title */}
-          <m.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="absolute top-[22%] left-6 lg:left-12 z-30"
-          >
-            <h1 className="font-sans text-[4.5rem] xl:text-[5.5rem] font-extrabold text-[#143B36] leading-[1.1] tracking-[-0.02em]">
-              Hey There,<br/>
-              I&apos;m Shourya
-            </h1>
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-12 pt-32 pb-20 lg:py-32 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-16 lg:gap-12 items-center">
+        {/* Copy */}
+        <div className="text-center lg:text-left">
+          <m.div {...rise(0.05)} className="glass inline-flex items-center gap-2.5 rounded-full px-4 py-2 mb-8">
+            <span className="relative flex w-2 h-2">
+              <span className="absolute inset-0 rounded-full bg-[#2D7A6E] animate-ping opacity-70" />
+              <span className="relative w-2 h-2 rounded-full bg-[#2D7A6E]" />
+            </span>
+            <span className="font-syne text-[10px] font-bold tracking-[2px] uppercase text-[#1B4A44]">
+              Open to internships
+            </span>
           </m.div>
 
-          {/* Middle Left Email */}
-          <m.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute top-[52%] xl:top-[55%] left-6 lg:left-12 z-30"
+          <m.h1
+            {...rise(0.12)}
+            className="font-sans text-[clamp(3.4rem,8vw,6.2rem)] font-extrabold text-[#143B36] leading-[0.98] tracking-[-0.035em]"
           >
-            <a 
-              href="mailto:parasharshourya07@gmail.com"
-              className="font-sans text-[15px] font-bold text-[#E54D3C] tracking-wide border-b-[2px] border-[#E54D3C]/40 pb-1 hover:border-[#E54D3C] transition-colors"
-            >
+            Hey there,
+            <br />
+            I&apos;m{' '}
+            <span className="bg-gradient-to-r from-[#1B4A44] via-[#2D7A6E] to-[#E8A325] bg-clip-text text-transparent">
+              Shourya
+            </span>
+          </m.h1>
+
+          <m.p
+            {...rise(0.22)}
+            className="mt-7 text-[#2A3E3B] text-[17px] lg:text-[19px] leading-relaxed max-w-[520px] mx-auto lg:mx-0"
+          >
+            Full-stack developer and CSE undergrad at SRMIST. I build web apps that are fast, tested, and honest
+            about what they don&apos;t know.
+          </m.p>
+
+          <m.div
+            {...rise(0.32)}
+            className="mt-10 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center"
+          >
+            <a href="#projects" className="btn btn-primary w-full sm:w-auto">
+              View my work
+              <ArrowDown size={16} />
+            </a>
+            <a href="mailto:parasharshourya07@gmail.com" className="btn glass w-full sm:w-auto normal-case tracking-normal text-[13px]">
+              <Mail size={16} />
               parasharshourya07@gmail.com
             </a>
           </m.div>
 
-          {/* Bottom Left Stats */}
-          <m.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute bottom-[10%] left-6 lg:left-12 z-30 flex items-center gap-5"
-          >
-            <div className="font-sans text-[4.5rem] xl:text-[5.5rem] font-bold text-[#143B36] leading-none tracking-tighter">
-              4
-            </div>
-            <div className="text-[12px] font-bold tracking-[1.5px] uppercase text-[#143B36] leading-snug">
-              PROJECTS<br/>DEPLOYED
-            </div>
-          </m.div>
-
-          {/* Top Right Description */}
-          <m.div 
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute top-[28%] xl:top-[30%] right-6 lg:right-12 z-30 max-w-[260px]"
-          >
-            <p className="text-[#2A3E3B] text-[17px] leading-relaxed font-medium">
-              <span className="font-bold text-[#143B36]">Shourya Parashar</span> — Full-Stack Developer.<br/>
-              I build production-ready web applications. Clean code, modern design, and performance-first engineering.
-            </p>
-          </m.div>
-
-          {/* Bottom Right Stats/Badge */}
-          <m.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="absolute bottom-[10%] right-6 lg:right-12 z-30 flex flex-col items-center gap-4"
-          >
-            <div className="w-[90px] h-[90px] rounded-full border-[1.5px] border-[#143B36] flex items-center justify-center p-2 relative">
-              <div className="absolute inset-0 rounded-full border border-[#143B36] border-dashed animate-[spin_20s_linear_infinite] m-1" />
-              <div className="text-center font-sans text-[26px] font-bold text-[#143B36] leading-none">
-                5<span className="text-[14px]">+</span>
-              </div>
-            </div>
-            <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#143B36] text-center leading-snug">
-              ACTIVE<br/>ROLES
+          <m.div {...rise(0.42)} className="mt-12 flex justify-center lg:justify-start">
+            <div className="glass rounded-[24px] px-2 py-3 grid grid-cols-3 divide-x divide-[#1B4A44]/10">
+              {stats.map((stat) => (
+                <div key={stat.label} className="px-5 sm:px-7 text-center lg:text-left">
+                  <div className="font-sans text-[26px] sm:text-[30px] font-extrabold text-[#143B36] leading-none tracking-tight">
+                    {stat.value}
+                  </div>
+                  <div className="font-syne text-[9px] sm:text-[10px] font-bold tracking-[1.5px] uppercase text-[#4A6360] mt-2">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </m.div>
-
-          {/* Desktop Brush Strokes & Photo */}
-          <div className="absolute bottom-0 left-1/2 translate-x-[-40%] xl:translate-x-[-45%] w-[650px] xl:w-[750px] h-[80%] flex items-end justify-center pointer-events-none z-10">
-            
-            <m.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center -translate-y-8"
-            >
-              <svg 
-                viewBox="0 0 800 800" 
-                fill="none" 
-                className="w-full h-full max-w-none opacity-90 text-[#21675E]" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <filter id="rough-edge-desktop" x="-20%" y="-20%" width="140%" height="140%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" result="noise" />
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
-                  </filter>
-                </defs>
-                <g fill="currentColor" filter="url(#rough-edge-desktop)">
-                  <path d="M200,600 L600,200 L640,240 L240,640 Z" />
-                  <path d="M150,500 L550,100 L600,150 L200,550 Z" />
-                  <path d="M250,700 L650,300 L700,350 L300,750 Z" />
-                  <ellipse cx="400" cy="400" rx="250" ry="80" transform="rotate(-45 400 400)" />
-                  <ellipse cx="350" cy="450" rx="280" ry="70" transform="rotate(-45 350 450)" />
-                  <ellipse cx="450" cy="350" rx="200" ry="60" transform="rotate(-45 450 350)" />
-                  <ellipse cx="280" cy="520" rx="150" ry="50" transform="rotate(-45 280 520)" />
-                </g>
-                <g fill="currentColor" filter="url(#rough-edge-desktop)">
-                  <circle cx="650" cy="200" r="15" />
-                  <circle cx="680" cy="150" r="8" />
-                  <circle cx="150" cy="650" r="20" />
-                  <circle cx="200" cy="720" r="12" />
-                  <circle cx="750" cy="400" r="10" />
-                </g>
-              </svg>
-            </m.div>
-
-            <m.div 
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="relative z-20 w-full flex justify-center h-full items-end"
-            >
-              <Image
-                src="/image.webp"
-                alt="Shourya Parashar - Full Stack Developer"
-                width={600}
-                height={800}
-                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 500px"
-                className="w-[90%] xl:w-[100%] max-w-[500px] h-auto object-contain object-bottom pointer-events-auto block"
-                priority
-                fetchPriority="high"
-              />
-            </m.div>
-
-          </div>
         </div>
 
+        {/* Portrait */}
+        <Portrait />
       </div>
     </section>
   );
