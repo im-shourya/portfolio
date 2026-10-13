@@ -4,10 +4,10 @@ import Footer from '@/components/Footer';
 import BlogList from '@/components/BlogList';
 
 export const metadata: Metadata = {
-  title: 'Blog — Shourya Parashar | Full Stack Developer',
+  title: 'Blog | Shourya Parashar | Full Stack Developer',
   description: 'Weekly articles about web development, React, Next.js, Node.js, TypeScript, system design, and software engineering. Written by Shourya Parashar.',
   openGraph: {
-    title: 'Blog — Shourya Parashar',
+    title: 'Blog | Shourya Parashar',
     description: 'Weekly articles about web development and software engineering.',
     url: 'https://shouryaparashar.in/blog',
   },
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     canonical: '/blog',
   },
   twitter: {
-    title: 'Blog — Shourya Parashar | Full Stack Developer',
+    title: 'Blog | Shourya Parashar | Full Stack Developer',
     description: 'Weekly articles about web development, React, Next.js, Node.js, TypeScript, system design, and software engineering. Written by Shourya Parashar.',
   }
 };

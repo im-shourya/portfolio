@@ -15,7 +15,7 @@ export const posts: BlogPost[] = [
   {
     slug: 'building-a-voice-rag-system-under-a-200ms-latency-budget',
     title: 'Building a Voice RAG System Under a 200ms Latency Budget',
-    excerpt: 'Voice → Retrieval → Grounded Answer — with a hard 200ms budget. How I built a fast, robust RAG pipeline for the HH Goa 2026 task.',
+    excerpt: 'Voice → Retrieval → Grounded Answer, with a hard 200ms budget. How I built a fast, robust RAG pipeline for the HH Goa 2026 task.',
     date: 'Sept 5, 2026',
     readTime: '10 min read',
     tags: ['AI', 'RAG', 'Python', 'FastAPI'],
@@ -402,7 +402,7 @@ Dense Retrieval          BM25+ Retrieval
   },
   {
     slug: 'building-recruit-ai',
-    title: 'Building RECRUIT.AI — How I Built an AI-Powered Recruitment Platform',
+    title: 'Building RECRUIT.AI: How I Built an AI-Powered Recruitment Platform',
     excerpt: 'A deep dive into the architecture, ML pipeline, and lessons learned building an end-to-end recruitment automation tool with Next.js and Node.js.',
     date: 'Coming Soon',
     readTime: '8 min read',
@@ -411,8 +411,8 @@ Dense Retrieval          BM25+ Retrieval
   },
   {
     slug: 'kanbanflow-zero-backend',
-    title: 'I Built a Zero-Backend Kanban Board with React + TypeScript — Here\'s What I Learned',
-    excerpt: 'No server. No database. No login. Just pure React — and it actually works great. How I built KanbanFlow with zero backend architecture.',
+    title: 'I Built a Zero-Backend Kanban Board with React + TypeScript: Here\'s What I Learned',
+    excerpt: 'No server. No database. No login. Just pure React, and it actually works great. How I built KanbanFlow with zero backend architecture.',
     date: 'Sept 5, 2026',
     readTime: '4 min read',
     tags: ['React', 'TypeScript', 'Architecture'],
@@ -421,21 +421,21 @@ Dense Retrieval          BM25+ Retrieval
       <>
         <p>
           <strong>Why I Built KanbanFlow</strong><br />
-          Every Kanban tool I used asked me to sign up, connect to a server, or pay for features I didn't need. I wanted something that just <strong>opened and worked</strong> — instantly, privately, offline.
+          Every Kanban tool I used asked me to sign up, connect to a server, or pay for features I didn't need. I wanted something that just <strong>opened and worked</strong>: instantly, privately, offline.
         </p>
         <p>
-          So I built <a href="https://kanbanflow.shouryaparashar.in" target="_blank" rel="noopener noreferrer">KanbanFlow</a> — a fully-featured Kanban board that lives entirely in your browser. No account. No backend. No setup.
+          So I built <a href="https://kanbanflow.shouryaparashar.in" target="_blank" rel="noopener noreferrer">KanbanFlow</a>, a fully-featured Kanban board that lives entirely in your browser. No account. No backend. No setup.
         </p>
         
         <h2>What It Does</h2>
         <ul>
-          <li><strong>Unlimited columns and tasks</strong> — fully customizable</li>
+          <li><strong>Unlimited columns and tasks</strong>: fully customizable</li>
           <li><strong>Drag & drop</strong> task movement across columns</li>
-          <li><strong>Priority tagging</strong> — High, Medium, Low, None</li>
+          <li><strong>Priority tagging</strong>: High, Medium, Low, None</li>
           <li><strong>Due dates</strong> with overdue highlighting</li>
           <li><strong>Live search</strong> + priority filtering</li>
           <li><strong>Dark / Light theme</strong> toggle</li>
-          <li><strong>Auto-saves to localStorage</strong> — data persists across sessions</li>
+          <li><strong>Auto-saves to localStorage</strong>: data persists across sessions</li>
         </ul>
         
         <h2>Tech Stack</h2>
@@ -443,10 +443,10 @@ Dense Retrieval          BM25+ Retrieval
           React 18 + Vite 5 + TypeScript 5 + Tailwind CSS + React Router v6
         </p>
         <p>
-          No Redux. No external state library. Just React's <code>useState</code> and <code>useReducer</code> — keeping it lean.
+          No Redux. No external state library. Just React's <code>useState</code> and <code>useReducer</code>, keeping it lean.
         </p>
         
-        <h2>The Interesting Part — localStorage as a Database</h2>
+        <h2>The Interesting Part: localStorage as a Database</h2>
         <p>
           Most people reach for Firebase or Supabase immediately. But for a personal productivity tool, <code>localStorage</code> is genuinely underrated.
         </p>
@@ -475,7 +475,7 @@ const [board, setBoard] = useState<Board>(() => {
 
         <h2>Drag & Drop Without a Library</h2>
         <p>
-          Instead of reaching for <code>react-beautiful-dnd</code> or <code>dnd-kit</code>, I implemented drag and drop using the native HTML5 Drag and Drop API — which kept the bundle size tiny.
+          Instead of reaching for <code>react-beautiful-dnd</code> or <code>dnd-kit</code>, I implemented drag and drop using the native HTML5 Drag and Drop API, which kept the bundle size tiny.
         </p>
         <pre><code className="language-typescript">{`const handleDragStart = (e: DragEvent, taskId: string) => {
   e.dataTransfer.setData('taskId', taskId);
@@ -510,10 +510,10 @@ const handleDrop = (e: DragEvent, targetColumnId: string) => {
           <strong>GitHub:</strong> <a href="https://github.com/im-shourya/KanbanFlow" target="_blank" rel="noopener noreferrer">github.com/im-shourya/KanbanFlow</a>
         </p>
         <p>
-          Built by <a href="https://shouryaparashar.in" target="_blank" rel="noopener noreferrer">Shourya Parashar</a> — Full Stack Developer.
+          Built by <a href="https://shouryaparashar.in" target="_blank" rel="noopener noreferrer">Shourya Parashar</a>, Full Stack Developer.
         </p>
         <p>
-          <em>If you found this useful, drop a ⭐ on GitHub — it genuinely helps!</em>
+          <em>If you found this useful, drop a ⭐ on GitHub. It genuinely helps!</em>
         </p>
       </>
     )
