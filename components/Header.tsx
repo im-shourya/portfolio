@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { m, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const navLinks = [
   { label: 'About', href: '/#about' },
@@ -14,33 +14,53 @@ const navLinks = [
   { label: 'Blog', href: '/blog' },
 ];
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <>
+      {/* Scroll progress hairline */}
+      <m.div
+        style={{ scaleX: progress }}
+        className="fixed top-0 left-0 right-0 h-[2px] origin-left z-[60] bg-gradient-to-r from-[#2D7A6E] via-[#E8A325] to-[#E55B3C]"
+      />
+
       <m.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'py-3 bg-[#F4EFE6]/60 backdrop-blur-2xl backdrop-saturate-[180%] border-b border-white/50 shadow-[0_4px_30px_rgba(21,31,30,0.05)]'
-            : 'py-5 bg-transparent'
-        }`}
+        initial={{ y: -40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease }}
+        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-4"
       >
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+        <div
+          className={`mx-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            scrolled
+              ? 'glass mt-3 max-w-[1100px] rounded-full pl-6 pr-2 py-2'
+              : 'mt-0 max-w-[1400px] px-3 lg:px-8 py-5 border border-transparent'
+          }`}
+        >
           {/* Logo */}
           <Link
             href="/"
-            className="font-script text-[26px] lg:text-[28px] text-[#1B4A44] hover:text-[#E8A325] transition-colors duration-300 relative z-50 cursor-pointer"
+            className="font-script text-[26px] lg:text-[28px] text-[#1B4A44] hover:text-[#E8A325] transition-colors duration-300 relative z-50 leading-none"
             onClick={(e) => {
               if (typeof window !== 'undefined' && window.location.pathname === '/') {
                 e.preventDefault();
@@ -53,7 +73,11 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="glass hidden lg:flex items-center gap-10 px-8 py-3.5 rounded-full">
+          <nav
+            className={`hidden lg:flex items-center gap-9 px-8 py-3 rounded-full transition-all duration-500 ${
+              scrolled ? '' : 'glass'
+            }`}
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -67,70 +91,78 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center justify-center bg-[#1B4A44] text-[#F4EFE6] px-6 py-3 rounded-full font-syne text-[10px] font-bold tracking-[1.5px] uppercase hover:bg-[#E8A325] hover:text-[#151F1E] hover:-translate-y-0.5 hover:shadow-[0_10px_20px_rgba(232,163,37,0.2)] transition-all duration-300"
-            >
-              Get In Touch
+            <Link href="/#contact" className="btn btn-primary py-3 px-5 text-[10px]">
+              Get in touch
+              <ArrowUpRight size={14} />
             </Link>
           </div>
 
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="glass lg:hidden w-11 h-11 rounded-full flex items-center justify-center text-[#1B4A44] relative z-50 transition-colors hover:bg-white"
-            aria-label="Toggle menu"
+            className="glass lg:hidden w-11 h-11 rounded-full flex items-center justify-center text-[#1B4A44] relative z-50 active:scale-95 transition-transform"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            <AnimatePresence mode="wait" initial={false}>
+              <m.span
+                key={isOpen ? 'close' : 'open'}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex"
+              >
+                {isOpen ? <X size={20} /> : <Menu size={20} />}
+              </m.span>
+            </AnimatePresence>
           </button>
         </div>
       </m.header>
 
-      {/* Fullscreen Mobile Menu Overlay */}
+      {/* Mobile menu: frosted sheet */}
       <AnimatePresence>
         {isOpen && (
           <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed inset-0 z-40 bg-[#151F1E]/95 backdrop-blur-xl lg:hidden flex flex-col justify-center items-center"
+            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(28px)' }}
+            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            transition={{ duration: 0.45, ease }}
+            className="fixed inset-0 z-40 bg-[#F4EFE6]/70 lg:hidden flex flex-col justify-center px-8"
           >
-            <div className="flex flex-col items-center gap-8 w-full px-6">
+            <nav className="flex flex-col gap-2">
               {navLinks.map((link, idx) => (
                 <m.div
                   key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.4, delay: idx * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
+                  initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.55, delay: 0.05 + idx * 0.05, ease }}
                 >
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="font-serif text-[3rem] text-[#F4EFE6] hover:text-[#E8A325] transition-colors leading-none tracking-tight block"
+                    className="flex items-center justify-between py-3 border-b border-[#1B4A44]/10 font-sans text-[2.4rem] font-extrabold tracking-tight text-[#143B36] active:text-[#E8A325]"
                   >
                     {link.label}
+                    <ArrowUpRight size={22} className="text-[#1B4A44]/40" />
                   </Link>
                 </m.div>
               ))}
-              
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.4, delay: navLinks.length * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
-                className="w-full flex justify-center mt-8"
-              >
-                <Link
-                  href="/#contact"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center bg-[#E8A325] text-[#151F1E] w-full max-w-[280px] px-6 py-4 rounded-full font-syne text-[11px] font-bold tracking-[2px] uppercase active:scale-95 transition-transform"
-                >
-                  Get In Touch
-                </Link>
-              </m.div>
-            </div>
+            </nav>
+
+            <m.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 + navLinks.length * 0.05, ease }}
+              className="mt-10"
+            >
+              <Link href="/#contact" onClick={() => setIsOpen(false)} className="btn btn-primary w-full">
+                Get in touch
+                <ArrowUpRight size={16} />
+              </Link>
+            </m.div>
           </m.div>
         )}
       </AnimatePresence>
