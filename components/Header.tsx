@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { m, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const navLinks = [
@@ -19,8 +19,6 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -38,12 +36,6 @@ export default function Header() {
 
   return (
     <>
-      {/* Scroll progress hairline */}
-      <m.div
-        style={{ scaleX: progress }}
-        className="fixed top-0 left-0 right-0 h-[2px] origin-left z-[60] bg-gradient-to-r from-[#2D7A6E] via-[#E8A325] to-[#E55B3C]"
-      />
-
       <m.header
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
