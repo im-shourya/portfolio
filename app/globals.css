@@ -213,7 +213,7 @@
   animation: fadeIn 0.25s ease-out;
 }
 
-/* Hero LCP image animation — CSS-only for zero render delay */
+/* Hero LCP image animation: CSS-only for zero render delay */
 @keyframes heroSlideUp {
   from {
     opacity: 0.3;
@@ -229,6 +229,7 @@
   animation: heroSlideUp 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s both;
 }
 
+@layer components {
 /* ───────── Liquid Glass ─────────
    Translucent, saturated blur with a specular top highlight and
    a soft inner rim, in the spirit of Apple's Liquid Glass material. */
@@ -314,4 +315,82 @@
   .apple-chevron {
     transition: none;
   }
+}
+
+/* ───────── SF-style icons ─────────
+   Lucide tuned to read like SF Symbols: lighter, rounded strokes. */
+svg.lucide {
+  stroke-width: 1.75px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* ───────── Buttons ───────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-syne, 'Syne', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.95rem 1.6rem;
+  border-radius: 999px;
+  transition:
+    transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 0.35s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(0.97); transition-duration: 0.12s; }
+
+.btn-primary {
+  color: #f4efe6;
+  background: linear-gradient(180deg, #24605a 0%, #1b4a44 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 10px 24px rgba(27, 74, 68, 0.28);
+}
+.btn-primary:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 16px 32px rgba(27, 74, 68, 0.35); }
+
+.btn-amber {
+  color: #151f1e;
+  background: linear-gradient(180deg, #f2b746 0%, #e8a325 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 10px 24px rgba(232, 163, 37, 0.28);
+}
+.btn-amber:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 16px 32px rgba(232, 163, 37, 0.38); }
+
+/* Glass buttons reuse the glass material */
+.btn.glass { color: #1b4a44; }
+.btn.glass-dark { color: #f4efe6; }
+.btn.glass:hover { background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4)); }
+.btn.glass-dark:hover { background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05)); }
+
+/* Ambient colour orb used behind glass */
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(90px);
+  animation: orbFloat 18s ease-in-out infinite alternate;
+}
+@keyframes orbFloat {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(40px, -30px, 0) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .orb,
+  .animate-ping,
+  .hero-image-animate { animation: none !important; }
+  .btn { transition: none; }
+}
 }

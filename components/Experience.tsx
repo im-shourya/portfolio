@@ -2,67 +2,163 @@
 
 import { m } from 'framer-motion';
 
-const workItems = [
+type Role = { role: string; date: string; desc: string };
+type TimelineItem = { company: string; roles: Role[] };
+
+const workItems: TimelineItem[] = [
+  {
+    company: 'Google Developer Groups on Campus SRM',
+    roles: [
+      {
+        role: 'Associate Technical Lead',
+        date: 'Sep 2026 - Present',
+        desc: 'Guiding technical projects and designing the recruitment tasks for new applicants.',
+      },
+      {
+        role: 'Frontend Developer',
+        date: 'Mar 2026 - Sep 2026',
+        desc: 'Built Certificate Generator with Next.js. Organized KernelPanic: audited 20+ repos, mentored 10+ teams.',
+      },
+    ],
+  },
+  {
+    company: 'HackerRank Campus Crew SRMIST',
+    roles: [
+      {
+        role: 'Lead',
+        date: 'Sep 2026 - Present',
+        desc: 'Co-organised DOMINION 2026, a two-day buildathon. Received a Letter of Recommendation from HackerRank.',
+      },
+      {
+        role: 'Technical Team Member',
+        date: 'Oct 2025 - Present',
+        desc: 'Organized TECHFORMERS 1.0 with 1,800+ participants. Authored algorithmic problems and co-designed 5 problems with 10+ test cases.',
+      },
+    ],
+  },
+  {
+    company: 'Quantum Computing Club SRM',
+    roles: [
+      {
+        role: 'Head of Operations',
+        date: 'Sep 2026 - Present',
+        desc: 'Running sponsorships and events for the club.',
+      },
+      {
+        role: 'Member',
+        date: 'May 2026 - Sep 2026',
+        desc: 'Contributed to club activities and events.',
+      },
+    ],
+  },
+  {
+    company: 'IEEE Computer Society SRMIST',
+    roles: [
+      {
+        role: 'Member Technical',
+        date: 'Aug 2026 - Present',
+        desc: 'Technical member of the IEEE Computer Society student chapter at SRMIST.',
+      },
+    ],
+  },
+  {
+    company: 'GirlScript Summer of Code',
+    roles: [
+      {
+        role: 'Contributor',
+        date: 'May 2026 - Aug 2026',
+        desc: 'Open-source contributor to Draftdeckai, an AI-powered document creation platform.',
+      },
+    ],
+  },
   {
     company: 'McKinsey.org',
-    date: 'Apr 2026 - Present',
-    role: 'Web Developer',
-    desc: 'Contributing to web development initiatives alongside the Forward Program.',
+    roles: [
+      {
+        role: 'Web Developer',
+        date: 'Apr 2026 - Present',
+        desc: 'Contributing to web development initiatives alongside the Forward Program.',
+      },
+    ],
   },
   {
     company: 'SRM Insider Community',
-    date: 'Apr 2026 - Present',
-    role: 'Web Developer',
-    desc: 'Developing web solutions for the SRM Insider community platform.',
+    roles: [
+      {
+        role: 'Web Developer',
+        date: 'Apr 2026 - Present',
+        desc: 'Developing web solutions for the SRM Insider community platform.',
+      },
+    ],
   },
   {
-    company: 'SRMIST ACM Chapter',
-    date: 'Apr 2026 - Present',
-    role: 'Member Technical',
-    desc: 'Contributing to technical initiatives and events organized by the SRMIST ACM Student Chapter.',
-  },
-  {
-    company: 'GDG on Campus SRM',
-    date: 'Mar 2026 - Present',
-    role: 'Frontend Developer',
-    desc: 'Built Certificate Generator with Next.js. Organized KernelPanic — audited 20+ repos, mentored 10+ teams.',
-  },
-  {
-    company: 'HackerRank Campus Crew',
-    date: 'Oct 2025 - Present',
-    role: 'Technical Team Member',
-    desc: 'Organized TECHFORMERS 1.0 with 1,800+ participants. Authored algorithmic problems and co-designed 5 problems with 10+ test cases.',
+    company: 'SRMIST ACM Student Chapter',
+    roles: [
+      {
+        role: 'Member Technical',
+        date: 'Apr 2026 - Present',
+        desc: 'Contributing to technical initiatives and events organized by the SRMIST ACM Student Chapter.',
+      },
+    ],
   },
 ];
 
-const educationItems = [
-  {
-    company: 'McKinsey & Company',
-    date: 'Apr 2026 - Present',
-    role: 'Forward Program',
-    desc: 'Globally selected for professional development on structured problem-solving, leadership, and business strategy.',
-  },
+const educationItems: TimelineItem[] = [
   {
     company: 'SRMIST, Chennai',
-    date: 'Aug 2025 - May 2029',
-    role: 'B.Tech Computer Science',
-    desc: 'Coursework: DSA, OOP (C++/Python), Artificial Intelligence, Web Development.',
+    roles: [
+      {
+        role: 'B.Tech Computer Science',
+        date: 'Aug 2025 - May 2029',
+        desc: 'Coursework: DSA, OOP (C++/Python), Artificial Intelligence, Web Development.',
+      },
+    ],
+  },
+  {
+    company: 'McKinsey & Company',
+    roles: [
+      {
+        role: 'Forward Program',
+        date: 'Apr 2026 - Present',
+        desc: 'Globally selected for professional development on structured problem-solving, leadership, and business strategy.',
+      },
+    ],
+  },
+  {
+    company: 'Hackathons',
+    roles: [
+      {
+        role: 'Hackathon Regular',
+        date: 'Ongoing',
+        desc: 'Regular at hackathons including Hacker House Goa 2026 (Team 3PIXLE), FAST × NVIDIA and Foundathon 3.0.',
+      },
+    ],
   },
   {
     company: 'IIT Hyderabad Collab',
-    date: 'Aug - Sep 2025',
-    role: 'Enduro Software Training',
-    desc: '4-week full-stack program — qualified via Amplitude assessment. Certificate ID: EN251158.',
+    roles: [
+      {
+        role: 'Enduro Software Training',
+        date: 'Aug - Sep 2025',
+        desc: '4-week full-stack program, qualified via Amplitude assessment. Certificate ID: EN251158.',
+      },
+    ],
   },
   {
     company: 'Self-Directed',
-    date: '2024 - Present',
-    role: 'Full Stack + DSA',
-    desc: 'Built 4+ deployed projects, mastered React, Next.js, Node.js, TypeScript. Currently exploring Docker and System Design.',
+    roles: [
+      {
+        role: 'Full Stack + DSA',
+        date: '2024 - Present',
+        desc: 'Shipping full-stack projects with TypeScript, Python, Next.js, Node.js, NestJS and FastAPI. Exploring Docker and system design.',
+      },
+    ],
   },
 ];
 
-function TimelineBlock({ items, label }: { items: typeof workItems; label: string }) {
+const isCurrent = (date: string) => date.includes('Present');
+
+function TimelineBlock({ items, label }: { items: TimelineItem[]; label: string }) {
   return (
     <div className="relative">
       <div className="font-syne font-bold text-[13px] text-[#F4EFE6] uppercase tracking-[2px] mb-10 flex items-center gap-4">
@@ -75,25 +171,25 @@ function TimelineBlock({ items, label }: { items: typeof workItems; label: strin
         <div className="absolute left-[5px] top-3 bottom-6 w-px bg-gradient-to-b from-[#E8A325]/60 via-white/15 to-transparent" />
 
         {items.map((item, idx) => {
-          const isCurrent = item.date.includes('Present');
+          const active = item.roles.some((r) => isCurrent(r.date));
           return (
             <m.div
-              key={item.company + item.role}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+              key={item.company}
+              initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: '-50px' }}
               className="relative flex gap-6 sm:gap-8 mb-6 last:mb-0 group"
             >
               {/* Dot */}
               <div className="relative pt-7 flex-shrink-0 z-10">
                 <span className="relative flex w-[11px] h-[11px]">
-                  {isCurrent && (
+                  {active && (
                     <span className="absolute inline-flex h-full w-full rounded-full bg-[#E8A325] opacity-60 animate-ping motion-reduce:animate-none" />
                   )}
                   <span
                     className={`relative inline-flex w-[11px] h-[11px] rounded-full ring-4 ring-[#151F1E] ${
-                      isCurrent ? 'bg-[#E8A325]' : 'bg-white/40'
+                      active ? 'bg-[#E8A325]' : 'bg-white/40'
                     }`}
                   />
                 </span>
@@ -102,23 +198,36 @@ function TimelineBlock({ items, label }: { items: typeof workItems; label: strin
               {/* Liquid glass card */}
               <div className="glass-dark glass-sheen flex-1 rounded-[22px] p-6 lg:p-7 group-hover:-translate-y-1 transition-transform duration-500">
                 <div className="relative z-[2]">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                    <div className="font-syne text-[11px] font-bold text-[#E8A325] tracking-[1.5px] uppercase">
-                      {item.company}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {isCurrent && (
-                        <span className="font-syne text-[9px] font-bold tracking-[1.5px] uppercase text-[#151F1E] bg-[#E8A325] px-2.5 py-1 rounded-full">
-                          Current
-                        </span>
-                      )}
-                      <span className="font-syne text-[10px] font-bold tracking-[1.5px] text-white/45 uppercase">
-                        {item.date}
-                      </span>
-                    </div>
+                  <div className="font-syne text-[11px] font-bold text-[#E8A325] tracking-[1.5px] uppercase mb-4">
+                    {item.company}
                   </div>
-                  <div className="font-serif text-[1.45rem] leading-tight text-[#F4EFE6] mb-2">{item.role}</div>
-                  <p className="text-[14px] text-[#F4EFE6]/70 leading-relaxed font-light">{item.desc}</p>
+
+                  <div className={item.roles.length > 1 ? 'relative pl-5 space-y-5' : ''}>
+                    {item.roles.length > 1 && (
+                      <div className="absolute left-[3px] top-2 bottom-2 w-px bg-white/15" />
+                    )}
+                    {item.roles.map((role) => (
+                      <div key={role.role} className="relative">
+                        {item.roles.length > 1 && (
+                          <span className="absolute -left-5 top-[9px] w-[7px] h-[7px] rounded-full bg-white/40" />
+                        )}
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
+                          <div className="font-serif text-[1.35rem] leading-tight text-[#F4EFE6]">{role.role}</div>
+                          <div className="flex items-center gap-2">
+                            {isCurrent(role.date) && (
+                              <span className="font-syne text-[9px] font-bold tracking-[1.5px] uppercase text-[#151F1E] bg-[#E8A325] px-2.5 py-1 rounded-full">
+                                Current
+                              </span>
+                            )}
+                            <span className="font-syne text-[10px] font-bold tracking-[1.5px] text-white/45 uppercase">
+                              {role.date}
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-[14px] text-[#F4EFE6]/70 leading-relaxed font-light">{role.desc}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </m.div>
