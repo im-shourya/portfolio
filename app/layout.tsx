@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { DM_Serif_Display, Syne, DM_Sans, Caveat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import CustomCursor from '@/components/CustomCursor'
 import MotionProvider from '@/components/MotionProvider'
 import './globals.css'
 
@@ -297,7 +296,6 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <MotionProvider>
-          <CustomCursor />
           {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </MotionProvider>

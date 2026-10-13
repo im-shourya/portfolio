@@ -99,14 +99,14 @@ export default function Contact() {
               Connect
             </div>
             <div className="flex flex-col gap-4">
-              <a href="https://linkedin.com/in/im-shourya" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#F4EFE6]/80 hover:text-[#E8A325] transition-colors font-syne font-medium text-[13px] tracking-wide">
-                <Linkedin size={16} /> LinkedIn <ArrowUpRight size={14} className="ml-auto opacity-50" />
+              <a href="https://linkedin.com/in/im-shourya" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-[#F4EFE6]/80 hover:text-[#E8A325] transition-colors font-syne font-medium text-[13px] tracking-wide">
+                <Linkedin size={16} /> <span className="apple-link">LinkedIn</span> <ArrowUpRight size={14} className="ml-auto opacity-50 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-              <a href="https://github.com/im-shourya" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#F4EFE6]/80 hover:text-[#E8A325] transition-colors font-syne font-medium text-[13px] tracking-wide">
-                <Github size={16} /> GitHub <ArrowUpRight size={14} className="ml-auto opacity-50" />
+              <a href="https://github.com/im-shourya" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-[#F4EFE6]/80 hover:text-[#E8A325] transition-colors font-syne font-medium text-[13px] tracking-wide">
+                <Github size={16} /> <span className="apple-link">GitHub</span> <ArrowUpRight size={14} className="ml-auto opacity-50 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-              <a href="https://shouryaparashar.in" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#F4EFE6]/80 hover:text-[#E8A325] transition-colors font-syne font-medium text-[13px] tracking-wide">
-                <Globe size={16} /> Portfolio <ArrowUpRight size={14} className="ml-auto opacity-50" />
+              <a href="https://shouryaparashar.in" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-[#F4EFE6]/80 hover:text-[#E8A325] transition-colors font-syne font-medium text-[13px] tracking-wide">
+                <Globe size={16} /> <span className="apple-link">Portfolio</span> <ArrowUpRight size={14} className="ml-auto opacity-50 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </m.div>
