@@ -42,11 +42,11 @@ It is not a template. Every section, component, and interaction has been purpose
 ## Features
 
 **Design & Experience**
-- Bespoke editorial design with curated typography (DM Serif Display, Syne, DM Sans, Caveat)
-- Painterly SVG brush-stroke motifs rendered with `feTurbulence` displacement filters
-- Magnetic custom cursor with `mix-blend-mode` on desktop viewports
-- Dedicated mobile and desktop layouts per section — not just responsive breakpoints, but entirely distinct compositions
-- Horizontal swipe-scroll project cards on mobile with snap scrolling
+- Dark bento-grid layout: warm near-black cards with asymmetric corners, rim lighting and soft colour washes
+- SF Pro on Apple devices, Google Sans everywhere else
+- iOS-style icons (Framework7 Icons), the closest web-licensable match to SF Symbols
+- Project cards built from live-site screenshots, with full details revealed on hover (or tap on touch devices)
+- Every home-page section sized to fit a single desktop screen
 
 **Performance**
 - Sub-second First Contentful Paint via AVIF/WebP image optimisation, `display: swap` fonts, and CSS-level optimisation
@@ -71,8 +71,8 @@ It is not a template. Every section, component, and interaction has been purpose
 | Language | TypeScript 5.7 | Type safety and developer experience |
 | Styling | Tailwind CSS v4 + tw-animate-css | Utility-first CSS with animation presets |
 | Animations | Framer Motion 12 | Layout animations, scroll-triggered reveals, gesture handling |
-| Icons | Lucide React | Consistent, tree-shakeable icon system |
-| Typography | Google Fonts | DM Serif Display · Syne · DM Sans · Caveat |
+| Icons | Framework7 Icons | iOS-style glyphs, wrapped in `components/icons.tsx` |
+| Typography | System SF Pro + Google Sans | SF on Apple devices, Google Sans (via `next/font`) elsewhere |
 | Analytics | Vercel Analytics | Privacy-friendly, zero-config usage tracking |
 | Hosting | Vercel | Edge deployment with automatic CI/CD |
 
@@ -84,17 +84,17 @@ The portfolio is composed of 11 distinct sections, each accessible via its own r
 
 | Section | Route | Description |
 |---|---|---|
-| Hero | `/` | Animated landing with portrait, brush-stroke SVGs, and key statistics |
+| Hero | `/` | Hello card with intro, links and résumé, beside a portrait card |
 | About | `/about` | Background narrative and personal highlights |
 | Experience | `/experience` | Professional roles and work history |
 | Projects | `/projects` | Showcase of production-ready applications (see below) |
-| Skills | `/skills` | Full tech-stack breakdown with "Currently Exploring" tracker |
+| Skills | `/skills` | Tech-stack chips by category plus a "currently learning" card |
 | Services | `/services` | Freelance and consulting offerings |
 | Certifications | `/certifications` | Verified credentials and professional badges |
 | Leadership | `/leadership` | Hackathon wins, community roles, and organisational leadership |
-| Journey | `/journey` | Education and milestone timeline |
+| Journey | `/journey` | Leadership roles, communities and education in three columns |
 | Blog | `/blog` | Technical articles sourced from dev.to and Medium |
-| Contact | `/contact` | Contact form with integrated Cal.com scheduling |
+| Contact | `/contact` | Contact card with email, Cal.com booking and CV, plus links and availability |
 
 ### Featured Projects
 
@@ -168,19 +168,21 @@ portfolio/
 │   └── skills/                   # Route: /skills
 │
 ├── components/                   # React components
-│   ├── Hero.tsx                  # Landing section with portrait and brush strokes
+│   ├── Hero.tsx                  # Hello card and portrait card
 │   ├── About.tsx                 # About narrative
-│   ├── Projects.tsx              # Project cards with hover/tap overlays
+│   ├── Projects.tsx              # Screenshot cards with hover/tap detail panels
 │   ├── TechStack.tsx             # Skills grid with category breakdown
 │   ├── Experience.tsx            # Work experience timeline
 │   ├── Services.tsx              # Freelance offerings
 │   ├── BlogList.tsx              # Blog article cards
-│   ├── Contact.tsx               # Contact form
+│   ├── Contact.tsx               # Contact card, links and availability
 │   ├── Certifications.tsx        # Certification display
 │   ├── Leadership.tsx            # Awards and community roles
 │   ├── Freelance.tsx             # Freelance CTA section
 │   ├── Header.tsx                # Site navigation
 │   ├── Footer.tsx                # Site footer
+│   ├── SectionHeader.tsx         # Section heading and page-width container
+│   ├── icons.tsx                 # Icon set (Framework7 Icons wrappers)
 │   ├── CustomCursor.tsx          # Magnetic cursor (desktop only)
 │   ├── ScrollAnimation.tsx       # Scroll-triggered animation wrapper
 │   ├── CalEmbed.tsx              # Cal.com scheduling widget
@@ -190,8 +192,8 @@ portfolio/
 │
 ├── hooks/                        # Custom React hooks
 ├── lib/                          # Utility functions
-├── types/                        # TypeScript type definitions
-├── public/                       # Static assets (images, icons, favicons)
+├── types/                        # TypeScript type definitions (incl. framework7-icons)
+├── public/                       # Static assets (images, favicons, projects/ screenshots)
 ├── media/                        # Source media files
 │
 ├── next.config.mjs               # Next.js configuration
@@ -211,7 +213,7 @@ The site is engineered for a **95+ Lighthouse score** across all categories. Key
 | Technique | Implementation |
 |---|---|
 | Image Optimisation | AVIF with WebP fallback via Next.js `<Image>`, responsive `srcSet` across 6 breakpoints (640–1920px) |
-| Font Loading | `display: swap` on all four Google Fonts families to eliminate Flash of Invisible Text |
+| Font Loading | System SF Pro needs no download; Google Sans is self-hosted via `next/font` with `display: swap` |
 | Asset Caching | 1-year immutable `Cache-Control` headers on JS, CSS, images, and fonts via `vercel.json` |
 | CSS Reduction | `optimizeCss: true` in Next.js experimental config for smaller CSS payloads |
 | Animation Budget | Framer Motion `LazyMotion` with `domAnimation` feature bundle — only loads what is used |
