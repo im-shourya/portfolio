@@ -18,7 +18,7 @@ const googleSans = Google_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://shouryaparashar.in'),
   title: 'Shourya Parashar | Full Stack Developer',
-  description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript. Explore projects like RecruitAI and KanbanFlow.',
+  description: 'Shourya Parashar is a Full Stack Developer and CSE undergrad at SRMIST building with React, Next.js, Node.js, TypeScript and Python. Explore projects like Voice RAG, RECRUIT.AI and KanbanFlow.',
   keywords: [
     'Shourya Parashar', 'Full Stack Developer', 'Software Engineer', 
     'React Developer', 'Node.js Developer', 'Next.js', 'TypeScript', 'im-shourya', 
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     url: 'https://shouryaparashar.in/',
     siteName: 'Shourya Parashar',
     title: 'Shourya Parashar | Full Stack Developer',
-    description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.',
+    description: 'Shourya Parashar is a Full Stack Developer and CSE undergrad at SRMIST building with React, Next.js, Node.js, TypeScript and Python.',
     images: [
       {
         url: '/Shourya_Parashar.jpeg',
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Shourya Parashar | Full Stack Developer',
-    description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.',
+    description: 'Shourya Parashar is a Full Stack Developer and CSE undergrad at SRMIST building with React, Next.js, Node.js, TypeScript and Python.',
     images: ['/Shourya_Parashar.jpeg'],
   },
   icons: {
@@ -104,7 +104,7 @@ const personJsonLd = {
     "representativeOfPage": true
   },
   "jobTitle": "Full Stack Developer",
-  "description": "Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.",
+  "description": "Full Stack Developer and CSE undergrad at SRMIST building with React, Next.js, Node.js, TypeScript and Python.",
   "email": "parasharshourya07@gmail.com",
   "knowsAbout": [
     { "@type": "Thing", "name": "React", "sameAs": "https://en.wikipedia.org/wiki/React_(JavaScript_library)" },
@@ -221,7 +221,7 @@ const websiteJsonLd = {
   "@id": "https://shouryaparashar.in/#website",
   "url": "https://shouryaparashar.in/",
   "name": "Shourya Parashar",
-  "description": "Portfolio of Shourya Parashar, Full Stack Developer and Founder",
+  "description": "Portfolio of Shourya Parashar, Full Stack Developer",
   "inLanguage": "en",
   "publisher": { "@id": "https://shouryaparashar.in/#person" },
   "mainEntity": { "@id": "https://shouryaparashar.in/#person" }
