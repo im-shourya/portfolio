@@ -402,11 +402,11 @@ Dense Retrieval          BM25+ Retrieval
   },
   {
     slug: 'building-recruit-ai',
-    title: 'Building RECRUIT.AI: How I Built an AI-Powered Recruitment Platform',
-    excerpt: 'A deep dive into the architecture, ML pipeline, and lessons learned building an end-to-end recruitment automation tool with Next.js and Node.js.',
+    title: 'Building RECRUIT.AI: A Recruitment Pipeline for Clubs and Small Teams',
+    excerpt: 'The architecture and lessons behind RECRUIT.AI: drives, applications, task submissions and recorded interviews in one place, built with Next.js, FastAPI and MongoDB.',
     date: 'Coming Soon',
     readTime: '8 min read',
-    tags: ['Next.js', 'Node.js', 'AI'],
+    tags: ['Next.js', 'FastAPI', 'MongoDB'],
     featured: false,
   },
   {
