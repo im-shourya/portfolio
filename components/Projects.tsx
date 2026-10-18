@@ -1,7 +1,10 @@
 'use client';
 
+import { useId, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { m } from 'framer-motion';
+import { ArrowUpRightIcon, CodeIcon } from './icons';
+import SectionHeader, { Container } from './SectionHeader';
 
 type Project = {
   label: string;
@@ -9,7 +12,9 @@ type Project = {
   tags: string[];
   desc: string;
   metrics: { value: string; label: string }[];
-  gradient: string;
+  /** Screenshot of the live site, captured at 1440x900. */
+  image?: string;
+  tint: 'teal' | 'blue' | 'amber' | 'rose' | 'violet';
   live?: string;
   github?: string;
   caseStudy?: string;
@@ -27,7 +32,8 @@ const projects: Project[] = [
       { value: '25x', label: 'under 200ms budget' },
       { value: '241', label: 'tests' },
     ],
-    gradient: 'from-[#1B4A44] via-[#2D7A6E] to-[#4EADA0]',
+    image: '/projects/voice-rag.webp',
+    tint: 'teal',
     live: 'https://hhgoa-task2.onrender.com',
     github: 'https://github.com/im-shourya/Voice-RAG',
     caseStudy: '/blog/building-a-voice-rag-system-under-a-200ms-latency-budget',
@@ -42,7 +48,8 @@ const projects: Project[] = [
       { value: '<1ms', label: 'local commands' },
       { value: '6', label: 'interview problems' },
     ],
-    gradient: 'from-[#2A44C8] via-[#3B5BDB] to-[#151F1E]',
+    image: '/projects/archie.webp',
+    tint: 'blue',
     live: 'https://archie-rb2x.onrender.com',
     github: 'https://github.com/im-shourya/Archie',
   },
@@ -56,7 +63,8 @@ const projects: Project[] = [
       { value: '100', label: 'bulk decisions' },
       { value: '3', label: 'team roles' },
     ],
-    gradient: 'from-[#E8A325] via-[#F5C842] to-[#E55B3C]',
+    image: '/projects/recruit-ai.webp',
+    tint: 'amber',
     live: 'https://recruitai.shouryaparashar.in',
     github: 'https://github.com/im-shourya/RECURIT.AI',
   },
@@ -69,7 +77,8 @@ const projects: Project[] = [
       { value: 'QR', label: 'check-ins' },
       { value: 'RLS', label: 'secured data' },
     ],
-    gradient: 'from-[#E55B3C] via-[#C9443A] to-[#151F1E]',
+    image: '/projects/club-events.webp',
+    tint: 'rose',
     live: 'https://events.shouryaparashar.in',
     github: 'https://github.com/im-shourya/event-managment-system',
   },
@@ -82,7 +91,8 @@ const projects: Project[] = [
       { value: '5', label: 'ML models' },
       { value: '14', label: 'question flow' },
     ],
-    gradient: 'from-[#2D7A6E] via-[#1B4A44] to-[#151F1E]',
+    image: '/projects/stratosai.webp',
+    tint: 'violet',
     live: 'https://stratosai.shouryaparashar.in',
     github: 'https://github.com/im-shourya/StratosAI',
   },
@@ -95,7 +105,8 @@ const projects: Project[] = [
       { value: '0', label: 'backend deps' },
       { value: '∞', label: 'columns' },
     ],
-    gradient: 'from-[#4EADA0] via-[#2D7A6E] to-[#E8A325]',
+    image: '/projects/kanbanflow.webp',
+    tint: 'teal',
     live: 'https://kanbanflow.shouryaparashar.in',
     github: 'https://github.com/im-shourya/KanbanFlow',
     caseStudy: '/blog/kanbanflow-zero-backend',
@@ -109,23 +120,31 @@ const projects: Project[] = [
       { value: '<200ms', label: 'avg latency' },
       { value: '50+', label: 'req / min' },
     ],
-    gradient: 'from-[#151F1E] via-[#1B4A44] to-[#E55B3C]',
+    tint: 'rose',
     github: 'https://github.com/im-shourya/Task-Management-CRUD-API',
   },
 ];
 
+const tintClass: Record<Project['tint'], string> = {
+  teal: 'bento-teal',
+  blue: 'bento-blue',
+  amber: 'bento-amber',
+  rose: 'bento-rose',
+  violet: 'bento-violet',
+};
+
+// Alternate the asymmetric corners across the grid, as the reference does.
+const corners = ['corner-b', 'corner-a', 'corner-c', 'corner-d'];
+
 function ProjectLink({ href, children }: { href: string; children: React.ReactNode }) {
   const className =
-    'apple-link inline-flex items-center font-syne text-[12px] font-semibold tracking-[0.5px] text-white';
+    'inline-flex items-center gap-1 text-[13px] text-ink-strong hover:text-white underline-offset-4 hover:underline';
   const content = (
     <>
       {children}
-      <span className="apple-chevron ml-1" aria-hidden>
-        ›
-      </span>
+      <ArrowUpRightIcon size={11} />
     </>
   );
-
   if (href.startsWith('/')) {
     return (
       <Link href={href} className={className}>
@@ -141,114 +160,124 @@ function ProjectLink({ href, children }: { href: string; children: React.ReactNo
 }
 
 function ProjectCard({ project, idx }: { project: Project; idx: number }) {
-  return (
-    <m.article
-      initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: true, margin: '-50px' }}
-      className={`group relative overflow-hidden rounded-[28px] bg-gradient-to-br ${project.gradient} p-3 sm:p-4 shadow-[0_10px_30px_rgba(21,31,30,0.12)] hover:shadow-[0_24px_50px_rgba(21,31,30,0.2)] hover:-translate-y-1.5 transition-all duration-500 ${
-        project.featured ? 'md:col-span-2' : ''
-      }`}
-    >
-      {/* Light orbs that the glass refracts */}
-      <div className="absolute -top-16 -right-10 w-64 h-64 rounded-full bg-white/25 blur-3xl pointer-events-none transition-transform duration-700 group-hover:scale-125" />
-      <div className="absolute -bottom-20 -left-10 w-72 h-72 rounded-full bg-black/20 blur-3xl pointer-events-none" />
+  // Hover/focus reveals details for pointer users; the toggle covers touch and keyboard.
+  const [open, setOpen] = useState(false);
+  const panelId = useId();
+  const corner = project.featured ? 'corner-a' : corners[idx % corners.length];
+  const reveal =
+    'group-data-[open=true]:opacity-100 group-data-[open=true]:translate-y-0 group-data-[open=true]:pointer-events-auto can-hover:group-hover:opacity-100 can-hover:group-hover:translate-y-0 can-hover:group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto';
 
-      <div className={`relative flex flex-col ${project.featured ? 'md:flex-row md:items-stretch' : ''} gap-3 h-full`}>
-        {/* Title area */}
-        <div className={`flex flex-col justify-between p-5 sm:p-6 min-h-[200px] ${project.featured ? 'md:flex-1 md:min-h-[340px]' : ''}`}>
-          <div>
-            <span className="glass-dark font-syne text-[10px] font-bold tracking-[2px] uppercase text-white/95 px-4 py-2 rounded-full">
-              {project.label}
+  return (
+    <article
+      data-open={open}
+      className={`group relative h-[300px] ${project.featured ? 'md:col-span-2' : ''}`}
+    >
+      {/* Soft glow of the screenshot behind the card */}
+      {project.image && (
+        <div className="absolute -inset-3 opacity-20 blur-2xl pointer-events-none" aria-hidden>
+          <Image src={project.image} alt="" fill sizes="300px" className="object-cover" />
+        </div>
+      )}
+
+      <div className={`bento ${tintClass[project.tint]} ${corner} absolute inset-0`}>
+        {/* Preview */}
+        {project.image ? (
+          <div className="absolute inset-x-5 top-5 bottom-0 rounded-t-[12px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] can-hover:group-hover:scale-[1.03]">
+            <Image
+              src={project.image}
+              alt={`${project.title} homepage`}
+              width={1200}
+              height={750}
+              sizes={project.featured ? '(max-width: 768px) 90vw, 600px' : '(max-width: 768px) 90vw, 300px'}
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-white/[0.07]" aria-hidden>
+            <CodeIcon size={110} />
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#131311] via-[#131311]/90 via-35% to-transparent to-75% pointer-events-none" />
+
+        {/* Caption */}
+        <div className="absolute inset-x-0 bottom-0 p-6 transition-opacity duration-300 group-data-[open=true]:opacity-0 can-hover:group-hover:opacity-0 group-focus-within:opacity-0">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <h3 className="text-[22px] leading-[1.15] font-normal text-ink-strong">{project.title}</h3>
+            <span className="text-[10px] uppercase tracking-[0.04em] text-white bg-white/10 backdrop-blur-[5px] px-2.5 py-1 rounded-[20px]">
+              {project.label.split('·')[0].trim()}
             </span>
           </div>
-          <h3 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-white leading-[1.05] tracking-tight mt-10 drop-shadow-sm">
-            {project.title}
-          </h3>
+          <p className="text-[14px] text-ink-strong/75 mt-2 line-clamp-1">{project.desc}</p>
         </div>
 
-        {/* Liquid glass panel */}
-        <div className={`glass-dark glass-sheen rounded-[22px] p-5 sm:p-6 flex flex-col gap-5 ${project.featured ? 'md:w-[48%]' : ''}`}>
-          <p className="relative z-[2] text-white/85 text-[14px] leading-relaxed font-light">{project.desc}</p>
-
-          <div className="relative z-[2] grid grid-cols-2 sm:grid-cols-3 gap-3">
+        {/* Details */}
+        <div
+          id={panelId}
+          className={`absolute inset-0 z-[4] p-5 flex flex-col gap-3 bg-[#131311]/92 backdrop-blur-md overflow-y-auto opacity-0 translate-y-3 pointer-events-none transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${reveal}`}
+        >
+          <h3 aria-hidden className="text-[20px] leading-[1.15] font-normal text-ink-strong pr-12">
+            {project.title}
+          </h3>
+          <p className="text-[13px] leading-[1.5] text-ink line-clamp-4">{project.desc}</p>
+          <dl className="flex flex-wrap gap-x-6 gap-y-2">
             {project.metrics.map((metric) => (
               <div key={metric.label}>
-                <div className="font-serif text-[1.6rem] leading-none text-white">{metric.value}</div>
-                <div className="font-syne text-[9px] font-bold tracking-[1.5px] uppercase text-white/55 mt-1.5">
-                  {metric.label}
-                </div>
+                <dd className="text-[17px] leading-none text-ink-strong">{metric.value}</dd>
+                <dt className="text-[11px] text-ink-muted mt-1">{metric.label}</dt>
               </div>
             ))}
-          </div>
-
-          <div className="relative z-[2] flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="font-syne text-[10px] font-semibold tracking-[1px] text-white/90 bg-white/10 border border-white/15 px-3 py-1 rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="relative z-[2] flex flex-wrap gap-x-6 gap-y-2 pt-4 mt-auto border-t border-white/10">
+          </dl>
+          <p className="text-[12px] text-ink-muted truncate">
+            <span className="sr-only">Tech stack: </span>
+            {project.tags.join(' · ')}
+          </p>
+          <div className="mt-auto pt-3 border-t border-white/10 flex flex-wrap gap-x-4 gap-y-1">
             {project.live && <ProjectLink href={project.live}>Visit site</ProjectLink>}
-            {project.caseStudy && <ProjectLink href={project.caseStudy}>Read case study</ProjectLink>}
+            {project.caseStudy && <ProjectLink href={project.caseStudy}>Case study</ProjectLink>}
             {project.github && <ProjectLink href={project.github}>Source</ProjectLink>}
           </div>
         </div>
+
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={panelId}
+          aria-label={`${open ? 'Hide' : 'Show'} details for ${project.title}`}
+          onClick={() => setOpen((v) => !v)}
+          className="absolute top-4 right-4 z-[6] w-9 h-9 rounded-full bg-black/45 backdrop-blur border border-white/15 text-white flex items-center justify-center hover:bg-black/65 transition-colors"
+        >
+          <span className="absolute w-3.5 h-px bg-current" />
+          <span className="absolute w-px h-3.5 bg-current transition-transform duration-300 group-data-[open=true]:scale-y-0 can-hover:group-hover:scale-y-0 group-focus-within:scale-y-0" />
+        </button>
       </div>
-    </m.article>
+    </article>
   );
 }
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#F4EFE6] relative overflow-hidden">
-      {/* Ambient colour behind the section */}
-      <div className="absolute top-40 -left-40 w-[600px] h-[600px] bg-[#4EADA0]/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 -right-40 w-[600px] h-[600px] bg-[#E8A325]/15 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="max-w-[1400px] mx-auto relative">
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: '-50px' }}
-          className="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-16 lg:mb-20"
-        >
-          <div>
-            <div className="font-syne text-[11px] font-bold tracking-[3px] uppercase text-[#E8A325] mb-4">
-              Portfolio
-            </div>
-            <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-[#1B4A44] leading-none">
-              Selected Works
-            </h2>
-          </div>
-          <div className="md:text-right max-w-[340px]">
-            <p className="text-[#4A6360] text-[15px] leading-relaxed font-light mb-3">
-              Things I've shipped: measured, tested, and live.
-            </p>
+    <section id="projects" className="py-8 sm:py-12 scroll-mt-20">
+      <Container>
+        <SectionHeader
+          title="Selected work"
+          note="Things I've shipped: measured, tested, and live. Hover a card, or tap +, for details."
+          action={
             <a
               href="https://github.com/im-shourya"
               target="_blank"
               rel="noopener noreferrer"
-              className="apple-link font-syne text-[12px] font-semibold text-[#1B4A44]"
+              className="inline-flex items-center gap-1.5 text-[15px] text-ink-muted hover:text-ink-strong transition-colors"
             >
-              More on GitHub <span className="apple-chevron" aria-hidden>›</span>
+              More on GitHub <ArrowUpRightIcon size={11} />
             </a>
-          </div>
-        </m.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          }
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
           {projects.map((project, idx) => (
             <ProjectCard key={project.title} project={project} idx={idx} />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
