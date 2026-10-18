@@ -1,123 +1,109 @@
 'use client';
 
-import { m } from 'framer-motion';
-import { Mail, Linkedin, Github, PenLine, MapPin, Clock, Briefcase, ArrowUpRight, Calendar, FileText } from 'lucide-react';
+import Image from 'next/image';
+import {
+  MailIcon, LinkedinIcon, GithubIcon, WriteIcon, LocationIcon, ClockIcon, BriefcaseIcon,
+  ArrowUpRightIcon, CalendarIcon, DocIcon,
+} from './icons';
 import { useOpenCalPopup } from './CalEmbed';
-import Reveal from './Reveal';
+import SectionHeader, { Container } from './SectionHeader';
 
 const socials = [
-  { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/im-shourya' },
-  { Icon: Github, label: 'GitHub', href: 'https://github.com/im-shourya' },
-  { Icon: PenLine, label: 'dev.to', href: 'https://dev.to/im-shourya' },
+  { Icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/in/im-shourya' },
+  { Icon: GithubIcon, label: 'GitHub', href: 'https://github.com/im-shourya' },
+  { Icon: WriteIcon, label: 'dev.to', href: 'https://dev.to/im-shourya' },
 ];
 
 const info = [
-  { Icon: MapPin, label: 'Location', value: 'Chennai, Tamil Nadu, India' },
-  { Icon: Briefcase, label: 'Open To', value: 'Internships, freelance & collabs' },
-  { Icon: Clock, label: 'Response Time', value: 'Within 24 hours' },
+  { Icon: LocationIcon, label: 'Location', value: 'Chennai, Tamil Nadu, India' },
+  { Icon: BriefcaseIcon, label: 'Open To', value: 'Internships, freelance & collabs' },
+  { Icon: ClockIcon, label: 'Response Time', value: 'Within 24 hours' },
 ];
+
+const stackButton =
+  'flex items-center justify-center w-[70px] h-[70px] text-white hover:bg-white/10 transition-colors';
 
 export default function Contact() {
   const openCalPopup = useOpenCalPopup();
 
   return (
-    <section id="contact" className="relative py-24 lg:py-36 px-6 lg:px-12 bg-[#151F1E] overflow-hidden">
-      <div className="orb w-[700px] h-[520px] bg-[#E8A325]/15 -bottom-40 -right-40" />
-      <div className="orb w-[600px] h-[600px] bg-[#2D7A6E]/30 -top-60 -left-40 [animation-delay:-8s]" />
+    <section id="contact" className="py-8 sm:py-12 scroll-mt-20">
+      <Container>
+        <SectionHeader title="Contact" />
+        <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-5">
+          <div className="bento bento-flame corner-d relative p-7 sm:p-[44px] min-h-[420px]">
+            <div className="relative z-[2] max-w-[340px]">
+              <h3 className="text-[28px] sm:text-[34px] leading-[1.15] font-normal text-white">Contact me</h3>
+              <p className="text-[16px] leading-[1.45] text-white/75 mt-3">
+                Hiring full-stack or frontend interns? I&apos;m also open to freelance projects and ambitious
+                collaborations.
+              </p>
+              <a
+                href="mailto:parasharshourya07@gmail.com"
+                className="inline-block text-[15px] text-white underline underline-offset-4 decoration-white/40 hover:decoration-white mt-4 break-all"
+              >
+                parasharshourya07@gmail.com
+              </a>
 
-      <div className="relative z-10 max-w-[1300px] mx-auto">
-        <div className="text-center max-w-[900px] mx-auto">
-          <Reveal>
-            <div className="glass-dark inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-8">
-              <span className="relative flex w-2 h-2">
-                <span className="absolute inset-0 rounded-full bg-[#E8A325] animate-ping opacity-70" />
-                <span className="relative w-2 h-2 bg-[#E8A325] rounded-full" />
-              </span>
-              <span className="font-syne text-[10px] font-bold tracking-[2.5px] uppercase text-[#E8A325]">
-                Let&apos;s work together
-              </span>
-            </div>
-
-            <h2 className="font-serif text-[clamp(3.2rem,8vw,6.5rem)] text-[#F4EFE6] leading-[0.95] tracking-tight mb-8">
-              Let&apos;s build something <br className="hidden md:block" />
-              <em className="italic bg-gradient-to-r from-[#F5C842] via-[#E8A325] to-[#E55B3C] bg-clip-text text-transparent pr-2">
-                extraordinary.
-              </em>
-            </h2>
-
-            <p className="text-[#F4EFE6]/60 text-[16px] lg:text-[18px] max-w-[520px] mx-auto leading-relaxed mb-12 font-light">
-              Hiring full-stack or frontend interns? I&apos;m also open to freelance projects and ambitious collaborations.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.15} className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-            <a
-              href="mailto:parasharshourya07@gmail.com"
-              className="btn btn-amber w-full sm:w-auto normal-case tracking-normal text-[13px]"
-            >
-              <Mail size={17} />
-              parasharshourya07@gmail.com
-            </a>
-            <button onClick={() => openCalPopup()} className="btn glass-dark w-full sm:w-auto">
-              <Calendar size={16} />
-              Book a call
-            </button>
-            <a href="/Shourya.pdf" target="_blank" rel="noopener noreferrer" className="btn glass-dark w-full sm:w-auto">
-              <FileText size={16} />
-              Download CV
-            </a>
-          </Reveal>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mt-20 lg:mt-24">
-          <m.div
-            initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-            className="glass-dark rounded-[26px] p-7"
-          >
-            <div className="font-syne text-[10px] font-bold tracking-[2px] uppercase text-[#F4EFE6]/40 mb-5">Connect</div>
-            <div className="flex flex-col gap-4">
-              {socials.map(({ Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-3 text-[#F4EFE6]/85 hover:text-[#E8A325] transition-colors font-syne font-medium text-[13px]"
-                >
-                  <Icon size={17} />
-                  <span className="apple-link">{label}</span>
-                  <ArrowUpRight
-                    size={14}
-                    className="ml-auto opacity-50 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  />
+              {/* Stacked icon buttons, as on the reference's contact card */}
+              <div className="mt-7 flex w-fit flex-col rounded-[8px] border border-white/15 bg-white/[0.04] divide-y divide-white/15 overflow-hidden">
+                <a href="mailto:parasharshourya07@gmail.com" aria-label="Email me" title="Email me" className={stackButton}>
+                  <MailIcon size={24} />
                 </a>
-              ))}
-            </div>
-          </m.div>
-
-          {info.map((item, idx) => (
-            <m.div
-              key={item.label}
-              initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 0.8, delay: (idx + 1) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              className="glass-dark glass-sheen rounded-[26px] p-7 hover:-translate-y-1 transition-transform duration-500"
-            >
-              <div className="relative z-[2]">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.07] border border-white/10 flex items-center justify-center mb-6">
-                  <item.Icon size={18} className="text-[#E8A325]" />
-                </div>
-                <div className="font-syne text-[10px] font-bold tracking-[2px] uppercase text-[#F4EFE6]/40 mb-2">{item.label}</div>
-                <div className="text-[#F4EFE6] text-[15px] font-light leading-snug">{item.value}</div>
+                <button type="button" onClick={() => openCalPopup()} aria-label="Book a call" title="Book a call" className={stackButton}>
+                  <CalendarIcon size={24} />
+                </button>
+                <a href="/Shourya.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download CV" title="Download CV" className={stackButton}>
+                  <DocIcon size={24} />
+                </a>
               </div>
-            </m.div>
-          ))}
+            </div>
+            {/* Fixed size (no `sizes`) so this lazy copy resolves to its own URL, separate from the hero's LCP image. */}
+            <Image
+              src="/image.webp"
+              alt=""
+              width={300}
+              height={400}
+              className="absolute bottom-0 right-0 sm:right-4 h-[62%] sm:h-[88%] w-auto object-contain object-bottom pointer-events-none"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 bento-grid">
+            <div className="bento p-7 sm:p-9">
+              <div className="text-[13px] text-ink-muted mb-3">Connect</div>
+              <ul className="space-y-1">
+                {socials.map(({ Icon, label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 py-2 text-[16px] text-ink hover:text-ink-strong transition-colors"
+                    >
+                      <Icon size={18} className="text-ink-muted" />
+                      {label}
+                      <ArrowUpRightIcon size={11} className="ml-auto text-ink-faint group-hover:text-ink-strong transition-colors" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bento p-7 sm:p-9">
+              <dl className="space-y-5">
+                {info.map((item) => (
+                  <div key={item.label} className="flex items-start gap-3">
+                    <item.Icon size={18} className="text-ink-muted mt-0.5" />
+                    <div>
+                      <dt className="text-[13px] text-ink-muted">{item.label}</dt>
+                      <dd className="text-[16px] text-ink-strong">{item.value}</dd>
+                    </div>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
