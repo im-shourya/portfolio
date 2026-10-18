@@ -24,7 +24,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="pt-[70px]">
+      <main>
         <BlogList />
       </main>
       <Footer />
