@@ -2,47 +2,58 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant can-hover (@media (hover: hover) and (pointer: fine));
 
 :root {
-  /* Premium Cream & Teal Theme */
-  --background: #F4EFE6;
-  --foreground: #151F1E;
-  --card: #FFFFFF;
-  --card-foreground: #151F1E;
-  --popover: #FFFFFF;
-  --popover-foreground: #151F1E;
-  --primary: #1B4A44;
-  --primary-foreground: #F4EFE6;
-  --secondary: #E8A325;
-  --secondary-foreground: #151F1E;
-  --muted: #EDE8DC;
-  --muted-foreground: #4A6360;
-  --accent: #E55B3C;
+  /* Dark bento theme */
+  --background: #0B0B12;
+  --foreground: #EDEDF2;
+  --card: #0F0E17;
+  --card-foreground: #EDEDF2;
+  --popover: #0F0E17;
+  --popover-foreground: #EDEDF2;
+  --primary: #EDEDF2;
+  --primary-foreground: #07070B;
+  --secondary: #FFC94A;
+  --secondary-foreground: #07070B;
+  --muted: #1A1925;
+  --muted-foreground: #9C9BAD;
+  --accent: #FF6B1A;
   --accent-foreground: #FFFFFF;
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-  --border: rgba(27, 74, 68, 0.1);
-  --input: #FFFFFF;
-  --ring: #1B4A44;
-  --teal-mid: #2D7A6E;
-  --teal-light: #4EADA0;
-  --amber-light: #F5C842;
-  --cream-dark: #EDE8DC;
+  --border: rgba(255, 255, 255, 0.07);
+  --input: #15141F;
+  --ring: #EDEDF2;
   --radius: 0.625rem;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #151F1E;
-  --sidebar-primary: #1B4A44;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #E8A325;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #E5DDD0;
-  --sidebar-ring: #1B4A44;
+  --sidebar: #0F0E17;
+  --sidebar-foreground: #EDEDF2;
+  --sidebar-primary: #EDEDF2;
+  --sidebar-primary-foreground: #07070B;
+  --sidebar-accent: #FFC94A;
+  --sidebar-accent-foreground: #07070B;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: #EDEDF2;
+
+  /* Text ramp */
+  --ink-strong: #F4F4F7;
+  --ink: #C9C8D6;
+  --ink-muted: #8E8DA0;
+  --ink-faint: #5E5D70;
+
+  /* Card surface */
+  --surface: #131311;
+  --surface-line: rgba(255, 255, 255, 0.07);
 }
 
 @theme inline {
-  --font-sans: var(--font-sans, 'DM Sans', sans-serif);
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', var(--font-google-sans), 'Google Sans', system-ui, sans-serif;
   --font-serif: var(--font-serif, 'DM Serif Display', serif);
   --font-mono: 'Menlo', 'Monaco', monospace;
+  --color-ink-strong: var(--ink-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -90,11 +101,12 @@
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
-    font-family: var(--font-sans, 'DM Sans', sans-serif);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', var(--font-google-sans), 'Google Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif, 'DM Serif Display', serif);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', var(--font-google-sans), 'Google Sans', system-ui, sans-serif;
   }
 
   .font-syne {
@@ -107,7 +119,8 @@
 
   /* Selection styles */
   ::selection {
-    @apply bg-primary text-primary-foreground;
+    background: #FFC94A;
+    color: #07070B;
   }
 
   /* Scrollbar styling */
@@ -373,24 +386,121 @@ svg.lucide {
 .btn.glass:hover { background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4)); }
 .btn.glass-dark:hover { background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05)); }
 
-/* Ambient colour orb used behind glass */
-.orb {
-  position: absolute;
-  border-radius: 999px;
-  pointer-events: none;
-  filter: blur(90px);
-  animation: orbFloat 18s ease-in-out infinite alternate;
-}
-@keyframes orbFloat {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(40px, -30px, 0) scale(1.08); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .orb,
   .animate-ping,
   .hero-image-animate { animation: none !important; }
   .btn { transition: none; }
 }
+}
+
+@layer components {
+/* ───────── Bento cards ─────────
+   Warm near-black surface, asymmetric corners, and a rim light on the
+   top-left and bottom-right edges. Tints add a wash of colour inside. */
+.bento {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 30px 50px 30px 50px;
+  background: var(--surface);
+}
+.bento::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    linear-gradient(200deg, rgba(255, 255, 255, 0.22) 4%, rgba(255, 255, 255, 0.04) 22%),
+    linear-gradient(18deg, rgba(255, 255, 255, 0.22) 3%, rgba(255, 255, 255, 0.04) 18%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* Corner variants, alternated across a grid like the reference */
+.corner-a { border-radius: 30px 50px 30px 50px; }
+.corner-b { border-radius: 50px 30px 30px 30px; }
+.corner-c { border-radius: 50px 30px 30px 50px; }
+.corner-d { border-radius: 30px 50px 50px 30px; }
+
+.bento-grid > .bento:nth-child(4n+1) { border-radius: 50px 30px 30px 30px; }
+.bento-grid > .bento:nth-child(4n+2) { border-radius: 30px 50px 30px 50px; }
+.bento-grid > .bento:nth-child(4n+3) { border-radius: 50px 30px 30px 50px; }
+.bento-grid > .bento:nth-child(4n+4) { border-radius: 30px 50px 50px 30px; }
+
+.bento-amber  { background: radial-gradient(70% 90% at 100% 30%, rgba(190, 165, 60, 0.45), transparent 70%), radial-gradient(70% 80% at 20% 110%, rgba(90, 100, 130, 0.45), transparent 70%), var(--surface); }
+.bento-teal   { background: radial-gradient(80% 90% at 100% 0%, rgba(50, 170, 150, 0.28), transparent 65%), radial-gradient(60% 70% at 0% 100%, rgba(60, 80, 120, 0.3), transparent 70%), var(--surface); }
+.bento-violet { background: radial-gradient(80% 90% at 0% 100%, rgba(120, 90, 230, 0.3), transparent 65%), radial-gradient(60% 70% at 100% 0%, rgba(70, 80, 130, 0.3), transparent 70%), var(--surface); }
+.bento-blue   { background: radial-gradient(80% 90% at 100% 100%, rgba(70, 110, 240, 0.3), transparent 65%), var(--surface); }
+.bento-rose   { background: radial-gradient(80% 90% at 100% 0%, rgba(230, 100, 80, 0.28), transparent 65%), var(--surface); }
+.bento-earth  { background: radial-gradient(70% 90% at 70% 0%, rgba(160, 100, 80, 0.4), transparent 70%), radial-gradient(50% 70% at 100% 20%, rgba(150, 160, 70, 0.3), transparent 70%), #2A2725; }
+
+/* Solid feature cards */
+.bento-sun   { background: linear-gradient(160deg, #FFE066 0%, #FFC94A 55%, #F5B12E 100%); }
+.bento-flame { background: linear-gradient(-48deg, #FFA51F 0%, #E93F0C 100%); }
+
+/* Small square icon buttons, as on the reference's hello card */
+.icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: var(--ink-strong);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  transition: background-color 0.2s ease;
+}
+.icon-tile:hover { background: rgba(255, 255, 255, 0.12); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+}
+
+.btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: #07070B;
+  background: #F4F4F7;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-light:hover { background: #FFFFFF; }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-strong);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.12); }
+
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid #FFC94A;
+  outline-offset: 3px;
 }

@@ -1,32 +1,18 @@
 import type { Metadata } from 'next'
-import { DM_Serif_Display, Syne, DM_Sans, Caveat } from 'next/font/google'
+import { Google_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import MotionProvider from '@/components/MotionProvider'
 import './globals.css'
 
-const dmSerif = DM_Serif_Display({ 
-  subsets: ["latin"], 
-  weight: ["400"],
-  variable: "--font-serif",
-  display: "swap",
-});
-const syne = Syne({ 
-  subsets: ["latin"], 
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-syne",
-  display: "swap",
-});
-const dmSans = DM_Sans({ 
+// SF Pro is used where the OS ships it (Apple devices); Google Sans covers everything else.
+const googleSans = Google_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-google-sans",
   display: "swap",
-});
-const caveat = Caveat({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-caveat",
-  display: "swap",
+  // Next has no fallback metrics for Google Sans; skip the adjusted fallback and use a plain system stack.
+  adjustFontFallback: false,
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -276,10 +262,10 @@ export default function RootLayout({
     <html 
       lang="en" 
       data-scroll-behavior="smooth"
-      className={`bg-background ${dmSerif.variable} ${syne.variable} ${dmSans.variable} ${caveat.variable}`}
+      className={`bg-background ${googleSans.variable}`}
     >
       <head>
-        <meta name="theme-color" content="#1B4A44" />
+        <meta name="theme-color" content="#07070B" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
