@@ -2,7 +2,7 @@ import { GithubIcon, LinkedinIcon, WriteIcon } from './icons';
 import SectionHeader, { Container } from './SectionHeader';
 
 const highlights = [
-  { value: '7.87ms', label: 'P50 answer latency in Voice RAG, 25x under budget' },
+  { value: '7.87ms', label: 'P50 core-pipeline latency in Voice RAG, 25x under budget' },
   { value: '241', label: 'tests guarding that pipeline' },
   { value: '1,800+', label: 'participants at TECHFORMERS 1.0' },
 ];
@@ -24,7 +24,7 @@ export default function About() {
             <div className="mt-5 space-y-4 text-[16px] leading-relaxed text-ink max-w-[60ch]">
               <p>
                 I&apos;m a Computer Science undergrad at <span className="text-ink-strong">SRMIST, Chennai</span> (2025 to
-                2029). My last build retrieves grounded answers to spoken questions in 7.87ms, about 25x under its 200ms
+                2029). My last build, a voice RAG system, runs its core retrieval pipeline at a 7.87ms P50, about 25x under its 200ms
                 budget.
               </p>
               <p>

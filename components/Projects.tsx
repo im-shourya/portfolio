@@ -28,7 +28,7 @@ const projects: Project[] = [
     tags: ['Python', 'FastAPI', 'BM25+', 'TypeScript'],
     desc: 'Speech-to-text → hybrid retrieval → grounded answers over an English/Hindi corpus. Three-layer guardrails decline rather than guess when the corpus has no answer.',
     metrics: [
-      { value: '7.87ms', label: 'P50 latency' },
+      { value: '7.87ms', label: 'P50 core latency' },
       { value: '25x', label: 'under 200ms budget' },
       { value: '241', label: 'tests' },
     ],
