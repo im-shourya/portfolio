@@ -2,8 +2,10 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#F4EFE6] flex items-center justify-center px-6">
-      <div className="text-center max-w-[400px]">
+    <div className="min-h-screen bg-[#F4EFE6] flex items-center justify-center px-6 relative overflow-hidden">
+      <div className="orb w-[460px] h-[460px] bg-[#4EADA0]/25 -top-20 -left-20" />
+      <div className="orb w-[420px] h-[420px] bg-[#E8A325]/25 -bottom-20 -right-20" />
+      <div className="glass relative rounded-[36px] px-10 py-12 text-center max-w-[440px]">
         <div className="font-syne text-[100px] font-extrabold text-[#1B4A44]/10 leading-none mb-2">
           404
         </div>
@@ -15,7 +17,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1B4A44] text-[#F4EFE6] font-syne text-[11px] font-bold tracking-[1.5px] uppercase hover:bg-[#E8A325] hover:text-[#151F1E] transition-all duration-300"
+          className="btn btn-primary"
         >
           Back to Home
         </Link>

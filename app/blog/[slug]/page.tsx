@@ -53,14 +53,15 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       
       <div className="flex-1 pt-32 pb-24">
         {/* Decorative Blur */}
-        <div className="absolute top-[-5%] right-[-5%] w-[600px] h-[600px] bg-[#E8A325]/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="orb w-[600px] h-[600px] bg-[#E8A325]/20 -top-40 -right-40" />
+        <div className="orb w-[500px] h-[500px] bg-[#4EADA0]/15 top-[40%] -left-40" />
 
         <article className="max-w-[800px] mx-auto px-6 relative z-10">
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 font-syne text-[10px] font-bold tracking-[2px] uppercase text-[#143B36]/50 hover:text-[#E8A325] transition-colors mb-12 group"
           >
-            <div className="w-8 h-8 rounded-full border border-[#143B36]/10 flex items-center justify-center group-hover:border-[#E8A325] transition-colors">
+            <div className="glass w-9 h-9 rounded-full flex items-center justify-center">
               <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
             </div>
             Back to Articles
@@ -69,7 +70,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <header className="mb-16">
             <div className="flex flex-wrap gap-2 mb-8">
               {post.tags.map((tag) => (
-                <span key={tag} className="font-syne text-[10px] font-bold tracking-[1.5px] uppercase text-[#143B36]/60 border border-[#143B36]/20 px-3 py-1.5 rounded-full">
+                <span key={tag} className="glass font-syne text-[10px] font-bold tracking-[1.5px] uppercase text-[#143B36]/70 px-3 py-1.5 rounded-full">
                   {tag}
                 </span>
               ))}
