@@ -25,14 +25,14 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <About />
-        <Services />
-        <TechStack />
         <Projects />
-        <Freelance />
-        <Certifications />
+        <About />
+        <TechStack />
         <Experience />
         <Leadership />
+        <Certifications />
+        <Services />
+        <Freelance />
         <Contact />
       </main>
       <Footer />
