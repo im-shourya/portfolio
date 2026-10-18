@@ -6,17 +6,13 @@ declare module 'framework7-icons/react' {
   export const ArrowLeft: F7Icon;
   export const ArrowUpRight: F7Icon;
   export const Book: F7Icon;
-  export const Bolt: F7Icon;
   export const Briefcase: F7Icon;
   export const Calendar: F7Icon;
   export const ChevronLeftSlashChevronRight: F7Icon;
   export const Clock: F7Icon;
-  export const Cloud: F7Icon;
-  export const CubeBox: F7Icon;
   export const Desktopcomputer: F7Icon;
   export const DocText: F7Icon;
   export const Envelope: F7Icon;
-  export const Globe: F7Icon;
   export const Layers: F7Icon;
   export const LineHorizontal3: F7Icon;
   export const Location: F7Icon;
@@ -27,7 +23,6 @@ declare module 'framework7-icons/react' {
   export const Rosette: F7Icon;
   export const Sparkles: F7Icon;
   export const SquarePencil: F7Icon;
-  export const SquareStack3dUp: F7Icon;
   export const Star: F7Icon;
   export const Tray2: F7Icon;
   export const Wrench: F7Icon;

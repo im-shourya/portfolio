@@ -1,28 +1,59 @@
+import {
+  siTypescript, siJavascript, siPython, siCplusplus, siHtml5, siCss,
+  siReact, siNextdotjs, siTailwindcss, siNodedotjs, siExpress, siNestjs, siFastapi,
+  siPostgresql, siMongodb, siSupabase, siDocker, siGit, siVercel,
+} from 'simple-icons';
 import SectionHeader, { Container } from './SectionHeader';
-import { CodeIcon, LayersIcon, DataIcon, CubeIcon, GlobeIcon, BoltIcon, CloudIcon } from './icons';
+import TechLogo from './TechLogo';
 
 const categories = [
-  { label: 'Languages', pills: ['TypeScript', 'JavaScript', 'Python', 'C / C++', 'HTML / CSS'] },
+  {
+    label: 'Languages',
+    pills: [
+      { name: 'TypeScript', logos: [siTypescript] },
+      { name: 'JavaScript', logos: [siJavascript] },
+      { name: 'Python', logos: [siPython] },
+      { name: 'C / C++', logos: [siCplusplus] },
+      { name: 'HTML / CSS', logos: [siHtml5, siCss] },
+    ],
+  },
   {
     label: 'Frameworks & Libraries',
-    pills: ['React.js', 'Next.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'NestJS', 'FastAPI'],
+    pills: [
+      { name: 'React.js', logos: [siReact] },
+      { name: 'Next.js', logos: [siNextdotjs] },
+      { name: 'Tailwind CSS', logos: [siTailwindcss] },
+      { name: 'Node.js', logos: [siNodedotjs] },
+      { name: 'Express.js', logos: [siExpress] },
+      { name: 'NestJS', logos: [siNestjs] },
+      { name: 'FastAPI', logos: [siFastapi] },
+    ],
   },
-  { label: 'Databases & Tools', pills: ['PostgreSQL', 'MongoDB', 'Supabase', 'Docker', 'Git & GitHub', 'Vercel'] },
+  {
+    label: 'Databases & Tools',
+    pills: [
+      { name: 'PostgreSQL', logos: [siPostgresql] },
+      { name: 'MongoDB', logos: [siMongodb] },
+      { name: 'Supabase', logos: [siSupabase] },
+      { name: 'Docker', logos: [siDocker] },
+      { name: 'Git & GitHub', logos: [siGit] },
+      { name: 'Vercel', logos: [siVercel] },
+    ],
+  },
 ];
 
 const learning = ['System Design', 'Retrieval & RAG'];
 
-// Tiles riding the diagonal rails in the "currently learning" card. `rail` picks the line, `at` the height.
-// Tiles riding the diagonal rails in the "currently learning" card.
+// Logo tiles riding the diagonal rails in the "currently learning" card.
 // `rail` picks the line, `t` is the height on it (0 = top edge, 1 = bottom edge).
 const tiles = [
-  { Icon: LayersIcon, rail: 0, t: 0.62 },
-  { Icon: DataIcon, rail: 1, t: 0.3 },
-  { Icon: CodeIcon, rail: 2, t: 0.68 },
-  { Icon: BoltIcon, rail: 2, t: 0.26 },
-  { Icon: CubeIcon, rail: 3, t: 0.48 },
-  { Icon: GlobeIcon, rail: 4, t: 0.3 },
-  { Icon: CloudIcon, rail: 4, t: 0.74 },
+  { logo: siTypescript, rail: 0, t: 0.62 },
+  { logo: siPython, rail: 1, t: 0.3 },
+  { logo: siNextdotjs, rail: 2, t: 0.68 },
+  { logo: siFastapi, rail: 2, t: 0.26 },
+  { logo: siDocker, rail: 3, t: 0.48 },
+  { logo: siPostgresql, rail: 4, t: 0.3 },
+  { logo: siReact, rail: 4, t: 0.74 },
 ];
 const rails = [12, 30, 48, 66, 84]; // % from the left, where each rail crosses the vertical middle
 const TAN_15 = 0.2679;
@@ -38,8 +69,11 @@ export default function TechStack() {
               <h3 className="text-[22px] font-normal leading-tight text-ink-strong mb-5">{cat.label}</h3>
               <ul className="flex flex-wrap gap-2">
                 {cat.pills.map((pill) => (
-                  <li key={pill} className="chip">
-                    {pill}
+                  <li key={pill.name} className="chip !gap-2">
+                    {pill.logos.map((logo) => (
+                      <TechLogo key={logo.slug} icon={logo} />
+                    ))}
+                    {pill.name}
                   </li>
                 ))}
               </ul>
@@ -69,9 +103,9 @@ export default function TechStack() {
                   }}
                 />
               ))}
-              {tiles.map(({ Icon, rail, t }, i) => (
+              {tiles.map(({ logo, rail, t }) => (
                 <span
-                  key={i}
+                  key={logo.slug}
                   className="absolute -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-white/[0.05] flex items-center justify-center"
                   style={{
                     top: `${t * 100}%`,
@@ -79,8 +113,8 @@ export default function TechStack() {
                     left: `calc(${rails[rail]}% - ${(t - 0.5) * TAN_15 * 100}cqh)`,
                   }}
                 >
-                  <span className="w-[34px] h-[34px] rounded-[8px] bg-white text-[#2A2725] flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-                    <Icon size={18} />
+                  <span className="w-[34px] h-[34px] rounded-[8px] bg-white flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
+                    <TechLogo icon={logo} size={18} tone="light" />
                   </span>
                 </span>
               ))}
