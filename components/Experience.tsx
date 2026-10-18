@@ -25,7 +25,7 @@ const workItems: TimelineItem[] = [
       {
         role: 'Lead',
         date: 'Sep 2026 - Present',
-        desc: 'Co-organised DOMINION 2026, a two-day buildathon. Received a Letter of Recommendation from HackerRank.',
+        desc: 'Co-organised DOMINION 2026, a two-day buildathon.',
       },
       {
         role: 'Technical Team Member',
@@ -103,32 +103,12 @@ const educationItems: TimelineItem[] = [
     ],
   },
   {
-    company: 'McKinsey & Company',
-    roles: [
-      {
-        role: 'Forward Program',
-        date: 'Apr 2026 - Present',
-        desc: 'Globally selected for professional development on structured problem-solving, leadership, and business strategy.',
-      },
-    ],
-  },
-  {
     company: 'Hackathons',
     roles: [
       {
         role: 'Hackathon Regular',
         date: 'Ongoing',
         desc: 'Regular at hackathons including Hacker House Goa 2026 (Team 3PIXLE), FAST × NVIDIA and Foundathon 3.0.',
-      },
-    ],
-  },
-  {
-    company: 'IIT Hyderabad Collab',
-    roles: [
-      {
-        role: 'Enduro Software Training',
-        date: 'Aug - Sep 2025',
-        desc: '4-week full-stack program, qualified via Amplitude assessment. Certificate ID: EN251158.',
       },
     ],
   },
