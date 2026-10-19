@@ -22,7 +22,7 @@ function Tags({ tags, dark = false }: { tags: string[]; dark?: boolean }) {
       {tags.map((tag) => (
         <li
           key={tag}
-          className={`tag-cut label-mono !text-[10px] !tracking-[0.12em] ${dark ? 'bg-white text-c-ink' : 'bg-c-ink text-white'}`}
+          className={`tag-cut label-mono !text-[11px] sm:!text-[10px] !tracking-[0.12em] ${dark ? 'bg-white text-c-ink' : 'bg-c-ink text-white'}`}
         >
           {tag}
         </li>
@@ -137,7 +137,7 @@ export default function BlogList() {
                   className={`relative ${draftNotes[i % draftNotes.length]} text-c-ink p-6 pt-8 shadow-[0_16px_34px_rgba(0,0,0,0.4)] flex flex-col`}
                 >
                   <span className="tape -top-2.5 left-1/2 -translate-x-1/2 rotate-2" aria-hidden />
-                  <span className="label-mono !text-[10px] !tracking-[0.14em] self-start border-2 border-c-ink/70 px-2 py-0.5 -rotate-6 opacity-70">
+                  <span className="label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] self-start border-2 border-c-ink/70 px-2 py-0.5 -rotate-6 opacity-70">
                     Draft
                   </span>
                   <h3 className="mt-5 text-[19px] leading-snug font-semibold tracking-tight">{post.title}</h3>
