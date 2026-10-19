@@ -52,7 +52,7 @@ export default function Header() {
           <span className="font-display text-[30px] text-c-yellow leading-none -mt-1 spin-slow inline-block" aria-hidden>
             *
           </span>
-          Shourya<span className="text-ink-muted hidden sm:inline">, Full-Stack</span>
+          Shourya
         </Link>
 
         <nav
