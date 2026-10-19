@@ -131,17 +131,18 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
   );
 }
 
-export default function Projects() {
+// `as` is h1 on the section's own route, h2 on the home page.
+export default function Projects({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="projects" className="pt-20 sm:pt-28 pb-8 sm:pb-12 scroll-mt-20">
       <Container>
         <header className="text-center">
           <p className="font-hand text-[22px] text-ink">explore my work!</p>
-          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">
+          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">
             Selected
             <br />
             Work
-          </h2>
+          </Heading>
           <p className="note mt-6 bg-c-tan -rotate-2 text-[14px] max-w-[30ch]">
             Things I&apos;ve shipped: measured, tested, and live.
           </p>

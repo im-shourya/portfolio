@@ -23,12 +23,12 @@ export const metadata: Metadata = {
 
 export default function SkillsPage() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex-1 pt-16">
-        <TechStack />
-      </div>
+      <main className="flex-1 pt-16">
+        <TechStack as="h1" />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }

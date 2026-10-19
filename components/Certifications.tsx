@@ -28,13 +28,14 @@ const certs = [
   },
 ];
 
-export default function Certifications() {
+// `as` is h1 on the section's own route, h2 on the home page.
+export default function Certifications({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="certs" className="py-16 sm:py-24 scroll-mt-20">
       <Container>
         <header className="text-center">
           <p className="font-hand text-[22px] text-ink">pinned to the wall</p>
-          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Recognition</h2>
+          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Recognition</Heading>
         </header>
         <ul className="mt-16 grid md:grid-cols-3 gap-10 md:gap-8 md:pb-8">
           {certs.map((cert) => (
