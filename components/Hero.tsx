@@ -47,14 +47,8 @@ export default function Hero() {
       <Cursor name="you" color="var(--c-pink)" className="right-[10%] top-[44%] float-b" />
 
       <Container className="relative text-center">
-        <p className="inline-flex items-center gap-2 text-[13px] text-ink">
-          <span className="w-1.5 h-1.5 rounded-full bg-c-green" aria-hidden />
-          <span className="text-c-yellow">Open to internships</span>
-          <span className="text-ink-faint">—</span> full-stack &amp; frontend
-        </p>
-
         {/* Name, Crayon style: hand note, doodled box, stickies around it */}
-        <div className="relative mx-auto mt-8 sm:mt-10 w-fit">
+        <div className="relative mx-auto mt-4 w-fit">
           <p className="font-hand text-[22px] text-ink leading-none">my name is</p>
           <svg viewBox="0 0 80 8" className="w-16 mx-auto mt-0.5 text-ink-muted" aria-hidden>
             <path d="M2 3c20-2 50-2 76 0M10 6.5c18-1.5 40-1.5 60 0" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
