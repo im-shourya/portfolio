@@ -665,15 +665,15 @@ svg.lucide {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  width: 70px;
-  height: 86px;
-  margin-inline: -5px;
+  width: 74px;
+  height: 88px;
+  margin-inline: -6px;
   padding: 8px 5px 6px;
   border-radius: 6px;
   background: linear-gradient(225deg, #E4DCCB 0 12px, #FDFDFB 12px);
   color: var(--c-ink);
-  font-size: 9.5px;
-  line-height: 1.15;
+  font-size: 11px;
+  line-height: 1.1;
   font-weight: 600;
   text-align: center;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
@@ -921,4 +921,25 @@ svg.lucide {
     conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(2 * var(--z)) 51% repeat-x;
   -webkit-mask: var(--zigzag);
   mask: var(--zigzag);
+}
+
+/* Invisible padding around small text links so they're ~44px to tap.
+   Rows of .hit links need a 20px gap so neighbouring areas don't overlap. */
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: -11px -6px; }
+
+/* Room under the page for the phone tab bar (64px + the home indicator) */
+@media (max-width: 767px) {
+  body { padding-bottom: calc(4rem + env(safe-area-inset-bottom)); }
+}
+
+/* Phones: the hero fills the visible screen above the tab bar, content centred */
+@media (max-width: 767px) {
+  .hero-full {
+    min-height: calc(100vh - 4rem - env(safe-area-inset-bottom));
+    min-height: calc(100svh - 4rem - env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }

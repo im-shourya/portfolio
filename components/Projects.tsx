@@ -11,7 +11,7 @@ const TAB_STEP = 158;
 
 function ProjectLink({ href, children }: { href: string; children: React.ReactNode }) {
   const className =
-    'label-mono inline-flex items-center gap-2 border-b-2 border-current pb-1 hover:opacity-70 transition-opacity';
+    'hit label-mono inline-flex items-center gap-2 border-b-2 border-current pb-1 hover:opacity-70 transition-opacity';
   const content = (
     <>
       {children}
@@ -34,7 +34,7 @@ function ProjectLink({ href, children }: { href: string; children: React.ReactNo
 
 function Links({ project }: { project: Project }) {
   return (
-    <div className="flex flex-wrap gap-x-6 gap-y-3">
+    <div className="flex flex-wrap gap-x-6 gap-y-5">
       {project.live && <ProjectLink href={project.live}>Visit site</ProjectLink>}
       {project.caseStudy && <ProjectLink href={project.caseStudy}>Case study</ProjectLink>}
       {project.github && <ProjectLink href={project.github}>Source</ProjectLink>}
@@ -48,7 +48,7 @@ function Tags({ project, dark }: { project: Project; dark: boolean }) {
       {project.tags.map((tag) => (
         <li
           key={tag}
-          className={`tag-cut label-mono !text-[10px] !tracking-[0.12em] ${dark ? 'bg-white text-c-ink' : 'bg-c-ink text-white'}`}
+          className={`tag-cut label-mono !text-[11px] sm:!text-[10px] !tracking-[0.12em] ${dark ? 'bg-white text-c-ink' : 'bg-c-ink text-white'}`}
         >
           {tag}
         </li>
@@ -112,7 +112,7 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
           <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-4">
             {project.metrics.map((metric) => (
               <div key={metric.label} className="flex flex-col">
-                <dt className="order-last label-mono !text-[10px] !tracking-[0.12em] opacity-70 mt-2">{metric.label}</dt>
+                <dt className="order-last label-mono !text-[11px] sm:!text-[10px] !tracking-[0.12em] opacity-70 mt-2">{metric.label}</dt>
                 <dd className="text-[28px] font-semibold leading-none tracking-tight">{metric.value}</dd>
               </div>
             ))}
@@ -159,7 +159,7 @@ export default function Projects({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = 
             href="https://github.com/im-shourya"
             target="_blank"
             rel="noopener noreferrer"
-            className="label-mono inline-flex items-center gap-2 text-ink-muted hover:text-ink-strong transition-colors"
+            className="hit label-mono inline-flex items-center gap-2 text-ink-muted hover:text-ink-strong transition-colors"
           >
             More on GitHub <ArrowUpRightIcon size={11} />
           </a>

@@ -35,7 +35,7 @@ function Smiley() {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
+    <section id="home" className="hero-full relative pt-18 sm:pt-36 pb-8 sm:pb-24 overflow-hidden">
       {/* Soft glows behind the headline and the cards */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute left-1/2 top-[18%] -translate-x-1/2 w-[760px] h-[420px] rounded-full bg-c-orange/[0.10] blur-[120px]" />
@@ -59,10 +59,10 @@ export default function Hero() {
             </h1>
           </div>
 
-          <span className="note hidden sm:inline-block absolute -left-24 -top-1 -rotate-[8deg] bg-c-mint label-mono !text-[10px] !tracking-[0.14em] rounded-full">
+          <span className="note hidden sm:inline-block absolute -left-24 -top-1 -rotate-[8deg] bg-c-mint label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
             Ships things
           </span>
-          <span className="note hidden sm:inline-block absolute -right-24 top-2 rotate-[7deg] bg-c-tan label-mono !text-[10px] !tracking-[0.14em] rounded-full">
+          <span className="note hidden sm:inline-block absolute -right-24 top-2 rotate-[7deg] bg-c-tan label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
             Sweats the tests
           </span>
           <span className="note absolute -left-6 sm:-left-16 -bottom-6 -rotate-[4deg] bg-c-yellow font-hand text-[17px]">
@@ -77,12 +77,12 @@ export default function Hero() {
           </span>
         </div>
 
-        <p className="mt-14 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
+        <p className="mt-11 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
           Fast, tested software
           <br />
           that&apos;s <span className="font-hand font-normal text-c-yellow text-[1.25em] leading-none">honest.</span>
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3">
           <a href="mailto:parasharshourya07@gmail.com" className="btn-light">
             <MailIcon size={16} /> Email me
           </a>
