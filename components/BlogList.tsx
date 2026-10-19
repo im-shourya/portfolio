@@ -38,7 +38,7 @@ export default function BlogList() {
           {featuredPost && (
             <Link href={`/blog/${featuredPost.slug}`} className="group bento bento-amber md:col-span-2 p-7 sm:p-[55px] flex flex-col min-h-[300px]">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[11px] font-medium text-[#07070B] bg-[#FFC94A] px-2.5 py-1 rounded-md">Featured</span>
+                <span className="text-[11px] font-medium text-[#191510] bg-[#F7C948] px-2.5 py-1 rounded-md">Featured</span>
                 {featuredPost.tags.map((tag) => (
                   <span key={tag} className="chip">
                     {tag}

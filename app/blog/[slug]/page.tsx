@@ -95,13 +95,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             [&>h3]:text-[1.3rem] [&>h3]:font-medium [&>h3]:text-ink-strong [&>h3]:mt-12 [&>h3]:mb-4
             [&>ul]:mb-8 [&>ul]:list-disc [&>ul]:pl-6 [&>ul>li]:mb-2 [&>ul>li]:pl-2
             [&>ol]:mb-8 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol>li]:mb-2 [&>ol>li]:pl-2
-            [&>pre]:bg-[#0F0E17] [&>pre]:border [&>pre]:border-white/[0.08] [&>pre]:text-ink [&>pre]:p-6 [&>pre]:rounded-2xl [&>pre]:overflow-x-auto [&>pre]:mb-8 [&>pre]:text-sm
+            [&>pre]:bg-[#221D17] [&>pre]:border [&>pre]:border-white/[0.08] [&>pre]:text-ink [&>pre]:p-6 [&>pre]:rounded-2xl [&>pre]:overflow-x-auto [&>pre]:mb-8 [&>pre]:text-sm
             [&>code]:bg-white/[0.07] [&>code]:text-ink-strong [&>code]:px-2 [&>code]:py-1 [&>code]:rounded-md [&>code]:text-[0.9em]
             [&>pre>code]:bg-transparent [&>pre>code]:text-inherit [&>pre>code]:p-0
             [&>table]:w-full [&>table]:mb-8 [&>table]:border-collapse [&>table]:text-sm
             [&>table>thead>tr>th]:text-left [&>table>thead>tr>th]:p-4 [&>table>thead>tr>th]:border-b [&>table>thead>tr>th]:border-white/15 [&>table>thead>tr>th]:font-medium [&>table>thead>tr>th]:text-ink-strong
             [&>table>tbody>tr>td]:p-4 [&>table>tbody>tr>td]:border-b [&>table>tbody>tr>td]:border-white/[0.08]
-            [&_a]:text-[#FFC94A] [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-white transition-colors
+            [&_a]:text-[#F7C948] [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-white transition-colors
             [&>strong]:text-ink-strong [&>strong]:font-semibold
           ">
             {post.content}
