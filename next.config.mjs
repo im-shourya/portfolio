@@ -5,6 +5,7 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    optimizePackageImports: ['framework7-icons'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
