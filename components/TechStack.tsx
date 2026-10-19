@@ -1,143 +1,169 @@
-'use client';
-
-import { m } from 'framer-motion';
 import {
-  FileCode2, FileJson, Terminal, Code, Palette,
-  Atom, Globe, Server, Zap, Wind, Layers, Gauge,
-  Database, CloudCog, GitBranch, Rocket, Container, Network,
-} from 'lucide-react';
+  siTypescript, siJavascript, siPython, siCplusplus, siHtml5, siCss,
+  siReact, siNextdotjs, siTailwindcss, siNodedotjs, siExpress, siNestjs, siFastapi,
+  siPostgresql, siMongodb, siSupabase, siDocker, siGit, siVercel,
+  type SimpleIcon,
+} from 'simple-icons';
+import { Container } from './SectionHeader';
+import TechLogo from './TechLogo';
+import type { CrayonColor } from './projects-data';
 
-const categories = [
+type Folder = {
+  category: string;
+  title: string;
+  color: CrayonColor;
+  logos: SimpleIcon[];
+  items: string[];
+};
+
+// One folder per area, logos tucked behind the flap like the bumaga case folders.
+const folders: Folder[] = [
   {
-    label: 'Languages',
-    pills: [
-      { name: 'TypeScript', Icon: FileJson },
-      { name: 'JavaScript', Icon: FileCode2 },
-      { name: 'Python', Icon: Terminal },
-      { name: 'C / C++', Icon: Code },
-      { name: 'HTML / CSS', Icon: Palette },
-    ],
+    category: 'Languages',
+    title: 'TypeScript & Python',
+    color: 'blue',
+    logos: [siTypescript, siPython, siJavascript, siCplusplus],
+    items: ['TypeScript', 'JavaScript', 'Python', 'C / C++', 'HTML / CSS'],
   },
   {
-    label: 'Frameworks & Libraries',
-    pills: [
-      { name: 'React.js', Icon: Atom },
-      { name: 'Next.js', Icon: Globe },
-      { name: 'Tailwind CSS', Icon: Wind },
-      { name: 'Node.js', Icon: Server },
-      { name: 'Express.js', Icon: Zap },
-      { name: 'NestJS', Icon: Layers },
-      { name: 'FastAPI', Icon: Gauge },
-    ],
+    category: 'Frontend',
+    title: 'React & Next.js',
+    color: 'pink',
+    logos: [siReact, siNextdotjs, siTailwindcss],
+    items: ['React.js', 'Next.js', 'Tailwind CSS'],
   },
   {
-    label: 'Databases & Tools',
-    pills: [
-      { name: 'PostgreSQL', Icon: Database },
-      { name: 'MongoDB', Icon: Database },
-      { name: 'Supabase', Icon: CloudCog },
-      { name: 'Docker', Icon: Container },
-      { name: 'Git & GitHub', Icon: GitBranch },
-      { name: 'Vercel', Icon: Rocket },
-    ],
+    category: 'Backend',
+    title: 'Node & FastAPI',
+    color: 'green',
+    logos: [siNodedotjs, siFastapi, siNestjs, siExpress],
+    items: ['Node.js', 'Express.js', 'NestJS', 'FastAPI'],
+  },
+  {
+    category: 'Databases',
+    title: 'Postgres & Mongo',
+    color: 'yellow',
+    logos: [siPostgresql, siMongodb, siSupabase],
+    items: ['PostgreSQL', 'MongoDB', 'Supabase'],
+  },
+  {
+    category: 'Ship it',
+    title: 'Docker & Git',
+    color: 'orange',
+    logos: [siDocker, siGit, siVercel],
+    items: ['Docker', 'Git & GitHub', 'Vercel'],
   },
 ];
 
-const learning = [
-  { name: 'System Design', Icon: Network },
-  { name: 'Retrieval & RAG', Icon: Database },
-];
+const ribbonA = [siTypescript, siPython, siReact, siNextdotjs, siNodedotjs, siFastapi, siPostgresql, siDocker];
+const ribbonB = [siMongodb, siTailwindcss, siNestjs, siSupabase, siGit, siVercel, siExpress, siHtml5, siCss];
+
+const folderColor: Record<CrayonColor, string> = {
+  blue: 'var(--c-blue)',
+  pink: 'var(--c-pink)',
+  green: '#92D14F',
+  yellow: 'var(--c-yellow)',
+  orange: 'var(--c-orange)',
+  paper: 'var(--c-paper)',
+  mint: 'var(--c-mint)',
+  cyan: 'var(--c-cyan)',
+};
+
+function Ribbon({ logos, className, reverse }: { logos: SimpleIcon[]; className: string; reverse?: boolean }) {
+  const track = (hidden: boolean) => (
+    <div className="ribbon-track" aria-hidden={hidden || undefined}>
+      {logos.map((logo) => (
+        <span key={logo.slug} className="flex items-center gap-2.5 text-[15px] sm:text-[17px] font-semibold">
+          <TechLogo icon={logo} size={20} tone={className.includes('bg-c-yellow') ? 'light' : 'dark'} />
+          {logo.title}
+          <span className="ml-6 text-[14px]" aria-hidden>✦</span>
+        </span>
+      ))}
+    </div>
+  );
+  return (
+    <div className={`ribbon py-3 ${reverse ? 'ribbon-reverse' : ''} ${className}`} aria-hidden>
+      {track(false)}
+      {track(true)}
+    </div>
+  );
+}
+
+function FolderCard({ folder }: { folder: Folder }) {
+  const onBlue = folder.color === 'blue';
+  return (
+    <li className="folder" style={{ ['--folder' as string]: folderColor[folder.color] }}>
+      <div className="folder-back" aria-hidden />
+      <div className="folder-items" aria-hidden>
+        {folder.logos.map((logo) => (
+          <span
+            key={logo.slug}
+            className="w-[58px] h-[58px] rounded-[14px] bg-white flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.25)]"
+          >
+            <TechLogo icon={logo} size={30} tone="light" />
+          </span>
+        ))}
+      </div>
+      <div className={`folder-front p-5 flex flex-col justify-end ${onBlue ? 'text-white' : 'text-c-ink'}`}>
+        <p className="text-[13px] flex items-center gap-2 opacity-80">
+          <span className="w-1.5 h-1.5 rounded-full bg-current" aria-hidden />
+          {folder.category}
+        </p>
+        <h3 className="text-[24px] leading-tight font-semibold tracking-tight mt-1">«{folder.title}»</h3>
+        <p className="text-[13px] mt-2 opacity-75">{folder.items.join(' · ')}</p>
+      </div>
+    </li>
+  );
+}
 
 export default function TechStack() {
   return (
-    <section id="tech" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#151F1E] relative overflow-hidden">
-      {/* Colour fields the glass refracts */}
-      <div className="orb w-[800px] h-[400px] bg-[#2D7A6E]/30 top-0 left-1/2 -translate-x-1/2" />
-      <div className="orb w-[420px] h-[420px] bg-[#E8A325]/10 bottom-0 right-0 [animation-delay:-8s]" />
-
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-16 lg:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6"
-        >
-          <div>
-            <div className="font-syne text-[11px] font-bold tracking-[3px] uppercase text-[#E8A325] mb-4">
-              Capabilities
-            </div>
-            <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-[#F4EFE6] leading-none">
-              My Tech Stack
-            </h2>
-          </div>
-          <p className="text-[#F4EFE6]/50 text-[14px] max-w-[300px] leading-relaxed font-light md:text-right">
-            Technologies and tools I use to build robust, scalable, and high-performance applications.
+    <section id="tech" className="py-16 sm:py-24 scroll-mt-20 overflow-hidden">
+      <Container>
+        <header className="relative text-center">
+          <h2 className="font-display text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">The Stack</h2>
+          <span className="hidden sm:block absolute left-[14%] top-[62%] -rotate-[8deg] rounded-full bg-c-green/90 text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
+            TypeScript first
+          </span>
+          <span className="hidden sm:block absolute right-[14%] top-[2%] rotate-[7deg] rounded-full bg-c-pink text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
+            always learning
+          </span>
+          <p className="mt-6 text-[16px] text-ink-muted max-w-[44ch] mx-auto">
+            Tools I use to build fast, tested applications.
           </p>
-        </m.div>
+        </header>
+      </Container>
 
-        {/* Editorial layout for categories */}
-        <div className="flex flex-col border-b border-white/[0.08] mb-12">
-          {categories.map((cat, idx) => (
-            <m.div
-              key={cat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              className="flex flex-col lg:flex-row gap-6 lg:gap-16 py-8 lg:py-12 border-t border-white/[0.08] group"
-            >
-              {/* Category title */}
-              <div className="w-full lg:w-[320px] flex-shrink-0">
-                <h3 className="font-serif text-[1.8rem] lg:text-[2.2rem] text-[#F4EFE6] group-hover:text-[#E8A325] transition-colors duration-500">
-                  {cat.label}
-                </h3>
-              </div>
-
-              {/* Glass pills */}
-              <div className="flex flex-wrap items-start content-start gap-3 lg:gap-4 lg:pt-2">
-                {cat.pills.map((pill) => (
-                  <span
-                    key={pill.name}
-                    className="glass-dark inline-flex items-center gap-2 px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-[#F4EFE6]/85 font-syne text-[12px] lg:text-[13px] font-medium hover:bg-none hover:bg-[#E8A325] hover:text-[#151F1E] hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(232,163,37,0.25)] transition-all duration-300 cursor-default"
-                  >
-                    <pill.Icon size={14} className="opacity-80" />
-                    {pill.name}
-                  </span>
-                ))}
-              </div>
-            </m.div>
-          ))}
-        </div>
-
-        {/* Currently exploring bar */}
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="glass-dark flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-6 lg:p-8 rounded-2xl"
-        >
-          <div className="font-syne text-[11px] lg:text-[12px] font-bold tracking-[2.5px] uppercase text-[#E8A325] flex items-center gap-3">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8A325] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8A325]"></span>
-            </span>
-            Currently Exploring
-          </div>
-          <div className="flex gap-5 flex-wrap">
-            {learning.map((item) => (
-              <span
-                key={item.name}
-                className="inline-flex items-center gap-1.5 font-syne text-[12px] lg:text-[13px] font-medium text-[#F4EFE6]/60 hover:text-[#F4EFE6] transition-colors duration-300"
-              >
-                <item.Icon size={14} />
-                {item.name}
-              </span>
-            ))}
-          </div>
-        </m.div>
+      {/* Crossed ribbons */}
+      <div className="relative my-12 sm:my-16 h-[130px]">
+        <Ribbon logos={ribbonA} className="absolute inset-x-[-5%] top-4 rotate-[-3deg] bg-c-yellow text-c-ink" />
+        <Ribbon logos={ribbonB} reverse className="absolute inset-x-[-5%] top-14 rotate-[2.5deg] bg-[#0E0B08] text-c-paper border-y border-white/10" />
       </div>
+
+      <Container>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8">
+          {folders.map((folder) => (
+            <FolderCard key={folder.category} folder={folder} />
+          ))}
+
+          {/* Learning folder: sticky notes instead of logos */}
+          <li className="folder" style={{ ['--folder' as string]: 'var(--c-cyan)' }}>
+            <div className="folder-back" aria-hidden />
+            <div className="folder-items" aria-hidden>
+              <span className="note bg-c-tan font-hand text-[18px] -rotate-6 mt-3">system design</span>
+              <span className="note bg-c-pink-soft font-hand text-[18px] rotate-3 mt-1">RAG</span>
+            </div>
+            <div className="folder-front p-5 flex flex-col justify-end text-c-ink">
+              <p className="text-[13px] flex items-center gap-2 opacity-80">
+                <span className="w-1.5 h-1.5 rounded-full bg-current" aria-hidden />
+                Learning now
+              </p>
+              <h3 className="text-[24px] leading-tight font-semibold tracking-tight mt-1">«System design & RAG»</h3>
+              <p className="text-[13px] mt-2 opacity-75">Mostly by building: Archie and Voice RAG.</p>
+            </div>
+          </li>
+        </ul>
+      </Container>
     </section>
   );
 }
