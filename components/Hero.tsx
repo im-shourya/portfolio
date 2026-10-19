@@ -35,7 +35,7 @@ function Smiley() {
 
 export default function Hero() {
   return (
-    <section id="home" className="hero-full relative pt-18 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
+    <section id="home" className="relative pt-[72px] sm:pt-36 pb-4 sm:pb-24 overflow-hidden">
       {/* Soft glows behind the headline and the cards */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute left-1/2 top-[18%] -translate-x-1/2 w-[760px] h-[420px] rounded-full bg-c-orange/[0.10] blur-[120px]" />
@@ -47,14 +47,14 @@ export default function Hero() {
 
       <Container className="relative text-center">
         {/* Name, Crayon style: hand note, doodled box, stickies around it */}
-        <div className="relative mx-auto mt-4 w-fit">
-          <p className="font-hand text-[22px] text-ink leading-none">my name is</p>
+        <div className="relative mx-auto mt-2 sm:mt-4 w-fit">
+          <p className="font-hand text-[19px] sm:text-[22px] text-ink leading-none">my name is</p>
           <svg viewBox="0 0 80 8" className="w-16 mx-auto mt-0.5 text-ink-muted" aria-hidden>
             <path d="M2 3c20-2 50-2 76 0M10 6.5c18-1.5 40-1.5 60 0" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
-          <div className="doodle-box border-2 border-c-orange mt-2 px-6 sm:px-10 pt-4 pb-3">
+          <div className="doodle-box border-2 border-c-orange mt-2 px-5 sm:px-10 pt-3 sm:pt-4 pb-2 sm:pb-3">
             {/* The page's h1 is the full name; the box shows the first name, the surname is for search and screen readers. */}
-            <h1 className="font-display text-[clamp(4.5rem,15vw,9rem)] text-ink-strong">
+            <h1 className="font-display text-[clamp(3.4rem,14vw,9rem)] text-ink-strong">
               Shourya<span className="sr-only"> Parashar, full-stack developer</span>
             </h1>
           </div>
@@ -65,10 +65,10 @@ export default function Hero() {
           <span className="note hidden sm:inline-block absolute -right-24 top-2 rotate-[7deg] bg-c-tan label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
             Sweats the tests
           </span>
-          <span className="note absolute -left-6 sm:-left-16 -bottom-6 -rotate-[4deg] bg-c-yellow font-hand text-[17px]">
+          <span className="note absolute -left-6 sm:-left-16 -bottom-6 -rotate-[4deg] bg-c-yellow font-hand text-[15px] sm:text-[17px]">
             Full-stack dev
           </span>
-          <span className="note absolute -right-4 sm:-right-14 -bottom-7 rotate-[5deg] bg-c-mint font-hand text-[17px]">
+          <span className="note absolute -right-4 sm:-right-14 -bottom-7 rotate-[5deg] bg-c-mint font-hand text-[15px] sm:text-[17px]">
             Chennai, IN
           </span>
 
@@ -77,23 +77,23 @@ export default function Hero() {
           </span>
         </div>
 
-        <p className="mt-11 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
+        <p className="mt-9 sm:mt-16 text-[clamp(1.75rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
           Fast, tested software
           <br />
           that&apos;s <span className="font-hand font-normal text-c-yellow text-[1.25em] leading-none">honest.</span>
         </p>
-        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-6 sm:mt-10 flex flex-wrap items-center justify-center gap-3">
           <a href="mailto:parasharshourya07@gmail.com" className="btn-light">
             <MailIcon size={16} /> Email me
           </a>
           <a href="/Shourya.pdf" target="_blank" rel="noopener noreferrer" className="btn-ghost">
             <DocIcon size={16} /> Résumé
           </a>
-          <a href="#projects" className="btn-ghost">
+          <a href="#projects" className="btn-ghost hidden sm:inline-flex">
             <ArrowDownIcon size={14} /> Projects
           </a>
         </div>
-        <div className="mt-4 flex items-center justify-center gap-2">
+        <div className="mt-4 hidden sm:flex items-center justify-center gap-2">
           {socials.map(({ Icon, label, href }) => (
             <a key={label} href={href} target="_blank" rel="me noopener noreferrer" aria-label={label} className="icon-tile">
               <Icon size={18} />
@@ -102,16 +102,6 @@ export default function Hero() {
         </div>
 
       </Container>
-
-      {/* Phones: the hero fills the screen, so hint that there's more below */}
-      <a
-        href="#projects"
-        className="md:hidden absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-ink-muted"
-        aria-label="Scroll to projects"
-      >
-        <span className="font-hand text-[17px] leading-none">scroll</span>
-        <span className="block w-px h-8 bg-current animate-scroll-line" aria-hidden />
-      </a>
     </section>
   );
 }
