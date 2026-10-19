@@ -35,7 +35,7 @@ function Smiley() {
 
 export default function Hero() {
   return (
-    <section id="home" className="hero-full relative pt-18 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
+    <section id="home" className="hero-full relative pt-18 sm:pt-36 pb-8 sm:pb-24 overflow-hidden">
       {/* Soft glows behind the headline and the cards */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute left-1/2 top-[18%] -translate-x-1/2 w-[760px] h-[420px] rounded-full bg-c-orange/[0.10] blur-[120px]" />
@@ -102,16 +102,6 @@ export default function Hero() {
         </div>
 
       </Container>
-
-      {/* Phones: the hero fills the screen, so hint that there's more below */}
-      <a
-        href="#projects"
-        className="md:hidden absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-ink-muted"
-        aria-label="Scroll to projects"
-      >
-        <span className="font-hand text-[17px] leading-none">scroll</span>
-        <span className="block w-px h-8 bg-current animate-scroll-line" aria-hidden />
-      </a>
     </section>
   );
 }

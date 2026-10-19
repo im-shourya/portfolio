@@ -943,6 +943,3 @@ svg.lucide {
     justify-content: center;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .animate-scroll-line { animation: none; }
-}
