@@ -102,7 +102,7 @@ function SocialTapes() {
             <a
               href={pill.href}
               target={pill.href.startsWith('mailto') ? undefined : '_blank'}
-              rel={pill.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              rel={pill.href.startsWith('mailto') ? undefined : 'me noopener noreferrer'}
               aria-label={pill.label}
               title={pill.label}
               className={`tape-pill absolute flex items-center justify-center h-[25.5%] min-h-[34px] rounded-full text-c-ink ${pill.bg}`}
