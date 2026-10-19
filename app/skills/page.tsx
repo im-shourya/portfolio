@@ -10,12 +10,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/skills',
   },
+  // Section pages replace the root openGraph, so restate the shared fields and image.
   openGraph: {
+    type: 'website',
+    siteName: 'Shourya Parashar',
+    locale: 'en_US',
+    images: ['/opengraph-image'],
     title: 'Skills | Shourya Parashar',
     description: 'Technical skills and technologies used by Shourya Parashar, focusing on React, Next.js, Node.js, TypeScript, and modern web development tools.',
     url: 'https://shouryaparashar.in/skills',
   },
   twitter: {
+    card: 'summary_large_image',
+    images: ['/twitter-image'],
     title: 'Skills | Shourya Parashar',
     description: 'Technical skills and technologies used by Shourya Parashar, focusing on React, Next.js, Node.js, TypeScript, and modern web development tools.',
   }
@@ -23,12 +30,12 @@ export const metadata: Metadata = {
 
 export default function SkillsPage() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex-1 pt-16">
-        <TechStack />
-      </div>
+      <main className="flex-1 pt-16">
+        <TechStack as="h1" />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }

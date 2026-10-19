@@ -165,12 +165,13 @@ function FolderCard({ folder }: { folder: Folder }) {
   );
 }
 
-export default function TechStack() {
+// `as` is h1 on the section's own route, h2 on the home page.
+export default function TechStack({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="tech" className="py-16 sm:py-24 scroll-mt-20 overflow-hidden">
       <Container>
         <header className="relative text-center">
-          <h2 className="font-display text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">The Stack</h2>
+          <Heading className="font-display text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">The Stack</Heading>
           <span className="hidden sm:block absolute left-[14%] top-[62%] -rotate-[8deg] rounded-full bg-c-green/90 text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
             TypeScript first
           </span>
