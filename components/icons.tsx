@@ -15,6 +15,7 @@ function make(Glyph: ComponentType<SVGProps<SVGSVGElement>>) {
 }
 
 export const MailIcon = make(F7.Envelope);
+export const MailFillIcon = make(F7.EnvelopeFill);
 export const GithubIcon = make(F7.LogoGithub);
 export const LinkedinIcon = make(F7.LogoLinkedin);
 export const WriteIcon = make(F7.SquarePencil);
