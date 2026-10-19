@@ -1,116 +1,106 @@
-'use client';
-
-import { m } from 'framer-motion';
-import { Github, Linkedin, PenLine, Quote } from 'lucide-react';
 import Image from 'next/image';
-import Reveal from './Reveal';
+import { GithubIcon, LinkedinIcon, WriteIcon, ArrowUpRightIcon } from './icons';
+import { Container } from './SectionHeader';
 
 const highlights = [
-  { value: '7.87ms', label: 'P50 answer latency in Voice RAG, 25x under budget' },
-  { value: '241', label: 'tests guarding that pipeline' },
-  { value: '1,800+', label: 'participants at TECHFORMERS 1.0' },
+  { value: '7.87ms', label: 'P50 core-pipeline latency in Voice RAG, 25x under budget', tilt: '-rotate-2', bg: 'bg-c-paper' },
+  { value: '241', label: 'tests guarding that pipeline', tilt: 'rotate-1', bg: 'bg-c-tan' },
+  { value: '1,800+', label: 'participants at TECHFORMERS 1.0', tilt: '-rotate-1', bg: 'bg-c-mint' },
+];
+
+// Current roles as Crayon's torn colour tags.
+const roles = [
+  { label: 'GDG Associate Tech Lead', className: 'bg-c-yellow -rotate-1' },
+  { label: 'HackerRank Crew Lead', className: 'bg-c-green rotate-1' },
+  { label: 'Quantum Club, Head of Ops', className: 'bg-c-pink -rotate-[0.5deg]' },
+  { label: 'IEEE CS Member Technical', className: 'bg-c-cyan rotate-[1.5deg]' },
 ];
 
 const links = [
-  { Icon: Github, label: 'GitHub', href: 'https://github.com/im-shourya' },
-  { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/im-shourya' },
-  { Icon: PenLine, label: 'dev.to', href: 'https://dev.to/im-shourya' },
+  { Icon: GithubIcon, label: 'GitHub', href: 'https://github.com/im-shourya' },
+  { Icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/in/im-shourya' },
+  { Icon: WriteIcon, label: 'dev.to', href: 'https://dev.to/im-shourya' },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-24 lg:py-36 px-6 lg:px-12 bg-[#151F1E] relative overflow-hidden">
-      <div className="orb w-[600px] h-[600px] bg-[#2D7A6E]/30 -top-40 right-[-160px]" />
-      <div className="orb w-[420px] h-[420px] bg-[#E8A325]/15 bottom-[-120px] left-[-100px] [animation-delay:-8s]" />
+    <section id="about" className="py-16 sm:py-24 scroll-mt-20">
+      <Container>
+        <header className="text-center">
+          <p className="font-hand text-[22px] text-ink">about me!</p>
+          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">What&apos;s up</h2>
+        </header>
 
-      <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-16 lg:gap-24 items-center relative z-10">
-        {/* Photo in a glass frame */}
-        <m.div
-          initial={{ opacity: 0, scale: 0.94, filter: 'blur(10px)' }}
-          whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, margin: '-60px' }}
-          className="relative max-w-[460px] mx-auto w-full"
-        >
-          <div className="glass-dark rounded-[44px] p-3">
-            <div className="relative w-full aspect-[4/5] rounded-[34px] overflow-hidden bg-gradient-to-b from-[#2D7A6E] to-[#1B4A44]">
-              <Image
-                src="/shourya-portrait.webp"
-                alt="Shourya Parashar"
-                width={878}
-                height={898}
-                sizes="(max-width: 768px) 90vw, 440px"
-                className="w-full h-full object-cover object-top"
-                quality={80}
-              />
+        <div className="mt-14 grid md:grid-cols-[minmax(0,340px)_1fr] gap-14 md:gap-20 items-center">
+          {/* Polaroid */}
+          <figure className="relative mx-auto w-[260px] sm:w-[300px] -rotate-[4deg] bg-[#FDFDFB] p-3 pb-14 shadow-[0_24px_50px_rgba(0,0,0,0.45)]">
+            <span className="tape -top-3 left-6 -rotate-[14deg] !bg-c-cyan/70" aria-hidden />
+            <span className="tape -top-3 right-6 rotate-[12deg] !bg-c-yellow/70" aria-hidden />
+            <Image
+              src="/shourya-portrait.webp"
+              alt="Shourya Parashar"
+              width={600}
+              height={614}
+              sizes="300px"
+              className="w-full aspect-square object-cover object-top"
+            />
+            <figcaption className="absolute bottom-3 inset-x-0 text-center font-hand text-[20px] text-c-ink">
+              that&apos;s me!
+            </figcaption>
+          </figure>
+
+          <div>
+            <p className="text-[13px] text-c-yellow">Full-stack developer &amp; community builder</p>
+            <div className="mt-4 space-y-5 text-[18px] sm:text-[20px] leading-[1.6] text-ink max-w-[58ch]">
+              <p>
+                I&apos;m a Computer Science undergrad at <span className="text-ink-strong">SRMIST, Chennai</span> (2025 to
+                2029). My last build, a voice RAG system, runs its core retrieval pipeline at a 7.87ms P50, about 25x
+                under its 200ms budget.
+              </p>
+              <p>
+                I work across{' '}
+                <span className="text-ink-strong">TypeScript, Python, React, Next.js, Node.js, NestJS and FastAPI</span>,
+                and I like evaluating projects almost as much as building them.
+              </p>
             </div>
-          </div>
 
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-            className="glass-dark absolute -bottom-8 -right-2 lg:-right-10 rounded-3xl px-6 py-5 max-w-[270px]"
-          >
-            <Quote size={18} className="text-[#E8A325] mb-2" />
-            <p className="font-serif text-[1.1rem] italic leading-snug text-[#F4EFE6]">
-              Fast, tested, and honest about what it doesn&apos;t know.
-            </p>
-          </m.div>
-        </m.div>
+            <ul className="mt-8 flex flex-wrap gap-3" aria-label="Current roles">
+              {roles.map((role) => (
+                <li key={role.label} className={`px-4 py-2 text-[15px] font-semibold text-c-ink ${role.className}`}>
+                  {role.label}
+                </li>
+              ))}
+            </ul>
 
-        {/* Copy */}
-        <div className="pt-6 lg:pt-0">
-          <Reveal>
-            <div className="font-syne text-[11px] font-bold tracking-[3px] uppercase text-[#E8A325] mb-4">About Me</div>
-            <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-[#F4EFE6] leading-[1.05] mb-8 tracking-tight">
-              Full-stack developer{' '}
-              <br className="hidden md:block" />
-              &amp; community builder
-            </h2>
-          </Reveal>
-
-          <Reveal delay={0.1} className="space-y-6">
-            <p className="text-[#F4EFE6]/70 leading-relaxed text-[16px] lg:text-[17px] font-light">
-              I&apos;m a Computer Science undergrad at{' '}
-              <strong className="font-medium text-[#F4EFE6]">SRMIST, Chennai</strong> (2025 to 2029). My last build
-              retrieves grounded answers to spoken questions in 7.87ms, about 25x under its 200ms budget.
-            </p>
-            <p className="text-[#F4EFE6]/70 leading-relaxed text-[16px] lg:text-[17px] font-light">
-              I work across <strong className="font-medium text-[#F4EFE6]">TypeScript, Python, React, Next.js, Node.js, NestJS and FastAPI</strong>,
-              and I lead technical work at GDG on Campus SRM, HackerRank Campus Crew and the Quantum Computing Club. I
-              like evaluating projects almost as much as building them.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <div className="glass-dark glass-sheen rounded-[28px] mt-10 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-              {highlights.map((h) => (
-                <div key={h.value} className="relative z-[2] p-6">
-                  <div className="font-serif text-[2rem] leading-none text-[#F4EFE6]">{h.value}</div>
-                  <div className="text-[12px] text-[#F4EFE6]/55 mt-2 leading-snug">{h.label}</div>
-                </div>
+            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
+              {links.map(({ Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-c-yellow transition-colors"
+                >
+                  <Icon size={14} />
+                  {label}
+                  <ArrowUpRightIcon size={10} />
+                </a>
               ))}
             </div>
-          </Reveal>
-
-          <Reveal delay={0.3} className="flex gap-3 flex-wrap pt-10">
-            {links.map(({ Icon, label, href }, i) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`btn ${i === 0 ? 'btn-amber' : 'glass-dark'}`}
-              >
-                <Icon size={15} />
-                {label}
-              </a>
-            ))}
-          </Reveal>
+          </div>
         </div>
-      </div>
+
+        {/* Numbers on index cards */}
+        <dl className="mt-20 grid sm:grid-cols-3 gap-6 sm:gap-8">
+          {highlights.map((h) => (
+            <div key={h.value} className={`relative ${h.bg} ${h.tilt} text-c-ink px-6 pt-7 pb-6 shadow-[0_16px_34px_rgba(0,0,0,0.35)] flex flex-col`}>
+              <span className="tape -top-2.5 left-1/2 -translate-x-1/2 -rotate-3" aria-hidden />
+              <dt className="order-last text-[14px] leading-snug mt-2 opacity-80">{h.label}</dt>
+              <dd className="font-display text-[72px]">{h.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </Container>
     </section>
   );
 }

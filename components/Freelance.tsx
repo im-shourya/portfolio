@@ -1,14 +1,13 @@
 'use client';
 
-import { m } from 'framer-motion';
-import { Rocket, Palette, Wrench, ArrowUpRight, Calendar, Clock } from 'lucide-react';
+import { ArrowUpRightIcon, BrushIcon, CalendarIcon, ClockIcon, RocketIcon, WrenchIcon } from './icons';
 import { useOpenCalPopup } from './CalEmbed';
-import Reveal from './Reveal';
+import { Container } from './SectionHeader';
 
 const freelanceServices = [
   {
-    Icon: Rocket,
-    color: 'from-[#2D7A6E] to-[#1B4A44]',
+    Icon: RocketIcon,
+    color: 'bg-c-mint',
     title: 'MVP Development',
     description:
       'Full-stack MVPs from concept to launch: Next.js frontend, Node.js or FastAPI backend, database design and hosting.',
@@ -16,8 +15,8 @@ const freelanceServices = [
     timeline: '2 to 4 weeks',
   },
   {
-    Icon: Palette,
-    color: 'from-[#F2B746] to-[#E8A325]',
+    Icon: BrushIcon,
+    color: 'bg-c-yellow',
     title: 'Frontend Engineering',
     description:
       'Polished React and Next.js interfaces with Tailwind CSS. Responsive layouts, smooth motion and performance tuning.',
@@ -25,8 +24,8 @@ const freelanceServices = [
     timeline: '1 to 2 weeks',
   },
   {
-    Icon: Wrench,
-    color: 'from-[#F07457] to-[#E55B3C]',
+    Icon: WrenchIcon,
+    color: 'bg-c-cyan',
     title: 'Technical Consulting',
     description:
       'Architecture reviews, code audits and performance work on existing projects. Find the bottleneck, then fix it.',
@@ -39,87 +38,63 @@ export default function Freelance() {
   const openCalPopup = useOpenCalPopup();
 
   return (
-    <section id="freelance" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#151F1E] relative overflow-hidden">
-      <div className="orb w-[600px] h-[600px] bg-[#2D7A6E]/25 -top-40 -right-40" />
-      <div className="orb w-[500px] h-[500px] bg-[#E8A325]/12 -bottom-40 -left-40 [animation-delay:-10s]" />
-
-      <div className="relative z-10 max-w-[1400px] mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between lg:items-end gap-6 mb-14 lg:mb-20">
-          <Reveal>
-            <div className="glass-dark inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6">
-              <span className="relative flex w-2 h-2">
-                <span className="absolute inset-0 rounded-full bg-[#E8A325] animate-ping opacity-70" />
-                <span className="relative w-2 h-2 bg-[#E8A325] rounded-full" />
-              </span>
-              <span className="font-syne text-[10px] font-bold tracking-[2.5px] uppercase text-[#E8A325]">
-                Available for hire
-              </span>
-            </div>
-            <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-[#F4EFE6] leading-none">Freelance Services</h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-[#F4EFE6]/55 text-[15px] max-w-[360px] lg:text-right leading-relaxed font-light">
+    <section id="freelance" className="py-16 sm:py-24 scroll-mt-20">
+      <Container>
+        <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <div>
+            <p className="font-hand text-[22px] text-ink">need a hand?</p>
+            <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Freelance</h2>
+            <p className="mt-4 text-[16px] text-ink-muted max-w-[52ch]">
               From idea to deployment, I build production-ready products with clean code and modern architecture.
             </p>
-          </Reveal>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mb-16">
-          {freelanceServices.map((service, idx) => (
-            <m.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true, margin: '-50px' }}
-              className="glass-dark glass-sheen group rounded-[28px] p-7 lg:p-9 hover:-translate-y-1.5 transition-transform duration-500 flex flex-col"
-            >
-              <div className="relative z-[2] flex flex-col flex-1">
-                <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} text-white flex items-center justify-center mb-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] group-hover:scale-110 group-hover:rotate-[-4deg] transition-transform duration-500`}
-                >
-                  <service.Icon size={24} />
-                </div>
-
-                <h3 className="font-serif text-[1.6rem] text-[#F4EFE6] mb-3 tracking-tight leading-tight">{service.title}</h3>
-                <p className="text-[#F4EFE6]/60 text-[14px] leading-relaxed mb-8 font-light flex-1">{service.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {service.deliverables.map((item) => (
-                    <span
-                      key={item}
-                      className="px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-[#F4EFE6]/70 text-[11px] font-syne font-medium"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between pt-6 border-t border-white/10">
-                  <div className="flex items-center gap-2 text-[#E8A325] text-[13px] font-syne font-semibold">
-                    <Clock size={15} />
-                    {service.timeline}
-                  </div>
-                  <button onClick={() => openCalPopup()} className="apple-link font-syne text-[12px] font-semibold text-[#F4EFE6]">
-                    Book a call <span className="apple-chevron" aria-hidden>›</span>
-                  </button>
-                </div>
-              </div>
-            </m.div>
-          ))}
-        </div>
-
-        <Reveal delay={0.2} className="flex flex-col sm:flex-row items-center justify-center gap-5">
-          <button onClick={() => openCalPopup()} className="btn btn-amber px-9 py-5 text-[12px]">
-            <Calendar size={18} />
-            Schedule a discovery call
-            <ArrowUpRight size={16} />
-          </button>
-          <span className="text-[#F4EFE6]/40 text-[11px] font-syne font-bold tracking-[1.5px] uppercase">
-            Free 30-min consultation
+          </div>
+          <span className="inline-flex items-center gap-2 self-start sm:self-auto label-mono !text-[11px] text-ink">
+            <span className="w-2 h-2 rounded-full bg-c-green" aria-hidden />
+            Available for hire
           </span>
-        </Reveal>
-      </div>
+        </header>
+
+        <ul className="mt-14 grid md:grid-cols-3 gap-6">
+          {freelanceServices.map((service) => (
+            <li key={service.title} className={`ticket ${service.color} text-c-ink flex flex-col`}>
+              <div className="p-7 flex-1 flex flex-col">
+                <service.Icon size={26} />
+                <h3 className="mt-6 text-[26px] leading-tight font-semibold tracking-tight">{service.title}</h3>
+                <p className="text-[15px] leading-relaxed mt-2 opacity-85">{service.description}</p>
+                <ul className="mt-5 space-y-1.5 text-[14px]">
+                  {service.deliverables.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-c-ink rotate-45" aria-hidden />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="ticket-tear" aria-hidden />
+              <div className="h-[92px] px-7 flex items-center justify-between gap-4">
+                <span className="flex items-center gap-2">
+                  <ClockIcon size={16} />
+                  <span className="font-display text-[34px] leading-none">{service.timeline}</span>
+                </span>
+                <button
+                  onClick={() => openCalPopup()}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-c-ink text-c-paper px-4 py-2.5 text-[13px] hover:bg-c-blue transition-colors"
+                >
+                  Book a call <ArrowUpRightIcon size={10} />
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-10 flex flex-col sm:flex-row sm:items-center justify-center gap-4 sm:gap-6 text-center">
+          <p className="font-hand text-[24px] text-ink-strong">Have something in mind? Free 30-minute discovery call.</p>
+          <button onClick={() => openCalPopup()} className="btn-light self-center">
+            <CalendarIcon size={15} />
+            Schedule a call
+          </button>
+        </div>
+      </Container>
     </section>
   );
 }
