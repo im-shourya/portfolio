@@ -11,6 +11,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 import type { Metadata } from 'next';
+import { profilePageJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
   alternates: {
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      {/* Only the home page is the profile page */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }} />
       <Header />
       <main>
         <Hero />
