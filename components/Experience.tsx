@@ -1,4 +1,4 @@
-import SectionHeader, { Container } from './SectionHeader';
+import { Container } from './SectionHeader';
 
 type Role = { role: string; date: string; desc: string };
 type TimelineItem = { company: string; roles: Role[] };
@@ -126,31 +126,41 @@ const educationItems: TimelineItem[] = [
 
 const isCurrent = (date: string) => date.includes('Present');
 
-function TimelineCard({ items, label }: { items: TimelineItem[]; label: string }) {
+const groups = [
+  { label: 'Leadership', note: 'Running teams and events', items: workItems.slice(0, 3), tag: 'bg-c-yellow' },
+  { label: 'Communities & open source', note: 'Contributing and building', items: workItems.slice(3), tag: 'bg-c-cyan' },
+  { label: 'Education', note: 'Where the learning happens', items: educationItems, tag: 'bg-c-mint' },
+];
+
+function Group({ label, note, items, tag }: (typeof groups)[number]) {
   return (
-    <div className="bento p-6 sm:p-8 h-full">
-      <h3 className="text-[20px] font-normal text-ink-strong mb-1">{label}</h3>
-      <ol>
+    <div className="grid lg:grid-cols-[280px_1fr] gap-6 lg:gap-12 pt-10 first:pt-0">
+      <div className="lg:sticky lg:top-28 self-start">
+        <h3 className={`inline-block ${tag} text-c-ink px-3 py-1.5 text-[15px] font-semibold -rotate-1`}>{label}</h3>
+        <p className="font-hand text-[19px] text-ink-muted mt-3">{note}</p>
+      </div>
+      <ol className="border-t border-white/[0.09]">
         {items.map((item) => (
-          <li key={item.company} className="group/item py-3 border-b border-white/[0.07] last:border-b-0 last:pb-0">
-            <div className="text-[12px] text-ink-muted">{item.company}</div>
-            <div className="mt-1 space-y-2.5">
-              {item.roles.map((role) => (
-                <div key={role.role}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                    <span className="text-[16px] font-normal text-ink-strong">{role.role}</span>
-                    <span className="inline-flex items-center gap-1.5 text-[11px] text-ink-faint">
+          <li key={item.company} className="grid sm:grid-cols-[160px_1fr] gap-x-8 gap-y-2 py-6 border-b border-white/[0.09]">
+            <p className="label-mono !text-[11px] !tracking-[0.14em] text-ink-muted pt-1.5">{item.roles[0].date}</p>
+            <div>
+              <p className="text-[13px] text-ink-muted">{item.company}</p>
+              <div className="mt-1 space-y-4">
+                {item.roles.map((role, i) => (
+                  <div key={role.role}>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <span className="text-[20px] sm:text-[22px] font-semibold tracking-tight text-ink-strong">{role.role}</span>
                       {isCurrent(role.date) && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]" aria-label="Current" />
+                        <span className="label-mono !text-[10px] !tracking-[0.12em] text-c-ink bg-c-green px-2 py-0.5 rounded-full">
+                          Now
+                        </span>
                       )}
-                      {role.date}
-                    </span>
+                      {i > 0 && <span className="label-mono !text-[10px] text-ink-faint">{role.date}</span>}
+                    </div>
+                    <p className="text-[15px] leading-relaxed text-ink-muted mt-1 max-w-[62ch]">{role.desc}</p>
                   </div>
-                  <p className="text-[13px] leading-[1.5] text-ink-muted mt-0.5 line-clamp-2 can-hover:group-hover/item:line-clamp-none">
-                    {role.desc}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </li>
         ))}
@@ -161,13 +171,16 @@ function TimelineCard({ items, label }: { items: TimelineItem[]; label: string }
 
 export default function Experience() {
   return (
-    <section id="journey" className="py-8 sm:py-12 scroll-mt-20">
+    <section id="journey" className="py-16 sm:py-24 scroll-mt-20">
       <Container>
-        <SectionHeader title="Work & education" />
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 bento-grid">
-          <TimelineCard items={workItems.slice(0, 3)} label="Leadership roles" />
-          <TimelineCard items={workItems.slice(3)} label="Communities & open source" />
-          <TimelineCard items={educationItems} label="Education" />
+        <header className="mb-14">
+          <p className="font-hand text-[22px] text-ink">the story so far</p>
+          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Journey</h2>
+        </header>
+        <div className="space-y-6">
+          {groups.map((group) => (
+            <Group key={group.label} {...group} />
+          ))}
         </div>
       </Container>
     </section>
