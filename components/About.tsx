@@ -8,12 +8,12 @@ const highlights = [
   { value: '1,800+', label: 'participants at TECHFORMERS 1.0', tilt: '-rotate-1', bg: 'bg-c-mint' },
 ];
 
-// Current roles as Crayon's torn colour tags.
+// Current roles as Crayon's torn paper tags, each with an emoji tile that swaps between two.
 const roles = [
-  { label: 'GDG Associate Tech Lead', className: 'bg-c-yellow -rotate-1' },
-  { label: 'HackerRank Crew Lead', className: 'bg-c-green rotate-1' },
-  { label: 'Quantum Club, Head of Ops', className: 'bg-c-pink -rotate-[0.5deg]' },
-  { label: 'IEEE CS Member Technical', className: 'bg-c-cyan rotate-[1.5deg]' },
+  { label: 'GDG Associate Tech Lead', bg: 'bg-c-yellow', text: 'text-c-ink', tag: 'torn-a', tile: 'torn-b', emoji: ['💻', '🚀'] },
+  { label: 'HackerRank Crew Lead', bg: 'bg-c-green', text: 'text-white', tag: 'torn-b', tile: 'torn-c', emoji: ['🏆', '⌨️'] },
+  { label: 'Quantum Club, Head of Ops', bg: 'bg-c-pink', text: 'text-white', tag: 'torn-c', tile: 'torn-a', emoji: ['⚛️', '🎟️'] },
+  { label: 'IEEE CS Member Technical', bg: 'bg-c-blue', text: 'text-c-ink', tag: 'torn-a', tile: 'torn-c', emoji: ['🔌', '🧠'] },
 ];
 
 const links = [
@@ -64,14 +64,6 @@ export default function About() {
               </p>
             </div>
 
-            <ul className="mt-8 flex flex-wrap gap-3" aria-label="Current roles">
-              {roles.map((role) => (
-                <li key={role.label} className={`px-4 py-2 text-[15px] font-semibold text-c-ink ${role.className}`}>
-                  {role.label}
-                </li>
-              ))}
-            </ul>
-
             <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
               {links.map(({ Icon, label, href }) => (
                 <a
@@ -89,6 +81,22 @@ export default function About() {
             </div>
           </div>
         </div>
+
+        <ul className="mt-16 mx-auto max-w-[1000px] flex flex-wrap items-center justify-center gap-3" aria-label="Current roles">
+          {roles.map((role) => (
+            <li key={role.label} className="flex items-center gap-3">
+              <span
+                className={`${role.tag} ${role.bg} ${role.text} inline-flex items-center whitespace-nowrap h-14 sm:h-[4.5rem] px-5 sm:px-8 text-[17px] sm:text-[28px] font-semibold tracking-tight`}
+              >
+                {role.label}
+              </span>
+              <span className={`${role.tile} ${role.bg} relative shrink-0 w-14 h-14 sm:w-[4.5rem] sm:h-[4.5rem]`} aria-hidden>
+                <span className="emoji-a absolute inset-0 flex items-center justify-center text-[28px] sm:text-[34px]">{role.emoji[0]}</span>
+                <span className="emoji-b absolute inset-0 flex items-center justify-center text-[28px] sm:text-[34px]">{role.emoji[1]}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
 
         {/* Numbers on index cards */}
         <dl className="mt-20 grid sm:grid-cols-3 gap-6 sm:gap-8">
