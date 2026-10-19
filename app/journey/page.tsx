@@ -10,12 +10,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/journey',
   },
+  // Section pages replace the root openGraph, so restate the shared fields and image.
   openGraph: {
+    type: 'website',
+    siteName: 'Shourya Parashar',
+    locale: 'en_US',
+    images: ['/opengraph-image'],
     title: 'Journey | Shourya Parashar',
     description: 'Explore the academic and professional journey of Shourya Parashar, detailing the evolution of his skills in web development.',
     url: 'https://shouryaparashar.in/journey',
   },
   twitter: {
+    card: 'summary_large_image',
+    images: ['/twitter-image'],
     title: 'Journey | Shourya Parashar',
     description: 'Explore the academic and professional journey of Shourya Parashar, detailing the evolution of his skills in web development.',
   }
