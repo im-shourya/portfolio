@@ -922,3 +922,8 @@ svg.lucide {
   -webkit-mask: var(--zigzag);
   mask: var(--zigzag);
 }
+
+/* Room under the page for the phone tab bar (64px + the home indicator) */
+@media (max-width: 767px) {
+  body { padding-bottom: calc(4rem + env(safe-area-inset-bottom)); }
+}
