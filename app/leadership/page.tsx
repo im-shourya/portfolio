@@ -10,12 +10,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/leadership',
   },
+  // Section pages replace the root openGraph, so restate the shared fields and image.
   openGraph: {
+    type: 'website',
+    siteName: 'Shourya Parashar',
+    locale: 'en_US',
+    images: ['/opengraph-image'],
     title: 'Leadership | Shourya Parashar',
     description: 'Explore the leadership roles, community contributions, and technical management experience of Shourya Parashar.',
     url: 'https://shouryaparashar.in/leadership',
   },
   twitter: {
+    card: 'summary_large_image',
+    images: ['/twitter-image'],
     title: 'Leadership | Shourya Parashar',
     description: 'Explore the leadership roles, community contributions, and technical management experience of Shourya Parashar.',
   }

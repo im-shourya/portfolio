@@ -10,12 +10,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/contact',
   },
+  // Section pages replace the root openGraph, so restate the shared fields and image.
   openGraph: {
+    type: 'website',
+    siteName: 'Shourya Parashar',
+    locale: 'en_US',
+    images: ['/opengraph-image'],
     title: 'Contact | Shourya Parashar',
     description: 'Get in touch with Shourya Parashar for collaboration, project inquiries, or freelance web development opportunities.',
     url: 'https://shouryaparashar.in/contact',
   },
   twitter: {
+    card: 'summary_large_image',
+    images: ['/twitter-image'],
     title: 'Contact | Shourya Parashar',
     description: 'Get in touch with Shourya Parashar for collaboration, project inquiries, or freelance web development opportunities.',
   }
