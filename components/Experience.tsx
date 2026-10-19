@@ -151,11 +151,11 @@ function Group({ label, note, items, tag }: (typeof groups)[number]) {
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                       <span className="text-[20px] sm:text-[22px] font-semibold tracking-tight text-ink-strong">{role.role}</span>
                       {isCurrent(role.date) && (
-                        <span className="label-mono !text-[10px] !tracking-[0.12em] text-c-ink bg-c-green px-2 py-0.5 rounded-full">
+                        <span className="label-mono !text-[11px] sm:!text-[10px] !tracking-[0.12em] text-c-ink bg-c-green px-2 py-0.5 rounded-full">
                           Now
                         </span>
                       )}
-                      {i > 0 && <span className="label-mono !text-[10px] text-ink-faint">{role.date}</span>}
+                      {i > 0 && <span className="label-mono !text-[11px] sm:!text-[10px] text-ink-faint">{role.date}</span>}
                     </div>
                     <p className="text-[15px] leading-relaxed text-ink-muted mt-1 max-w-[62ch]">{role.desc}</p>
                   </div>

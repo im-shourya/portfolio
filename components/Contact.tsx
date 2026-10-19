@@ -198,7 +198,7 @@ export default function Contact({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {
                 >
                   Contact
                 </a>
-                <a href={`mailto:${EMAIL}`} className="label-mono inline-flex items-center gap-2 mt-4 border-b-2 border-current pb-1 break-all">
+                <a href={`mailto:${EMAIL}`} className="hit label-mono inline-flex items-center gap-2 mt-4 border-b-2 border-current pb-1 break-all">
                   Drop a line <ArrowUpRightIcon size={11} />
                 </a>
                 <div className="mt-8 flex flex-wrap justify-center gap-3">

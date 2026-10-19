@@ -76,14 +76,14 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
+            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-5">
               {links.map(({ Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="me noopener noreferrer"
-                  className="label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-[color:var(--accent-text)] transition-colors"
+                  className="hit label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-[color:var(--accent-text)] transition-colors"
                 >
                   <Icon size={14} />
                   {label}
