@@ -79,7 +79,7 @@ export default function Services({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = 
                   {service.title}
                 </h3>
                 <p className="text-[15px] leading-relaxed text-ink-muted mt-2 max-w-[48ch]">{service.text}</p>
-                <p className="label-mono !text-[10px] !tracking-[0.14em] text-ink-faint mt-3">
+                <p className="label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] text-ink-faint mt-3">
                   {service.tags.join(' · ')}
                 </p>
               </div>
