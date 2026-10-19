@@ -8,85 +8,115 @@ const socials = [
   { Icon: WriteIcon, label: 'dev.to', href: 'https://dev.to/im-shourya' },
 ];
 
+function Cursor({ name, color, className }: { name: string; color: string; className: string }) {
+  return (
+    <div className={`absolute hidden lg:flex flex-col items-start pointer-events-none ${className}`} aria-hidden>
+      <svg width="18" height="18" viewBox="0 0 18 18" className="-mb-0.5 ml-[-2px]" style={{ color }}>
+        <path d="M1 1l15 6-6.5 2.2L7 16 1 1z" fill="currentColor" stroke="#191510" strokeWidth="1.2" strokeLinejoin="round" />
+      </svg>
+      <span className="ml-3 px-2.5 py-1 rounded-full text-[12px] text-c-ink" style={{ background: color }}>
+        {name}
+      </span>
+    </div>
+  );
+}
+
+function Smiley() {
+  return (
+    <svg viewBox="0 0 64 64" className="w-16 h-16 wobble" aria-hidden>
+      <circle cx="32" cy="32" r="29" fill="var(--c-yellow)" stroke="#191510" strokeWidth="2.5" />
+      <rect x="22" y="20" width="5" height="12" rx="2.5" fill="#191510" />
+      <rect x="37" y="20" width="5" height="12" rx="2.5" fill="#191510" />
+      <circle cx="17" cy="38" r="4.5" fill="#FF8A8A" opacity="0.8" />
+      <circle cx="47" cy="38" r="4.5" fill="#FF8A8A" opacity="0.8" />
+      <path d="M20 40c6 8 18 8 24 0" fill="none" stroke="#191510" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export default function Hero() {
   return (
-    <section id="home" className="pt-20 sm:pt-28 pb-5">
-      <Container>
-        <div className="grid grid-cols-1 md:grid-cols-[804fr_392fr] gap-5">
-          {/* Hello card */}
-          <div className="bento bento-amber corner-a p-7 sm:p-[58px] sm:pt-[44px] flex flex-col min-h-[420px] md:min-h-[457px]">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4 sm:gap-6">
-                <span className="relative w-12 h-12 rounded-full overflow-hidden bg-[#FFC94A] shrink-0">
-                  <Image
-                    src="/image.webp"
-                    alt=""
-                    width={96}
-                    height={96}
-                    className="w-full h-full object-cover object-top scale-125 translate-y-1"
-                  />
-                </span>
-                <div>
-                  <div className="text-[18px] sm:text-[20px] leading-tight text-ink-strong">Hi, I&apos;m Shourya.</div>
-                  <div className="text-[14px] text-ink-faint mt-0.5">Full-stack developer</div>
-                </div>
-              </div>
-              <div className="hidden sm:flex items-center gap-3">
-                {socials.map(({ Icon, label, href }) => (
-                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="icon-tile">
-                    <Icon size={20} />
-                  </a>
-                ))}
-              </div>
-            </div>
+    <section id="home" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
+      {/* Soft glows behind the headline and the cards */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <div className="absolute left-1/2 top-[18%] -translate-x-1/2 w-[760px] h-[420px] rounded-full bg-c-orange/[0.10] blur-[120px]" />
+        <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[1000px] h-[300px] rounded-full bg-c-blue/[0.16] blur-[120px]" />
+      </div>
 
-            <h1 className="mt-10 sm:mt-12 text-[clamp(2.4rem,5vw,3.5rem)] leading-[1.15] font-normal text-ink-strong max-w-[14ch]">
-              Fast, tested software that&apos;s honest.
-            </h1>
-            <p className="mt-6 text-[17px] sm:text-[20px] leading-[1.7] text-ink-strong/60 max-w-[46ch]">
-              CSE undergrad at SRMIST building full-stack apps in TypeScript and Python. My last build&apos;s core
-              pipeline runs at a 7.87ms P50, and declines when it doesn&apos;t know.
-            </p>
+      <Cursor name="recruiter" color="var(--c-mint)" className="left-[9%] top-[30%] float-a" />
+      <Cursor name="you" color="var(--c-pink)" className="right-[10%] top-[44%] float-b" />
 
-            <div className="mt-auto pt-8 flex flex-wrap items-center gap-3">
-              <a href="mailto:parasharshourya07@gmail.com" className="btn-light">
-                <MailIcon size={16} /> Email me
-              </a>
-              <a href="/Shourya.pdf" target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                <DocIcon size={16} /> Résumé
-              </a>
-              <a href="#projects" className="btn-ghost">
-                <ArrowDownIcon size={14} /> Projects
-              </a>
-              <div className="flex sm:hidden items-center gap-2 w-full pt-2">
-                {socials.map(({ Icon, label, href }) => (
-                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="icon-tile">
-                    <Icon size={20} />
-                  </a>
-                ))}
-              </div>
-            </div>
+      <Container className="relative text-center">
+        <p className="inline-flex items-center gap-2 text-[13px] text-ink">
+          <span className="w-1.5 h-1.5 rounded-full bg-c-green" aria-hidden />
+          <span className="text-c-yellow">Open to internships</span>
+          <span className="text-ink-faint">—</span> full-stack &amp; frontend
+        </p>
+
+        {/* Name, Crayon style: hand note, doodled box, stickies around it */}
+        <div className="relative mx-auto mt-8 sm:mt-10 w-fit">
+          <p className="font-hand text-[22px] text-ink leading-none">my name is</p>
+          <svg viewBox="0 0 80 8" className="w-16 mx-auto mt-0.5 text-ink-muted" aria-hidden>
+            <path d="M2 3c20-2 50-2 76 0M10 6.5c18-1.5 40-1.5 60 0" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+          </svg>
+          <div className="doodle-box border-2 border-c-orange mt-2 px-6 sm:px-10 pt-4 pb-3">
+            <div className="font-display text-[clamp(4.5rem,15vw,9rem)] text-ink-strong">Shourya</div>
           </div>
 
-          {/* Portrait card */}
-          <div className="bento bento-sun corner-d relative min-h-[360px] md:min-h-0 flex items-end justify-center">
-            <span className="absolute top-6 left-6 z-10 inline-flex items-center gap-2 text-[12px] text-[#1A1200] bg-white/45 backdrop-blur px-3 py-1.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#15803D]" aria-hidden />
-              Open to internships
-            </span>
+          <span className="note hidden sm:inline-block absolute -left-24 -top-1 -rotate-[8deg] bg-c-mint label-mono !text-[10px] !tracking-[0.14em] rounded-full">
+            Ships things
+          </span>
+          <span className="note hidden sm:inline-block absolute -right-24 top-2 rotate-[7deg] bg-c-tan label-mono !text-[10px] !tracking-[0.14em] rounded-full">
+            Sweats the tests
+          </span>
+          <span className="note absolute -left-6 sm:-left-16 -bottom-6 -rotate-[4deg] bg-c-yellow font-hand text-[17px]">
+            Full-stack dev
+          </span>
+          <span className="note absolute -right-4 sm:-right-14 -bottom-7 rotate-[5deg] bg-c-mint font-hand text-[17px]">
+            Chennai, IN
+          </span>
+
+          <span className="hidden md:block absolute -left-44 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full overflow-hidden border-[3px] border-c-orange bg-c-yellow">
             <Image
               src="/image.webp"
               alt="Shourya Parashar"
-              width={600}
-              height={800}
-              sizes="(max-width: 768px) 80vw, 392px"
-              className="relative w-auto h-[90%] max-h-[440px] object-contain object-bottom"
+              width={160}
+              height={160}
+              className="w-full h-full object-cover object-top scale-125 translate-y-2"
               preload
               loading="eager"
               fetchPriority="high"
             />
-          </div>
+          </span>
+          <span className="hidden md:block absolute -right-40 top-1/2 -translate-y-1/2">
+            <Smiley />
+          </span>
         </div>
+
+        <h1 className="mt-14 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
+          Fast, tested software
+          <br />
+          that&apos;s <span className="font-hand font-normal text-c-yellow text-[1.25em] leading-none">honest.</span>
+        </h1>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <a href="mailto:parasharshourya07@gmail.com" className="btn-light">
+            <MailIcon size={16} /> Email me
+          </a>
+          <a href="/Shourya.pdf" target="_blank" rel="noopener noreferrer" className="btn-ghost">
+            <DocIcon size={16} /> Résumé
+          </a>
+          <a href="#projects" className="btn-ghost">
+            <ArrowDownIcon size={14} /> Projects
+          </a>
+        </div>
+        <div className="mt-4 flex items-center justify-center gap-2">
+          {socials.map(({ Icon, label, href }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="icon-tile">
+              <Icon size={18} />
+            </a>
+          ))}
+        </div>
+
       </Container>
     </section>
   );
