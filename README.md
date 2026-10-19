@@ -48,7 +48,7 @@ It is not a template. Every section, component, and interaction has been purpose
 - Projects as full-width colour slabs that stick and stack on scroll, their folder tabs stepping right like a filing drawer
 - Tech stack as colour folders: every tool is a paper file hidden inside that fans out on hover or focus (always shown on touch screens), under crossed logo ribbons
 - Contact on a scalloped paper band with sticky notes, pixel stickers and tilted link pills
-- A ~1.8-second CSS-only splash on every full load: the name drops in as crayon letter tiles, the hero's hand-drawn box draws around it, and the sheet tears away with a ripped edge; skipped for reduced motion
+- A ~1.6-second CSS-only splash on every full load (the name pops in letter by letter, a yellow sweep reveals the page); skipped for reduced motion
 - Phones get a bottom tab bar with the same six links as the desktop nav (Projects, About, Stack, Journey, Blog, Contact) that highlights the current section or page and clears the iPhone home indicator; small text links have ~44px tap areas
 - iOS-style icons (Framework7 Icons) and brand logos from Simple Icons
 

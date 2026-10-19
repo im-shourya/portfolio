@@ -945,75 +945,61 @@ svg.lucide {
 }
 
 /* ───────── Preloader ─────────
-   Every full load, ~1.8s: 0.05s note, 0.15–0.6s letter tiles drop in,
-   0.55–1.05s the doodled box draws, 1.0s tiles straighten, 1.25–1.8s the sheet
-   tears away upward (ripped bottom edge). Skipped under reduced motion. */
+   0–0.6s letters pop in, 0.9s a yellow band sweeps up, 1.2–1.65s the splash
+   lifts away from the bottom. Plays on every full load; skipped for reduced motion. */
 .splash {
   position: fixed;
-  /* Extends past the bottom so the ripped edge stays off-screen until it lifts */
-  inset: 0 0 -24px 0;
+  inset: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 24px;
   background-color: #191510;
   background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(236, 227, 209, 0.035) 33px, rgba(236, 227, 209, 0.035) 34px);
-  clip-path: polygon(0% 0%, 100% 0%, 100.0% calc(100% - 20px), 97.5% calc(100% - 20px), 95.0% calc(100% - 20px), 92.5% calc(100% - 18px), 90.0% calc(100% - 12px), 87.5% calc(100% - 20px), 85.0% calc(100% - 12px), 82.5% calc(100% - 6px), 80.0% calc(100% - 20px), 77.5% calc(100% - 9px), 75.0% calc(100% - 12px), 72.5% calc(100% - 6px), 70.0% calc(100% - 0px), 67.5% calc(100% - 3px), 65.0% calc(100% - 20px), 62.5% calc(100% - 12px), 60.0% calc(100% - 0px), 57.5% calc(100% - 6px), 55.0% calc(100% - 0px), 52.5% calc(100% - 0px), 50.0% calc(100% - 18px), 47.5% calc(100% - 18px), 45.0% calc(100% - 0px), 42.5% calc(100% - 20px), 40.0% calc(100% - 15px), 37.5% calc(100% - 20px), 35.0% calc(100% - 18px), 32.5% calc(100% - 18px), 30.0% calc(100% - 9px), 27.5% calc(100% - 20px), 25.0% calc(100% - 0px), 22.5% calc(100% - 6px), 20.0% calc(100% - 20px), 17.5% calc(100% - 9px), 15.0% calc(100% - 3px), 12.5% calc(100% - 6px), 10.0% calc(100% - 9px), 7.5% calc(100% - 15px), 5.0% calc(100% - 18px), 2.5% calc(100% - 9px), 0.0% calc(100% - 0px));
-  animation: splash-tear 0.55s cubic-bezier(0.7, 0, 0.25, 1) 1.25s forwards;
+  clip-path: inset(0 0 0 0);
+  animation: splash-out 0.45s cubic-bezier(0.7, 0, 0.2, 1) 1.2s forwards;
 }
-.splash-inner { text-align: center; }
+.splash-inner { position: relative; text-align: center; }
 .splash-note {
   font-size: 22px;
   color: var(--c-paper);
   opacity: 0;
-  translate: 0 8px;
-  animation: splash-rise 0.35s ease-out 0.05s forwards;
+  animation: splash-fade 0.3s ease-out 0.05s forwards;
 }
-.splash-box { position: relative; margin-top: 0.75rem; padding: 18px 22px; }
-.splash-doodle {
+.splash-name {
+  margin-top: 0.5rem;
+  font-size: clamp(4rem, 17vw, 9rem);
+  color: #FDFDFB;
+  white-space: nowrap;
+}
+.splash-name span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em) rotate(-8deg);
+  animation: splash-char 0.34s cubic-bezier(0.34, 1.56, 0.64, 1) calc(0.1s + var(--i) * 0.06s) forwards;
+}
+.splash-tape {
+  position: absolute;
+  height: 26px;
+  opacity: 0;
+  animation: splash-fade 0.25s ease-out 0.45s forwards;
+}
+.splash-tape-a { width: 110px; top: -6px; left: -40px; background: var(--c-yellow); transform: rotate(-12deg); }
+.splash-tape-b { width: 90px; bottom: -14px; right: -30px; background: var(--c-pink); transform: rotate(8deg); }
+.splash-wipe {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+  background: var(--c-yellow);
+  transform: translateY(100%);
+  animation: splash-wipe 0.3s cubic-bezier(0.7, 0, 0.2, 1) 0.9s forwards;
 }
-.splash-doodle path {
-  fill: none;
-  stroke: var(--c-orange);
-  stroke-width: 3;
-  stroke-linecap: round;
-  vector-effect: non-scaling-stroke;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: splash-draw 0.5s ease-in-out 0.55s forwards;
-}
-.splash-tiles { display: flex; gap: 5px; white-space: nowrap; }
-.splash-tiles span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: clamp(38px, 10.5vw, 84px);
-  height: clamp(46px, 12.5vw, 100px);
-  font-size: clamp(2.2rem, 9vw, 4.6rem);
-  padding-top: 0.08em;
-  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  rotate: var(--r);
-  translate: 0 -60px;
-  scale: 0.6;
-  animation:
-    splash-drop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) calc(0.15s + var(--i) * 0.065s) forwards,
-    splash-settle 0.3s ease-out 1s forwards;
-}
-@keyframes splash-rise { to { opacity: 1; translate: 0 0; } }
-@keyframes splash-drop { to { opacity: 1; translate: 0 0; scale: 1; } }
-@keyframes splash-settle { to { rotate: 0deg; } }
-@keyframes splash-draw { to { stroke-dashoffset: 0; } }
-@keyframes splash-tear {
-  0% { transform: translateY(0); }
-  20% { transform: translateY(12px) rotate(0.4deg); }
-  100% { transform: translateY(-110%) rotate(-1deg); visibility: hidden; }
+@keyframes splash-char { to { opacity: 1; transform: none; } }
+@keyframes splash-fade { to { opacity: 1; } }
+@keyframes splash-wipe { to { transform: translateY(0); } }
+/* Explicit start shape: clip-path can't interpolate from `none`, it would just jump. */
+@keyframes splash-out {
+  from { clip-path: inset(0 0 0 0); }
+  to { clip-path: inset(0 0 100% 0); visibility: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
   .splash { display: none; }
