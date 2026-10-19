@@ -1,19 +1,126 @@
 'use client';
 
 import Image from 'next/image';
-import { MailIcon, LinkedinIcon, GithubIcon, WriteIcon, ArrowUpRightIcon, CalendarIcon, DocIcon } from './icons';
+import { siDevdotto, siGithub, type SimpleIcon } from 'simple-icons';
+import { MailFillIcon, LinkedinIcon, ArrowUpRightIcon, CalendarIcon, DocIcon } from './icons';
 import { useOpenCalPopup } from './CalEmbed';
 import { Container } from './SectionHeader';
 
 const EMAIL = 'parasharshourya07@gmail.com';
 
-// Tilted pill links, like the social tapes at the foot of bumaga.
+// Bumaga's social tapes: long tilted pills carrying only an icon, with outlined
+// circle stickers between them. Positions are % of a 1650x470 board, so the
+// whole cluster scales with its width.
+function BrandMark({ icon }: { icon: SimpleIcon }) {
+  return (
+    <svg viewBox="0 0 24 24" className="w-full h-full" fill="currentColor" aria-hidden focusable="false">
+      <path d={icon.path} />
+    </svg>
+  );
+}
+
 const pills = [
-  { Icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/in/im-shourya', className: 'bg-c-blue text-white -rotate-[9deg]' },
-  { Icon: GithubIcon, label: 'GitHub', href: 'https://github.com/im-shourya', className: 'bg-[#92D14F] text-c-ink rotate-[6deg]' },
-  { Icon: WriteIcon, label: 'dev.to', href: 'https://dev.to/im-shourya', className: 'bg-c-pink text-c-ink -rotate-[4deg]' },
-  { Icon: MailIcon, label: 'Email', href: `mailto:${EMAIL}`, className: 'bg-c-yellow text-c-ink rotate-[8deg]' },
+  {
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/im-shourya',
+    mark: <LinkedinIcon className="w-full h-full" />,
+    bg: 'bg-c-blue',
+    x: 35.8, y: 29.8, w: 33, r: 19,
+  },
+  {
+    label: 'Email',
+    href: `mailto:${EMAIL}`,
+    mark: <MailFillIcon className="w-full h-full" />,
+    bg: 'bg-c-yellow',
+    x: 19.4, y: 71, w: 32.7, r: 22,
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/im-shourya',
+    mark: <BrandMark icon={siGithub} />,
+    bg: 'bg-[#92D14F]',
+    x: 55.5, y: 61.7, w: 41, r: -24,
+  },
+  {
+    label: 'dev.to',
+    href: 'https://dev.to/im-shourya',
+    mark: <BrandMark icon={siDevdotto} />,
+    bg: 'bg-c-pink',
+    x: 82.6, y: 78.7, w: 33.6, r: 12,
+  },
 ];
+
+const stickers = [
+  { x: 4.7, y: 83.6, color: 'var(--c-blue)', shape: 'dot' },
+  { x: 24.7, y: 47.9, color: '#92D14F', shape: 'burst' },
+  { x: 56, y: 31.5, color: 'var(--c-pink)', shape: 'sparkle' },
+  { x: 62.3, y: 83.6, color: 'var(--c-yellow)', shape: 'heart' },
+  { x: 79.9, y: 48.5, color: 'var(--c-blue)', shape: 'star' },
+] as const;
+
+const stickerPaths: Record<(typeof stickers)[number]['shape'], React.ReactNode> = {
+  dot: (
+    <>
+      <circle cx="20" cy="20" r="9.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="20" cy="20" r="6" fill="currentColor" />
+    </>
+  ),
+  burst: (
+    <path
+      fill="currentColor"
+      d="M20 9l2.3 4.4 4.6-1.7-.8 4.9 4.9.9-3.3 3.7 3.3 3.7-4.9.9.8 4.9-4.6-1.7L20 33l-2.3-4.4-4.6 1.7.8-4.9-4.9-.9 3.3-3.7-3.3-3.7 4.9-.9-.8-4.9 4.6 1.7z"
+    />
+  ),
+  sparkle: <path fill="currentColor" d="M20 9c1 6.2 4.8 10 11 11-6.2 1-10 4.8-11 11-1-6.2-4.8-10-11-11 6.2-1 10-4.8 11-11z" />,
+  heart: (
+    <path
+      fill="currentColor"
+      d="M20 30s-9-5.4-9-11.6C11 15 13.3 13 16 13c1.8 0 3.2.9 4 2.3.8-1.4 2.2-2.3 4-2.3 2.7 0 5 2 5 5.4C29 24.6 20 30 20 30z"
+    />
+  ),
+  star: <path fill="currentColor" d="M20 10l2.9 6.8 7.4.6-5.6 4.8 1.7 7.2L20 25.6l-6.4 3.8 1.7-7.2-5.6-4.8 7.4-.6z" />,
+};
+
+function SocialTapes() {
+  return (
+    <div className="relative mx-auto mt-20 w-full max-w-[1000px] aspect-[1650/620] sm:aspect-[1650/470] [container-type:inline-size]">
+      {stickers.map((s) => (
+        <svg
+          key={s.shape}
+          viewBox="0 0 40 40"
+          className="absolute w-[8.8%] -translate-x-1/2 -translate-y-1/2"
+          style={{ left: `${s.x}%`, top: `${s.y}%`, color: s.color }}
+          aria-hidden
+        >
+          <circle cx="20" cy="20" r="18.6" fill="none" stroke="currentColor" strokeWidth="1.4" />
+          {stickerPaths[s.shape]}
+        </svg>
+      ))}
+      <ul>
+        {pills.map((pill) => (
+          <li key={pill.label}>
+            <a
+              href={pill.href}
+              target={pill.href.startsWith('mailto') ? undefined : '_blank'}
+              rel={pill.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              aria-label={pill.label}
+              title={pill.label}
+              className={`tape-pill absolute flex items-center justify-center h-[25.5%] min-h-[34px] rounded-full text-c-ink ${pill.bg}`}
+              style={{
+                left: `${pill.x}%`,
+                top: `${pill.y}%`,
+                width: `${pill.w}%`,
+                ['--r' as string]: `${pill.r}deg`,
+              }}
+            >
+              <span className="block w-[4.6cqw] h-[4.6cqw] min-w-[18px] min-h-[18px]">{pill.mark}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 function Star({ className }: { className: string }) {
   return (
@@ -27,16 +134,6 @@ function Sparkle({ className }: { className: string }) {
   return (
     <svg viewBox="0 0 40 40" className={className} aria-hidden>
       <path d="M20 2c1.5 10 8 16.5 18 18-10 1.5-16.5 8-18 18-1.5-10-8-16.5-18-18 10-1.5 16.5-8 18-18z" fill="currentColor" />
-    </svg>
-  );
-}
-
-function Rings({ className }: { className: string }) {
-  return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden>
-      <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" strokeWidth="2.2" />
-      <circle cx="20" cy="20" r="11" fill="none" stroke="currentColor" strokeWidth="2.2" />
-      <circle cx="20" cy="20" r="4.5" fill="currentColor" />
     </svg>
   );
 }
@@ -63,7 +160,6 @@ export default function Contact() {
           {/* Stickers */}
           <Star className="hidden sm:block absolute left-[7%] top-[14%] w-12 text-c-blue wobble" />
           <Sparkle className="hidden sm:block absolute right-[9%] top-[12%] w-10 text-c-pink" />
-          <Rings className="hidden sm:block absolute left-[10%] bottom-[22%] w-14 text-[#5FA82E]" />
           <PixelHeart className="hidden sm:block absolute right-[12%] bottom-[30%] w-11 text-c-orange wobble" />
           <Sparkle className="hidden md:block absolute left-[22%] top-[38%] w-6 text-c-yellow" />
 
@@ -124,21 +220,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <ul className="mt-20 flex flex-wrap justify-center items-center gap-x-2 gap-y-6 sm:gap-x-0">
-              {pills.map(({ Icon, label, href, className }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target={href.startsWith('mailto') ? undefined : '_blank'}
-                    rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                    className={`flex items-center justify-center gap-3 w-[180px] sm:w-[230px] h-[60px] sm:h-[72px] rounded-full text-[17px] font-semibold shadow-[0_10px_24px_rgba(25,21,16,0.18)] transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-0 ${className}`}
-                  >
-                    <Icon size={22} />
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <SocialTapes />
           </Container>
         </div>
       </div>
