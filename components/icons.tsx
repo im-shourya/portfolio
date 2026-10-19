@@ -49,4 +49,5 @@ export const FlagIcon = make(F7.Flag);
 export const FlagFillIcon = make(F7.FlagFill);
 export const ChatIcon = make(F7.ChatBubble);
 export const ChatFillIcon = make(F7.ChatBubbleFill);
+export const BookFillIcon = make(F7.BookFill);
 export const BookIcon = make(F7.Book);

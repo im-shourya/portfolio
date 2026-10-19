@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import {
   MailIcon, GithubIcon, LinkedinIcon, WriteIcon, BookIcon,
   BriefcaseIcon, BriefcaseFillIcon, PersonIcon, PersonFillIcon, StackIcon, StackFillIcon,
-  FlagIcon, FlagFillIcon, ChatIcon, ChatFillIcon,
+  FlagIcon, FlagFillIcon, ChatIcon, ChatFillIcon, BookFillIcon,
 } from './icons';
 
 // In page order, so the active tab moves left to right as you scroll.
@@ -19,14 +19,16 @@ const navLinks = [
   { label: 'Contact', href: '/#contact', section: 'contact', color: 'bg-c-orange text-c-ink' },
 ];
 
-// Phone tab bar: the home sections, with an outline icon that fills when active.
-const tabs = [
-  { label: 'Work', href: '/#projects', section: 'projects', Icon: BriefcaseIcon, ActiveIcon: BriefcaseFillIcon },
-  { label: 'About', href: '/#about', section: 'about', Icon: PersonIcon, ActiveIcon: PersonFillIcon },
-  { label: 'Stack', href: '/#tech', section: 'tech', Icon: StackIcon, ActiveIcon: StackFillIcon },
-  { label: 'Journey', href: '/#journey', section: 'journey', Icon: FlagIcon, ActiveIcon: FlagFillIcon },
-  { label: 'Contact', href: '/#contact', section: 'contact', Icon: ChatIcon, ActiveIcon: ChatFillIcon },
-];
+// Phone tab bar: the same links and names as the desktop nav, each with an
+// outline icon that fills when active.
+const tabIcons: Record<string, { Icon: typeof BookIcon; ActiveIcon: typeof BookIcon }> = {
+  Projects: { Icon: BriefcaseIcon, ActiveIcon: BriefcaseFillIcon },
+  About: { Icon: PersonIcon, ActiveIcon: PersonFillIcon },
+  Stack: { Icon: StackIcon, ActiveIcon: StackFillIcon },
+  Journey: { Icon: FlagIcon, ActiveIcon: FlagFillIcon },
+  Blog: { Icon: BookIcon, ActiveIcon: BookFillIcon },
+  Contact: { Icon: ChatIcon, ActiveIcon: ChatFillIcon },
+};
 
 const socials = [
   { Icon: GithubIcon, label: 'GitHub', href: 'https://github.com/im-shourya', color: 'bg-c-yellow' },
@@ -162,17 +164,8 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Phones: sections live in the bottom tab bar, so the top keeps Blog and email */}
-        <div className="md:hidden flex items-center gap-2 -mr-1">
-          <Link
-            href="/blog"
-            aria-current={pathname.startsWith('/blog') ? 'page' : undefined}
-            className={`inline-flex items-center gap-1.5 h-11 px-3.5 label-mono !text-[12px] !tracking-[0.14em] ${
-              pathname.startsWith('/blog') ? 'bg-c-pink text-c-ink -rotate-2' : 'text-ink-strong'
-            }`}
-          >
-            <BookIcon size={16} /> Blog
-          </Link>
+        {/* Phones: every nav link lives in the bottom tab bar, so the top keeps just email */}
+        <div className="md:hidden flex items-center -mr-1">
           <a
             href="mailto:parasharshourya07@gmail.com"
             aria-label="Email Shourya"
@@ -189,28 +182,28 @@ export default function Header() {
       aria-label="Sections"
       className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-[#191510]/95 backdrop-blur-md border-t border-white/[0.08] pb-[env(safe-area-inset-bottom)]"
     >
-      <ul className="grid grid-cols-5 h-16 px-1">
-        {tabs.map((tab) => {
-          const active = isActive(tab);
-          const Icon = active ? tab.ActiveIcon : tab.Icon;
-          const color = navLinks.find((l) => l.section === tab.section)?.color ?? '';
+      <ul className="grid grid-cols-6 h-16">
+        {navLinks.map((link) => {
+          const active = isActive(link);
+          const { Icon, ActiveIcon } = tabIcons[link.label];
+          const Glyph = active ? ActiveIcon : Icon;
           return (
-            <li key={tab.href} className="flex">
+            <li key={link.href} className="flex">
               <Link
-                href={tab.href}
-                aria-current={active ? (pathname === '/' ? 'location' : 'page') : undefined}
+                href={link.href}
+                aria-current={active ? (link.section && pathname === '/' ? 'location' : 'page') : undefined}
                 className={`flex-1 flex flex-col items-center justify-center gap-1 text-[11px] font-medium transition-colors ${
                   active ? 'text-ink-strong' : 'text-ink-muted'
                 }`}
               >
                 <span
-                  className={`flex items-center justify-center w-12 h-7 rounded-full transition-transform ${
-                    active ? `${color} -rotate-3 scale-105` : ''
+                  className={`flex items-center justify-center w-11 h-7 rounded-full transition-transform ${
+                    active ? `${link.color} -rotate-3 scale-105` : ''
                   }`}
                 >
-                  <Icon size={19} />
+                  <Glyph size={19} />
                 </span>
-                {tab.label}
+                {link.label}
               </Link>
             </li>
           );
