@@ -57,9 +57,12 @@ It is not a template. Every section, component, and interaction has been purpose
 - Vercel Analytics injected only in production builds
 
 **SEO & Discoverability**
-- Structured JSON-LD markup: `Person`, `WebSite`, `ProfilePage`, and `WebApplication` schemas
-- Open Graph and Twitter Card meta for rich social previews
-- Canonical URLs, `robots.txt`, and programmatic sitemap generation
+- One `Person` entity (`lib/seo.ts`) shared site-wide: name, photo, affiliation, memberships, live projects and `sameAs` links to GitHub, LinkedIn, dev.to and other profiles
+- `ProfilePage` on the home page, `BlogPosting` and `BreadcrumbList` on each post, all pointing back to the same `Person`
+- Profile links marked `rel="me"`; the home page `h1` carries the full name
+- Generated 1200×630 Open Graph and Twitter cards (`app/opengraph-image.tsx`, plus one per post)
+- Canonical URLs, `robots.txt`, a sitemap generated from routes and published posts, and a web manifest
+- Google Search Console verification tag, emitted when `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` is set
 - Semantic HTML5 throughout
 
 ---
@@ -82,13 +85,12 @@ It is not a template. Every section, component, and interaction has been purpose
 
 ## Sections
 
-The portfolio is composed of 11 distinct sections, each accessible via its own route:
+The portfolio is composed of 10 distinct sections, each accessible via its own route:
 
 | Section | Route | Description |
 |---|---|---|
 | Hero | `/` | Name in a hand-drawn box with sticky notes, headline, links and résumé |
 | About | `/about` | Taped polaroid, background narrative, current roles and highlights on index cards |
-| Experience | `/experience` | Professional roles and work history |
 | Projects | `/projects` | Sticky, stacking project slabs with screenshots, metrics and links (see below) |
 | Skills | `/skills` | Logo ribbons and tech-stack folders by area whose tool files appear on hover, plus a "learning now" folder |
 | Services | `/services` | What I build, as a list of service areas |
@@ -157,12 +159,14 @@ portfolio/
 │   ├── page.tsx                  # Home page composition
 │   ├── globals.css               # Global styles and design tokens
 │   ├── robots.ts                 # Programmatic robots.txt
+│   ├── sitemap.ts                # Sitemap from routes and published posts
+│   ├── manifest.ts               # Web app manifest
+│   ├── opengraph-image.tsx       # Generated share card (also twitter-image.tsx)
 │   ├── not-found.tsx             # Custom 404 page
 │   ├── about/                    # Route: /about
 │   ├── blog/                     # Route: /blog
 │   ├── certifications/           # Route: /certifications
 │   ├── contact/                  # Route: /contact
-│   ├── experience/               # Route: /experience
 │   ├── journey/                  # Route: /journey
 │   ├── leadership/               # Route: /leadership
 │   ├── projects/                 # Route: /projects
@@ -194,7 +198,7 @@ portfolio/
 │   └── ui/                      # Primitive UI components
 │
 ├── hooks/                        # Custom React hooks
-├── lib/                          # Utility functions
+├── lib/                          # Utilities, SEO structured data (seo.ts) and share-card renderer (og.tsx)
 ├── types/                        # TypeScript type definitions (incl. framework7-icons)
 ├── public/                       # Static assets (images, favicons, projects/ screenshots)
 ├── media/                        # Source media files

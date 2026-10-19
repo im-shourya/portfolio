@@ -22,13 +22,14 @@ const links = [
   { Icon: WriteIcon, label: 'dev.to', href: 'https://dev.to/im-shourya' },
 ];
 
-export default function About() {
+// `as` is h1 on the section's own route, h2 on the home page.
+export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="about" className="paper-section edge-torn my-8 py-20 sm:py-28 scroll-mt-20">
       <Container>
         <header className="text-center">
           <p className="font-hand text-[22px] text-ink">about me!</p>
-          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">What&apos;s up</h2>
+          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">What&apos;s up</Heading>
         </header>
 
         <div className="mt-14 grid md:grid-cols-[minmax(0,340px)_1fr] gap-14 md:gap-20 items-center">
@@ -53,7 +54,7 @@ export default function About() {
             <p className="text-[13px] text-[color:var(--accent-text)]">Full-stack developer &amp; community builder</p>
             <div className="mt-4 space-y-5 text-[18px] sm:text-[20px] leading-[1.6] text-ink max-w-[58ch]">
               <p>
-                I&apos;m a Computer Science undergrad at <span className="text-ink-strong">SRMIST, Chennai</span> (2025 to
+                I&apos;m <span className="text-ink-strong">Shourya Parashar</span>, a Computer Science undergrad at <span className="text-ink-strong">SRMIST, Chennai</span> (2025 to
                 2029). My last build, a voice RAG system, runs its core retrieval pipeline at a 7.87ms P50, about 25x
                 under its 200ms budget.
               </p>
@@ -81,7 +82,7 @@ export default function About() {
                   key={label}
                   href={href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   className="label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-[color:var(--accent-text)] transition-colors"
                 >
                   <Icon size={14} />
