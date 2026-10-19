@@ -15,7 +15,7 @@ function luminance(hex: string) {
  */
 function onDark(hex: string) {
   const l = luminance(hex);
-  if (l < 0.02) return '#F4F4F7';
+  if (l < 0.02) return '#FDFDFB';
   if (l < 0.12) return `color-mix(in srgb, #${hex} 65%, white)`;
   return `#${hex}`;
 }
