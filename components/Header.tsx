@@ -58,8 +58,19 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const activeSection = useActiveSection(pathname === '/');
 
+  // Each section also has its own route; on those pages its tab stays lit.
+  const routeSection: Record<string, string> = {
+    '/projects': 'projects',
+    '/about': 'about',
+    '/skills': 'tech',
+    '/journey': 'journey',
+    '/contact': 'contact',
+  };
+  const currentRoute = routeSection[pathname];
   const isActive = (link: (typeof navLinks)[number]) =>
-    link.section ? link.section === activeSection : pathname.startsWith(link.href);
+    link.section
+      ? link.section === (pathname === '/' ? activeSection : currentRoute)
+      : pathname.startsWith(link.href);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -110,7 +121,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                aria-current={active ? (link.section ? 'location' : 'page') : undefined}
+                aria-current={active ? (link.section && pathname === '/' ? 'location' : 'page') : undefined}
                 className={`label-mono !text-[11px] !tracking-[0.16em] px-3.5 py-2.5 transition-colors ${
                   active ? `${link.color} -rotate-2` : 'text-ink-muted hover:text-ink-strong'
                 }`}
@@ -167,7 +178,7 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    aria-current={active ? (link.section ? 'location' : 'page') : undefined}
+                    aria-current={active ? (link.section && pathname === '/' ? 'location' : 'page') : undefined}
                     className={`inline-block font-display text-[56px] px-2 ${
                       active ? `${link.color} -rotate-1` : 'text-ink-strong'
                     }`}
