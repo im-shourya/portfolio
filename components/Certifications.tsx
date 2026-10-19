@@ -44,7 +44,7 @@ export default function Certifications({ as: Heading = 'h2' }: { as?: 'h1' | 'h2
               {/* Certificate double rule */}
               <div className="h-full border-2 border-c-ink/80 outline outline-1 outline-c-ink/30 outline-offset-[-7px] p-6 sm:p-7 flex flex-col">
                 <div className="flex items-start justify-between gap-4">
-                  <p className="label-mono !text-[10px] !tracking-[0.14em] opacity-75 pt-1">{cert.org}</p>
+                  <p className="label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] opacity-75 pt-1">{cert.org}</p>
                   <span className={`w-12 h-12 shrink-0 rounded-full flex items-center justify-center ${cert.badge} ring-4 ring-c-ink/10`}>
                     <cert.Icon size={20} />
                   </span>
