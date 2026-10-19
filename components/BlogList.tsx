@@ -1,158 +1,95 @@
-'use client';
-
-import { m } from 'framer-motion';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowLeft, ArrowUpRight, PenLine } from 'lucide-react';
+import { ArrowUpRightIcon, CalendarIcon, ClockIcon } from './icons';
 
 import { posts } from '@/data/blogs';
+import SectionHeader, { Container } from './SectionHeader';
+
+type Post = (typeof posts)[number];
+
+function Meta({ post }: { post: Post }) {
+  return (
+    <div className="flex items-center gap-4 text-[12px] text-ink-muted">
+      <span className="flex items-center gap-1.5">
+        <CalendarIcon size={13} />
+        {post.date}
+      </span>
+      <span className="flex items-center gap-1.5">
+        <ClockIcon size={13} />
+        {post.readTime}
+      </span>
+    </div>
+  );
+}
 
 export default function BlogList() {
   const featuredPost = posts.find((p) => p.featured);
   const otherPosts = posts.filter((p) => !p.featured);
 
   return (
-    <section className="py-24 lg:py-32 px-6 lg:px-12 bg-[#F9F6F0] min-h-screen relative overflow-hidden">
-      <div className="orb w-[600px] h-[600px] bg-[#E8A325]/20 -top-40 -right-40" />
-      <div className="orb w-[520px] h-[520px] bg-[#4EADA0]/20 top-1/2 -left-40 [animation-delay:-9s]" />
+    <section className="pt-24 sm:pt-28 pb-10 min-h-screen">
+      <Container>
+        <SectionHeader
+          as="h1"
+          title="Notes & insights"
+          note="Thoughts on software engineering, UI/UX design, and what I learn building production-ready applications."
+        />
 
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        
-        {/* Navigation & Header */}
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col md:flex-row justify-between md:items-end gap-10 mb-20 border-b border-[#143B36]/10 pb-10"
-        >
-          <div>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 font-syne text-[10px] font-bold tracking-[2px] uppercase text-[#143B36]/50 hover:text-[#E8A325] transition-colors mb-10 group"
-            >
-              <div className="glass w-9 h-9 rounded-full flex items-center justify-center">
-                <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-              </div>
-              Back to Home
-            </Link>
-            <h1 className="font-sans text-[clamp(3.5rem,8vw,6rem)] font-extrabold text-[#143B36] leading-[0.95] tracking-tight">
-              Notes &amp;<br className="hidden md:block"/> Insights
-            </h1>
-          </div>
-          <p className="text-[16px] text-[#2A3E3B] max-w-[380px] font-medium leading-relaxed pb-2">
-            A collection of thoughts on software engineering, UI/UX design, and the things I learn building production-ready applications.
-          </p>
-        </m.div>
-
-        {/* Featured Post (Massive Editorial Layout) */}
-        {featuredPost && (
-          <m.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mb-16 lg:mb-24"
-          >
-            <Link href={featuredPost.date !== 'Coming Soon' ? `/blog/${featuredPost.slug}` : '#'} className="block group relative bg-[#143B36] rounded-[32px] lg:rounded-[48px] p-8 sm:p-12 lg:p-16 overflow-hidden cursor-pointer flex flex-col justify-between min-h-[450px]">
-              {/* Background gradient/noise effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1B4A44] to-[#143B36] opacity-50 pointer-events-none" />
-              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#E8A325]/10 rounded-full blur-[80px] pointer-events-none translate-x-1/3 -translate-y-1/3 group-hover:bg-[#E8A325]/20 transition-colors duration-700" />
-
-              <div className="relative z-10 flex flex-wrap items-center gap-4 mb-16 lg:mb-24">
-                <div className="inline-flex items-center gap-2 bg-[#E8A325] text-[#143B36] font-syne text-[10px] font-bold tracking-[2px] uppercase px-4 py-2 rounded-full">
-                  <PenLine size={14} />
-                  Featured
-                </div>
-                <div className="flex gap-2">
-                  {featuredPost.tags.map((tag) => (
-                    <span key={tag} className="glass-dark font-syne text-[10px] font-bold tracking-[1.5px] uppercase text-[#F9F6F0]/80 px-4 py-2 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-end">
-                <div>
-                  <h2 className="font-sans text-[clamp(2rem,4vw,3.5rem)] font-bold text-[#F9F6F0] leading-[1.05] tracking-tight mb-6 max-w-[800px] group-hover:text-[#E8A325] transition-colors duration-500">
-                    {featuredPost.title}
-                  </h2>
-                  <p className="text-[16px] lg:text-[18px] text-[#F9F6F0]/70 leading-relaxed max-w-[650px] font-light">
-                    {featuredPost.excerpt}
-                  </p>
-                </div>
-                
-                <div className="glass w-16 h-16 lg:w-20 lg:h-20 rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500 shadow-xl">
-                  <ArrowUpRight size={28} className="text-[#143B36] group-hover:rotate-45 transition-transform duration-500" />
-                </div>
-              </div>
-            </Link>
-          </m.div>
-        )}
-
-        {/* Other Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {otherPosts.map((post, idx) => (
-            <m.div
-              key={post.slug}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-              className="glass glass-sheen rounded-[28px] lg:rounded-[32px] p-8 lg:p-10 hover:-translate-y-1.5 transition-transform duration-500 group flex flex-col h-full"
-            >
-              <Link href={post.date !== 'Coming Soon' ? `/blog/${post.slug}` : '#'} className="relative z-[2] flex flex-col h-full">
-              <div className="flex flex-wrap gap-2 mb-6">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-syne text-[9px] font-bold tracking-[1.5px] uppercase text-[#143B36]/70 bg-white/60 border border-white/80 px-3 py-1.5 rounded-full"
-                  >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 bento-grid">
+          {featuredPost && (
+            <Link href={`/blog/${featuredPost.slug}`} className="group bento bento-amber md:col-span-2 p-7 sm:p-[55px] flex flex-col min-h-[300px]">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[11px] font-medium text-[#191510] bg-[#F7C948] px-2.5 py-1 rounded-md">Featured</span>
+                {featuredPost.tags.map((tag) => (
+                  <span key={tag} className="chip">
                     {tag}
                   </span>
                 ))}
               </div>
-
-              <h3 className="font-sans text-[1.5rem] lg:text-[1.8rem] font-bold text-[#143B36] leading-[1.1] tracking-tight mb-4 group-hover:text-[#E8A325] transition-colors duration-300">
-                {post.title}
-              </h3>
-
-              <p className="text-[15px] text-[#2A3E3B] leading-relaxed mb-10 font-medium flex-1">
-                {post.excerpt}
-              </p>
-
-              <div className="flex items-center justify-between pt-6 border-t border-[#143B36]/5 mt-auto">
-                <div className="flex items-center gap-4 text-[11px] font-bold tracking-[1px] uppercase text-[#143B36]/40 font-syne">
-                  <span className="flex items-center gap-1.5">
-                    <Calendar size={13} strokeWidth={2.5} />
-                    {post.date}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Clock size={13} strokeWidth={2.5} />
-                    {post.readTime}
-                  </span>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-white/60 border border-white/80 flex items-center justify-center group-hover:bg-[#143B36] group-hover:text-white transition-all duration-300">
-                  <ArrowUpRight size={16} />
-                </div>
+              <h2 className="mt-auto pt-10 text-[clamp(1.7rem,3.4vw,2.5rem)] leading-[1.12] font-normal text-ink-strong max-w-[26ch]">
+                {featuredPost.title}
+              </h2>
+              <p className="text-[15px] leading-relaxed text-ink-muted mt-3 max-w-[62ch]">{featuredPost.excerpt}</p>
+              <div className="flex items-center justify-between mt-6">
+                <Meta post={featuredPost} />
+                <ArrowUpRightIcon size={14} className="text-ink-muted group-hover:text-ink-strong transition-colors" />
               </div>
-              </Link>
-            </m.div>
-          ))}
-        </div>
+            </Link>
+          )}
 
-        {/* Coming soon note */}
-        <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="text-center mt-20 lg:mt-28"
-        >
-          <div className="glass inline-flex items-center gap-3 rounded-full px-6 py-3">
-            <span className="w-2 h-2 bg-[#E8A325] rounded-full animate-ping" />
-            <span className="font-syne text-[10px] font-bold tracking-[2.5px] uppercase text-[#143B36]/60">
-              New articles published weekly
-            </span>
-          </div>
-        </m.div>
-      </div>
+          {otherPosts.map((post) => {
+            const published = post.date !== 'Coming Soon';
+            const body = (
+              <>
+                <div className="flex flex-wrap gap-1.5">
+                  {post.tags.map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-[20px] leading-snug font-normal text-ink-strong mt-6">{post.title}</h3>
+                <p className="text-[15px] leading-relaxed text-ink-muted mt-2 flex-1">{post.excerpt}</p>
+                <div className="flex items-center justify-between pt-5 mt-6 border-t border-white/[0.07]">
+                  <Meta post={post} />
+                  {published && (
+                    <ArrowUpRightIcon size={13} className="text-ink-muted group-hover:text-ink-strong transition-colors" />
+                  )}
+                </div>
+              </>
+            );
+            // Unpublished posts are shown as previews, not links to nowhere.
+            return published ? (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group bento p-7 sm:p-10 flex flex-col">
+                {body}
+              </Link>
+            ) : (
+              <div key={post.slug} className="bento p-7 sm:p-10 flex flex-col opacity-60">
+                {body}
+              </div>
+            );
+          })}
+        </div>
+      </Container>
     </section>
   );
 }

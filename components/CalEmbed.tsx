@@ -59,7 +59,7 @@ export function useCalEmbed() {
 
     window.Cal('ui', {
       theme: 'dark',
-      styles: { branding: { brandColor: '#1B4A44' } },
+      styles: { branding: { brandColor: '#FF6B1A' } },
       hideEventTypeDetails: false,
       layout: 'month_view',
     });
