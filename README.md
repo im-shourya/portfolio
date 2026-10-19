@@ -45,7 +45,7 @@ It is not a template. Every section, component, and interaction has been purpose
 - Warm-black page with a crayon palette (blue, pink, yellow, orange, green, mint, cyan), ruled-paper lines and film grain
 - Handjet pixel display type for titles, DM Mono for labels, a handwritten face for notes; SF Pro / Google Sans for body text
 - Projects as full-width colour slabs that stick and stack on scroll, their folder tabs stepping right like a filing drawer
-- Tech stack as colour folders with logos tucked behind the flap, under crossed logo ribbons
+- Tech stack as colour folders: every tool is a paper file hidden inside that fans out on hover or focus (always shown on touch screens), under crossed logo ribbons
 - Contact on a scalloped paper band with sticky notes, pixel stickers and tilted link pills
 - iOS-style icons (Framework7 Icons) and brand logos from Simple Icons
 
@@ -89,7 +89,7 @@ The portfolio is composed of 11 distinct sections, each accessible via its own r
 | About | `/about` | Taped polaroid, background narrative, current roles and highlights on index cards |
 | Experience | `/experience` | Professional roles and work history |
 | Projects | `/projects` | Sticky, stacking project slabs with screenshots, metrics and links (see below) |
-| Skills | `/skills` | Logo ribbons and tech-stack folders by area, plus a "learning now" folder |
+| Skills | `/skills` | Logo ribbons and tech-stack folders by area whose tool files appear on hover, plus a "learning now" folder |
 | Services | `/services` | What I build, as a list of service areas |
 | Certifications | `/certifications` | Credentials and recognition as certificate cards |
 | Leadership | `/leadership` | Hackathon wins, community roles, and organisational leadership |
