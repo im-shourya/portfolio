@@ -43,6 +43,7 @@ It is not a template. Every section, component, and interaction has been purpose
 
 **Design & Experience**
 - Warm-black page with a crayon palette (blue, pink, yellow, orange, green, mint, cyan), ruled-paper lines and film grain
+- About, Journey and Contact sit on cream paper bands (torn, zigzag and scalloped edges) between the dark sections
 - Handjet pixel display type for titles, DM Mono for labels, a handwritten face for notes; SF Pro / Google Sans for body text
 - Projects as full-width colour slabs that stick and stack on scroll, their folder tabs stepping right like a filing drawer
 - Tech stack as colour folders: every tool is a paper file hidden inside that fans out on hover or focus (always shown on touch screens), under crossed logo ribbons

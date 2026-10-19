@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { MailIcon, GithubIcon, LinkedinIcon, WriteIcon, DocIcon, ArrowDownIcon } from './icons';
 import { Container } from './SectionHeader';
 
@@ -73,18 +72,6 @@ export default function Hero() {
             Chennai, IN
           </span>
 
-          <span className="hidden md:block absolute -left-44 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full overflow-hidden border-[3px] border-c-orange bg-c-yellow">
-            <Image
-              src="/image.webp"
-              alt="Shourya Parashar"
-              width={160}
-              height={160}
-              className="w-full h-full object-cover object-top scale-125 translate-y-2"
-              preload
-              loading="eager"
-              fetchPriority="high"
-            />
-          </span>
           <span className="hidden md:block absolute -right-40 top-1/2 -translate-y-1/2">
             <Smiley />
           </span>
