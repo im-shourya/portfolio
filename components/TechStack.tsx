@@ -8,50 +8,80 @@ import { Container } from './SectionHeader';
 import TechLogo from './TechLogo';
 import type { CrayonColor } from './projects-data';
 
+type StackFile = { name: string; logos: SimpleIcon[] };
+
 type Folder = {
   category: string;
   title: string;
   color: CrayonColor;
-  logos: SimpleIcon[];
-  items: string[];
+  files: StackFile[];
+  note?: string;
 };
 
-// One folder per area, logos tucked behind the flap like the bumaga case folders.
+// One folder per area; every tool is a file tucked inside that slides out on hover.
 const folders: Folder[] = [
   {
     category: 'Languages',
     title: 'TypeScript & Python',
     color: 'blue',
-    logos: [siTypescript, siPython, siJavascript, siCplusplus],
-    items: ['TypeScript', 'JavaScript', 'Python', 'C / C++', 'HTML / CSS'],
+    files: [
+      { name: 'TypeScript', logos: [siTypescript] },
+      { name: 'JavaScript', logos: [siJavascript] },
+      { name: 'Python', logos: [siPython] },
+      { name: 'C / C++', logos: [siCplusplus] },
+      { name: 'HTML / CSS', logos: [siHtml5, siCss] },
+    ],
   },
   {
     category: 'Frontend',
     title: 'React & Next.js',
     color: 'pink',
-    logos: [siReact, siNextdotjs, siTailwindcss],
-    items: ['React.js', 'Next.js', 'Tailwind CSS'],
+    files: [
+      { name: 'React.js', logos: [siReact] },
+      { name: 'Next.js', logos: [siNextdotjs] },
+      { name: 'Tailwind CSS', logos: [siTailwindcss] },
+    ],
   },
   {
     category: 'Backend',
     title: 'Node & FastAPI',
     color: 'green',
-    logos: [siNodedotjs, siFastapi, siNestjs, siExpress],
-    items: ['Node.js', 'Express.js', 'NestJS', 'FastAPI'],
+    files: [
+      { name: 'Node.js', logos: [siNodedotjs] },
+      { name: 'Express.js', logos: [siExpress] },
+      { name: 'NestJS', logos: [siNestjs] },
+      { name: 'FastAPI', logos: [siFastapi] },
+    ],
   },
   {
     category: 'Databases',
     title: 'Postgres & Mongo',
     color: 'yellow',
-    logos: [siPostgresql, siMongodb, siSupabase],
-    items: ['PostgreSQL', 'MongoDB', 'Supabase'],
+    files: [
+      { name: 'PostgreSQL', logos: [siPostgresql] },
+      { name: 'MongoDB', logos: [siMongodb] },
+      { name: 'Supabase', logos: [siSupabase] },
+    ],
   },
   {
     category: 'Ship it',
     title: 'Docker & Git',
     color: 'orange',
-    logos: [siDocker, siGit, siVercel],
-    items: ['Docker', 'Git & GitHub', 'Vercel'],
+    files: [
+      { name: 'Docker', logos: [siDocker] },
+      { name: 'Git & GitHub', logos: [siGit] },
+      { name: 'Vercel', logos: [siVercel] },
+    ],
+  },
+  {
+    category: 'Learning now',
+    title: 'System design & RAG',
+    color: 'cyan',
+    files: [
+      { name: 'System design', logos: [] },
+      { name: 'Retrieval & RAG', logos: [] },
+    ],
+    note: 'Mostly by building: Archie and Voice RAG.',
   },
 ];
 
@@ -91,18 +121,37 @@ function Ribbon({ logos, className, reverse }: { logos: SimpleIcon[]; className:
 
 function FolderCard({ folder }: { folder: Folder }) {
   const onBlue = folder.color === 'blue';
+  const n = folder.files.length;
   return (
-    <li className="folder" style={{ ['--folder' as string]: folderColor[folder.color] }}>
+    // Focusable so keyboard users can open the folder too.
+    <li tabIndex={0} className="folder outline-none rounded-[16px] focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-4 focus-visible:ring-offset-background" style={{ ['--folder' as string]: folderColor[folder.color] }}>
       <div className="folder-back" aria-hidden />
       <div className="folder-items" aria-hidden>
-        {folder.logos.map((logo) => (
-          <span
-            key={logo.slug}
-            className="w-[58px] h-[58px] rounded-[14px] bg-white flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.25)]"
-          >
-            <TechLogo icon={logo} size={30} tone="light" />
-          </span>
-        ))}
+        {folder.files.map((file, i) => {
+          const offset = i - (n - 1) / 2;
+          return (
+            <span
+              key={file.name}
+              className="file"
+              style={{
+                ['--i' as string]: i,
+                ['--r' as string]: `${offset * 5}deg`,
+                ['--lift' as string]: `${Math.abs(offset) * 5 - 14}px`,
+              }}
+            >
+              {file.logos.length > 0 ? (
+                <span className="flex gap-1">
+                  {file.logos.map((logo) => (
+                    <TechLogo key={logo.slug} icon={logo} size={file.logos.length > 1 ? 20 : 26} tone="light" />
+                  ))}
+                </span>
+              ) : (
+                <span className="font-hand text-[22px] leading-none">✎</span>
+              )}
+              {file.name}
+            </span>
+          );
+        })}
       </div>
       <div className={`folder-front p-5 flex flex-col justify-end ${onBlue ? 'text-white' : 'text-c-ink'}`}>
         <p className="text-[13px] flex items-center gap-2 opacity-80">
@@ -110,7 +159,7 @@ function FolderCard({ folder }: { folder: Folder }) {
           {folder.category}
         </p>
         <h3 className="text-[24px] leading-tight font-semibold tracking-tight mt-1">«{folder.title}»</h3>
-        <p className="text-[13px] mt-2 opacity-75">{folder.items.join(' · ')}</p>
+        <p className="text-[13px] mt-2 opacity-75">{folder.note ?? folder.files.map((f) => f.name).join(' · ')}</p>
       </div>
     </li>
   );
@@ -146,22 +195,6 @@ export default function TechStack() {
             <FolderCard key={folder.category} folder={folder} />
           ))}
 
-          {/* Learning folder: sticky notes instead of logos */}
-          <li className="folder" style={{ ['--folder' as string]: 'var(--c-cyan)' }}>
-            <div className="folder-back" aria-hidden />
-            <div className="folder-items" aria-hidden>
-              <span className="note bg-c-tan font-hand text-[18px] -rotate-6 mt-3">system design</span>
-              <span className="note bg-c-pink-soft font-hand text-[18px] rotate-3 mt-1">RAG</span>
-            </div>
-            <div className="folder-front p-5 flex flex-col justify-end text-c-ink">
-              <p className="text-[13px] flex items-center gap-2 opacity-80">
-                <span className="w-1.5 h-1.5 rounded-full bg-current" aria-hidden />
-                Learning now
-              </p>
-              <h3 className="text-[24px] leading-tight font-semibold tracking-tight mt-1">«System design & RAG»</h3>
-              <p className="text-[13px] mt-2 opacity-75">Mostly by building: Archie and Voice RAG.</p>
-            </div>
-          </li>
         </ul>
       </Container>
     </section>
