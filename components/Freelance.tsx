@@ -2,12 +2,12 @@
 
 import { ArrowUpRightIcon, BrushIcon, CalendarIcon, ClockIcon, RocketIcon, WrenchIcon } from './icons';
 import { useOpenCalPopup } from './CalEmbed';
-import SectionHeader, { Container } from './SectionHeader';
+import { Container } from './SectionHeader';
 
 const freelanceServices = [
   {
     Icon: RocketIcon,
-    color: 'text-[#5EEAD4]',
+    color: 'bg-c-mint',
     title: 'MVP Development',
     description:
       'Full-stack MVPs from concept to launch: Next.js frontend, Node.js or FastAPI backend, database design and hosting.',
@@ -16,7 +16,7 @@ const freelanceServices = [
   },
   {
     Icon: BrushIcon,
-    color: 'text-[#FFC94A]',
+    color: 'bg-c-yellow',
     title: 'Frontend Engineering',
     description:
       'Polished React and Next.js interfaces with Tailwind CSS. Responsive layouts, smooth motion and performance tuning.',
@@ -25,7 +25,7 @@ const freelanceServices = [
   },
   {
     Icon: WrenchIcon,
-    color: 'text-[#FF8A6B]',
+    color: 'bg-c-cyan',
     title: 'Technical Consulting',
     description:
       'Architecture reviews, code audits and performance work on existing projects. Find the bottleneck, then fix it.',
@@ -38,60 +38,61 @@ export default function Freelance() {
   const openCalPopup = useOpenCalPopup();
 
   return (
-    <section id="freelance" className="py-8 sm:py-12 scroll-mt-20">
+    <section id="freelance" className="py-16 sm:py-24 scroll-mt-20">
       <Container>
-        <SectionHeader
-          title="Freelance"
-          note="From idea to deployment, I build production-ready products with clean code and modern architecture."
-          action={
-            <span className="inline-flex items-center gap-2 text-[13px] text-ink-muted">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4ADE80]" aria-hidden />
-              Available for hire
-            </span>
-          }
-        />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 bento-grid">
+        <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <div>
+            <p className="font-hand text-[22px] text-ink">need a hand?</p>
+            <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Freelance</h2>
+            <p className="mt-4 text-[16px] text-ink-muted max-w-[52ch]">
+              From idea to deployment, I build production-ready products with clean code and modern architecture.
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-2 self-start sm:self-auto label-mono !text-[11px] text-ink">
+            <span className="w-2 h-2 rounded-full bg-c-green" aria-hidden />
+            Available for hire
+          </span>
+        </header>
+
+        <ul className="mt-14 grid md:grid-cols-3 gap-6">
           {freelanceServices.map((service) => (
-            <div key={service.title} className="bento p-7 sm:p-9 flex flex-col">
-              <span
-                className={`w-11 h-11 rounded-[10px] bg-white/[0.06] flex items-center justify-center ${service.color}`}
-              >
-                <service.Icon size={19} />
-              </span>
-              <h3 className="text-[22px] font-normal leading-tight text-ink-strong mt-5">{service.title}</h3>
-              <p className="text-[15px] leading-relaxed text-ink-muted mt-2 flex-1">{service.description}</p>
-              <ul className="flex flex-wrap gap-1.5 mt-5">
-                {service.deliverables.map((item) => (
-                  <li key={item} className="chip">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex items-center justify-between pt-5 mt-6 border-t border-white/[0.08]">
-                <span className="inline-flex items-center gap-1.5 text-[13px] text-ink">
-                  <ClockIcon size={14} className="text-ink-muted" />
-                  {service.timeline}
+            <li key={service.title} className={`ticket ${service.color} text-c-ink flex flex-col`}>
+              <div className="p-7 flex-1 flex flex-col">
+                <service.Icon size={26} />
+                <h3 className="mt-6 text-[26px] leading-tight font-semibold tracking-tight">{service.title}</h3>
+                <p className="text-[15px] leading-relaxed mt-2 opacity-85">{service.description}</p>
+                <ul className="mt-5 space-y-1.5 text-[14px]">
+                  {service.deliverables.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-c-ink rotate-45" aria-hidden />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="ticket-tear" aria-hidden />
+              <div className="h-[92px] px-7 flex items-center justify-between gap-4">
+                <span className="flex items-center gap-2">
+                  <ClockIcon size={16} />
+                  <span className="font-display text-[34px] leading-none">{service.timeline}</span>
                 </span>
                 <button
                   onClick={() => openCalPopup()}
-                  className="inline-flex items-center gap-1 text-[13px] font-medium text-ink-strong hover:underline underline-offset-4"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-c-ink text-c-paper px-4 py-2.5 text-[13px] hover:bg-c-blue transition-colors"
                 >
-                  Book a call <ArrowUpRightIcon size={11} />
+                  Book a call <ArrowUpRightIcon size={10} />
                 </button>
               </div>
-            </div>
+            </li>
           ))}
+        </ul>
 
-          <div className="bento bento-teal md:col-span-3 p-7 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-            <div>
-              <h3 className="text-[24px] font-normal leading-tight text-ink-strong">Have something in mind?</h3>
-              <p className="text-[14px] text-ink-muted mt-1">Free 30-minute discovery call.</p>
-            </div>
-            <button onClick={() => openCalPopup()} className="btn-light self-start sm:self-auto">
-              <CalendarIcon size={15} />
-              Schedule a call
-            </button>
-          </div>
+        <div className="mt-10 flex flex-col sm:flex-row sm:items-center justify-center gap-4 sm:gap-6 text-center">
+          <p className="font-hand text-[24px] text-ink-strong">Have something in mind? Free 30-minute discovery call.</p>
+          <button onClick={() => openCalPopup()} className="btn-light self-center">
+            <CalendarIcon size={15} />
+            Schedule a call
+          </button>
         </div>
       </Container>
     </section>
