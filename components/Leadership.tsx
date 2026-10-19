@@ -29,11 +29,12 @@ const roles = [
   },
 ];
 
-export default function Leadership() {
+// `as` is h1 on the section's own route, h2 elsewhere.
+export default function Leadership({ as = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="leadership" className="py-8 sm:py-12 scroll-mt-20">
       <Container>
-        <SectionHeader title="Leadership" />
+        <SectionHeader title="Leadership" as={as} />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 bento-grid">
           {roles.map((role) => (
             <div key={role.org} className="bento p-7 sm:p-9">

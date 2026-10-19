@@ -23,12 +23,12 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex-1 pt-16">
-        <Contact />
-      </div>
+      <main className="flex-1 pt-16">
+        <Contact as="h1" />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }

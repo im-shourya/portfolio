@@ -150,7 +150,8 @@ function PixelHeart({ className }: { className: string }) {
   );
 }
 
-export default function Contact() {
+// `as` is h1 on the section's own route, h2 on the home page.
+export default function Contact({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   const openCalPopup = useOpenCalPopup();
 
   return (
@@ -167,11 +168,11 @@ export default function Contact() {
             <p className="font-hand text-[22px] sm:text-[26px] leading-snug max-w-[34ch] mx-auto">
               Got a project, a hard problem, or just want to say hi? I read every message.
             </p>
-            <h2 className="font-display mt-6 text-[clamp(4rem,13vw,9.5rem)]">
+            <Heading className="font-display mt-6 text-[clamp(4rem,13vw,9.5rem)]">
               Let&apos;s work
               <br />
               together?
-            </h2>
+            </Heading>
 
             {/* Crayon contact card, with a sticky-note bio pinned to its corner */}
             <div className="relative mx-auto mt-16 max-w-[720px]">
