@@ -54,7 +54,10 @@ export default function Hero() {
             <path d="M2 3c20-2 50-2 76 0M10 6.5c18-1.5 40-1.5 60 0" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
           <div className="doodle-box border-2 border-c-orange mt-2 px-6 sm:px-10 pt-4 pb-3">
-            <div className="font-display text-[clamp(4.5rem,15vw,9rem)] text-ink-strong">Shourya</div>
+            {/* The page's h1 is the full name; the box shows the first name, the surname is for search and screen readers. */}
+            <h1 className="font-display text-[clamp(4.5rem,15vw,9rem)] text-ink-strong">
+              Shourya<span className="sr-only"> Parashar, full-stack developer</span>
+            </h1>
           </div>
 
           <span className="note hidden sm:inline-block absolute -left-24 -top-1 -rotate-[8deg] bg-c-mint label-mono !text-[10px] !tracking-[0.14em] rounded-full">
@@ -87,11 +90,11 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1 className="mt-14 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
+        <p className="mt-14 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
           Fast, tested software
           <br />
           that&apos;s <span className="font-hand font-normal text-c-yellow text-[1.25em] leading-none">honest.</span>
-        </h1>
+        </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <a href="mailto:parasharshourya07@gmail.com" className="btn-light">
             <MailIcon size={16} /> Email me
@@ -105,7 +108,7 @@ export default function Hero() {
         </div>
         <div className="mt-4 flex items-center justify-center gap-2">
           {socials.map(({ Icon, label, href }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="icon-tile">
+            <a key={label} href={href} target="_blank" rel="me noopener noreferrer" aria-label={label} className="icon-tile">
               <Icon size={18} />
             </a>
           ))}
