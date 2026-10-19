@@ -727,3 +727,16 @@ svg.lucide {
   opacity: 0.35;
   margin-inline: calc(var(--notch) + 6px);
 }
+
+/* Social tape pills in Contact: centred on their point, tilted by --r */
+.tape-pill {
+  transform: translate(-50%, -50%) rotate(var(--r));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tape-pill:hover,
+.tape-pill:focus-visible {
+  transform: translate(-50%, -50%) rotate(calc(var(--r) * 0.5)) scale(1.05);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tape-pill { transition: none; }
+}
