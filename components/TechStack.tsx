@@ -2,125 +2,167 @@ import {
   siTypescript, siJavascript, siPython, siCplusplus, siHtml5, siCss,
   siReact, siNextdotjs, siTailwindcss, siNodedotjs, siExpress, siNestjs, siFastapi,
   siPostgresql, siMongodb, siSupabase, siDocker, siGit, siVercel,
+  type SimpleIcon,
 } from 'simple-icons';
-import SectionHeader, { Container } from './SectionHeader';
+import { Container } from './SectionHeader';
 import TechLogo from './TechLogo';
+import type { CrayonColor } from './projects-data';
 
-const categories = [
+type Folder = {
+  category: string;
+  title: string;
+  color: CrayonColor;
+  logos: SimpleIcon[];
+  items: string[];
+};
+
+// One folder per area, logos tucked behind the flap like the bumaga case folders.
+const folders: Folder[] = [
   {
-    label: 'Languages',
-    pills: [
-      { name: 'TypeScript', logos: [siTypescript] },
-      { name: 'JavaScript', logos: [siJavascript] },
-      { name: 'Python', logos: [siPython] },
-      { name: 'C / C++', logos: [siCplusplus] },
-      { name: 'HTML / CSS', logos: [siHtml5, siCss] },
-    ],
+    category: 'Languages',
+    title: 'TypeScript & Python',
+    color: 'blue',
+    logos: [siTypescript, siPython, siJavascript, siCplusplus],
+    items: ['TypeScript', 'JavaScript', 'Python', 'C / C++', 'HTML / CSS'],
   },
   {
-    label: 'Frameworks & Libraries',
-    pills: [
-      { name: 'React.js', logos: [siReact] },
-      { name: 'Next.js', logos: [siNextdotjs] },
-      { name: 'Tailwind CSS', logos: [siTailwindcss] },
-      { name: 'Node.js', logos: [siNodedotjs] },
-      { name: 'Express.js', logos: [siExpress] },
-      { name: 'NestJS', logos: [siNestjs] },
-      { name: 'FastAPI', logos: [siFastapi] },
-    ],
+    category: 'Frontend',
+    title: 'React & Next.js',
+    color: 'pink',
+    logos: [siReact, siNextdotjs, siTailwindcss],
+    items: ['React.js', 'Next.js', 'Tailwind CSS'],
   },
   {
-    label: 'Databases & Tools',
-    pills: [
-      { name: 'PostgreSQL', logos: [siPostgresql] },
-      { name: 'MongoDB', logos: [siMongodb] },
-      { name: 'Supabase', logos: [siSupabase] },
-      { name: 'Docker', logos: [siDocker] },
-      { name: 'Git & GitHub', logos: [siGit] },
-      { name: 'Vercel', logos: [siVercel] },
-    ],
+    category: 'Backend',
+    title: 'Node & FastAPI',
+    color: 'green',
+    logos: [siNodedotjs, siFastapi, siNestjs, siExpress],
+    items: ['Node.js', 'Express.js', 'NestJS', 'FastAPI'],
+  },
+  {
+    category: 'Databases',
+    title: 'Postgres & Mongo',
+    color: 'yellow',
+    logos: [siPostgresql, siMongodb, siSupabase],
+    items: ['PostgreSQL', 'MongoDB', 'Supabase'],
+  },
+  {
+    category: 'Ship it',
+    title: 'Docker & Git',
+    color: 'orange',
+    logos: [siDocker, siGit, siVercel],
+    items: ['Docker', 'Git & GitHub', 'Vercel'],
   },
 ];
 
-const learning = ['System Design', 'Retrieval & RAG'];
+const ribbonA = [siTypescript, siPython, siReact, siNextdotjs, siNodedotjs, siFastapi, siPostgresql, siDocker];
+const ribbonB = [siMongodb, siTailwindcss, siNestjs, siSupabase, siGit, siVercel, siExpress, siHtml5, siCss];
 
-// Logo tiles riding the diagonal rails in the "currently learning" card.
-// `rail` picks the line, `t` is the height on it (0 = top edge, 1 = bottom edge).
-const tiles = [
-  { logo: siTypescript, rail: 0, t: 0.62 },
-  { logo: siPython, rail: 1, t: 0.3 },
-  { logo: siNextdotjs, rail: 2, t: 0.68 },
-  { logo: siFastapi, rail: 2, t: 0.26 },
-  { logo: siDocker, rail: 3, t: 0.48 },
-  { logo: siPostgresql, rail: 4, t: 0.3 },
-  { logo: siReact, rail: 4, t: 0.74 },
-];
-const rails = [12, 30, 48, 66, 84]; // % from the left, where each rail crosses the vertical middle
-const TAN_15 = 0.2679;
+const folderColor: Record<CrayonColor, string> = {
+  blue: 'var(--c-blue)',
+  pink: 'var(--c-pink)',
+  green: '#92D14F',
+  yellow: 'var(--c-yellow)',
+  orange: 'var(--c-orange)',
+  paper: 'var(--c-paper)',
+  mint: 'var(--c-mint)',
+  cyan: 'var(--c-cyan)',
+};
+
+function Ribbon({ logos, className, reverse }: { logos: SimpleIcon[]; className: string; reverse?: boolean }) {
+  const track = (hidden: boolean) => (
+    <div className="ribbon-track" aria-hidden={hidden || undefined}>
+      {logos.map((logo) => (
+        <span key={logo.slug} className="flex items-center gap-2.5 text-[15px] sm:text-[17px] font-semibold">
+          <TechLogo icon={logo} size={20} tone={className.includes('bg-c-yellow') ? 'light' : 'dark'} />
+          {logo.title}
+          <span className="ml-6 text-[14px]" aria-hidden>✦</span>
+        </span>
+      ))}
+    </div>
+  );
+  return (
+    <div className={`ribbon py-3 ${reverse ? 'ribbon-reverse' : ''} ${className}`} aria-hidden>
+      {track(false)}
+      {track(true)}
+    </div>
+  );
+}
+
+function FolderCard({ folder }: { folder: Folder }) {
+  const onBlue = folder.color === 'blue';
+  return (
+    <li className="folder" style={{ ['--folder' as string]: folderColor[folder.color] }}>
+      <div className="folder-back" aria-hidden />
+      <div className="folder-items" aria-hidden>
+        {folder.logos.map((logo) => (
+          <span
+            key={logo.slug}
+            className="w-[58px] h-[58px] rounded-[14px] bg-white flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.25)]"
+          >
+            <TechLogo icon={logo} size={30} tone="light" />
+          </span>
+        ))}
+      </div>
+      <div className={`folder-front p-5 flex flex-col justify-end ${onBlue ? 'text-white' : 'text-c-ink'}`}>
+        <p className="text-[13px] flex items-center gap-2 opacity-80">
+          <span className="w-1.5 h-1.5 rounded-full bg-current" aria-hidden />
+          {folder.category}
+        </p>
+        <h3 className="text-[24px] leading-tight font-semibold tracking-tight mt-1">«{folder.title}»</h3>
+        <p className="text-[13px] mt-2 opacity-75">{folder.items.join(' · ')}</p>
+      </div>
+    </li>
+  );
+}
 
 export default function TechStack() {
   return (
-    <section id="tech" className="py-8 sm:py-12 scroll-mt-20">
+    <section id="tech" className="py-16 sm:py-24 scroll-mt-20 overflow-hidden">
       <Container>
-        <SectionHeader title="Stack" note="Tools I use to build fast, tested applications." />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 bento-grid">
-          {categories.map((cat) => (
-            <div key={cat.label} className="bento p-7 sm:p-8">
-              <h3 className="text-[22px] font-normal leading-tight text-ink-strong mb-5">{cat.label}</h3>
-              <ul className="flex flex-wrap gap-2">
-                {cat.pills.map((pill) => (
-                  <li key={pill.name} className="chip !gap-2">
-                    {pill.logos.map((logo) => (
-                      <TechLogo key={logo.slug} icon={logo} />
-                    ))}
-                    {pill.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <header className="relative text-center">
+          <h2 className="font-display text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">The Stack</h2>
+          <span className="hidden sm:block absolute left-[14%] top-[62%] -rotate-[8deg] rounded-full bg-c-green/90 text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
+            TypeScript first
+          </span>
+          <span className="hidden sm:block absolute right-[14%] top-[2%] rotate-[7deg] rounded-full bg-c-pink text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
+            always learning
+          </span>
+          <p className="mt-6 text-[16px] text-ink-muted max-w-[44ch] mx-auto">
+            Tools I use to build fast, tested applications.
+          </p>
+        </header>
+      </Container>
+
+      {/* Crossed ribbons */}
+      <div className="relative my-12 sm:my-16 h-[130px]">
+        <Ribbon logos={ribbonA} className="absolute inset-x-[-5%] top-4 rotate-[-3deg] bg-c-yellow text-c-ink" />
+        <Ribbon logos={ribbonB} reverse className="absolute inset-x-[-5%] top-14 rotate-[2.5deg] bg-[#0E0B08] text-c-paper border-y border-white/10" />
+      </div>
+
+      <Container>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8">
+          {folders.map((folder) => (
+            <FolderCard key={folder.category} folder={folder} />
           ))}
 
-          <div className="bento bento-earth md:col-span-3 grid grid-cols-1 md:grid-cols-[minmax(0,460px)_1fr] min-h-[220px]">
-            <div className="p-7 sm:px-10 sm:py-8 flex flex-col justify-center relative z-[2]">
-              <p className="text-[14px] text-ink-strong/80">I constantly try to improve myself</p>
-              <h3 className="text-[24px] leading-[1.2] font-normal text-ink-strong mt-2">
-                Currently, I&apos;m learning {learning.join(' and ')}.
-              </h3>
-              <p className="text-[15px] leading-[1.5] text-ink-strong/50 mt-3">
-                Mostly by building: Archie is a system-design board, and Voice RAG is a retrieval pipeline.
+          {/* Learning folder: sticky notes instead of logos */}
+          <li className="folder" style={{ ['--folder' as string]: 'var(--c-cyan)' }}>
+            <div className="folder-back" aria-hidden />
+            <div className="folder-items" aria-hidden>
+              <span className="note bg-c-tan font-hand text-[18px] -rotate-6 mt-3">system design</span>
+              <span className="note bg-c-pink-soft font-hand text-[18px] rotate-3 mt-1">RAG</span>
+            </div>
+            <div className="folder-front p-5 flex flex-col justify-end text-c-ink">
+              <p className="text-[13px] flex items-center gap-2 opacity-80">
+                <span className="w-1.5 h-1.5 rounded-full bg-current" aria-hidden />
+                Learning now
               </p>
+              <h3 className="text-[24px] leading-tight font-semibold tracking-tight mt-1">«System design & RAG»</h3>
+              <p className="text-[13px] mt-2 opacity-75">Mostly by building: Archie and Voice RAG.</p>
             </div>
-
-            <div className="relative min-h-[160px] overflow-hidden [container-type:size]" aria-hidden>
-              {rails.map((left) => (
-                <span
-                  key={left}
-                  className="absolute -top-1/4 -bottom-1/4 w-px rotate-[15deg]"
-                  style={{
-                    left: `${left}%`,
-                    backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.16) 50%, transparent 50%)',
-                    backgroundSize: '1px 10px',
-                  }}
-                />
-              ))}
-              {tiles.map(({ logo, rail, t }) => (
-                <span
-                  key={logo.slug}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-white/[0.05] flex items-center justify-center"
-                  style={{
-                    top: `${t * 100}%`,
-                    // Follow the rail: it leans right going up, by tan(15deg) per unit of height.
-                    left: `calc(${rails[rail]}% - ${(t - 0.5) * TAN_15 * 100}cqh)`,
-                  }}
-                >
-                  <span className="w-[34px] h-[34px] rounded-[8px] bg-white flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-                    <TechLogo icon={logo} size={18} tone="light" />
-                  </span>
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </Container>
     </section>
   );
