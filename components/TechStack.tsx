@@ -1,143 +1,93 @@
-'use client';
-
-import { m } from 'framer-motion';
-import {
-  FileCode2, FileJson, Terminal, Code, Palette,
-  Atom, Globe, Server, Zap, Wind, Layers, Gauge,
-  Database, CloudCog, GitBranch, Rocket, Container, Network,
-} from 'lucide-react';
+import SectionHeader, { Container } from './SectionHeader';
+import { CodeIcon, LayersIcon, DataIcon, CubeIcon, GlobeIcon, BoltIcon, CloudIcon } from './icons';
 
 const categories = [
-  {
-    label: 'Languages',
-    pills: [
-      { name: 'TypeScript', Icon: FileJson },
-      { name: 'JavaScript', Icon: FileCode2 },
-      { name: 'Python', Icon: Terminal },
-      { name: 'C / C++', Icon: Code },
-      { name: 'HTML / CSS', Icon: Palette },
-    ],
-  },
+  { label: 'Languages', pills: ['TypeScript', 'JavaScript', 'Python', 'C / C++', 'HTML / CSS'] },
   {
     label: 'Frameworks & Libraries',
-    pills: [
-      { name: 'React.js', Icon: Atom },
-      { name: 'Next.js', Icon: Globe },
-      { name: 'Tailwind CSS', Icon: Wind },
-      { name: 'Node.js', Icon: Server },
-      { name: 'Express.js', Icon: Zap },
-      { name: 'NestJS', Icon: Layers },
-      { name: 'FastAPI', Icon: Gauge },
-    ],
+    pills: ['React.js', 'Next.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'NestJS', 'FastAPI'],
   },
-  {
-    label: 'Databases & Tools',
-    pills: [
-      { name: 'PostgreSQL', Icon: Database },
-      { name: 'MongoDB', Icon: Database },
-      { name: 'Supabase', Icon: CloudCog },
-      { name: 'Docker', Icon: Container },
-      { name: 'Git & GitHub', Icon: GitBranch },
-      { name: 'Vercel', Icon: Rocket },
-    ],
-  },
+  { label: 'Databases & Tools', pills: ['PostgreSQL', 'MongoDB', 'Supabase', 'Docker', 'Git & GitHub', 'Vercel'] },
 ];
 
-const learning = [
-  { name: 'System Design', Icon: Network },
-  { name: 'Retrieval & RAG', Icon: Database },
+const learning = ['System Design', 'Retrieval & RAG'];
+
+// Tiles riding the diagonal rails in the "currently learning" card. `rail` picks the line, `at` the height.
+// Tiles riding the diagonal rails in the "currently learning" card.
+// `rail` picks the line, `t` is the height on it (0 = top edge, 1 = bottom edge).
+const tiles = [
+  { Icon: LayersIcon, rail: 0, t: 0.62 },
+  { Icon: DataIcon, rail: 1, t: 0.3 },
+  { Icon: CodeIcon, rail: 2, t: 0.68 },
+  { Icon: BoltIcon, rail: 2, t: 0.26 },
+  { Icon: CubeIcon, rail: 3, t: 0.48 },
+  { Icon: GlobeIcon, rail: 4, t: 0.3 },
+  { Icon: CloudIcon, rail: 4, t: 0.74 },
 ];
+const rails = [12, 30, 48, 66, 84]; // % from the left, where each rail crosses the vertical middle
+const TAN_15 = 0.2679;
 
 export default function TechStack() {
   return (
-    <section id="tech" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#151F1E] relative overflow-hidden">
-      {/* Colour fields the glass refracts */}
-      <div className="orb w-[800px] h-[400px] bg-[#2D7A6E]/30 top-0 left-1/2 -translate-x-1/2" />
-      <div className="orb w-[420px] h-[420px] bg-[#E8A325]/10 bottom-0 right-0 [animation-delay:-8s]" />
-
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-16 lg:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6"
-        >
-          <div>
-            <div className="font-syne text-[11px] font-bold tracking-[3px] uppercase text-[#E8A325] mb-4">
-              Capabilities
-            </div>
-            <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-[#F4EFE6] leading-none">
-              My Tech Stack
-            </h2>
-          </div>
-          <p className="text-[#F4EFE6]/50 text-[14px] max-w-[300px] leading-relaxed font-light md:text-right">
-            Technologies and tools I use to build robust, scalable, and high-performance applications.
-          </p>
-        </m.div>
-
-        {/* Editorial layout for categories */}
-        <div className="flex flex-col border-b border-white/[0.08] mb-12">
-          {categories.map((cat, idx) => (
-            <m.div
-              key={cat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              className="flex flex-col lg:flex-row gap-6 lg:gap-16 py-8 lg:py-12 border-t border-white/[0.08] group"
-            >
-              {/* Category title */}
-              <div className="w-full lg:w-[320px] flex-shrink-0">
-                <h3 className="font-serif text-[1.8rem] lg:text-[2.2rem] text-[#F4EFE6] group-hover:text-[#E8A325] transition-colors duration-500">
-                  {cat.label}
-                </h3>
-              </div>
-
-              {/* Glass pills */}
-              <div className="flex flex-wrap items-start content-start gap-3 lg:gap-4 lg:pt-2">
+    <section id="tech" className="py-8 sm:py-12 scroll-mt-20">
+      <Container>
+        <SectionHeader title="Stack" note="Tools I use to build fast, tested applications." />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 bento-grid">
+          {categories.map((cat) => (
+            <div key={cat.label} className="bento p-7 sm:p-8">
+              <h3 className="text-[22px] font-normal leading-tight text-ink-strong mb-5">{cat.label}</h3>
+              <ul className="flex flex-wrap gap-2">
                 {cat.pills.map((pill) => (
-                  <span
-                    key={pill.name}
-                    className="glass-dark inline-flex items-center gap-2 px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-[#F4EFE6]/85 font-syne text-[12px] lg:text-[13px] font-medium hover:bg-none hover:bg-[#E8A325] hover:text-[#151F1E] hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(232,163,37,0.25)] transition-all duration-300 cursor-default"
-                  >
-                    <pill.Icon size={14} className="opacity-80" />
-                    {pill.name}
-                  </span>
+                  <li key={pill} className="chip">
+                    {pill}
+                  </li>
                 ))}
-              </div>
-            </m.div>
+              </ul>
+            </div>
           ))}
-        </div>
 
-        {/* Currently exploring bar */}
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="glass-dark flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-6 lg:p-8 rounded-2xl"
-        >
-          <div className="font-syne text-[11px] lg:text-[12px] font-bold tracking-[2.5px] uppercase text-[#E8A325] flex items-center gap-3">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8A325] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8A325]"></span>
-            </span>
-            Currently Exploring
+          <div className="bento bento-earth md:col-span-3 grid grid-cols-1 md:grid-cols-[minmax(0,460px)_1fr] min-h-[220px]">
+            <div className="p-7 sm:px-10 sm:py-8 flex flex-col justify-center relative z-[2]">
+              <p className="text-[14px] text-ink-strong/80">I constantly try to improve myself</p>
+              <h3 className="text-[24px] leading-[1.2] font-normal text-ink-strong mt-2">
+                Currently, I&apos;m learning {learning.join(' and ')}.
+              </h3>
+              <p className="text-[15px] leading-[1.5] text-ink-strong/50 mt-3">
+                Mostly by building: Archie is a system-design board, and Voice RAG is a retrieval pipeline.
+              </p>
+            </div>
+
+            <div className="relative min-h-[160px] overflow-hidden [container-type:size]" aria-hidden>
+              {rails.map((left) => (
+                <span
+                  key={left}
+                  className="absolute -top-1/4 -bottom-1/4 w-px rotate-[15deg]"
+                  style={{
+                    left: `${left}%`,
+                    backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.16) 50%, transparent 50%)',
+                    backgroundSize: '1px 10px',
+                  }}
+                />
+              ))}
+              {tiles.map(({ Icon, rail, t }, i) => (
+                <span
+                  key={i}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-white/[0.05] flex items-center justify-center"
+                  style={{
+                    top: `${t * 100}%`,
+                    // Follow the rail: it leans right going up, by tan(15deg) per unit of height.
+                    left: `calc(${rails[rail]}% - ${(t - 0.5) * TAN_15 * 100}cqh)`,
+                  }}
+                >
+                  <span className="w-[34px] h-[34px] rounded-[8px] bg-white text-[#2A2725] flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
+                    <Icon size={18} />
+                  </span>
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="flex gap-5 flex-wrap">
-            {learning.map((item) => (
-              <span
-                key={item.name}
-                className="inline-flex items-center gap-1.5 font-syne text-[12px] lg:text-[13px] font-medium text-[#F4EFE6]/60 hover:text-[#F4EFE6] transition-colors duration-300"
-              >
-                <item.Icon size={14} />
-                {item.name}
-              </span>
-            ))}
-          </div>
-        </m.div>
-      </div>
+        </div>
+      </Container>
     </section>
   );
 }
