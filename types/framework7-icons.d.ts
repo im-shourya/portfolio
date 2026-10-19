@@ -13,6 +13,7 @@ declare module 'framework7-icons/react' {
   export const Desktopcomputer: F7Icon;
   export const DocText: F7Icon;
   export const Envelope: F7Icon;
+  export const EnvelopeFill: F7Icon;
   export const Layers: F7Icon;
   export const LineHorizontal3: F7Icon;
   export const Location: F7Icon;
