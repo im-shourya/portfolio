@@ -94,7 +94,7 @@ The portfolio is composed of 11 distinct sections, each accessible via its own r
 | Certifications | `/certifications` | Credentials and recognition as certificate cards |
 | Leadership | `/leadership` | Hackathon wins, community roles, and organisational leadership |
 | Journey | `/journey` | Leadership, communities and education as a dated timeline |
-| Blog | `/blog` | Technical articles sourced from dev.to and Medium |
+| Blog | `/blog` | Featured post slab, a list of published posts and drafts pinned as sticky notes; posts live in `data/blogs.tsx` |
 | Contact | `/contact` | Contact card with email, Cal.com booking and CV, plus social link pills |
 
 ### Featured Projects
@@ -176,7 +176,7 @@ portfolio/
 │   ├── TechStack.tsx             # Logo ribbons and tech-stack folders
 │   ├── Experience.tsx            # Journey timeline
 │   ├── Services.tsx              # Service areas list
-│   ├── BlogList.tsx              # Blog article cards
+│   ├── BlogList.tsx              # Blog index: featured slab, post list, draft notes
 │   ├── Contact.tsx               # Paper band, contact card and link pills
 │   ├── Certifications.tsx        # Certificate cards
 │   ├── Leadership.tsx            # Awards and community roles
