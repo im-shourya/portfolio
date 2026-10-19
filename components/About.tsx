@@ -8,12 +8,12 @@ const highlights = [
   { value: '1,800+', label: 'participants at TECHFORMERS 1.0', tilt: '-rotate-1', bg: 'bg-c-mint' },
 ];
 
-// Current roles as Crayon's torn colour tags.
+// Current roles as Crayon's torn paper tags.
 const roles = [
-  { label: 'GDG Associate Tech Lead', className: 'bg-c-yellow -rotate-1' },
-  { label: 'HackerRank Crew Lead', className: 'bg-c-green rotate-1' },
-  { label: 'Quantum Club, Head of Ops', className: 'bg-c-pink -rotate-[0.5deg]' },
-  { label: 'IEEE CS Member Technical', className: 'bg-c-cyan rotate-[1.5deg]' },
+  { label: 'GDG Associate Tech Lead', bg: 'bg-c-yellow', text: 'text-c-ink', tag: 'torn-a' },
+  { label: 'HackerRank Crew Lead', bg: 'bg-c-green', text: 'text-white', tag: 'torn-b' },
+  { label: 'Quantum Club, Head of Ops', bg: 'bg-c-pink', text: 'text-white', tag: 'torn-c' },
+  { label: 'IEEE CS Member Technical', bg: 'bg-c-blue', text: 'text-c-ink', tag: 'torn-a' },
 ];
 
 const links = [
@@ -66,7 +66,10 @@ export default function About() {
 
             <ul className="mt-8 flex flex-wrap gap-3" aria-label="Current roles">
               {roles.map((role) => (
-                <li key={role.label} className={`px-4 py-2 text-[15px] font-semibold text-c-ink ${role.className}`}>
+                <li
+                  key={role.label}
+                  className={`${role.tag} ${role.bg} ${role.text} inline-flex items-center whitespace-nowrap h-12 sm:h-14 px-5 sm:px-6 text-[16px] sm:text-[19px] font-semibold tracking-tight`}
+                >
                   {role.label}
                 </li>
               ))}
