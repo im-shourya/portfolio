@@ -18,6 +18,7 @@
     "next": "16.2.4",
     "react": "^19",
     "react-dom": "^19",
+    "simple-icons": "16.33.0",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
