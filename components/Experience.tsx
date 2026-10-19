@@ -1,6 +1,4 @@
-'use client';
-
-import { m } from 'framer-motion';
+import { Container } from './SectionHeader';
 
 type Role = { role: string; date: string; desc: string };
 type TimelineItem = { company: string; roles: Role[] };
@@ -27,7 +25,7 @@ const workItems: TimelineItem[] = [
       {
         role: 'Lead',
         date: 'Sep 2026 - Present',
-        desc: 'Co-organised DOMINION 2026, a two-day buildathon. Received a Letter of Recommendation from HackerRank.',
+        desc: 'Co-organised DOMINION 2026, a two-day buildathon.',
       },
       {
         role: 'Technical Team Member',
@@ -72,16 +70,6 @@ const workItems: TimelineItem[] = [
     ],
   },
   {
-    company: 'McKinsey.org',
-    roles: [
-      {
-        role: 'Web Developer',
-        date: 'Apr 2026 - Present',
-        desc: 'Contributing to web development initiatives alongside the Forward Program.',
-      },
-    ],
-  },
-  {
     company: 'SRM Insider Community',
     roles: [
       {
@@ -115,32 +103,12 @@ const educationItems: TimelineItem[] = [
     ],
   },
   {
-    company: 'McKinsey & Company',
-    roles: [
-      {
-        role: 'Forward Program',
-        date: 'Apr 2026 - Present',
-        desc: 'Globally selected for professional development on structured problem-solving, leadership, and business strategy.',
-      },
-    ],
-  },
-  {
     company: 'Hackathons',
     roles: [
       {
         role: 'Hackathon Regular',
         date: 'Ongoing',
         desc: 'Regular at hackathons including Hacker House Goa 2026 (Team 3PIXLE), FAST × NVIDIA and Foundathon 3.0.',
-      },
-    ],
-  },
-  {
-    company: 'IIT Hyderabad Collab',
-    roles: [
-      {
-        role: 'Enduro Software Training',
-        date: 'Aug - Sep 2025',
-        desc: '4-week full-stack program, qualified via Amplitude assessment. Certificate ID: EN251158.',
       },
     ],
   },
@@ -158,115 +126,63 @@ const educationItems: TimelineItem[] = [
 
 const isCurrent = (date: string) => date.includes('Present');
 
-function TimelineBlock({ items, label }: { items: TimelineItem[]; label: string }) {
+const groups = [
+  { label: 'Leadership', note: 'Running teams and events', items: workItems.slice(0, 3), tag: 'bg-c-yellow' },
+  { label: 'Communities & open source', note: 'Contributing and building', items: workItems.slice(3), tag: 'bg-c-cyan' },
+  { label: 'Education', note: 'Where the learning happens', items: educationItems, tag: 'bg-c-mint' },
+];
+
+function Group({ label, note, items, tag }: (typeof groups)[number]) {
   return (
-    <div className="relative">
-      <div className="font-syne font-bold text-[13px] text-[#F4EFE6] uppercase tracking-[2px] mb-10 flex items-center gap-4">
-        {label}
-        <span className="flex-1 h-px bg-gradient-to-r from-white/20 to-transparent" />
+    <div className="grid lg:grid-cols-[280px_1fr] gap-6 lg:gap-12 pt-10 first:pt-0">
+      <div className="lg:sticky lg:top-28 self-start">
+        <h3 className={`inline-block ${tag} text-c-ink px-3 py-1.5 text-[15px] font-semibold -rotate-1`}>{label}</h3>
+        <p className="font-hand text-[19px] text-ink-muted mt-3">{note}</p>
       </div>
-
-      <div className="relative">
-        {/* Timeline rail */}
-        <div className="absolute left-[5px] top-3 bottom-6 w-px bg-gradient-to-b from-[#E8A325]/60 via-white/15 to-transparent" />
-
-        {items.map((item, idx) => {
-          const active = item.roles.some((r) => isCurrent(r.date));
-          return (
-            <m.div
-              key={item.company}
-              initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true, margin: '-50px' }}
-              className="relative flex gap-6 sm:gap-8 mb-6 last:mb-0 group"
-            >
-              {/* Dot */}
-              <div className="relative pt-7 flex-shrink-0 z-10">
-                <span className="relative flex w-[11px] h-[11px]">
-                  {active && (
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-[#E8A325] opacity-60 animate-ping motion-reduce:animate-none" />
-                  )}
-                  <span
-                    className={`relative inline-flex w-[11px] h-[11px] rounded-full ring-4 ring-[#151F1E] ${
-                      active ? 'bg-[#E8A325]' : 'bg-white/40'
-                    }`}
-                  />
-                </span>
-              </div>
-
-              {/* Liquid glass card */}
-              <div className="glass-dark glass-sheen flex-1 rounded-[22px] p-6 lg:p-7 group-hover:-translate-y-1 transition-transform duration-500">
-                <div className="relative z-[2]">
-                  <div className="font-syne text-[11px] font-bold text-[#E8A325] tracking-[1.5px] uppercase mb-4">
-                    {item.company}
+      <ol className="border-t border-white/[0.09]">
+        {items.map((item) => (
+          <li key={item.company} className="grid sm:grid-cols-[160px_1fr] gap-x-8 gap-y-2 py-6 border-b border-white/[0.09]">
+            <p className="label-mono !text-[11px] !tracking-[0.14em] text-ink-muted pt-1.5">{item.roles[0].date}</p>
+            <div>
+              <p className="text-[13px] text-ink-muted">{item.company}</p>
+              <div className="mt-1 space-y-4">
+                {item.roles.map((role, i) => (
+                  <div key={role.role}>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <span className="text-[20px] sm:text-[22px] font-semibold tracking-tight text-ink-strong">{role.role}</span>
+                      {isCurrent(role.date) && (
+                        <span className="label-mono !text-[10px] !tracking-[0.12em] text-c-ink bg-c-green px-2 py-0.5 rounded-full">
+                          Now
+                        </span>
+                      )}
+                      {i > 0 && <span className="label-mono !text-[10px] text-ink-faint">{role.date}</span>}
+                    </div>
+                    <p className="text-[15px] leading-relaxed text-ink-muted mt-1 max-w-[62ch]">{role.desc}</p>
                   </div>
-
-                  <div className={item.roles.length > 1 ? 'relative pl-5 space-y-5' : ''}>
-                    {item.roles.length > 1 && (
-                      <div className="absolute left-[3px] top-2 bottom-2 w-px bg-white/15" />
-                    )}
-                    {item.roles.map((role) => (
-                      <div key={role.role} className="relative">
-                        {item.roles.length > 1 && (
-                          <span className="absolute -left-5 top-[9px] w-[7px] h-[7px] rounded-full bg-white/40" />
-                        )}
-                        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
-                          <div className="font-serif text-[1.35rem] leading-tight text-[#F4EFE6]">{role.role}</div>
-                          <div className="flex items-center gap-2">
-                            {isCurrent(role.date) && (
-                              <span className="font-syne text-[9px] font-bold tracking-[1.5px] uppercase text-[#151F1E] bg-[#E8A325] px-2.5 py-1 rounded-full">
-                                Current
-                              </span>
-                            )}
-                            <span className="font-syne text-[10px] font-bold tracking-[1.5px] text-white/45 uppercase">
-                              {role.date}
-                            </span>
-                          </div>
-                        </div>
-                        <p className="text-[14px] text-[#F4EFE6]/70 leading-relaxed font-light">{role.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
-            </m.div>
-          );
-        })}
-      </div>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
 
 export default function Experience() {
   return (
-    <section id="journey" className="py-24 lg:py-32 px-6 lg:px-16 bg-[#151F1E] relative overflow-hidden">
-      {/* Colour fields for the glass to refract */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#2D7A6E]/25 rounded-full blur-[140px] pointer-events-none -translate-y-1/3 translate-x-1/3" />
-      <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-[#E55B3C]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#E8A325]/12 rounded-full blur-[120px] pointer-events-none translate-y-1/3 -translate-x-1/4" />
-
-      <div className="max-w-[1400px] mx-auto relative z-10">
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-16 lg:mb-24"
-        >
-          <div className="font-syne text-[11px] font-bold tracking-[3px] uppercase text-[#E8A325] mb-4">
-            My Path
-          </div>
-          <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-[#F4EFE6] leading-none tracking-tight">
-            Work &amp; Education
-          </h2>
-        </m.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
-          <TimelineBlock items={workItems} label="Professional Experience" />
-          <TimelineBlock items={educationItems} label="Academic Journey" />
+    <section id="journey" className="py-16 sm:py-24 scroll-mt-20">
+      <Container>
+        <header className="mb-14">
+          <p className="font-hand text-[22px] text-ink">the story so far</p>
+          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Journey</h2>
+        </header>
+        <div className="space-y-6">
+          {groups.map((group) => (
+            <Group key={group.label} {...group} />
+          ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

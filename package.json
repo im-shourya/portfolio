@@ -13,10 +13,12 @@
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
+    "framework7-icons": "^5.0.5",
     "lucide-react": "^0.564.0",
     "next": "16.2.4",
     "react": "^19",
     "react-dom": "^19",
+    "simple-icons": "16.33.0",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
