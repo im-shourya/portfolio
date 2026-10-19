@@ -888,3 +888,37 @@ svg.lucide {
 @media (prefers-reduced-motion: reduce) {
   .tape-pill { transition: none; }
 }
+
+/* ───────── Paper sections ─────────
+   Cream bands between the dark ones. They redefine the text tokens, so the
+   usual text-ink-* classes turn to dark ink inside them. */
+:root {
+  --rule: rgba(236, 227, 209, 0.09);
+  --accent-text: var(--c-yellow);
+}
+.paper-section {
+  --ink-strong: #191510;
+  --ink: #3A3227;
+  --ink-muted: #6B6253;
+  --ink-faint: #8E8574;
+  --rule: rgba(25, 21, 16, 0.14);
+  --accent-text: var(--c-blue);
+  position: relative;
+  color: var(--ink);
+  background-color: var(--c-paper);
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(25, 21, 16, 0.06) 33px, rgba(25, 21, 16, 0.06) 34px);
+}
+.paper-section .tape { background: rgba(255, 255, 255, 0.6); }
+
+/* Torn paper edge, top and bottom */
+.edge-torn { clip-path: polygon(0.0% 4px, 2.08% 8px, 4.17% 9px, 6.25% 2px, 8.33% 5px, 10.42% 5px, 12.5% 4px, 14.58% 2px, 16.67% 11px, 18.75% 2px, 20.83% 5px, 22.92% 9px, 25.0% 9px, 27.08% 5px, 29.17% 11px, 31.25% 5px, 33.33% 9px, 35.42% 2px, 37.5% 5px, 39.58% 11px, 41.67% 2px, 43.75% 9px, 45.83% 2px, 47.92% 11px, 50.0% 2px, 52.08% 8px, 54.17% 14px, 56.25% 9px, 58.33% 8px, 60.42% 5px, 62.5% 14px, 64.58% 8px, 66.67% 5px, 68.75% 11px, 70.83% 4px, 72.92% 5px, 75.0% 5px, 77.08% 2px, 79.17% 11px, 81.25% 13px, 83.33% 9px, 85.42% 4px, 87.5% 13px, 89.58% 13px, 91.67% 4px, 93.75% 14px, 95.83% 11px, 97.92% 8px, 100.0% 11px, 100.0% calc(100% - 5px), 97.92% calc(100% - 14px), 95.83% calc(100% - 13px), 93.75% calc(100% - 4px), 91.67% calc(100% - 13px), 89.58% calc(100% - 14px), 87.5% calc(100% - 5px), 85.42% calc(100% - 5px), 83.33% calc(100% - 9px), 81.25% calc(100% - 8px), 79.17% calc(100% - 4px), 77.08% calc(100% - 8px), 75.0% calc(100% - 13px), 72.92% calc(100% - 9px), 70.83% calc(100% - 2px), 68.75% calc(100% - 5px), 66.67% calc(100% - 4px), 64.58% calc(100% - 4px), 62.5% calc(100% - 4px), 60.42% calc(100% - 13px), 58.33% calc(100% - 13px), 56.25% calc(100% - 5px), 54.17% calc(100% - 5px), 52.08% calc(100% - 14px), 50.0% calc(100% - 13px), 47.92% calc(100% - 5px), 45.83% calc(100% - 2px), 43.75% calc(100% - 14px), 41.67% calc(100% - 13px), 39.58% calc(100% - 14px), 37.5% calc(100% - 9px), 35.42% calc(100% - 4px), 33.33% calc(100% - 2px), 31.25% calc(100% - 13px), 29.17% calc(100% - 4px), 27.08% calc(100% - 8px), 25.0% calc(100% - 5px), 22.92% calc(100% - 13px), 20.83% calc(100% - 2px), 18.75% calc(100% - 11px), 16.67% calc(100% - 14px), 14.58% calc(100% - 8px), 12.5% calc(100% - 11px), 10.42% calc(100% - 9px), 8.33% calc(100% - 9px), 6.25% calc(100% - 13px), 4.17% calc(100% - 5px), 2.08% calc(100% - 8px), 0.0% calc(100% - 13px)); }
+
+/* Zigzag edge, top and bottom */
+.edge-zigzag {
+  --z: 14px;
+  --zigzag:
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / calc(2 * var(--z)) 51% repeat-x,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(2 * var(--z)) 51% repeat-x;
+  -webkit-mask: var(--zigzag);
+  mask: var(--zigzag);
+}

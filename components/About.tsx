@@ -3,8 +3,8 @@ import { GithubIcon, LinkedinIcon, WriteIcon, ArrowUpRightIcon } from './icons';
 import { Container } from './SectionHeader';
 
 const highlights = [
-  { value: '7.87ms', label: 'P50 core-pipeline latency in Voice RAG, 25x under budget', tilt: '-rotate-2', bg: 'bg-c-paper' },
-  { value: '241', label: 'tests guarding that pipeline', tilt: 'rotate-1', bg: 'bg-c-tan' },
+  { value: '7.87ms', label: 'P50 core-pipeline latency in Voice RAG, 25x under budget', tilt: '-rotate-2', bg: 'bg-c-yellow' },
+  { value: '241', label: 'tests guarding that pipeline', tilt: 'rotate-1', bg: 'bg-c-pink-soft' },
   { value: '1,800+', label: 'participants at TECHFORMERS 1.0', tilt: '-rotate-1', bg: 'bg-c-mint' },
 ];
 
@@ -25,7 +25,7 @@ const links = [
 // `as` is h1 on the section's own route, h2 on the home page.
 export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
-    <section id="about" className="py-16 sm:py-24 scroll-mt-20">
+    <section id="about" className="paper-section edge-torn my-8 py-20 sm:py-28 scroll-mt-20">
       <Container>
         <header className="text-center">
           <p className="font-hand text-[22px] text-ink">about me!</p>
@@ -34,7 +34,7 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
 
         <div className="mt-14 grid md:grid-cols-[minmax(0,340px)_1fr] gap-14 md:gap-20 items-center">
           {/* Polaroid */}
-          <figure className="relative mx-auto w-[260px] sm:w-[300px] -rotate-[4deg] bg-[#FDFDFB] p-3 pb-14 shadow-[0_24px_50px_rgba(0,0,0,0.45)]">
+          <figure className="relative mx-auto w-[260px] sm:w-[300px] -rotate-[4deg] bg-[#FDFDFB] p-3 pb-14 shadow-[0_22px_44px_rgba(25,21,16,0.28)]">
             <span className="tape -top-3 left-6 -rotate-[14deg] !bg-c-cyan/70" aria-hidden />
             <span className="tape -top-3 right-6 rotate-[12deg] !bg-c-yellow/70" aria-hidden />
             <Image
@@ -51,7 +51,7 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
           </figure>
 
           <div>
-            <p className="text-[13px] text-c-yellow">Full-stack developer &amp; community builder</p>
+            <p className="text-[13px] text-[color:var(--accent-text)]">Full-stack developer &amp; community builder</p>
             <div className="mt-4 space-y-5 text-[18px] sm:text-[20px] leading-[1.6] text-ink max-w-[58ch]">
               <p>
                 I&apos;m <span className="text-ink-strong">Shourya Parashar</span>, a Computer Science undergrad at <span className="text-ink-strong">SRMIST, Chennai</span> (2025 to
@@ -83,7 +83,7 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
                   href={href}
                   target="_blank"
                   rel="me noopener noreferrer"
-                  className="label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-c-yellow transition-colors"
+                  className="label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-[color:var(--accent-text)] transition-colors"
                 >
                   <Icon size={14} />
                   {label}
@@ -97,7 +97,7 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
         {/* Numbers on index cards */}
         <dl className="mt-20 grid sm:grid-cols-3 gap-6 sm:gap-8">
           {highlights.map((h) => (
-            <div key={h.value} className={`relative ${h.bg} ${h.tilt} text-c-ink px-6 pt-7 pb-6 shadow-[0_16px_34px_rgba(0,0,0,0.35)] flex flex-col`}>
+            <div key={h.value} className={`relative ${h.bg} ${h.tilt} text-c-ink px-6 pt-7 pb-6 shadow-[0_14px_30px_rgba(25,21,16,0.22)] flex flex-col`}>
               <span className="tape -top-2.5 left-1/2 -translate-x-1/2 -rotate-3" aria-hidden />
               <dt className="order-last text-[14px] leading-snug mt-2 opacity-80">{h.label}</dt>
               <dd className="font-display text-[72px]">{h.value}</dd>
