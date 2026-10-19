@@ -169,13 +169,14 @@ function Group({ label, note, items, tag }: (typeof groups)[number]) {
   );
 }
 
-export default function Experience() {
+// `as` is h1 on the section's own route, h2 on the home page.
+export default function Experience({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="journey" className="py-16 sm:py-24 scroll-mt-20">
       <Container>
         <header className="mb-14">
           <p className="font-hand text-[22px] text-ink">the story so far</p>
-          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Journey</h2>
+          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Journey</Heading>
         </header>
         <div className="space-y-6">
           {groups.map((group) => (

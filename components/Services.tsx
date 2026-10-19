@@ -46,7 +46,8 @@ const services = [
   },
 ];
 
-export default function Services() {
+// `as` is h1 on the section's own route, h2 on the home page.
+export default function Services({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="services" className="py-16 sm:py-24 scroll-mt-20">
       <Container>
@@ -54,9 +55,9 @@ export default function Services() {
           <span className="inline-block rounded-full bg-[#92D14F] text-c-ink px-4 py-1.5 text-[14px] font-semibold -rotate-3">
             what do I do?
           </span>
-          <h2 className="font-display mt-4 text-[clamp(4rem,12vw,8rem)] text-ink-strong">
+          <Heading className="font-display mt-4 text-[clamp(4rem,12vw,8rem)] text-ink-strong">
             What I build
-          </h2>
+          </Heading>
           <p className="mt-5 text-[16px] text-ink-muted max-w-[52ch] mx-auto">
             From the first sketch to production: interface, API, data and deployment, all built to be measured.
           </p>

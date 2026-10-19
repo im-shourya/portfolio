@@ -23,12 +23,12 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex-1 pt-16">
-        <Services />
-      </div>
+      <main className="flex-1 pt-16">
+        <Services as="h1" />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
