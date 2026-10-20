@@ -134,7 +134,7 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
 // `as` is h1 on the section's own route, h2 on the home page.
 export default function Projects({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
-    <section id="projects" className="pt-8 sm:pt-28 pb-8 sm:pb-12 scroll-mt-20">
+    <section id="projects" className="pt-20 sm:pt-28 pb-8 sm:pb-12 scroll-mt-20">
       <Container>
         <header className="text-center">
           <p className="font-hand text-[22px] text-ink">explore my work!</p>
