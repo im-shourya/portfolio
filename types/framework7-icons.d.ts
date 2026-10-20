@@ -36,4 +36,5 @@ declare module 'framework7-icons/react' {
   export const FlagFill: F7Icon;
   export const ChatBubble: F7Icon;
   export const ChatBubbleFill: F7Icon;
+  export const BookFill: F7Icon;
 }
