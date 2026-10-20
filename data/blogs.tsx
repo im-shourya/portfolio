@@ -374,7 +374,7 @@ Dense Retrieval          BM25+ Retrieval
 
         <h2>17. Tech Stack</h2>
         <p>
-          The project uses: Python, FastAPI, Pydantic, BM25+, Dense retrieval, RRF, MMR, Sarvam Saaras, ElevenLabs, Anthropic Claude, ai4bharat/MSMARCO-XI, Docker, pytest.
+          The project uses: Python, FastAPI, Pydantic, BM25+, Dense retrieval, RRF, MMR, Sarvam Saaras, ElevenLabs, Groq, ai4bharat/MSMARCO-XI, Docker, pytest.
         </p>
 
         <h2>18. What I Learned</h2>
