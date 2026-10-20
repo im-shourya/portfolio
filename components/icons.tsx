@@ -39,4 +39,15 @@ export const BrushIcon = make(F7.Paintbrush);
 export const WrenchIcon = make(F7.Wrench);
 export const RosetteIcon = make(F7.Rosette);
 export const StarIcon = make(F7.Star);
+
+// Bottom navigation: outline when idle, filled when active.
+export const BriefcaseFillIcon = make(F7.BriefcaseFill);
+export const PersonIcon = make(F7.Person);
+export const PersonFillIcon = make(F7.PersonFill);
+export const StackFillIcon = make(F7.LayersFill);
+export const FlagIcon = make(F7.Flag);
+export const FlagFillIcon = make(F7.FlagFill);
+export const ChatIcon = make(F7.ChatBubble);
+export const ChatFillIcon = make(F7.ChatBubbleFill);
+export const BookFillIcon = make(F7.BookFill);
 export const BookIcon = make(F7.Book);
