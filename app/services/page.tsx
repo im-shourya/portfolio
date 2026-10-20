@@ -10,12 +10,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/services',
   },
+  // Section pages replace the root openGraph, so restate the shared fields and image.
   openGraph: {
+    type: 'website',
+    siteName: 'Shourya Parashar',
+    locale: 'en_US',
+    images: ['/opengraph-image'],
     title: 'Services | Shourya Parashar',
     description: 'Professional web development services offered by Shourya Parashar, including frontend architecture, full-stack web applications, and technical consulting.',
     url: 'https://shouryaparashar.in/services',
   },
   twitter: {
+    card: 'summary_large_image',
+    images: ['/twitter-image'],
     title: 'Services | Shourya Parashar',
     description: 'Professional web development services offered by Shourya Parashar, including frontend architecture, full-stack web applications, and technical consulting.',
   }
