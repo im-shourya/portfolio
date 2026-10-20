@@ -15,8 +15,8 @@ export default function SectionHeader({
   return (
     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5 px-2">
       <div>
-        <Tag className="text-[28px] sm:text-[32px] leading-[1.15] font-normal text-ink-strong">{title}</Tag>
-        {note && <p className="text-[15px] text-ink-muted mt-1.5 max-w-[60ch]">{note}</p>}
+        <Tag className="font-display text-[52px] sm:text-[68px] text-ink-strong">{title}</Tag>
+        {note && <p className="text-[15px] text-ink-muted mt-3 max-w-[60ch]">{note}</p>}
       </div>
       {action}
     </div>

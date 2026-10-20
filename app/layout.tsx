@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Google_Sans } from 'next/font/google'
+import { Google_Sans, Handjet, DM_Mono, Just_Me_Again_Down_Here } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import MotionProvider from '@/components/MotionProvider'
 import './globals.css'
@@ -13,6 +13,28 @@ const googleSans = Google_Sans({
   // Next has no fallback metrics for Google Sans; skip the adjusted fallback and use a plain system stack.
   adjustFontFallback: false,
   fallback: ["system-ui", "sans-serif"],
+});
+
+// Crayon accents: pixel display for big titles, mono for labels, a handwritten face for notes.
+const handjet = Handjet({
+  subsets: ["latin"],
+  axes: ["ELGR", "ELSH"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-dm-mono",
+  display: "swap",
+});
+
+const handwriting = Just_Me_Again_Down_Here({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-hand",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -262,10 +284,10 @@ export default function RootLayout({
     <html 
       lang="en" 
       data-scroll-behavior="smooth"
-      className={`bg-background ${googleSans.variable}`}
+      className={`bg-background ${googleSans.variable} ${handjet.variable} ${dmMono.variable} ${handwriting.variable}`}
     >
       <head>
-        <meta name="theme-color" content="#07070B" />
+        <meta name="theme-color" content="#191510" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
@@ -280,7 +302,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased paper-lines">
+        <div className="grain" aria-hidden />
         <MotionProvider>
           {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}

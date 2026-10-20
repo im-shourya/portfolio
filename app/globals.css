@@ -5,51 +5,75 @@
 @custom-variant can-hover (@media (hover: hover) and (pointer: fine));
 
 :root {
-  /* Dark bento theme */
-  --background: #0B0B12;
-  --foreground: #EDEDF2;
-  --card: #0F0E17;
-  --card-foreground: #EDEDF2;
-  --popover: #0F0E17;
-  --popover-foreground: #EDEDF2;
-  --primary: #EDEDF2;
-  --primary-foreground: #07070B;
-  --secondary: #FFC94A;
-  --secondary-foreground: #07070B;
-  --muted: #1A1925;
-  --muted-foreground: #9C9BAD;
-  --accent: #FF6B1A;
+  /* Crayon-on-ink theme: warm black page, crayon accents (palette from Portfoliofy "Crayon") */
+  --background: #191510;
+  --foreground: #ECE3D1;
+  --card: #221D17;
+  --card-foreground: #ECE3D1;
+  --popover: #221D17;
+  --popover-foreground: #ECE3D1;
+  --primary: #FDFDFB;
+  --primary-foreground: #191510;
+  --secondary: #F7C948;
+  --secondary-foreground: #191510;
+  --muted: #2C261F;
+  --muted-foreground: #A39A88;
+  --accent: #FF6A35;
   --accent-foreground: #FFFFFF;
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-  --border: rgba(255, 255, 255, 0.07);
-  --input: #15141F;
-  --ring: #EDEDF2;
+  --border: rgba(236, 227, 209, 0.09);
+  --input: #2C261F;
+  --ring: #F7C948;
   --radius: 0.625rem;
-  --sidebar: #0F0E17;
-  --sidebar-foreground: #EDEDF2;
-  --sidebar-primary: #EDEDF2;
-  --sidebar-primary-foreground: #07070B;
-  --sidebar-accent: #FFC94A;
-  --sidebar-accent-foreground: #07070B;
-  --sidebar-border: rgba(255, 255, 255, 0.07);
-  --sidebar-ring: #EDEDF2;
+  --sidebar: #221D17;
+  --sidebar-foreground: #ECE3D1;
+  --sidebar-primary: #FDFDFB;
+  --sidebar-primary-foreground: #191510;
+  --sidebar-accent: #F7C948;
+  --sidebar-accent-foreground: #191510;
+  --sidebar-border: rgba(236, 227, 209, 0.09);
+  --sidebar-ring: #F7C948;
 
   /* Text ramp */
-  --ink-strong: #F4F4F7;
-  --ink: #C9C8D6;
-  --ink-muted: #8E8DA0;
-  --ink-faint: #5E5D70;
+  --ink-strong: #FDFDFB;
+  --ink: #D9D0BE;
+  --ink-muted: #A39A88;
+  --ink-faint: #6F6757;
 
   /* Card surface */
-  --surface: #131311;
-  --surface-line: rgba(255, 255, 255, 0.07);
+  --surface: #221D17;
+  --surface-line: rgba(236, 227, 209, 0.09);
+
+  /* Crayon box */
+  --c-ink: #191510;
+  --c-paper: #ECE3D1;
+  --c-blue: #2B57D6;
+  --c-pink: #FF4D8D;
+  --c-pink-soft: #FFC6DA;
+  --c-yellow: #F7C948;
+  --c-tan: #F3E2AD;
+  --c-orange: #FF6A35;
+  --c-green: #16B06A;
+  --c-mint: #A9DFC6;
+  --c-cyan: #B7C6EF;
 }
 
 @theme inline {
   --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', var(--font-google-sans), 'Google Sans', system-ui, sans-serif;
   --font-serif: var(--font-serif, 'DM Serif Display', serif);
-  --font-mono: 'Menlo', 'Monaco', monospace;
+  --font-mono: var(--font-dm-mono), 'Menlo', 'Monaco', monospace;
+  --color-c-ink: var(--c-ink);
+  --color-c-paper: var(--c-paper);
+  --color-c-blue: var(--c-blue);
+  --color-c-pink: var(--c-pink);
+  --color-c-pink-soft: var(--c-pink-soft);
+  --color-c-yellow: var(--c-yellow);
+  --color-c-tan: var(--c-tan);
+  --color-c-orange: var(--c-orange);
+  --color-c-green: var(--c-green);
+  --color-c-mint: var(--c-mint);
+  --color-c-cyan: var(--c-cyan);
   --color-ink-strong: var(--ink-strong);
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
@@ -90,7 +114,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   * {
@@ -100,7 +124,7 @@
 
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
+    overflow-x: clip;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', var(--font-google-sans), 'Google Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   }
@@ -119,8 +143,8 @@
 
   /* Selection styles */
   ::selection {
-    background: #FFC94A;
-    color: #07070B;
+    background: var(--c-yellow);
+    color: var(--c-ink);
   }
 
   /* Scrollbar styling */
@@ -432,16 +456,16 @@ svg.lucide {
 .bento-grid > .bento:nth-child(4n+3) { border-radius: 50px 30px 30px 50px; }
 .bento-grid > .bento:nth-child(4n+4) { border-radius: 30px 50px 50px 30px; }
 
-.bento-amber  { background: radial-gradient(70% 90% at 100% 30%, rgba(190, 165, 60, 0.45), transparent 70%), radial-gradient(70% 80% at 20% 110%, rgba(90, 100, 130, 0.45), transparent 70%), var(--surface); }
-.bento-teal   { background: radial-gradient(80% 90% at 100% 0%, rgba(50, 170, 150, 0.28), transparent 65%), radial-gradient(60% 70% at 0% 100%, rgba(60, 80, 120, 0.3), transparent 70%), var(--surface); }
-.bento-violet { background: radial-gradient(80% 90% at 0% 100%, rgba(120, 90, 230, 0.3), transparent 65%), radial-gradient(60% 70% at 100% 0%, rgba(70, 80, 130, 0.3), transparent 70%), var(--surface); }
-.bento-blue   { background: radial-gradient(80% 90% at 100% 100%, rgba(70, 110, 240, 0.3), transparent 65%), var(--surface); }
-.bento-rose   { background: radial-gradient(80% 90% at 100% 0%, rgba(230, 100, 80, 0.28), transparent 65%), var(--surface); }
+.bento-amber  { background: radial-gradient(70% 90% at 100% 30%, rgba(247, 201, 72, 0.3), transparent 70%), radial-gradient(70% 80% at 20% 110%, rgba(255, 106, 53, 0.22), transparent 70%), var(--surface); }
+.bento-teal   { background: radial-gradient(80% 90% at 100% 0%, rgba(22, 176, 106, 0.26), transparent 65%), radial-gradient(60% 70% at 0% 100%, rgba(169, 223, 198, 0.12), transparent 70%), var(--surface); }
+.bento-violet { background: radial-gradient(80% 90% at 0% 100%, rgba(43, 87, 214, 0.34), transparent 65%), radial-gradient(60% 70% at 100% 0%, rgba(183, 198, 239, 0.12), transparent 70%), var(--surface); }
+.bento-blue   { background: radial-gradient(80% 90% at 100% 100%, rgba(43, 87, 214, 0.34), transparent 65%), var(--surface); }
+.bento-rose   { background: radial-gradient(80% 90% at 100% 0%, rgba(255, 77, 141, 0.26), transparent 65%), var(--surface); }
 .bento-earth  { background: radial-gradient(70% 90% at 70% 0%, rgba(160, 100, 80, 0.4), transparent 70%), radial-gradient(50% 70% at 100% 20%, rgba(150, 160, 70, 0.3), transparent 70%), #2A2725; }
 
 /* Solid feature cards */
-.bento-sun   { background: linear-gradient(160deg, #FFE066 0%, #FFC94A 55%, #F5B12E 100%); }
-.bento-flame { background: linear-gradient(-48deg, #FFA51F 0%, #E93F0C 100%); }
+.bento-sun   { background: linear-gradient(160deg, #FADA76 0%, #F7C948 55%, #EDB52F 100%); }
+.bento-flame { background: linear-gradient(-48deg, #FF8A4D 0%, #FF6A35 45%, #FF4D8D 100%); }
 
 /* Small square icon buttons, as on the reference's hello card */
 .icon-tile {
@@ -476,8 +500,8 @@ svg.lucide {
   gap: 0.5rem;
   font-size: 13px;
   font-weight: 500;
-  color: #07070B;
-  background: #F4F4F7;
+  color: var(--c-ink);
+  background: var(--c-paper);
   padding: 0.7rem 1.1rem;
   border-radius: 999px;
   transition: background-color 0.2s ease, transform 0.2s ease;
@@ -501,6 +525,205 @@ svg.lucide {
 }
 
 :where(a, button):focus-visible {
-  outline: 2px solid #FFC94A;
+  outline: 2px solid var(--c-yellow);
   outline-offset: 3px;
+}
+
+@layer components {
+/* ───────── Crayon type ───────── */
+.font-display {
+  font-family: var(--font-display), 'Arial Black', sans-serif;
+  font-variation-settings: 'ELGR' 1, 'ELSH' 7;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.font-hand {
+  font-family: var(--font-hand), 'Bradley Hand', cursive;
+  font-weight: 400;
+}
+.label-mono {
+  font-family: var(--font-dm-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Faint ruled paper under everything, plus film grain on top of it */
+.paper-lines {
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(236, 227, 209, 0.035) 33px, rgba(236, 227, 209, 0.035) 34px);
+}
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hand-drawn box, as round the name in the Crayon hero */
+.doodle-box { border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; }
+
+/* Sticky note / masking tape */
+.note {
+  display: inline-block;
+  padding: 0.45rem 0.8rem;
+  color: var(--c-ink);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25), 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+.tape {
+  position: absolute;
+  width: 72px;
+  height: 20px;
+  background: rgba(236, 227, 209, 0.55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1.5px 1px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+/* Tag with clipped corner, as on the Crayon project slabs */
+.tag-cut {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.7rem 0.4rem 0.8rem;
+  clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+}
+
+/* Folder tab on top of a project slab */
+.slab-tab {
+  clip-path: polygon(28px 0, calc(100% - 28px) 0, 100% 100%, 0 100%);
+}
+.slab-tab-left {
+  clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 100%, 0 100%);
+}
+
+/* ───────── Bumaga folders ─────────
+   A back panel with a tab, items tucked behind a front flap. */
+.folder {
+  --folder: var(--c-blue);
+  position: relative;
+  display: block;
+  height: 250px;
+}
+.folder-back {
+  position: absolute;
+  inset: 34px 0 0 0;
+  border-radius: 0 16px 16px 16px;
+  background: color-mix(in srgb, var(--folder) 70%, black);
+}
+.folder-back::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 42%;
+  height: 16px;
+  border-radius: 12px 12px 0 0;
+  background: inherit;
+}
+.folder-front {
+  position: absolute;
+  inset: 78px 0 0 0;
+  z-index: 2;
+  border-radius: 16px;
+  background: var(--folder);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.folder-items {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  right: 14px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.folder-items > * {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.folder:hover .folder-items > *:nth-child(odd) { transform: translateY(-14px) rotate(-6deg); }
+.folder:hover .folder-items > *:nth-child(even) { transform: translateY(-20px) rotate(5deg); }
+
+/* Ribbon marquee, as the crossed brand tapes on bumaga */
+.ribbon {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ribbon-track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2.25rem;
+  padding-right: 2.25rem;
+  animation: ribbon 38s linear infinite;
+}
+.ribbon-reverse .ribbon-track { animation-direction: reverse; }
+@keyframes ribbon { to { transform: translateX(-100%); } }
+
+/* Scalloped top and bottom edge, as the bumaga dark bands */
+.scallop {
+  --s: 14px;
+  --scallop:
+    radial-gradient(circle var(--s) at 50% 0, #0000 98%, #000) 0 0 / calc(2 * var(--s)) 51% repeat-x,
+    radial-gradient(circle var(--s) at 50% 100%, #0000 98%, #000) 0 100% / calc(2 * var(--s)) 51% repeat-x;
+  -webkit-mask: var(--scallop);
+  mask: var(--scallop);
+}
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(25, 21, 16, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(25, 21, 16, 0.09) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Cursor name tags, as in the hero reference */
+.float-a { animation: floatA 7s ease-in-out infinite; }
+.float-b { animation: floatB 8s ease-in-out infinite; }
+@keyframes floatA { 50% { transform: translate(10px, -8px); } }
+@keyframes floatB { 50% { transform: translate(-12px, 6px); } }
+.wobble { animation: wobble 2.8s ease-in-out infinite; }
+@keyframes wobble { 0%, 100% { transform: rotate(6deg); } 50% { transform: rotate(-5deg); } }
+.spin-slow { animation: c-spin 9s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon-track, .float-a, .float-b, .wobble, .spin-slow { animation: none; }
+  .folder-items > * { transition: none; }
+}
+}
+@keyframes c-spin { to { transform: rotate(360deg); } }
+
+
+/* Sticky project stack (md and up); on phones the slabs simply flow. */
+@media (min-width: 768px) {
+  .slab {
+    position: sticky;
+    top: var(--stick);
+  }
+  .slab .slab-tab-pos {
+    left: var(--tab-x);
+    clip-path: polygon(28px 0, calc(100% - 28px) 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Ticket with side notches level with the tear line, --stub px above the bottom */
+.ticket {
+  --stub: 92px;
+  --notch: 14px;
+  --ticket:
+    radial-gradient(circle var(--notch) at 0 calc(100% - var(--stub)), #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% calc(100% - var(--stub)), #0000 98%, #000) right / 51% 100% no-repeat;
+  -webkit-mask: var(--ticket);
+  mask: var(--ticket);
+}
+.ticket-tear {
+  height: 0;
+  border-top: 2px dashed currentColor;
+  opacity: 0.35;
+  margin-inline: calc(var(--notch) + 6px);
 }
