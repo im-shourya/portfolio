@@ -607,11 +607,11 @@ svg.lucide {
   --folder: var(--c-blue);
   position: relative;
   display: block;
-  height: 250px;
+  height: 272px;
 }
 .folder-back {
   position: absolute;
-  inset: 34px 0 0 0;
+  inset: 56px 0 0 0;
   border-radius: 0 16px 16px 16px;
   background: color-mix(in srgb, var(--folder) 70%, black);
 }
@@ -627,7 +627,7 @@ svg.lucide {
 }
 .folder-front {
   position: absolute;
-  inset: 78px 0 0 0;
+  inset: 100px 0 0 0;
   z-index: 2;
   border-radius: 16px;
   background: var(--folder);
@@ -635,19 +635,49 @@ svg.lucide {
 }
 .folder-items {
   position: absolute;
-  top: 0;
+  top: 22px;
   left: 14px;
   right: 14px;
   z-index: 1;
   display: flex;
   justify-content: center;
-  gap: 8px;
 }
+/* Each file sits fully behind the front flap until the folder is hovered or
+   focused, then fans up out of it; --i staggers them, --r tilts them. */
 .folder-items > * {
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(96px);
+  transition: transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1) calc(var(--i, 0) * 45ms);
 }
-.folder:hover .folder-items > *:nth-child(odd) { transform: translateY(-14px) rotate(-6deg); }
-.folder:hover .folder-items > *:nth-child(even) { transform: translateY(-20px) rotate(5deg); }
+.folder:hover .folder-items > *,
+.folder:focus-within .folder-items > * {
+  transform: translateY(var(--lift, 0px)) rotate(var(--r, 0deg));
+}
+/* Touch screens can't hover, so show the files there. */
+@media (hover: none) {
+  .folder-items > * { transform: translateY(var(--lift, 0px)) rotate(var(--r, 0deg)); }
+}
+
+/* A paper file with a folded corner */
+.file {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 70px;
+  height: 86px;
+  margin-inline: -5px;
+  padding: 8px 5px 6px;
+  border-radius: 6px;
+  background: linear-gradient(225deg, #E4DCCB 0 12px, #FDFDFB 12px);
+  color: var(--c-ink);
+  font-size: 9.5px;
+  line-height: 1.15;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
 
 /* Ribbon marquee, as the crossed brand tapes on bumaga */
 .ribbon {
@@ -726,6 +756,118 @@ svg.lucide {
   border-top: 2px dashed currentColor;
   opacity: 0.35;
   margin-inline: calc(var(--notch) + 6px);
+}
+
+/* ───────── Article body ─────────
+   Descendant selectors so wrapped content (e.g. .table-wrapper) is styled too. */
+.prose-crayon {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.75;
+}
+.prose-crayon p { margin-bottom: 1.5rem; }
+.prose-crayon h2 {
+  margin: 4rem 0 1.5rem;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink-strong);
+}
+/* Highlighter stroke under each section heading */
+.prose-crayon h2::after {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 6px;
+  margin-top: 0.9rem;
+  border-radius: 999px;
+  background: var(--c-yellow);
+  transform: rotate(-1.5deg);
+}
+.prose-crayon h3 {
+  margin: 3rem 0 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+.prose-crayon ul,
+.prose-crayon ol { margin-bottom: 2rem; padding-left: 1.5rem; }
+.prose-crayon ul { list-style: none; }
+.prose-crayon ol { list-style: decimal; }
+.prose-crayon li { margin-bottom: 0.6rem; padding-left: 0.4rem; }
+.prose-crayon ul > li { position: relative; }
+.prose-crayon ul > li::before {
+  content: '';
+  position: absolute;
+  left: -1.1rem;
+  top: 0.7em;
+  width: 7px;
+  height: 7px;
+  background: var(--c-pink);
+  transform: rotate(45deg);
+}
+.prose-crayon ol > li::marker {
+  font-family: var(--font-dm-mono), monospace;
+  color: var(--c-yellow);
+}
+.prose-crayon strong { color: var(--ink-strong); font-weight: 600; }
+.prose-crayon em { color: var(--ink-strong); }
+.prose-crayon a {
+  color: var(--c-yellow);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  transition: color 0.2s ease;
+}
+.prose-crayon a:hover { color: var(--c-paper); }
+.prose-crayon :not(pre) > code {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.85em;
+  color: var(--c-ink);
+  background: var(--c-tan);
+  padding: 0.1em 0.4em;
+}
+.prose-crayon pre {
+  margin: 2rem 0;
+  padding: 2.9rem 1.5rem 1.5rem;
+  overflow-x: auto;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--c-paper);
+  /* Paper title bar with three window dots, drawn as backgrounds so overflow can't clip them */
+  background:
+    radial-gradient(circle 4.5px at 18px 13px, var(--c-orange) 98%, #0000),
+    radial-gradient(circle 4.5px at 33px 13px, var(--c-yellow) 98%, #0000),
+    radial-gradient(circle 4.5px at 48px 13px, var(--c-green) 98%, #0000),
+    linear-gradient(var(--c-paper) 0 26px, #0E0B08 26px);
+  background-attachment: local;
+  border: 1px solid rgba(236, 227, 209, 0.12);
+  box-shadow: 6px 8px 0 rgba(0, 0, 0, 0.45);
+}
+.prose-crayon table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.prose-crayon .table-wrapper { overflow-x: auto; margin: 2rem 0; }
+.prose-crayon .table-wrapper table { margin: 0; }
+.prose-crayon th {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: var(--c-mint);
+}
+.prose-crayon td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(236, 227, 209, 0.1);
 }
 
 /* ───────── Torn paper tags ─────────
