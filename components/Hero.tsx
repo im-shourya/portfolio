@@ -35,7 +35,7 @@ function Smiley() {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
+    <section id="home" className="hero-full relative pt-18 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
       {/* Soft glows behind the headline and the cards */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute left-1/2 top-[18%] -translate-x-1/2 w-[760px] h-[420px] rounded-full bg-c-orange/[0.10] blur-[120px]" />
@@ -77,12 +77,12 @@ export default function Hero() {
           </span>
         </div>
 
-        <p className="mt-14 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
+        <p className="mt-11 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
           Fast, tested software
           <br />
           that&apos;s <span className="font-hand font-normal text-c-yellow text-[1.25em] leading-none">honest.</span>
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3">
           <a href="mailto:parasharshourya07@gmail.com" className="btn-light">
             <MailIcon size={16} /> Email me
           </a>
@@ -102,6 +102,16 @@ export default function Hero() {
         </div>
 
       </Container>
+
+      {/* Phones: the hero fills the screen, so hint that there's more below */}
+      <a
+        href="#projects"
+        className="md:hidden absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-ink-muted"
+        aria-label="Scroll to projects"
+      >
+        <span className="font-hand text-[17px] leading-none">scroll</span>
+        <span className="block w-px h-8 bg-current animate-scroll-line" aria-hidden />
+      </a>
     </section>
   );
 }
