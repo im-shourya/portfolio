@@ -81,13 +81,12 @@ It is not a template. Every section, component, and interaction has been purpose
 
 ## Sections
 
-The portfolio is composed of 11 distinct sections, each accessible via its own route:
+The portfolio is composed of 10 distinct sections, each accessible via its own route:
 
 | Section | Route | Description |
 |---|---|---|
 | Hero | `/` | Name in a hand-drawn box with sticky notes, headline, links and résumé |
 | About | `/about` | Taped polaroid, background narrative, current roles and highlights on index cards |
-| Experience | `/experience` | Professional roles and work history |
 | Projects | `/projects` | Sticky, stacking project slabs with screenshots, metrics and links (see below) |
 | Skills | `/skills` | Logo ribbons and tech-stack folders by area whose tool files appear on hover, plus a "learning now" folder |
 | Services | `/services` | What I build, as a list of service areas |
@@ -156,12 +155,12 @@ portfolio/
 │   ├── page.tsx                  # Home page composition
 │   ├── globals.css               # Global styles and design tokens
 │   ├── robots.ts                 # Programmatic robots.txt
+│   ├── sitemap.ts                # Sitemap from routes and published posts
 │   ├── not-found.tsx             # Custom 404 page
 │   ├── about/                    # Route: /about
 │   ├── blog/                     # Route: /blog
 │   ├── certifications/           # Route: /certifications
 │   ├── contact/                  # Route: /contact
-│   ├── experience/               # Route: /experience
 │   ├── journey/                  # Route: /journey
 │   ├── leadership/               # Route: /leadership
 │   ├── projects/                 # Route: /projects
