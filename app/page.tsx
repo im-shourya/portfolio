@@ -7,7 +7,6 @@ import TechStack from '@/components/TechStack';
 import Projects from '@/components/Projects';
 import Certifications from '@/components/Certifications';
 import Experience from '@/components/Experience';
-import Leadership from '@/components/Leadership';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -29,7 +28,6 @@ export default function Home() {
         <About />
         <TechStack />
         <Experience />
-        <Leadership />
         <Certifications />
         <Services />
         <Freelance />
