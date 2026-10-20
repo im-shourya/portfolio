@@ -59,10 +59,10 @@ export default function Hero() {
             </h1>
           </div>
 
-          <span className="note hidden sm:inline-block absolute -left-24 -top-1 -rotate-[8deg] bg-c-mint label-mono !text-[10px] !tracking-[0.14em] rounded-full">
+          <span className="note hidden sm:inline-block absolute -left-24 -top-1 -rotate-[8deg] bg-c-mint label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
             Ships things
           </span>
-          <span className="note hidden sm:inline-block absolute -right-24 top-2 rotate-[7deg] bg-c-tan label-mono !text-[10px] !tracking-[0.14em] rounded-full">
+          <span className="note hidden sm:inline-block absolute -right-24 top-2 rotate-[7deg] bg-c-tan label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
             Sweats the tests
           </span>
           <span className="note absolute -left-6 sm:-left-16 -bottom-6 -rotate-[4deg] bg-c-yellow font-hand text-[17px]">
