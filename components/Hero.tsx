@@ -44,8 +44,8 @@ export default function Hero() {
               Fast, tested software that&apos;s honest.
             </h1>
             <p className="mt-6 text-[17px] sm:text-[20px] leading-[1.7] text-ink-strong/60 max-w-[46ch]">
-              CSE undergrad at SRMIST building full-stack apps in TypeScript and Python. My last build answers spoken
-              questions in 7.87ms, and declines when it doesn&apos;t know.
+              CSE undergrad at SRMIST building full-stack apps in TypeScript and Python. My last build&apos;s core
+              pipeline runs at a 7.87ms P50, and declines when it doesn&apos;t know.
             </p>
 
             <div className="mt-auto pt-8 flex flex-wrap items-center gap-3">
