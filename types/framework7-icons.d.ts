@@ -28,4 +28,12 @@ declare module 'framework7-icons/react' {
   export const Tray2: F7Icon;
   export const Wrench: F7Icon;
   export const Xmark: F7Icon;
+  export const BriefcaseFill: F7Icon;
+  export const Person: F7Icon;
+  export const PersonFill: F7Icon;
+  export const LayersFill: F7Icon;
+  export const Flag: F7Icon;
+  export const FlagFill: F7Icon;
+  export const ChatBubble: F7Icon;
+  export const ChatBubbleFill: F7Icon;
 }
