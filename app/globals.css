@@ -932,17 +932,3 @@ svg.lucide {
 @media (max-width: 767px) {
   body { padding-bottom: calc(4rem + env(safe-area-inset-bottom)); }
 }
-
-/* Phones: the hero fills the visible screen above the tab bar, content centred */
-@media (max-width: 767px) {
-  .hero-full {
-    min-height: calc(100vh - 4rem - env(safe-area-inset-bottom));
-    min-height: calc(100svh - 4rem - env(safe-area-inset-bottom));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .animate-scroll-line { animation: none; }
-}
