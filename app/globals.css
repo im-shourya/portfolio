@@ -943,3 +943,122 @@ svg.lucide {
     justify-content: center;
   }
 }
+
+/* ───────── Preloader ─────────
+   0–0.6s letters pop in, 0.9s a yellow band sweeps up, 1.2–1.65s the splash
+   lifts away. Plays on every full load, with a different mix of colour, reveal,
+   letter entrance and greeting each time; skipped for reduced motion. */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #191510;
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(236, 227, 209, 0.035) 33px, rgba(236, 227, 209, 0.035) 34px);
+  clip-path: inset(0 0 0 0);
+  animation: splash-out 0.45s cubic-bezier(0.7, 0, 0.2, 1) 1.2s forwards;
+}
+.splash-inner { position: relative; text-align: center; }
+.splash-note {
+  font-size: 22px;
+  color: var(--c-paper);
+  opacity: 0;
+  animation: splash-fade 0.3s ease-out 0.05s forwards;
+}
+.splash-name {
+  margin-top: 0.5rem;
+  font-size: clamp(4rem, 17vw, 9rem);
+  color: #FDFDFB;
+  white-space: nowrap;
+}
+.splash-name span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em) rotate(-8deg);
+  animation: splash-char 0.34s cubic-bezier(0.34, 1.56, 0.64, 1) calc(0.1s + var(--i) * 0.06s) forwards;
+}
+.splash-tape {
+  position: absolute;
+  height: 26px;
+  opacity: 0;
+  animation: splash-fade 0.25s ease-out 0.45s forwards;
+}
+.splash-tape-a { width: 110px; top: -6px; left: -40px; background: var(--c-yellow); transform: rotate(-12deg); }
+.splash-tape-b { width: 90px; bottom: -14px; right: -30px; background: var(--c-pink); transform: rotate(8deg); }
+.splash-wipe {
+  position: absolute;
+  inset: 0;
+  background: var(--c-yellow);
+  transform: translateY(100%);
+  animation: splash-wipe 0.3s cubic-bezier(0.7, 0, 0.2, 1) 0.9s forwards;
+}
+@keyframes splash-char { to { opacity: 1; transform: none; } }
+@keyframes splash-fade { to { opacity: 1; } }
+@keyframes splash-wipe { to { transform: translateY(0); } }
+/* Explicit start shape: clip-path can't interpolate from `none`, it would just jump. */
+@keyframes splash-out {
+  from { clip-path: inset(0 0 0 0); }
+  to { clip-path: inset(0 0 100% 0); visibility: hidden; }
+}
+/* Per-load variants, set on <html> by SPLASH_SCRIPT. Without them (no JS) the
+   defaults above play: yellow, bottom-up, pop-up letters, "my name is". */
+
+/* Greeting (data-sg) */
+.splash-note span { display: none; }
+html:not([data-sg]) .splash-note span[data-g="0"],
+html[data-sg="0"] .splash-note span[data-g="0"],
+html[data-sg="1"] .splash-note span[data-g="1"],
+html[data-sg="2"] .splash-note span[data-g="2"],
+html[data-sg="3"] .splash-note span[data-g="3"],
+html[data-sg="4"] .splash-note span[data-g="4"] { display: inline; }
+
+/* Sweep colour (data-sw); the tapes take the next two crayons */
+html[data-sw="1"] .splash-wipe { background: var(--c-pink); }
+html[data-sw="2"] .splash-wipe { background: var(--c-blue); }
+html[data-sw="3"] .splash-wipe { background: #92D14F; }
+html[data-sw="4"] .splash-wipe { background: var(--c-orange); }
+html[data-sw="5"] .splash-wipe { background: var(--c-mint); }
+html[data-sw="1"] .splash-tape-a { background: var(--c-blue); }
+html[data-sw="1"] .splash-tape-b { background: var(--c-yellow); }
+html[data-sw="2"] .splash-tape-a { background: #92D14F; }
+html[data-sw="2"] .splash-tape-b { background: var(--c-orange); }
+html[data-sw="3"] .splash-tape-a { background: var(--c-orange); }
+html[data-sw="3"] .splash-tape-b { background: var(--c-cyan); }
+html[data-sw="4"] .splash-tape-a { background: var(--c-mint); }
+html[data-sw="4"] .splash-tape-b { background: var(--c-blue); }
+html[data-sw="5"] .splash-tape-a { background: var(--c-pink); }
+html[data-sw="5"] .splash-tape-b { background: var(--c-yellow); }
+
+/* Reveal (data-sr): the sweep and the lift share a direction.
+   0 bottom-up (default) · 1 top-down · 2 left-to-right · 3 circle closing to centre */
+html[data-sr="1"] .splash-wipe { transform: translateY(-100%); }
+html[data-sr="1"] .splash { animation-name: splash-out-down; }
+html[data-sr="2"] .splash-wipe { transform: translateX(-100%); }
+html[data-sr="2"] .splash { animation-name: splash-out-right; }
+html[data-sr="3"] .splash-wipe { transform: none; clip-path: circle(0% at 50% 50%); animation-name: splash-wipe-iris; }
+html[data-sr="3"] .splash { clip-path: circle(150% at 50% 50%); animation-name: splash-out-iris; }
+@keyframes splash-out-down { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(100% 0 0 0); visibility: hidden; } }
+@keyframes splash-out-right { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); visibility: hidden; } }
+@keyframes splash-wipe-iris { to { clip-path: circle(150% at 50% 50%); } }
+@keyframes splash-out-iris { from { clip-path: circle(150% at 50% 50%); } to { clip-path: circle(0% at 50% 50%); visibility: hidden; } }
+
+/* Letter entrance (data-sl): 0 pop up (default) · 1 drop down · 2 zoom in · 3 slide in */
+html[data-sl="1"] .splash-name span { transform: translateY(-0.5em) rotate(8deg); }
+html[data-sl="2"] .splash-name span { transform: scale(0.2) rotate(-14deg); }
+html[data-sl="3"] .splash-name span { transform: translateX(-0.6em) skewX(-12deg); }
+
+/* Background (data-sb): 0 warm black (default) · 1 cream paper · 2 blue · 3 pink */
+html[data-sb="1"] .splash { background-color: var(--c-paper); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(25, 21, 16, 0.07) 33px, rgba(25, 21, 16, 0.07) 34px); }
+html[data-sb="1"] .splash-name { color: var(--c-ink); }
+html[data-sb="1"] .splash-note { color: #3A3227; }
+html[data-sb="2"] .splash { background-color: var(--c-blue); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(255, 255, 255, 0.07) 33px, rgba(255, 255, 255, 0.07) 34px); }
+html[data-sb="3"] .splash { background-color: var(--c-pink); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(25, 21, 16, 0.08) 33px, rgba(25, 21, 16, 0.08) 34px); }
+html[data-sb="3"] .splash-name { color: var(--c-ink); }
+html[data-sb="3"] .splash-note { color: var(--c-ink); }
+html[data-sb="2"] .splash-note { color: #FDFDFB; }
+
+@media (prefers-reduced-motion: reduce) {
+  .splash { display: none; }
+}
