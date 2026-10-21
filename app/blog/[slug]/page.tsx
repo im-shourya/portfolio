@@ -22,8 +22,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  // Google cuts titles at ~60 characters, so long ones drop the name suffix.
+  const title = post.title.length <= 41 ? `${post.title} | Shourya Parashar` : post.title;
+
   return {
-    title: `${post.title} | Shourya Parashar`,
+    title: { absolute: title },
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${post.slug}`,
@@ -32,15 +35,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: post.tags,
     openGraph: {
       type: 'article',
-      title: `${post.title} | Shourya Parashar`,
+      title,
+      siteName: 'Shourya Parashar',
       description: post.excerpt,
       url: `https://shouryaparashar.in/blog/${post.slug}`,
       authors: ['https://shouryaparashar.in'],
       tags: post.tags,
       ...(isoDate(post.date) ? { publishedTime: isoDate(post.date)! } : {}),
     },
+    // Replaces the root twitter block wholesale, so the card type is restated.
     twitter: {
-      title: `${post.title} | Shourya Parashar`,
+      card: 'summary_large_image',
+      title,
       description: post.excerpt,
     },
   };
