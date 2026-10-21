@@ -25,7 +25,7 @@ A performance-first, production-grade portfolio built with Next.js 16, React 19,
 
 <br />
 
-[Features](#features) · [Tech Stack](#tech-stack) · [Sections](#sections) · [Getting Started](#getting-started) · [Architecture](#architecture) · [Performance](#performance) · [Deployment](#deployment)
+[Features](#features) · [Tech Stack](#tech-stack) · [Sections](#sections) · [Getting Started](#getting-started) · [Architecture](#architecture) · [Performance](#performance) · [Workflow](#workflow) · [Deployment](#deployment)
 
 </div>
 
@@ -49,12 +49,15 @@ It is not a template. Every section, component, and interaction has been purpose
 - Tech stack as colour folders: every tool is a paper file hidden inside that fans out on hover or focus (always shown on touch screens), under crossed logo ribbons
 - Contact on a scalloped paper band with sticky notes, pixel stickers and tilted link pills
 - A ~1.6-second CSS splash on every full load that's different each time: a random mix of background (4), sweep colour (6), reveal direction (4), letter entrance (4) and greeting (5), over 1,700 combinations, never the same twice in a row; skipped for reduced motion
+- Both nav bars sit on their own GPU layers and skip `backdrop-filter` on phones, so they stay smooth in iOS Safari; the splash animates only `transform` and `opacity` for the same reason
 - Phones get a bottom tab bar with the same six links as the desktop nav (Projects, About, Stack, Journey, Blog, Contact) that highlights the current section or page and clears the iPhone home indicator; small text links have ~44px tap areas
-- iOS-style icons (Framework7 Icons) and brand logos from Simple Icons
+- iOS-style icons (Framework7 Icons) and brand logos from Simple Icons, drawn once as an SVG sprite (`TechLogoSprite`) and reused with `<use>`
+- A footer on every page that links to each section's own route
 
 **Performance**
 - Sub-second First Contentful Paint via AVIF/WebP image optimisation, `display: swap` fonts, and CSS-level optimisation
-- 1-year immutable `Cache-Control` on all static assets
+- The first project screenshot (the LCP image on `/projects`) loads eagerly with `fetchPriority="high"`; every other image stays lazy
+- 1-year immutable `Cache-Control` on static assets
 - Framer Motion `LazyMotion` with tree-shakeable feature bundles to minimise JS payload
 - Vercel Analytics injected only in production builds
 
@@ -62,8 +65,11 @@ It is not a template. Every section, component, and interaction has been purpose
 - One `Person` entity (`lib/seo.ts`) shared site-wide: name, photo, affiliation, memberships, live projects and `sameAs` links to GitHub, LinkedIn, dev.to and other profiles
 - `ProfilePage` on the home page, `BlogPosting` and `BreadcrumbList` on each post, all pointing back to the same `Person`
 - Profile links marked `rel="me"`; the home page `h1` carries the full name
-- Generated 1200×630 Open Graph and Twitter cards (`app/opengraph-image.tsx`, plus one per post)
-- Canonical URLs, `robots.txt`, a sitemap generated from routes and published posts, and a web manifest
+- Share image for the site is the portrait alone (`public/shourya-portrait.webp`, served as JPEG via `sharp` so LinkedIn shows it); each post gets a generated 1200×630 card with the title and a round avatar (`lib/og.tsx`)
+- Section pages use the X `summary` card (no 2:1 crop of the portrait); posts use `summary_large_image`
+- Post titles drop the name suffix when it would pass 60 characters
+- Canonical URLs, `robots.txt`, a web manifest, and a sitemap generated from routes and published posts, with `lastmod` on posts and the photo listed on `/` and `/about`
+- Text on every crayon colour meets WCAG AA contrast (4.5:1)
 - Google Search Console verification tag, emitted when `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` is set
 - Semantic HTML5 throughout
 
@@ -80,8 +86,11 @@ It is not a template. Every section, component, and interaction has been purpose
 | Animations | Framer Motion 12 | Layout animations, scroll-triggered reveals, gesture handling |
 | Icons | Framework7 Icons | iOS-style glyphs, wrapped in `components/icons.tsx` |
 | Typography | SF Pro / Google Sans, Handjet, DM Mono, Just Me Again Down Here | Body text in SF on Apple devices and Google Sans elsewhere; display, label and handwritten faces via `next/font` |
+| Brand logos | Simple Icons | CC0 logo paths for the stack ribbons and folders |
+| Share images | `next/og` + sharp | Article cards rendered at build time; the portrait converted to JPEG |
 | Analytics | Vercel Analytics | Privacy-friendly, zero-config usage tracking |
-| Hosting | Vercel | Edge deployment with automatic CI/CD |
+| Hosting | Vercel | Deploys from `main`, preview deploys on pull requests |
+| CI | GitHub Actions | `npm ci` + `npm run build` on every PR; releases from `v*` tags |
 
 ---
 
@@ -104,12 +113,17 @@ The portfolio is composed of 10 distinct sections, each accessible via its own r
 
 ### Featured Projects
 
-| Project | Stack | Impact |
-|---|---|---|
-| **RecruitAI** | Next.js, Node.js, RESTful APIs, ML | AI-powered recruitment — 60–70% reduction in manual screening; ML-based resume matching across 100+ resumes |
-| **KanbanFlow** | React, TypeScript, Tailwind CSS, Vite | Zero-backend Kanban board with drag-and-drop and `localStorage` persistence |
-| **Task Management API** | Node.js, Express.js, MongoDB | Production REST API handling 50+ req/min with sub-200ms response latency |
-| **Personal Portfolio** | Next.js, TypeScript, Vercel | 95+ Lighthouse score, sub-second load times, automated deployment |
+| Project | Stack | What it does | Links |
+|---|---|---|---|
+| **Voice RAG** | Python, FastAPI, BM25+, TypeScript | Speech-to-text → hybrid retrieval → grounded answers over an English/Hindi corpus; 7.87 ms P50 core latency against a 200 ms budget, 241 tests | [Live](https://hhgoa-task2.onrender.com) · [Code](https://github.com/im-shourya/Voice-RAG) · [Case study](https://shouryaparashar.in/blog/building-a-voice-rag-system-under-a-200ms-latency-budget) |
+| **Archie** | TypeScript, Voice, Simulation | A system-design board you talk to, with a queueing simulator that shows where the system saturates | [Live](https://archie-rb2x.onrender.com) · [Code](https://github.com/im-shourya/Archie) |
+| **RECRUIT.AI** | Next.js, FastAPI, MongoDB, TypeScript | Recruitment pipeline for clubs and small teams: drives, applications, recorded interviews, bulk decisions | [Live](https://recruitai.shouryaparashar.in) · [Code](https://github.com/im-shourya/RECURIT.AI) |
+| **Club Events Platform** | Next.js, Express, Supabase, Resend | Magic-link auth, one-click registration, QR attendance, mass mailing and feedback analytics | [Live](https://events.shouryaparashar.in) · [Code](https://github.com/im-shourya/event-managment-system) |
+| **StratosAI** | Next.js, NestJS, FastAPI, XGBoost | AI readiness assessment: an adaptive interview feeds five ML models forecasting ROI, risk and budget | [Live](https://stratosai.shouryaparashar.in) · [Code](https://github.com/im-shourya/StratosAI) |
+| **KanbanFlow** | React, TypeScript, Tailwind, Vite | Zero-backend Kanban board with drag-and-drop, priority tags and `localStorage` persistence | [Live](https://kanbanflow.shouryaparashar.in) · [Code](https://github.com/im-shourya/KanbanFlow) · [Case study](https://shouryaparashar.in/blog/kanbanflow-zero-backend) |
+| **Task Management API** | Node.js, Express, MongoDB | REST CRUD API with validation and error handling, under 200 ms average latency | [Code](https://github.com/im-shourya/Task-Management-CRUD-API) |
+
+Project content lives in `components/projects-data.ts`.
 
 ---
 
@@ -157,7 +171,7 @@ portfolio/
 │   ├── robots.ts                 # Programmatic robots.txt
 │   ├── sitemap.ts                # Sitemap from routes and published posts
 │   ├── manifest.ts               # Web app manifest
-│   ├── opengraph-image.tsx       # Generated share card (also twitter-image.tsx)
+│   ├── opengraph-image.tsx       # Share image: the portrait as JPEG (also twitter-image.tsx)
 │   ├── not-found.tsx             # Custom 404 page
 │   ├── about/                    # Route: /about
 │   ├── blog/                     # Route: /blog
@@ -175,6 +189,7 @@ portfolio/
 │   ├── Projects.tsx              # Sticky stacking project slabs
 │   ├── projects-data.ts          # Project content and crayon colour map
 │   ├── TechStack.tsx             # Logo ribbons and tech-stack folders
+│   ├── TechLogo.tsx              # Brand logo and the SVG sprite it draws from
 │   ├── Experience.tsx            # Journey timeline
 │   ├── Services.tsx              # Service areas list
 │   ├── BlogList.tsx              # Blog index: featured slab, post list, draft notes
@@ -183,24 +198,25 @@ portfolio/
 │   ├── Leadership.tsx            # Awards and community roles
 │   ├── Freelance.tsx             # Freelance offers as tickets
 │   ├── Header.tsx                # Site navigation
-│   ├── Footer.tsx                # Site footer
+│   ├── Footer.tsx                # Site footer with links to every page
 │   ├── Preloader.tsx             # Splash and the script that picks its variant per load
 │   ├── SectionHeader.tsx         # Section heading and page-width container
 │   ├── icons.tsx                 # Icon set (Framework7 Icons wrappers)
-│   ├── CustomCursor.tsx          # Magnetic cursor (desktop only)
 │   ├── ScrollAnimation.tsx       # Scroll-triggered animation wrapper
+│   ├── Reveal.tsx                # Fade-up reveal on scroll
 │   ├── CalEmbed.tsx              # Cal.com scheduling widget
 │   ├── MotionProvider.tsx        # Framer Motion LazyMotion provider
 │   ├── theme-provider.tsx        # Theme context
 │   └── ui/                      # Primitive UI components
 │
 ├── hooks/                        # Custom React hooks
-├── lib/                          # Utilities, SEO structured data (seo.ts) and share-card renderer (og.tsx)
+├── lib/                          # Utilities, SEO structured data (seo.ts) and share images (og.tsx)
 ├── types/                        # TypeScript type definitions (incl. framework7-icons)
 ├── public/                       # Static assets (images, favicons, projects/ screenshots)
 ├── media/                        # Source media files
 │
 ├── next.config.mjs               # Next.js configuration
+├── .github/workflows/            # ci.yml (build on PRs) and release.yml (GitHub release on v* tags)
 ├── vercel.json                   # Vercel headers and caching rules
 ├── postcss.config.mjs            # PostCSS pipeline
 ├── tsconfig.json                 # TypeScript compiler options
@@ -212,23 +228,46 @@ portfolio/
 
 ## Performance
 
-The site is engineered for a **95+ Lighthouse score** across all categories. Key optimisation strategies:
+Lighthouse on the live site (October 2026):
+
+| | Performance | Accessibility | Best practices | SEO |
+|---|---|---|---|---|
+| Mobile | 77–96 (varies by run) | 100 | 100 | 100 |
+| Desktop | 99 | 100 | 100 | 100 |
+
+Mobile performance swings between runs: it's simulated from one real page load, and the observed paint time on that load ranges from about 0.5 s to 2.6 s. Run it a few times, and against the deployed site rather than `localhost`, where every script lands before the first paint and inflates the simulated LCP.
 
 | Technique | Implementation |
 |---|---|
 | Image Optimisation | AVIF with WebP fallback via Next.js `<Image>`, responsive `srcSet` across 6 breakpoints (640–1920px) |
+| LCP Image | `loading="eager"` and `fetchPriority="high"` on the first project screenshot only |
 | Font Loading | System SF Pro needs no download; Google Sans, Handjet, DM Mono and the handwritten face are self-hosted via `next/font` with `display: swap` |
+| HTML Size | Brand logos come from one SVG sprite, so their paths aren't repeated in the HTML and the RSC payload |
+| Compositor-only Motion | The splash and the nav bars animate only `transform`/`opacity`, which Safari keeps off the main thread |
 | Asset Caching | 1-year immutable `Cache-Control` headers on JS, CSS, images, and fonts via `vercel.json` |
 | CSS Reduction | `optimizeCss: true` in Next.js experimental config for smaller CSS payloads |
 | Animation Budget | Framer Motion `LazyMotion` with `domAnimation` feature bundle — only loads what is used |
 | Analytics | Vercel Analytics conditionally rendered via `process.env.NODE_ENV === 'production'` |
-| Priority Hints | `fetchPriority="high"` and `priority` on hero images to optimise LCP |
+
+---
+
+## Workflow
+
+- `main` is protected: every change goes through a pull request (admins included), and force-pushes and branch deletion are blocked.
+- Work on a `fix/…`, `feat/…`, `docs/…` or `ci/…` branch and open a PR against `main`.
+- **CI** (`.github/workflows/ci.yml`) runs `npm ci` and `npm run build` on every PR and push to `main`.
+- **Releases** (`.github/workflows/release.yml`): pushing a `v*` tag creates a GitHub release with notes from the commits since the previous tag.
+
+```bash
+git tag v1.1.0
+git push origin v1.1.0
+```
 
 ---
 
 ## Deployment
 
-The site is continuously deployed to [Vercel](https://vercel.com/) on every push to `main`.
+The site is deployed to [Vercel](https://vercel.com/) on every merge to `main`, and each pull request gets a preview deploy.
 
 ### One-Click Deploy
 
