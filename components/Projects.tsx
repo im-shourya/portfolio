@@ -57,7 +57,7 @@ function Tags({ project, dark }: { project: Project; dark: boolean }) {
   );
 }
 
-function Shot({ project, className = '' }: { project: Project; className?: string }) {
+function Shot({ project, eager = false, className = '' }: { project: Project; eager?: boolean; className?: string }) {
   if (!project.image) {
     return (
       <div className={`relative flex items-center justify-center bg-c-ink/10 ${className}`} aria-hidden>
@@ -76,6 +76,9 @@ function Shot({ project, className = '' }: { project: Project; className?: strin
           width={1200}
           height={750}
           sizes="(max-width: 768px) 90vw, 560px"
+          // The first slab's shot is the LCP image, so it skips lazy loading.
+          loading={eager ? 'eager' : undefined}
+          fetchPriority={eager ? 'high' : undefined}
           className="w-full h-full object-cover object-top"
         />
       </div>
@@ -125,7 +128,7 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
             <Tags project={project} dark={tone.onDark} />
           </div>
         </div>
-        <Shot project={project} className="aspect-[16/11] md:aspect-auto md:h-full mx-2 md:mx-0 mt-3 md:mt-2" />
+        <Shot project={project} eager={idx === 0} className="aspect-[16/11] md:aspect-auto md:h-full mx-2 md:mx-0 mt-3 md:mt-2" />
       </div>
     </article>
   );
