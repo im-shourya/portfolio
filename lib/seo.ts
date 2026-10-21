@@ -12,7 +12,7 @@ export const WEBSITE_ID = `${SITE}/#website`;
 
 export const NAME = 'Shourya Parashar';
 export const DESCRIPTION =
-  'Shourya Parashar is a full-stack developer and Computer Science undergraduate at SRMIST, Chennai, building with TypeScript, Python, React, Next.js, Node.js and FastAPI.';
+  'Shourya Parashar is a full-stack developer and CS undergraduate at SRMIST, Chennai, building with TypeScript, Python, React, Next.js, Node.js and FastAPI.';
 
 /** Profiles that are his; each also links back to this site where the platform allows. */
 export const PROFILES = {
