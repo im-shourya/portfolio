@@ -1,14 +1,10 @@
-import { ogCard, OG_SIZE } from '@/lib/og';
+import { portraitResponse, PORTRAIT_SIZE } from '@/lib/og';
 
+// Just the portrait (public/shourya-portrait.webp), served as JPEG.
 export const alt = 'Shourya Parashar, full-stack developer';
-export const size = OG_SIZE;
-export const contentType = 'image/png';
+export const size = PORTRAIT_SIZE;
+export const contentType = 'image/jpeg';
 
-export default async function Image() {
-  return ogCard({
-    eyebrow: 'Full-stack developer · SRMIST',
-    title: 'Shourya Parashar',
-    footer: 'TypeScript · Python · Next.js · FastAPI — shouryaparashar.in',
-    photo: 'large',
-  });
+export default function Image() {
+  return portraitResponse();
 }
