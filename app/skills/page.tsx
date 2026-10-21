@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: 'https://shouryaparashar.in/skills',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     images: ['/twitter-image'],
     title: 'Skills | Shourya Parashar',
     description: 'Technical skills and technologies used by Shourya Parashar, focusing on React, Next.js, Node.js, TypeScript, and modern web development tools.',
