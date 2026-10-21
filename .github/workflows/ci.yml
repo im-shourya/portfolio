@@ -11,21 +11,18 @@ permissions:
 
 jobs:
   build:
-    name: Build & Lint
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+          cache: npm
 
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
-      - run: pnpm build
+      # package-lock.json is the lockfile; npm ci fails if it is out of date with package.json.
+      - run: npm ci
+      # No lint step yet: the repo has no ESLint config or dependency.
+      - run: npm run build
 
