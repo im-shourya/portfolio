@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: '/blog',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     images: ['/twitter-image'],
     title: 'Blog | Shourya Parashar | Full Stack Developer',
     description: 'Articles about web development, React, Next.js, Node.js, TypeScript, system design, and software engineering. Written by Shourya Parashar.',
