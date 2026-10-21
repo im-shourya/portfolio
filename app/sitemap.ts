@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { posts } from '@/data/blogs';
+import { isoDate } from '@/lib/seo';
 
 const SITE = 'https://shouryaparashar.in';
 
@@ -18,18 +19,24 @@ const routes: { path: string; changeFrequency: 'weekly' | 'monthly'; priority: n
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Drafts have no page yet (they 404), so only published posts are listed.
+  const published = posts.filter((post) => post.date !== 'Coming Soon');
+  // lastmod only where a real date exists: the posts, and the blog index as of its newest post.
+  const newest = published.map((post) => isoDate(post.date)).filter((d): d is string => d !== null).sort().at(-1);
   const pages = routes.map(({ path, changeFrequency, priority }) => ({
     url: path === '/' ? SITE : `${SITE}${path}`,
+    ...(path === '/blog' && newest ? { lastModified: newest } : {}),
     changeFrequency,
     priority,
   }));
-  // Drafts have no page yet (they 404), so only published posts are listed.
-  const articles = posts
-    .filter((post) => post.date !== 'Coming Soon')
-    .map((post) => ({
+  const articles = published.map((post) => {
+    const date = isoDate(post.date);
+    return {
       url: `${SITE}/blog/${post.slug}`,
+      ...(date ? { lastModified: date } : {}),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-    }));
+    };
+  });
   return [...pages, ...articles];
 }
