@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: 'https://shouryaparashar.in/journey',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     images: ['/twitter-image'],
     title: 'Journey | Shourya Parashar',
     description: 'Explore the academic and professional journey of Shourya Parashar, detailing the evolution of his skills in web development.',
