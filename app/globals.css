@@ -957,7 +957,12 @@ svg.lucide {
   justify-content: center;
   background-color: #191510;
   background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(236, 227, 209, 0.035) 33px, rgba(236, 227, 209, 0.035) 34px);
-  clip-path: inset(0 0 0 0);
+  /* Own GPU layer: every splash animation is transform/opacity only, so it
+     stays smooth on iOS Safari while the page hydrates underneath. */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: strict;
   animation: splash-out 0.45s cubic-bezier(0.7, 0, 0.2, 1) 1.2s forwards;
 }
 .splash-inner { position: relative; text-align: center; }
@@ -992,15 +997,18 @@ svg.lucide {
   inset: 0;
   background: var(--c-yellow);
   transform: translateY(100%);
+  will-change: transform;
   animation: splash-wipe 0.3s cubic-bezier(0.7, 0, 0.2, 1) 0.9s forwards;
 }
 @keyframes splash-char { to { opacity: 1; transform: none; } }
 @keyframes splash-fade { to { opacity: 1; } }
 @keyframes splash-wipe { to { transform: translateY(0); } }
-/* Explicit start shape: clip-path can't interpolate from `none`, it would just jump. */
+/* The lift slides the whole splash off-screen. By then the sweep covers it
+   edge to edge, so it reads as the colour lifting away. (Animating clip-path
+   here repainted the full screen every frame and stuttered on iPhone.) */
 @keyframes splash-out {
-  from { clip-path: inset(0 0 0 0); }
-  to { clip-path: inset(0 0 100% 0); visibility: hidden; }
+  from { transform: translateZ(0); }
+  to { transform: translate3d(0, -100%, 0); visibility: hidden; }
 }
 /* Per-load variants, set on <html> by SPLASH_SCRIPT. Without them (no JS) the
    defaults above play: yellow, bottom-up, pop-up letters, "my name is". */
@@ -1037,12 +1045,29 @@ html[data-sr="1"] .splash-wipe { transform: translateY(-100%); }
 html[data-sr="1"] .splash { animation-name: splash-out-down; }
 html[data-sr="2"] .splash-wipe { transform: translateX(-100%); }
 html[data-sr="2"] .splash { animation-name: splash-out-right; }
-html[data-sr="3"] .splash-wipe { transform: none; clip-path: circle(0% at 50% 50%); animation-name: splash-wipe-iris; }
-html[data-sr="3"] .splash { clip-path: circle(150% at 50% 50%); animation-name: splash-out-iris; }
-@keyframes splash-out-down { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(100% 0 0 0); visibility: hidden; } }
-@keyframes splash-out-right { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); visibility: hidden; } }
-@keyframes splash-wipe-iris { to { clip-path: circle(150% at 50% 50%); } }
-@keyframes splash-out-iris { from { clip-path: circle(150% at 50% 50%); } to { clip-path: circle(0% at 50% 50%); visibility: hidden; } }
+/* Iris: the sweep is a circle (150vmax across, enough to cover the corners)
+   that scales open, then the splash drops its own background and the circle
+   scales shut, uncovering the page around it. */
+html[data-sr="3"] .splash-wipe {
+  inset: auto;
+  top: 50%;
+  left: 50%;
+  width: 150vmax;
+  height: 150vmax;
+  margin: -75vmax 0 0 -75vmax;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: splash-wipe-iris 0.3s cubic-bezier(0.7, 0, 0.2, 1) 0.9s forwards,
+    splash-iris-close 0.45s cubic-bezier(0.7, 0, 0.2, 1) 1.2s forwards;
+}
+html[data-sr="3"] .splash { animation-name: splash-out-iris; animation-timing-function: linear; }
+html[data-sr="3"] .splash-inner { animation: splash-hide 0s linear 1.2s forwards; }
+@keyframes splash-out-down { from { transform: translateZ(0); } to { transform: translate3d(0, 100%, 0); visibility: hidden; } }
+@keyframes splash-out-right { from { transform: translateZ(0); } to { transform: translate3d(100%, 0, 0); visibility: hidden; } }
+@keyframes splash-wipe-iris { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes splash-iris-close { from { transform: scale(1); } to { transform: scale(0); } }
+@keyframes splash-out-iris { 0%, 99% { background: transparent; } 100% { background: transparent; visibility: hidden; } }
+@keyframes splash-hide { to { visibility: hidden; } }
 
 /* Letter entrance (data-sl): 0 pop up (default) · 1 drop down · 2 zoom in · 3 slide in */
 html[data-sl="1"] .splash-name span { transform: translateY(-0.5em) rotate(8deg); }
