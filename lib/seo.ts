@@ -17,7 +17,7 @@ export const DESCRIPTION =
 /** Profiles that are his; each also links back to this site where the platform allows. */
 export const PROFILES = {
   github: 'https://github.com/im-shourya',
-  linkedin: 'https://www.linkedin.com/in/im-shourya/',
+  linkedin: 'https://www.linkedin.com/in/im-shourya',
   devto: 'https://dev.to/im-shourya',
   x: 'https://x.com/im_SParashar',
   instagram: 'https://www.instagram.com/imshourya.in',

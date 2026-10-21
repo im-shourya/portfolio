@@ -32,7 +32,7 @@ const tabIcons: Record<string, { Icon: typeof BookIcon; ActiveIcon: typeof BookI
 
 const socials = [
   { Icon: GithubIcon, label: 'GitHub', href: 'https://github.com/im-shourya', color: 'bg-c-yellow' },
-  { Icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/in/im-shourya', color: 'bg-c-pink' },
+  { Icon: LinkedinIcon, label: 'LinkedIn', href: 'https://www.linkedin.com/in/im-shourya', color: 'bg-c-pink' },
   { Icon: WriteIcon, label: 'dev.to', href: 'https://dev.to/im-shourya', color: 'bg-[#92D14F]' },
 ];
 
