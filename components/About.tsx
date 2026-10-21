@@ -11,9 +11,9 @@ const highlights = [
 // Current roles as Crayon's torn paper tags.
 const roles = [
   { label: 'GDG Associate Tech Lead', bg: 'bg-c-yellow', text: 'text-c-ink', tag: 'torn-a' },
-  { label: 'HackerRank Crew Lead', bg: 'bg-c-green', text: 'text-white', tag: 'torn-b' },
-  { label: 'Quantum Club, Head of Ops', bg: 'bg-c-pink', text: 'text-white', tag: 'torn-c' },
-  { label: 'IEEE CS Member Technical', bg: 'bg-c-blue', text: 'text-c-ink', tag: 'torn-a' },
+  { label: 'HackerRank Crew Lead', bg: 'bg-c-green', text: 'text-c-ink', tag: 'torn-b' },
+  { label: 'Quantum Club, Head of Ops', bg: 'bg-c-pink', text: 'text-c-ink', tag: 'torn-c' },
+  { label: 'IEEE CS Member Technical', bg: 'bg-c-blue', text: 'text-white', tag: 'torn-a' },
 ];
 
 const links = [
