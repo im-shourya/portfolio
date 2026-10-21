@@ -1,29 +1,26 @@
-'use client';
-
-import { m } from 'framer-motion';
-import { Trophy, GraduationCap, Award } from 'lucide-react';
-import Reveal from './Reveal';
+import { BookIcon, RosetteIcon, StarIcon } from './icons';
+import { Container } from './SectionHeader';
 
 const certs = [
   {
-    Icon: Trophy,
-    color: 'from-[#F2B746] to-[#E8A325]',
+    Icon: RosetteIcon,
+    paper: 'bg-c-yellow', tilt: '-rotate-2', badge: 'bg-c-blue text-white',
     org: 'McKinsey & Company',
     name: 'McKinsey Forward Program',
     date: 'Apr 2026 - Present',
     detail: 'Globally selected for structured problem-solving, leadership and business strategy.',
   },
   {
-    Icon: Award,
-    color: 'from-[#4EADA0] to-[#1B4A44]',
+    Icon: StarIcon,
+    paper: 'bg-c-mint', tilt: 'rotate-1 md:translate-y-8', badge: 'bg-c-pink text-c-ink',
     org: 'HackerRank',
     name: 'Letter of Recommendation',
     date: 'HackerRank Campus Crew SRMIST',
     detail: 'Recognised for co-organising DOMINION 2026, a two-day buildathon.',
   },
   {
-    Icon: GraduationCap,
-    color: 'from-[#F07457] to-[#E55B3C]',
+    Icon: BookIcon,
+    paper: 'bg-c-paper', tilt: '-rotate-1', badge: 'bg-c-orange text-c-ink',
     org: 'IIT Hyderabad (Collaboration)',
     name: 'Enduro Software Training Program',
     date: 'Aug - Sep 2025',
@@ -33,41 +30,32 @@ const certs = [
 
 export default function Certifications() {
   return (
-    <section id="certs" className="py-20 lg:py-28 px-6 lg:px-16 bg-[#EDE8DC] relative overflow-hidden">
-      <div className="orb w-[460px] h-[460px] bg-[#E8A325]/20 -top-32 right-10" />
-      <div className="orb w-[400px] h-[400px] bg-[#4EADA0]/20 -bottom-32 left-10 [animation-delay:-6s]" />
-
-      <div className="max-w-[1400px] mx-auto relative">
-        <Reveal className="mb-12">
-          <div className="section-label mb-3">Achievements</div>
-          <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-[#1B4A44] leading-none">Recognition</h2>
-        </Reveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {certs.map((cert, idx) => (
-            <m.div
-              key={cert.name}
-              initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              className="glass glass-sheen group rounded-[26px] p-7 hover:-translate-y-1.5 transition-transform duration-500"
-            >
-              <div className="relative z-[2]">
-                <div
-                  className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${cert.color} text-white flex items-center justify-center mb-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] group-hover:scale-110 transition-transform duration-500`}
-                >
-                  <cert.Icon size={21} />
+    <section id="certs" className="py-16 sm:py-24 scroll-mt-20">
+      <Container>
+        <header className="text-center">
+          <p className="font-hand text-[22px] text-ink">pinned to the wall</p>
+          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Recognition</h2>
+        </header>
+        <ul className="mt-16 grid md:grid-cols-3 gap-10 md:gap-8 md:pb-8">
+          {certs.map((cert) => (
+            <li key={cert.name} className={`relative ${cert.paper} ${cert.tilt} text-c-ink p-2.5 shadow-[0_20px_40px_rgba(0,0,0,0.4)]`}>
+              <span className="tape -top-3 left-1/2 -translate-x-1/2 rotate-2" aria-hidden />
+              {/* Certificate double rule */}
+              <div className="h-full border-2 border-c-ink/80 outline outline-1 outline-c-ink/30 outline-offset-[-7px] p-6 sm:p-7 flex flex-col">
+                <div className="flex items-start justify-between gap-4">
+                  <p className="label-mono !text-[10px] !tracking-[0.14em] opacity-75 pt-1">{cert.org}</p>
+                  <span className={`w-12 h-12 shrink-0 rounded-full flex items-center justify-center ${cert.badge} ring-4 ring-c-ink/10`}>
+                    <cert.Icon size={20} />
+                  </span>
                 </div>
-                <div className="font-syne text-[10px] font-bold tracking-[2px] uppercase text-[#4A6360] mb-1.5">{cert.org}</div>
-                <div className="font-serif text-[1.4rem] text-[#151F1E] leading-tight mb-1">{cert.name}</div>
-                <div className="text-[12px] text-[#4A6360] mb-3">{cert.date}</div>
-                <p className="text-[13px] text-[#4A6360] leading-relaxed font-light">{cert.detail}</p>
+                <h3 className="mt-6 text-[26px] leading-[1.1] font-semibold tracking-tight">{cert.name}</h3>
+                <p className="font-hand text-[19px] mt-2 opacity-80">{cert.date}</p>
+                <p className="text-[15px] leading-relaxed mt-4 opacity-85">{cert.detail}</p>
               </div>
-            </m.div>
+            </li>
           ))}
-        </div>
-      </div>
+        </ul>
+      </Container>
     </section>
   );
 }

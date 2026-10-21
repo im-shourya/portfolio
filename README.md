@@ -42,11 +42,12 @@ It is not a template. Every section, component, and interaction has been purpose
 ## Features
 
 **Design & Experience**
-- Bespoke editorial design with curated typography (DM Serif Display, Syne, DM Sans, Caveat)
-- Painterly SVG brush-stroke motifs rendered with `feTurbulence` displacement filters
-- Magnetic custom cursor with `mix-blend-mode` on desktop viewports
-- Dedicated mobile and desktop layouts per section — not just responsive breakpoints, but entirely distinct compositions
-- Horizontal swipe-scroll project cards on mobile with snap scrolling
+- Warm-black page with a crayon palette (blue, pink, yellow, orange, green, mint, cyan), ruled-paper lines and film grain
+- Handjet pixel display type for titles, DM Mono for labels, a handwritten face for notes; SF Pro / Google Sans for body text
+- Projects as full-width colour slabs that stick and stack on scroll, their folder tabs stepping right like a filing drawer
+- Tech stack as colour folders with logos tucked behind the flap, under crossed logo ribbons
+- Contact on a scalloped paper band with sticky notes, pixel stickers and tilted link pills
+- iOS-style icons (Framework7 Icons) and brand logos from Simple Icons
 
 **Performance**
 - Sub-second First Contentful Paint via AVIF/WebP image optimisation, `display: swap` fonts, and CSS-level optimisation
@@ -71,8 +72,8 @@ It is not a template. Every section, component, and interaction has been purpose
 | Language | TypeScript 5.7 | Type safety and developer experience |
 | Styling | Tailwind CSS v4 + tw-animate-css | Utility-first CSS with animation presets |
 | Animations | Framer Motion 12 | Layout animations, scroll-triggered reveals, gesture handling |
-| Icons | Lucide React | Consistent, tree-shakeable icon system |
-| Typography | Google Fonts | DM Serif Display · Syne · DM Sans · Caveat |
+| Icons | Framework7 Icons | iOS-style glyphs, wrapped in `components/icons.tsx` |
+| Typography | SF Pro / Google Sans, Handjet, DM Mono, Just Me Again Down Here | Body text in SF on Apple devices and Google Sans elsewhere; display, label and handwritten faces via `next/font` |
 | Analytics | Vercel Analytics | Privacy-friendly, zero-config usage tracking |
 | Hosting | Vercel | Edge deployment with automatic CI/CD |
 
@@ -84,17 +85,17 @@ The portfolio is composed of 11 distinct sections, each accessible via its own r
 
 | Section | Route | Description |
 |---|---|---|
-| Hero | `/` | Animated landing with portrait, brush-stroke SVGs, and key statistics |
-| About | `/about` | Background narrative and personal highlights |
+| Hero | `/` | Name in a hand-drawn box with sticky notes, headline, links and résumé |
+| About | `/about` | Taped polaroid, background narrative, current roles and highlights on index cards |
 | Experience | `/experience` | Professional roles and work history |
-| Projects | `/projects` | Showcase of production-ready applications (see below) |
-| Skills | `/skills` | Full tech-stack breakdown with "Currently Exploring" tracker |
-| Services | `/services` | Freelance and consulting offerings |
-| Certifications | `/certifications` | Verified credentials and professional badges |
+| Projects | `/projects` | Sticky, stacking project slabs with screenshots, metrics and links (see below) |
+| Skills | `/skills` | Logo ribbons and tech-stack folders by area, plus a "learning now" folder |
+| Services | `/services` | What I build, as a list of service areas |
+| Certifications | `/certifications` | Credentials and recognition as certificate cards |
 | Leadership | `/leadership` | Hackathon wins, community roles, and organisational leadership |
-| Journey | `/journey` | Education and milestone timeline |
+| Journey | `/journey` | Leadership, communities and education as a dated timeline |
 | Blog | `/blog` | Technical articles sourced from dev.to and Medium |
-| Contact | `/contact` | Contact form with integrated Cal.com scheduling |
+| Contact | `/contact` | Contact card with email, Cal.com booking and CV, plus social link pills |
 
 ### Featured Projects
 
@@ -168,19 +169,22 @@ portfolio/
 │   └── skills/                   # Route: /skills
 │
 ├── components/                   # React components
-│   ├── Hero.tsx                  # Landing section with portrait and brush strokes
-│   ├── About.tsx                 # About narrative
-│   ├── Projects.tsx              # Project cards with hover/tap overlays
-│   ├── TechStack.tsx             # Skills grid with category breakdown
-│   ├── Experience.tsx            # Work experience timeline
-│   ├── Services.tsx              # Freelance offerings
+│   ├── Hero.tsx                  # Name card, headline and links
+│   ├── About.tsx                 # Polaroid, narrative, roles and highlights
+│   ├── Projects.tsx              # Sticky stacking project slabs
+│   ├── projects-data.ts          # Project content and crayon colour map
+│   ├── TechStack.tsx             # Logo ribbons and tech-stack folders
+│   ├── Experience.tsx            # Journey timeline
+│   ├── Services.tsx              # Service areas list
 │   ├── BlogList.tsx              # Blog article cards
-│   ├── Contact.tsx               # Contact form
-│   ├── Certifications.tsx        # Certification display
+│   ├── Contact.tsx               # Paper band, contact card and link pills
+│   ├── Certifications.tsx        # Certificate cards
 │   ├── Leadership.tsx            # Awards and community roles
-│   ├── Freelance.tsx             # Freelance CTA section
+│   ├── Freelance.tsx             # Freelance offers as tickets
 │   ├── Header.tsx                # Site navigation
 │   ├── Footer.tsx                # Site footer
+│   ├── SectionHeader.tsx         # Section heading and page-width container
+│   ├── icons.tsx                 # Icon set (Framework7 Icons wrappers)
 │   ├── CustomCursor.tsx          # Magnetic cursor (desktop only)
 │   ├── ScrollAnimation.tsx       # Scroll-triggered animation wrapper
 │   ├── CalEmbed.tsx              # Cal.com scheduling widget
@@ -190,8 +194,8 @@ portfolio/
 │
 ├── hooks/                        # Custom React hooks
 ├── lib/                          # Utility functions
-├── types/                        # TypeScript type definitions
-├── public/                       # Static assets (images, icons, favicons)
+├── types/                        # TypeScript type definitions (incl. framework7-icons)
+├── public/                       # Static assets (images, favicons, projects/ screenshots)
 ├── media/                        # Source media files
 │
 ├── next.config.mjs               # Next.js configuration
@@ -211,7 +215,7 @@ The site is engineered for a **95+ Lighthouse score** across all categories. Key
 | Technique | Implementation |
 |---|---|
 | Image Optimisation | AVIF with WebP fallback via Next.js `<Image>`, responsive `srcSet` across 6 breakpoints (640–1920px) |
-| Font Loading | `display: swap` on all four Google Fonts families to eliminate Flash of Invisible Text |
+| Font Loading | System SF Pro needs no download; Google Sans, Handjet, DM Mono and the handwritten face are self-hosted via `next/font` with `display: swap` |
 | Asset Caching | 1-year immutable `Cache-Control` headers on JS, CSS, images, and fonts via `vercel.json` |
 | CSS Reduction | `optimizeCss: true` in Next.js experimental config for smaller CSS payloads |
 | Animation Budget | Framer Motion `LazyMotion` with `domAnimation` feature bundle — only loads what is used |

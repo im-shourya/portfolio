@@ -1,38 +1,46 @@
 import type { Metadata } from 'next'
-import { DM_Serif_Display, Syne, DM_Sans, Caveat } from 'next/font/google'
+import { Google_Sans, Handjet, DM_Mono, Just_Me_Again_Down_Here } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import MotionProvider from '@/components/MotionProvider'
 import './globals.css'
 
-const dmSerif = DM_Serif_Display({ 
-  subsets: ["latin"], 
-  weight: ["400"],
-  variable: "--font-serif",
-  display: "swap",
-});
-const syne = Syne({ 
-  subsets: ["latin"], 
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-syne",
-  display: "swap",
-});
-const dmSans = DM_Sans({ 
+// SF Pro is used where the OS ships it (Apple devices); Google Sans covers everything else.
+const googleSans = Google_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-google-sans",
+  display: "swap",
+  // Next has no fallback metrics for Google Sans; skip the adjusted fallback and use a plain system stack.
+  adjustFontFallback: false,
+  fallback: ["system-ui", "sans-serif"],
+});
+
+// Crayon accents: pixel display for big titles, mono for labels, a handwritten face for notes.
+const handjet = Handjet({
+  subsets: ["latin"],
+  axes: ["ELGR", "ELSH"],
+  variable: "--font-display",
   display: "swap",
 });
-const caveat = Caveat({
+
+const dmMono = DM_Mono({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-caveat",
+  weight: ["400", "500"],
+  variable: "--font-dm-mono",
+  display: "swap",
+});
+
+const handwriting = Just_Me_Again_Down_Here({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-hand",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shouryaparashar.in'),
   title: 'Shourya Parashar | Full Stack Developer',
-  description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript. Explore projects like RecruitAI and KanbanFlow.',
+  description: 'Shourya Parashar is a Full Stack Developer and CSE undergrad at SRMIST building with React, Next.js, Node.js, TypeScript and Python. Explore projects like Voice RAG, RECRUIT.AI and KanbanFlow.',
   keywords: [
     'Shourya Parashar', 'Full Stack Developer', 'Software Engineer', 
     'React Developer', 'Node.js Developer', 'Next.js', 'TypeScript', 'im-shourya', 
@@ -74,7 +82,7 @@ export const metadata: Metadata = {
     url: 'https://shouryaparashar.in/',
     siteName: 'Shourya Parashar',
     title: 'Shourya Parashar | Full Stack Developer',
-    description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.',
+    description: 'Shourya Parashar is a Full Stack Developer and CSE undergrad at SRMIST building with React, Next.js, Node.js, TypeScript and Python.',
     images: [
       {
         url: '/Shourya_Parashar.jpeg',
@@ -87,7 +95,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Shourya Parashar | Full Stack Developer',
-    description: 'Shourya Parashar is a Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.',
+    description: 'Shourya Parashar is a Full Stack Developer and CSE undergrad at SRMIST building with React, Next.js, Node.js, TypeScript and Python.',
     images: ['/Shourya_Parashar.jpeg'],
   },
   icons: {
@@ -118,7 +126,7 @@ const personJsonLd = {
     "representativeOfPage": true
   },
   "jobTitle": "Full Stack Developer",
-  "description": "Full Stack Developer, Founder, and Builder specializing in React, Node.js, Next.js, and TypeScript.",
+  "description": "Full Stack Developer and CSE undergrad at SRMIST building with React, Next.js, Node.js, TypeScript and Python.",
   "email": "parasharshourya07@gmail.com",
   "knowsAbout": [
     { "@type": "Thing", "name": "React", "sameAs": "https://en.wikipedia.org/wiki/React_(JavaScript_library)" },
@@ -235,7 +243,7 @@ const websiteJsonLd = {
   "@id": "https://shouryaparashar.in/#website",
   "url": "https://shouryaparashar.in/",
   "name": "Shourya Parashar",
-  "description": "Portfolio of Shourya Parashar, Full Stack Developer and Founder",
+  "description": "Portfolio of Shourya Parashar, Full Stack Developer",
   "inLanguage": "en",
   "publisher": { "@id": "https://shouryaparashar.in/#person" },
   "mainEntity": { "@id": "https://shouryaparashar.in/#person" }
@@ -276,10 +284,10 @@ export default function RootLayout({
     <html 
       lang="en" 
       data-scroll-behavior="smooth"
-      className={`bg-background ${dmSerif.variable} ${syne.variable} ${dmSans.variable} ${caveat.variable}`}
+      className={`bg-background ${googleSans.variable} ${handjet.variable} ${dmMono.variable} ${handwriting.variable}`}
     >
       <head>
-        <meta name="theme-color" content="#1B4A44" />
+        <meta name="theme-color" content="#191510" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
@@ -294,7 +302,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased paper-lines">
+        <div className="grain" aria-hidden />
         <MotionProvider>
           {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}
