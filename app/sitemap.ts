@@ -3,6 +3,8 @@ import { posts } from '@/data/blogs';
 import { isoDate } from '@/lib/seo';
 
 const SITE = 'https://shouryaparashar.in';
+// Same photo as the Person JSON-LD, listed so image search ties it to these pages.
+const PHOTO = `${SITE}/Shourya_Parashar.jpeg`;
 
 // Every route under app/, so new pages and published posts can't be left out.
 const routes: { path: string; changeFrequency: 'weekly' | 'monthly'; priority: number }[] = [
@@ -26,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = routes.map(({ path, changeFrequency, priority }) => ({
     url: path === '/' ? SITE : `${SITE}${path}`,
     ...(path === '/blog' && newest ? { lastModified: newest } : {}),
+    ...(path === '/' || path === '/about' ? { images: [PHOTO] } : {}),
     changeFrequency,
     priority,
   }));
