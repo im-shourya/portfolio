@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { GithubIcon, LinkedinIcon, MailIcon, WriteIcon } from './icons';
 
 const links = [
@@ -8,6 +9,20 @@ const links = [
 ];
 
 const footerColors = ['bg-c-yellow', 'bg-c-pink', 'bg-[#92D14F]', 'bg-c-cyan'];
+
+// Every section's own page. The header nav jumps to home-page anchors, so
+// without these the pages are reachable by crawlers only through the sitemap.
+const pages = [
+  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'About' },
+  { href: '/skills', label: 'Stack' },
+  { href: '/journey', label: 'Journey' },
+  { href: '/services', label: 'Services' },
+  { href: '/certifications', label: 'Certifications' },
+  { href: '/leadership', label: 'Leadership' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
 
 export default function Footer() {
   return (
@@ -36,7 +51,18 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <p className="mt-10 pt-6 border-t border-white/[0.07] text-[13px] text-ink-muted">
+        <nav aria-label="Pages" className="mt-10">
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            {pages.map((page) => (
+              <li key={page.href}>
+                <Link href={page.href} className="label-mono !text-[11px] !tracking-[0.16em] text-ink-muted hover:text-ink-strong transition-colors">
+                  {page.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <p className="mt-8 pt-6 border-t border-white/[0.07] text-[13px] text-ink-muted">
           &copy; {new Date().getFullYear()} Shourya Parashar
         </p>
       </div>
