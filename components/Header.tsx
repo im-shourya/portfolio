@@ -103,8 +103,12 @@ export default function Header() {
   return (
     <>
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'bg-[#191510]/85 backdrop-blur-md border-b border-white/[0.07]' : 'border-b border-transparent'
+      // Own GPU layer, and the blur only from md up: Safari re-blurs a fixed
+      // bar on every scroll frame, which made the phone bars stutter.
+      className={`fixed top-0 inset-x-0 z-50 transform-gpu transition-colors duration-300 ${
+        scrolled
+          ? 'bg-[#191510]/95 md:bg-[#191510]/85 md:backdrop-blur-md border-b border-white/[0.07]'
+          : 'border-b border-transparent'
       }`}
     >
       <div className="max-w-[1264px] mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-4">
@@ -119,7 +123,7 @@ export default function Header() {
             }
           }}
         >
-          <span className="font-display text-[34px] text-c-yellow leading-none -mt-1.5 spin-slow inline-block" aria-hidden>
+          <span className="font-display text-[34px] text-c-yellow leading-none -mt-1.5 spin-slow inline-block will-change-transform" aria-hidden>
             *
           </span>
           <span className="font-display text-[30px] sm:text-[34px] leading-none">Shourya</span>
@@ -180,7 +184,7 @@ export default function Header() {
     {/* Bottom tab bar on phones, clear of the home indicator */}
     <nav
       aria-label="Sections"
-      className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-[#191510]/95 backdrop-blur-md border-t border-white/[0.08] pb-[env(safe-area-inset-bottom)]"
+      className="md:hidden fixed bottom-0 inset-x-0 z-50 transform-gpu bg-[#191510]/[0.97] border-t border-white/[0.08] pb-[env(safe-area-inset-bottom)]"
     >
       <ul className="grid grid-cols-6 h-16">
         {navLinks.map((link) => {
