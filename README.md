@@ -117,8 +117,8 @@ The portfolio is composed of 10 distinct sections, each accessible via its own r
 
 ### Prerequisites
 
-- **Node.js** >= 18
-- **pnpm** (recommended) or npm
+- **Node.js** >= 20.9 (required by Next.js 16)
+- **npm** (the repo's lockfile is `package-lock.json`)
 
 ### Install and Run
 
@@ -128,10 +128,10 @@ git clone https://github.com/im-shourya/portfolio.git
 cd portfolio
 
 # Install dependencies
-pnpm install
+npm install
 
 # Start the development server
-pnpm dev
+npm run dev
 ```
 
 The site will be available at `http://localhost:3000`.
@@ -139,14 +139,8 @@ The site will be available at `http://localhost:3000`.
 ### Production Build
 
 ```bash
-pnpm build
-pnpm start
-```
-
-### Linting
-
-```bash
-pnpm lint
+npm run build
+npm start
 ```
 
 ---
