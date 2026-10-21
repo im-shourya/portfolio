@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: 'https://shouryaparashar.in/contact',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     images: ['/twitter-image'],
     title: 'Contact | Shourya Parashar',
     description: 'Get in touch with Shourya Parashar for collaboration, project inquiries, or freelance web development opportunities.',

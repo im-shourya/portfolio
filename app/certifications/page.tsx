@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: 'https://shouryaparashar.in/certifications',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     images: ['/twitter-image'],
     title: 'Certifications | Shourya Parashar',
     description: 'View the professional certifications and academic achievements of Shourya Parashar.',
