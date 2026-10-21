@@ -287,7 +287,7 @@ vercel
 | Platform | Link |
 |---|---|
 | Website | [shouryaparashar.in](https://shouryaparashar.in) |
-| LinkedIn | [linkedin.com/in/im-shourya](https://www.linkedin.com/in/im-shourya/) |
+| LinkedIn | [linkedin.com/in/im-shourya](https://www.linkedin.com/in/im-shourya) |
 | GitHub | [github.com/im-shourya](https://github.com/im-shourya) |
 | X (Twitter) | [@im_SParashar](https://x.com/im_SParashar/) |
 | Dev.to | [dev.to/im-shourya](https://dev.to/im-shourya) |

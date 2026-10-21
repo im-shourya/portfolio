@@ -22,7 +22,7 @@ function BrandMark({ icon }: { icon: SimpleIcon }) {
 const pills = [
   {
     label: 'LinkedIn',
-    href: 'https://linkedin.com/in/im-shourya',
+    href: 'https://www.linkedin.com/in/im-shourya',
     mark: <LinkedinIcon className="w-full h-full" />,
     bg: 'bg-c-blue',
     x: 35.8, y: 29.8, w: 33, r: 19,
