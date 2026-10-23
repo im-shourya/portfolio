@@ -49,32 +49,35 @@ const services = [
 // `as` is h1 on the section's own route, h2 on the home page.
 export default function Services({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
-    <section id="services" className="py-16 sm:py-24 scroll-mt-20">
+    <section id="services" className="defer-render py-16 sm:py-24 scroll-mt-20">
       <Container>
         <header className="relative text-center">
-          <span className="inline-block rounded-full bg-[#92D14F] text-c-ink px-4 py-1.5 text-[14px] font-semibold -rotate-3">
+          <span data-reveal="pop" className="inline-block rounded-full bg-[#92D14F] text-c-ink px-4 py-1.5 text-[14px] font-semibold -rotate-3">
             what do I do?
           </span>
-          <Heading className="font-display mt-4 text-[clamp(4rem,12vw,8rem)] text-ink-strong">
+          <Heading data-reveal="title" className="font-display mt-4 text-[clamp(4rem,12vw,8rem)] text-ink-strong">
             What I build
           </Heading>
-          <p className="mt-5 text-[16px] text-ink-muted max-w-[52ch] mx-auto">
+          <p data-reveal style={{ ['--d' as string]: 2 }} className="mt-5 text-[16px] text-ink-muted max-w-[52ch] mx-auto">
             From the first sketch to production: interface, API, data and deployment, all built to be measured.
           </p>
         </header>
 
         <ul className="mt-14 grid lg:grid-cols-2 gap-x-16 border-t border-white/[0.09]">
-          {services.map((service) => (
+          {services.map((service, i) => (
             <li
               key={service.title}
+              data-reveal
+              data-spotlight
+              style={{ ['--d' as string]: i % 2 }}
               className="group grid grid-cols-[52px_1fr] gap-x-5 py-7 border-b border-white/[0.09]"
             >
               <span
-                className={`w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-c-ink ${service.color} transition-transform duration-300 group-hover:-rotate-6`}
+                className={`w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-c-ink ${service.color} transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-rotate-12 group-hover:scale-110`}
               >
                 <service.Icon size={24} />
               </span>
-              <div>
+              <div className="transition-transform duration-500 ease-out group-hover:translate-x-1.5">
                 <h3 className="text-[24px] sm:text-[28px] leading-tight font-semibold tracking-tight uppercase text-ink-strong">
                   {service.title}
                 </h3>

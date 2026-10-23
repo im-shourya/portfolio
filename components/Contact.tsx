@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { siDevdotto, siGithub, type SimpleIcon } from 'simple-icons';
 import { MailFillIcon, LinkedinIcon, ArrowUpRightIcon, CalendarIcon, DocIcon } from './icons';
-import { useOpenCalPopup } from './CalEmbed';
+import { calIntentProps, useOpenCalPopup } from './CalEmbed';
 import { Container } from './SectionHeader';
 
 const EMAIL = 'parasharshourya07@gmail.com';
@@ -83,7 +83,7 @@ const stickerPaths: Record<(typeof stickers)[number]['shape'], React.ReactNode> 
 
 function SocialTapes() {
   return (
-    <div className="relative mx-auto mt-20 w-full max-w-[1000px] aspect-[1650/620] sm:aspect-[1650/470] [container-type:inline-size]">
+    <div data-reveal className="relative mx-auto mt-20 w-full max-w-[1000px] aspect-[1650/620] sm:aspect-[1650/470] [container-type:inline-size]">
       {stickers.map((s) => (
         <svg
           key={s.shape}
@@ -165,18 +165,18 @@ export default function Contact({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {
           <Sparkle className="hidden md:block absolute left-[22%] top-[38%] w-6 text-c-yellow" />
 
           <Container className="relative py-24 sm:py-32 text-center">
-            <p className="font-hand text-[22px] sm:text-[26px] leading-snug max-w-[34ch] mx-auto">
+            <p data-reveal className="font-hand text-[22px] sm:text-[26px] leading-snug max-w-[34ch] mx-auto">
               Got a project, a hard problem, or just want to say hi? I read every message.
             </p>
-            <Heading className="font-display mt-6 text-[clamp(4rem,13vw,9.5rem)]">
+            <Heading data-reveal="title" className="font-display mt-6 text-[clamp(4rem,13vw,9.5rem)]">
               Let&apos;s work
               <br />
               together?
             </Heading>
 
             {/* Crayon contact card, with a sticky-note bio pinned to its corner */}
-            <div className="relative mx-auto mt-16 max-w-[720px]">
-              <div className="note absolute z-[2] -left-2 sm:-left-16 -top-12 sm:-top-14 w-[230px] -rotate-[5deg] bg-c-cyan text-left p-4">
+            <div data-reveal style={{ ['--d' as string]: 2 }} className="relative mx-auto mt-16 max-w-[720px]">
+              <div data-reveal="pop" style={{ ['--d' as string]: 5 }} className="note absolute z-[2] -left-2 sm:-left-16 -top-12 sm:-top-14 w-[230px] -rotate-[5deg] bg-c-cyan text-left p-4">
                 <span className="tape -top-3 -left-4 -rotate-[30deg] !w-14 !bg-c-yellow/70" aria-hidden />
                 <span className="tape -top-3 -right-4 rotate-[30deg] !w-14 !bg-c-pink/60" aria-hidden />
                 <div className="flex items-center gap-2.5">
@@ -198,12 +198,13 @@ export default function Contact({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {
                 >
                   Contact
                 </a>
-                <a href={`mailto:${EMAIL}`} className="hit label-mono inline-flex items-center gap-2 mt-4 border-b-2 border-current pb-1 break-all">
+                <a href={`mailto:${EMAIL}`} className="hit nudge label-mono inline-flex items-center gap-2 mt-4 border-b-2 border-current pb-1 break-all">
                   Drop a line <ArrowUpRightIcon size={11} />
                 </a>
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
                   <button
                     type="button"
+                    {...calIntentProps}
                     onClick={() => openCalPopup()}
                     className="inline-flex items-center gap-2 rounded-full bg-c-ink text-c-paper px-5 py-3 text-[14px] hover:bg-c-blue transition-colors"
                   >

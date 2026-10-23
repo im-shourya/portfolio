@@ -1087,3 +1087,146 @@ html[data-sb="2"] .splash-note { color: #FDFDFB; }
 @media (prefers-reduced-motion: reduce) {
   .splash { display: none; }
 }
+
+/* ───────── Motion ─────────
+   Driven by components/Motion.tsx. Reveals use animations with backwards fill
+   (not transitions) so they never fight an element's own transform or
+   transition once they've played. Tailwind's tilt and nudge utilities set the
+   separate `rotate` and `translate` properties, so they compose with all of this. */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* The hero plays its entrance as the splash lifts; 0.05s after a client-side navigation. */
+  --hero-delay: 1.2s;
+}
+
+/* Scroll reveals: below-the-fold [data-reveal] waits hidden until it scrolls
+   in (.is-in). --d staggers siblings. Variants: rise (default), pop, title. */
+.motion-ready [data-reveal]:not(.is-seen, .is-in) { opacity: 0; }
+.motion-ready [data-reveal].is-in {
+  animation: reveal-rise 1s var(--ease-out) calc(var(--d, 0) * 90ms) backwards;
+}
+.motion-ready [data-reveal='pop'].is-in {
+  animation: reveal-pop 0.9s var(--ease-spring) calc(var(--d, 0) * 90ms) backwards;
+}
+.motion-ready [data-reveal='title'].is-in {
+  animation: reveal-title 1.1s var(--ease-out) calc(var(--d, 0) * 90ms) backwards;
+}
+@keyframes reveal-rise {
+  from { opacity: 0; transform: translate3d(0, 36px, 0); }
+}
+@keyframes reveal-pop {
+  from { opacity: 0; transform: translate3d(0, 24px, 0) scale(0.86) rotate(-5deg); }
+}
+/* Big display titles rise out of an invisible floor. */
+@keyframes reveal-title {
+  from { opacity: 0; transform: translate3d(0, 0.3em, 0); clip-path: inset(100% -10% -20% -10%); }
+  to { clip-path: inset(-20% -10% -20% -10%); }
+}
+
+/* Hero entrance, timed to the splash. The name and tagline are the LCP text,
+   so they only move; everything around them also fades. */
+.hero-solid { animation: hero-solid 1.1s var(--ease-out) var(--hero-delay) backwards; }
+.hero-in { animation: hero-in 0.9s var(--ease-out) calc(var(--hero-delay) + 0.15s + var(--d, 0) * 80ms) backwards; }
+.hero-pop { animation: hero-pop 0.8s var(--ease-spring) calc(var(--hero-delay) + 0.25s + var(--d, 0) * 90ms) backwards; }
+@keyframes hero-solid { from { transform: translate3d(0, 40px, 0) scale(0.97); } }
+@keyframes hero-in { from { opacity: 0; transform: translate3d(0, 24px, 0); } }
+@keyframes hero-pop { from { opacity: 0; transform: scale(0.3) rotate(-14deg); } }
+
+/* Scroll-linked: a reading-progress bar, and the hero easing back as you
+   scroll past it while its glows drift slower than the page. Browsers
+   without scroll timelines (Firefox, for now) just skip these. */
+.scroll-progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 70;
+    height: 3px;
+    pointer-events: none;
+    transform-origin: 0 50%;
+    background: linear-gradient(90deg, var(--c-yellow), var(--c-orange) 50%, var(--c-pink));
+    animation: scroll-progress linear both;
+    animation-timeline: scroll(root);
+  }
+  .hero-exit {
+    animation: hero-exit linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 90vh;
+  }
+  .hero-drift {
+    animation: hero-drift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 100vh;
+  }
+}
+@keyframes scroll-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes hero-exit { to { opacity: 0.2; transform: translate3d(0, -90px, 0) scale(0.94); } }
+@keyframes hero-drift { to { transform: translate3d(0, 160px, 0); } }
+
+/* ── Hover ── */
+
+/* Paper picked up off the desk: straightens, lifts, casts a longer shadow. */
+.lift {
+  transition: rotate 0.6s var(--ease-spring), transform 0.6s var(--ease-spring), box-shadow 0.6s var(--ease-out);
+}
+
+/* A torn tag gives a little wiggle. */
+.wiggle { transition: transform 0.45s var(--ease-spring); }
+
+/* Trailing arrows nudge toward where the link goes. */
+.nudge > svg:last-child { transition: transform 0.4s var(--ease-spring); }
+
+/* The shot inside a project slab slowly zooms. */
+.shot img { transition: transform 1.4s var(--ease-out); }
+
+/* Buttons that lean toward the cursor (offsets set by Motion.tsx), and press in. */
+[data-magnetic] {
+  translate: var(--mx, 0px) var(--my, 0px);
+  transition: translate 0.45s var(--ease-out), scale 0.2s var(--ease-out), background-color 0.2s ease;
+}
+[data-magnetic]:active { scale: 0.95; }
+
+/* A soft light that follows the cursor across a card; --spot sets its colour. */
+[data-spotlight] { position: relative; isolation: isolate; }
+[data-spotlight]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(320px circle at var(--sx, 50%) var(--sy, 50%), var(--spot, rgba(255, 255, 255, 0.07)), transparent 70%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 32px 60px rgba(0, 0, 0, 0.35);
+  }
+  /* Its own rule: the CSS minifier drops `rotate` sitting beside `transform`. */
+  :where(.lift):hover { rotate: none; }
+  .wiggle:hover { transform: rotate(-3deg) scale(1.06); }
+  .nudge:hover > svg:last-child,
+  .nudge:focus-visible > svg:last-child { transform: translate(3px, -3px); }
+  .slab:hover .shot img { transform: scale(1.05); }
+  [data-spotlight]:hover::before { opacity: 1; }
+}
+
+/* ── Lazy rendering ──
+   Sections far below the fold skip layout and paint until they near the
+   screen; `auto` remembers their real height once they've rendered. */
+.defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-solid, .hero-in, .hero-pop, .hero-exit, .hero-drift { animation: none; }
+  .lift, .wiggle, .nudge > svg:last-child, .shot img, [data-magnetic] { transition: none; }
+  .lift:hover, .wiggle:hover, .slab:hover .shot img { transform: none; }
+}

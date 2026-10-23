@@ -11,7 +11,7 @@ const TAB_STEP = 158;
 
 function ProjectLink({ href, children }: { href: string; children: React.ReactNode }) {
   const className =
-    'hit label-mono inline-flex items-center gap-2 border-b-2 border-current pb-1 hover:opacity-70 transition-opacity';
+    'hit nudge label-mono inline-flex items-center gap-2 border-b-2 border-current pb-1 hover:opacity-70 transition-opacity';
   const content = (
     <>
       {children}
@@ -66,7 +66,7 @@ function Shot({ project, eager = false, className = '' }: { project: Project; ea
     );
   }
   return (
-    <div className={`relative ${className}`}>
+    <div data-reveal="pop" style={{ ['--d' as string]: 2 }} className={`shot relative ${className}`}>
       <span className="tape -top-2 -left-5 -rotate-[8deg]" aria-hidden />
       <span className="tape -top-2 -right-5 rotate-[8deg]" aria-hidden />
       <div className="h-full border-[3px] border-white bg-white shadow-[0_18px_40px_rgba(0,0,0,0.28)] overflow-hidden">
@@ -102,7 +102,7 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
       <div
         className={`${tone.bg} ${tone.text} grid md:grid-cols-2 gap-8 md:gap-10 p-7 sm:p-10 lg:p-12 md:h-[min(560px,calc(100svh-170px))] md:overflow-hidden`}
       >
-        <div className="flex flex-col min-h-0">
+        <div data-reveal className="flex flex-col min-h-0">
           <p className="label-mono flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-current" aria-hidden />
             {project.label}
@@ -140,13 +140,13 @@ export default function Projects({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = 
     <section id="projects" className="pt-20 sm:pt-28 pb-8 sm:pb-12 scroll-mt-20">
       <Container>
         <header className="text-center">
-          <p className="font-hand text-[22px] text-ink">explore my work!</p>
-          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">
+          <p data-reveal className="font-hand text-[22px] text-ink">explore my work!</p>
+          <Heading data-reveal="title" className="font-display mt-3 text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">
             Selected
             <br />
             Work
           </Heading>
-          <p className="note mt-6 bg-c-tan -rotate-2 text-[14px] max-w-[30ch]">
+          <p data-reveal="pop" style={{ ['--d' as string]: 3 }} className="note mt-6 bg-c-tan -rotate-2 text-[14px] max-w-[30ch]">
             Things I&apos;ve shipped: measured, tested, and live.
           </p>
         </header>
@@ -162,7 +162,7 @@ export default function Projects({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = 
             href="https://github.com/im-shourya"
             target="_blank"
             rel="noopener noreferrer"
-            className="hit label-mono inline-flex items-center gap-2 text-ink-muted hover:text-ink-strong transition-colors"
+            className="hit nudge label-mono inline-flex items-center gap-2 text-ink-muted hover:text-ink-strong transition-colors"
           >
             More on GitHub <ArrowUpRightIcon size={11} />
           </a>

@@ -135,13 +135,13 @@ const groups = [
 function Group({ label, note, items, tag }: (typeof groups)[number]) {
   return (
     <div className="grid lg:grid-cols-[280px_1fr] gap-6 lg:gap-12 pt-10 first:pt-0">
-      <div className="lg:sticky lg:top-28 self-start">
+      <div data-reveal className="lg:sticky lg:top-28 self-start">
         <h3 className={`inline-block ${tag} text-c-ink px-3 py-1.5 text-[15px] font-semibold -rotate-1`}>{label}</h3>
         <p className="font-hand text-[19px] text-ink-muted mt-3">{note}</p>
       </div>
       <ol className="border-t border-[color:var(--rule)]">
         {items.map((item) => (
-          <li key={item.company} className="grid sm:grid-cols-[160px_1fr] gap-x-8 gap-y-2 py-6 border-b border-[color:var(--rule)]">
+          <li key={item.company} data-reveal className="grid sm:grid-cols-[160px_1fr] gap-x-8 gap-y-2 py-6 border-b border-[color:var(--rule)]">
             <p className="label-mono !text-[11px] !tracking-[0.14em] text-ink-muted pt-1.5">{item.roles[0].date}</p>
             <div>
               <p className="text-[13px] text-ink-muted">{item.company}</p>
@@ -172,11 +172,11 @@ function Group({ label, note, items, tag }: (typeof groups)[number]) {
 // `as` is h1 on the section's own route, h2 on the home page.
 export default function Experience({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
-    <section id="journey" className="paper-section edge-zigzag my-8 py-20 sm:py-28 scroll-mt-20">
+    <section id="journey" className="defer-render paper-section edge-zigzag my-8 py-20 sm:py-28 scroll-mt-20">
       <Container>
         <header className="mb-14">
-          <p className="font-hand text-[22px] text-ink">the story so far</p>
-          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Journey</Heading>
+          <p data-reveal className="font-hand text-[22px] text-ink">the story so far</p>
+          <Heading data-reveal="title" className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Journey</Heading>
         </header>
         <div className="space-y-6">
           {groups.map((group) => (
