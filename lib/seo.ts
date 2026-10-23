@@ -101,6 +101,8 @@ export const websiteJsonLd = {
   inLanguage: 'en',
   publisher: { '@id': PERSON_ID },
   author: { '@id': PERSON_ID },
+  copyrightHolder: { '@id': PERSON_ID },
+  copyrightYear: 2026,
 };
 
 /** ProfilePage: tells Google the home page is about one person. dateModified is the deploy time. */

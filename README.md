@@ -299,7 +299,9 @@ vercel
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+Copyright (c) 2026 Shourya Parashar.
+
+The **code** is open source under the [MIT License](LICENSE). The **content** (photos, résumé, blog posts and written copy) is not: all rights reserved. Third-party packages, fonts and icons keep their own licenses, listed in [NOTICE.md](NOTICE.md).
 
 ---
 
