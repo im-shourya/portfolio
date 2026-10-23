@@ -744,8 +744,9 @@ svg.lucide {
 /* Phones: the slabs stack too. Each sticks 8px lower than the last, so the
    earlier tabs pile up above it, and the card is sized to fit between the
    header and the tab bar. As the next slab slides over, Motion.tsx raises
-   --cover from 0 to 1, shrinking and dimming the one underneath. */
-@media (max-width: 767px) {
+   --cover from 0 to 1, shrinking and dimming the one underneath. Screens
+   under 700px tall can't fit a card, so there the slabs just flow. */
+@media (max-width: 767px) and (min-height: 700px) {
   .slab {
     position: sticky;
     top: calc(116px + var(--i, 0) * 8px);
@@ -761,8 +762,12 @@ svg.lucide {
     opacity: calc(var(--cover, 0) * 0.45);
   }
   .slab-card {
-    height: max(440px, calc(100svh - 116px - 64px - 4rem - env(safe-area-inset-bottom) - 12px));
+    height: calc(100svh - 116px - 64px - 4rem - env(safe-area-inset-bottom) - 12px);
   }
+}
+@media (max-width: 767px) and (max-height: 699px) {
+  /* The shot is the card's last child (shown first); give it its own height. */
+  .slab-card > :last-child { flex: none; aspect-ratio: 16 / 11; }
 }
 
 /* Ticket with side notches level with the tear line, --stub px above the bottom */

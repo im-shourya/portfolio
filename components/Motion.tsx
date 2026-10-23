@@ -76,7 +76,8 @@ export default function Motion() {
   useEffect(() => {
     const cards = [...document.querySelectorAll<HTMLElement>('[data-stack]')];
     if (cards.length < 2) return;
-    const phone = window.matchMedia('(max-width: 767px)');
+    // Matches the stack's media query in globals.css.
+    const phone = window.matchMedia('(max-width: 767px) and (min-height: 700px)');
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     let frame = 0;

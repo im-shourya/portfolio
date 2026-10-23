@@ -44,11 +44,16 @@ function Links({ project }: { project: Project }) {
 
 function Tags({ project, dark }: { project: Project; dark: boolean }) {
   return (
-    <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
+    // One row on phones that scrolls sideways if it's long, its right edge
+    // fading out to hint at more; wraps from md up.
+    <ul
+      className="flex md:flex-wrap gap-2 pr-8 md:pr-0 overflow-x-auto md:overflow-visible scrollbar-hide max-md:[mask-image:linear-gradient(to_right,#000_80%,transparent)]"
+      aria-label="Tech stack"
+    >
       {project.tags.map((tag) => (
         <li
           key={tag}
-          className={`tag-cut label-mono !text-[11px] sm:!text-[10px] !tracking-[0.12em] ${dark ? 'bg-white text-c-ink' : 'bg-c-ink text-white'}`}
+          className={`tag-cut shrink-0 label-mono !text-[10px] !tracking-[0.12em] ${dark ? 'bg-white text-c-ink' : 'bg-c-ink text-white'}`}
         >
           {tag}
         </li>
@@ -115,7 +120,7 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
           <h3 className="mt-3 md:mt-5 text-[34px] md:text-[60px] leading-[0.95] font-semibold tracking-[-0.03em]">
             {project.title}
           </h3>
-          <p className="mt-3 md:mt-5 text-[15px] md:text-[17px] leading-relaxed opacity-85 max-w-[46ch] line-clamp-3 md:line-clamp-none">{project.desc}</p>
+          <p className="mt-3 md:mt-5 text-[15px] md:text-[17px] leading-relaxed opacity-85 max-w-[46ch] max-md:line-clamp-3">{project.desc}</p>
 
           <dl className="mt-4 md:mt-7 grid grid-cols-3 gap-x-4 md:flex md:flex-wrap md:gap-x-8 gap-y-4">
             {project.metrics.map((metric) => (
@@ -129,7 +134,7 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
           <div className="mt-5 md:mt-8">
             <Links project={project} />
           </div>
-          <div className="hidden md:block mt-auto pt-8">
+          <div className="mt-4 md:mt-auto md:pt-8">
             <Tags project={project} dark={tone.onDark} />
           </div>
         </div>
