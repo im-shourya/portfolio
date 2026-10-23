@@ -25,11 +25,14 @@ const handjet = Handjet({
   display: "swap",
 });
 
+// Not preloaded: neither face is in the hero's LCP text, and preloading them
+// made them compete with it for bandwidth on slow phones.
 const dmMono = DM_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-dm-mono",
   display: "swap",
+  preload: false,
 });
 
 const handwriting = Just_Me_Again_Down_Here({
@@ -37,6 +40,7 @@ const handwriting = Just_Me_Again_Down_Here({
   weight: "400",
   variable: "--font-hand",
   display: "swap",
+  preload: false,
 });
 
 // viewport-fit=cover lets the phone tab bar pad itself clear of the home indicator.

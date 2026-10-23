@@ -81,7 +81,8 @@ function Shot({ project, eager = false, className = '' }: { project: Project; ea
           width={1200}
           height={750}
           sizes="(max-width: 768px) 90vw, 560px"
-          // The first slab's shot is the LCP image, so it skips lazy loading.
+          // Only on /projects is the first shot the LCP image; on the home page
+          // it sits below the hero and would compete with it for bandwidth.
           loading={eager ? 'eager' : undefined}
           fetchPriority={eager ? 'high' : undefined}
           className="w-full h-full object-cover object-top"
@@ -91,7 +92,7 @@ function Shot({ project, eager = false, className = '' }: { project: Project; ea
   );
 }
 
-function Slab({ project, idx }: { project: Project; idx: number }) {
+function Slab({ project, idx, leadsPage }: { project: Project; idx: number; leadsPage: boolean }) {
   const tone = crayon[project.color];
   return (
     <article
@@ -141,7 +142,7 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
         {/* On phones the shot leads the slab and takes whatever height the text leaves. */}
         <Shot
           project={project}
-          eager={idx === 0}
+          eager={leadsPage && idx === 0}
           className="order-first md:order-none flex-1 min-h-0 md:h-full mx-2 md:mx-0 mt-2"
         />
       </div>
@@ -168,7 +169,7 @@ export default function Projects({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = 
 
         <div className="mt-2">
           {projects.map((project, idx) => (
-            <Slab key={project.title} project={project} idx={idx} />
+            <Slab key={project.title} project={project} idx={idx} leadsPage={Heading === 'h1'} />
           ))}
         </div>
 
