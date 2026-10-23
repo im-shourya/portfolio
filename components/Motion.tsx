@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 const easeOutExpo = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
@@ -39,16 +39,10 @@ function countUp(el: HTMLElement) {
  */
 export default function Motion() {
   const pathname = usePathname();
-  const firstLoad = useRef(true);
 
   useEffect(() => {
     const root = document.documentElement;
     const targets = document.querySelectorAll<HTMLElement>('[data-reveal], [data-count]');
-
-    // The splash only plays on a full load, so after a client-side
-    // navigation the hero needn't wait for it.
-    if (!firstLoad.current) root.style.setProperty('--hero-delay', '0.05s');
-    firstLoad.current = false;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
 

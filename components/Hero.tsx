@@ -37,7 +37,7 @@ export default function Hero() {
   return (
     <section id="home" className="hero-full relative pt-18 sm:pt-36 pb-8 sm:pb-24 overflow-hidden">
       {/* Soft glows behind the headline and the cards */}
-      <div className="absolute inset-0 pointer-events-none hero-drift" aria-hidden>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute left-1/2 top-[18%] -translate-x-1/2 w-[760px] h-[420px] rounded-full bg-c-orange/[0.10] blur-[120px]" />
         <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[1000px] h-[300px] rounded-full bg-c-blue/[0.16] blur-[120px]" />
       </div>
@@ -45,66 +45,57 @@ export default function Hero() {
       <Cursor name="recruiter" color="var(--c-mint)" className="left-[9%] top-[30%] float-a" />
       <Cursor name="you" color="var(--c-pink)" className="right-[10%] top-[44%] float-b" />
 
-      <Container className="relative text-center hero-exit">
+      <Container className="relative text-center">
         {/* Name, Crayon style: hand note, doodled box, stickies around it */}
         <div className="relative mx-auto mt-4 w-fit">
-          <p className="hero-in font-hand text-[22px] text-ink leading-none">my name is</p>
-          <svg viewBox="0 0 80 8" className="hero-in w-16 mx-auto mt-0.5 text-ink-muted" aria-hidden>
+          <p className="font-hand text-[22px] text-ink leading-none">my name is</p>
+          <svg viewBox="0 0 80 8" className="w-16 mx-auto mt-0.5 text-ink-muted" aria-hidden>
             <path d="M2 3c20-2 50-2 76 0M10 6.5c18-1.5 40-1.5 60 0" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
-          <div className="hero-solid doodle-box border-2 border-c-orange mt-2 px-6 sm:px-10 pt-4 pb-3">
+          <div className="doodle-box border-2 border-c-orange mt-2 px-6 sm:px-10 pt-4 pb-3">
             {/* The page's h1 is the full name; the box shows the first name, the surname is for search and screen readers. */}
             <h1 className="font-display text-[clamp(4.5rem,15vw,9rem)] text-ink-strong">
               Shourya<span className="sr-only"> Parashar, full-stack developer</span>
             </h1>
           </div>
 
-          <span style={{ ['--d' as string]: 0 }} className="hero-pop note hidden sm:inline-block absolute -left-24 -top-1 -rotate-[8deg] bg-c-mint label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
+          <span className="note hidden sm:inline-block absolute -left-24 -top-1 -rotate-[8deg] bg-c-mint label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
             Ships things
           </span>
-          <span style={{ ['--d' as string]: 1 }} className="hero-pop note hidden sm:inline-block absolute -right-24 top-2 rotate-[7deg] bg-c-tan label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
+          <span className="note hidden sm:inline-block absolute -right-24 top-2 rotate-[7deg] bg-c-tan label-mono !text-[11px] sm:!text-[10px] !tracking-[0.14em] rounded-full">
             Sweats the tests
           </span>
-          <span style={{ ['--d' as string]: 2 }} className="hero-pop note absolute -left-6 sm:-left-16 -bottom-6 -rotate-[4deg] bg-c-yellow font-hand text-[17px]">
+          <span className="note absolute -left-6 sm:-left-16 -bottom-6 -rotate-[4deg] bg-c-yellow font-hand text-[17px]">
             Full-stack dev
           </span>
-          <span style={{ ['--d' as string]: 3 }} className="hero-pop note absolute -right-4 sm:-right-14 -bottom-7 rotate-[5deg] bg-c-mint font-hand text-[17px]">
+          <span className="note absolute -right-4 sm:-right-14 -bottom-7 rotate-[5deg] bg-c-mint font-hand text-[17px]">
             Chennai, IN
           </span>
 
-          <span style={{ ['--d' as string]: 4 }} className="hero-pop hidden md:block absolute -right-40 top-1/2 -translate-y-1/2">
+          <span className="hidden md:block absolute -right-40 top-1/2 -translate-y-1/2">
             <Smiley />
           </span>
         </div>
 
-        <p className="hero-solid mt-11 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
+        <p className="mt-11 sm:mt-16 text-[clamp(2.2rem,5vw,4rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-ink-strong">
           Fast, tested software
           <br />
           that&apos;s <span className="font-hand font-normal text-c-yellow text-[1.25em] leading-none">honest.</span>
         </p>
         <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3">
-          <a href="mailto:parasharshourya07@gmail.com" data-magnetic style={{ ['--d' as string]: 1 }} className="hero-in btn-light">
+          <a href="mailto:parasharshourya07@gmail.com" className="btn-light">
             <MailIcon size={16} /> Email me
           </a>
-          <a href="/Shourya.pdf" target="_blank" rel="noopener noreferrer" data-magnetic style={{ ['--d' as string]: 2 }} className="hero-in btn-ghost">
+          <a href="/Shourya.pdf" target="_blank" rel="noopener noreferrer" className="btn-ghost">
             <DocIcon size={16} /> Résumé
           </a>
-          <a href="#projects" data-magnetic style={{ ['--d' as string]: 3 }} className="hero-in btn-ghost">
+          <a href="#projects" className="btn-ghost">
             <ArrowDownIcon size={14} /> Projects
           </a>
         </div>
         <div className="mt-4 flex items-center justify-center gap-2">
-          {socials.map(({ Icon, label, href }, i) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="me noopener noreferrer"
-              aria-label={label}
-              data-magnetic
-              style={{ ['--d' as string]: 4 + i }}
-              className="hero-in icon-tile"
-            >
+          {socials.map(({ Icon, label, href }) => (
+            <a key={label} href={href} target="_blank" rel="me noopener noreferrer" aria-label={label} className="icon-tile">
               <Icon size={18} />
             </a>
           ))}
