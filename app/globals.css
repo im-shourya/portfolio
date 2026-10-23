@@ -729,7 +729,7 @@ svg.lucide {
 @keyframes c-spin { to { transform: rotate(360deg); } }
 
 
-/* Sticky project stack (md and up); on phones the slabs simply flow. */
+/* Sticky project stack. From md up the tabs step right; see the phone version below. */
 @media (min-width: 768px) {
   .slab {
     position: sticky;
@@ -738,6 +738,30 @@ svg.lucide {
   .slab .slab-tab-pos {
     left: var(--tab-x);
     clip-path: polygon(28px 0, calc(100% - 28px) 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Phones: the slabs stack too. Each sticks 8px lower than the last, so the
+   earlier tabs pile up above it, and the card is sized to fit between the
+   header and the tab bar. As the next slab slides over, Motion.tsx raises
+   --cover from 0 to 1, shrinking and dimming the one underneath. */
+@media (max-width: 767px) {
+  .slab {
+    position: sticky;
+    top: calc(116px + var(--i, 0) * 8px);
+    transform-origin: 50% 0;
+    scale: calc(1 - var(--cover, 0) * 0.06);
+  }
+  .slab::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: #000;
+    opacity: calc(var(--cover, 0) * 0.45);
+  }
+  .slab-card {
+    height: max(440px, calc(100svh - 116px - 64px - 4rem - env(safe-area-inset-bottom) - 12px));
   }
 }
 

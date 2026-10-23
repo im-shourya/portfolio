@@ -11,7 +11,7 @@ const TAB_STEP = 158;
 
 function ProjectLink({ href, children }: { href: string; children: React.ReactNode }) {
   const className =
-    'hit label-mono !tracking-[0.1em] sm:!tracking-[0.2em] inline-flex items-center gap-2 border-b-2 border-current pb-1 hover:opacity-70 transition-opacity';
+    'hit label-mono !tracking-[0.1em] md:!tracking-[0.2em] inline-flex items-center gap-2 border-b-2 border-current pb-1 hover:opacity-70 transition-opacity';
   const content = (
     <>
       {children}
@@ -34,7 +34,7 @@ function ProjectLink({ href, children }: { href: string; children: React.ReactNo
 
 function Links({ project }: { project: Project }) {
   return (
-    <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-5">
+    <div className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-5">
       {project.live && <ProjectLink href={project.live}>Visit site</ProjectLink>}
       {project.caseStudy && <ProjectLink href={project.caseStudy}>Case study</ProjectLink>}
       {project.github && <ProjectLink href={project.github}>Source</ProjectLink>}
@@ -91,8 +91,13 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
   return (
     <article
       id={projectId(project.title)}
+      data-stack
       className="slab relative mt-16 md:mt-24 scroll-mt-36"
-      style={{ ['--stick' as string]: `${STICK_TOP}px`, ['--tab-x' as string]: `${idx * TAB_STEP}px` }}
+      style={{
+        ['--stick' as string]: `${STICK_TOP}px`,
+        ['--tab-x' as string]: `${idx * TAB_STEP}px`,
+        ['--i' as string]: idx,
+      }}
     >
       <div
         className={`slab-tab-pos absolute bottom-[calc(100%-1px)] slab-tab-left ${tone.bg} ${tone.text} label-mono whitespace-nowrap pl-6 pr-10 md:px-9 h-11 flex items-center`}
@@ -100,39 +105,39 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
         ✦ Project {String(idx + 1).padStart(2, '0')}
       </div>
       <div
-        className={`${tone.bg} ${tone.text} grid md:grid-cols-2 gap-6 md:gap-10 p-5 sm:p-10 lg:p-12 md:h-[min(560px,calc(100svh-170px))] md:overflow-hidden`}
+        className={`slab-card ${tone.bg} ${tone.text} flex flex-col md:grid md:grid-cols-2 gap-5 md:gap-10 p-5 md:p-10 lg:p-12 overflow-hidden md:h-[min(560px,calc(100svh-170px))]`}
       >
-        <div className="flex flex-col min-h-0">
+        <div className="shrink-0 md:shrink flex flex-col min-h-0">
           <p className="label-mono flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-current" aria-hidden />
             {project.label}
           </p>
-          <h3 className="mt-4 md:mt-5 text-[44px] sm:text-[60px] leading-[0.95] font-semibold tracking-[-0.03em]">
+          <h3 className="mt-3 md:mt-5 text-[34px] md:text-[60px] leading-[0.95] font-semibold tracking-[-0.03em]">
             {project.title}
           </h3>
-          <p className="mt-4 md:mt-5 text-[16px] sm:text-[17px] leading-relaxed opacity-85 max-w-[46ch]">{project.desc}</p>
+          <p className="mt-3 md:mt-5 text-[15px] md:text-[17px] leading-relaxed opacity-85 max-w-[46ch] line-clamp-3 md:line-clamp-none">{project.desc}</p>
 
-          <dl className="mt-6 md:mt-7 grid grid-cols-3 gap-x-4 sm:flex sm:flex-wrap sm:gap-x-8 gap-y-4">
+          <dl className="mt-4 md:mt-7 grid grid-cols-3 gap-x-4 md:flex md:flex-wrap md:gap-x-8 gap-y-4">
             {project.metrics.map((metric) => (
               <div key={metric.label} className="flex flex-col">
-                <dt className="order-last label-mono !text-[11px] sm:!text-[10px] !tracking-[0.12em] opacity-90 mt-2">{metric.label}</dt>
-                <dd className="text-[24px] sm:text-[28px] font-semibold leading-none tracking-tight">{metric.value}</dd>
+                <dt className="order-last label-mono !text-[10px] !tracking-[0.12em] opacity-90 mt-1.5 md:mt-2">{metric.label}</dt>
+                <dd className="text-[22px] md:text-[28px] font-semibold leading-none tracking-tight">{metric.value}</dd>
               </div>
             ))}
           </dl>
 
-          <div className="mt-7 md:mt-8">
+          <div className="mt-5 md:mt-8">
             <Links project={project} />
           </div>
-          <div className="mt-auto pt-6 md:pt-8">
+          <div className="hidden md:block mt-auto pt-8">
             <Tags project={project} dark={tone.onDark} />
           </div>
         </div>
-        {/* On phones the shot leads the slab, so each project opens on its picture. */}
+        {/* On phones the shot leads the slab and takes whatever height the text leaves. */}
         <Shot
           project={project}
           eager={idx === 0}
-          className="order-first md:order-none aspect-[16/11] md:aspect-auto md:h-full mx-2 md:mx-0 mt-2"
+          className="order-first md:order-none flex-1 min-h-0 md:h-full mx-2 md:mx-0 mt-2"
         />
       </div>
     </article>

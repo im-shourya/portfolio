@@ -29,7 +29,8 @@ function countUp(el: HTMLElement) {
 
 /**
  * Drives the site's motion with no animation library: scroll reveals for
- * [data-reveal], count-ups for [data-count], and the pointer effects for
+ * [data-reveal], count-ups for [data-count], the phone project stack
+ * ([data-stack]), and the pointer effects for
  * [data-magnetic] buttons and [data-spotlight] cards. The animations
  * themselves are CSS (see "Motion" in globals.css).
  *
@@ -68,6 +69,42 @@ export default function Motion() {
       if (!el.classList.contains('is-seen')) observer.observe(el);
     }
     return () => observer.disconnect();
+  }, [pathname]);
+
+  // Phone project stack: as each [data-stack] card is slid over by the next,
+  // --cover runs 0 → 1 so the CSS can shrink and dim it.
+  useEffect(() => {
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-stack]')];
+    if (cards.length < 2) return;
+    const phone = window.matchMedia('(max-width: 767px)');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const live = phone.matches && !reduce.matches;
+      cards.forEach((card, i) => {
+        const next = cards[i + 1];
+        let cover = 0;
+        if (live && next) {
+          const gap = next.getBoundingClientRect().top - card.getBoundingClientRect().top;
+          cover = Math.min(Math.max(1 - gap / card.offsetHeight, 0), 1);
+        }
+        card.style.setProperty('--cover', cover.toFixed(3));
+      });
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
   }, [pathname]);
 
   useEffect(() => {
