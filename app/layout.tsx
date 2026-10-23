@@ -135,7 +135,6 @@ export default function RootLayout({
       <body className="font-sans antialiased paper-lines">
         <Preloader />
         <div className="grain" aria-hidden />
-        <div className="scroll-progress" aria-hidden />
         {children}
         <Motion />
         {process.env.NODE_ENV === 'production' && <Analytics />}

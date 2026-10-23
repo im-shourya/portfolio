@@ -1122,27 +1122,6 @@ html[data-sb="2"] .splash-note { color: #FDFDFB; }
   to { clip-path: inset(-20% -10% -20% -10%); }
 }
 
-/* Scroll-linked reading-progress bar. Browsers without scroll timelines
-   (Firefox, for now) just skip it. */
-.scroll-progress { display: none; }
-@supports (animation-timeline: scroll()) {
-  .scroll-progress {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 70;
-    height: 3px;
-    pointer-events: none;
-    transform-origin: 0 50%;
-    background: linear-gradient(90deg, var(--c-yellow), var(--c-orange) 50%, var(--c-pink));
-    animation: scroll-progress linear both;
-    animation-timeline: scroll(root);
-  }
-}
-@keyframes scroll-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-
 /* ── Hover ── */
 
 /* Paper picked up off the desk: straightens, lifts, casts a longer shadow. */
