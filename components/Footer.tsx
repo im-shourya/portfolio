@@ -27,7 +27,7 @@ export default function Footer() {
                 key={link.label}
                 href={link.href}
                 target={link.href.startsWith('mailto') ? undefined : '_blank'}
-                rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                rel={link.href.startsWith('mailto') ? undefined : 'me noopener noreferrer'}
                 aria-label={link.label}
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-c-ink shadow-[0_2px_0_rgba(0,0,0,0.35)] hover:-translate-y-0.5 transition-transform ${footerColors[i % footerColors.length]}`}
               >

@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { ArrowLeftIcon, CalendarIcon, ClockIcon } from '@/components/icons';
 import type { Metadata } from 'next';
+import { articleJsonLd, isoDate } from '@/lib/seo';
 
 export function generateStaticParams() {
   return posts.filter(p => p.date !== 'Coming Soon').map((post) => ({
@@ -27,10 +28,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
+    authors: [{ name: 'Shourya Parashar', url: 'https://shouryaparashar.in' }],
+    keywords: post.tags,
     openGraph: {
+      type: 'article',
       title: `${post.title} | Shourya Parashar`,
       description: post.excerpt,
       url: `https://shouryaparashar.in/blog/${post.slug}`,
+      authors: ['https://shouryaparashar.in'],
+      tags: post.tags,
+      ...(isoDate(post.date) ? { publishedTime: isoDate(post.date)! } : {}),
     },
     twitter: {
       title: `${post.title} | Shourya Parashar`,
@@ -48,10 +55,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   }
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }} />
       <Header />
       
-      <div className="flex-1 pt-28 sm:pt-36 pb-24">
+      <main className="flex-1 pt-28 sm:pt-36 pb-24">
         <article className="max-w-[820px] mx-auto px-4 sm:px-6 relative z-10">
           <Link
             href="/blog"
@@ -80,7 +88,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             <div className="mt-8 pt-5 border-t-2 border-dashed border-c-ink/25 flex flex-wrap items-center gap-x-6 gap-y-2 label-mono !text-[11px]">
               <span className="flex items-center gap-2">
                 <CalendarIcon size={13} />
-                {post.date}
+                <time dateTime={isoDate(post.date) ?? undefined}>{post.date}</time>
               </span>
               <span className="flex items-center gap-2">
                 <ClockIcon size={13} />
@@ -99,9 +107,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             </Link>
           </footer>
         </article>
-      </div>
+      </main>
 
       <Footer />
-    </main>
+    </div>
   );
 }
