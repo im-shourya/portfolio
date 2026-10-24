@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Google_Sans, Handjet, DM_Mono, Just_Me_Again_Down_Here } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import MotionProvider from '@/components/MotionProvider'
@@ -37,6 +37,14 @@ const handwriting = Just_Me_Again_Down_Here({
   variable: "--font-hand",
   display: "swap",
 });
+
+// viewport-fit=cover lets the phone tab bar pad itself clear of the home indicator.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#191510',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shouryaparashar.in'),
@@ -108,7 +116,6 @@ export default function RootLayout({
       className={`bg-background ${googleSans.variable} ${handjet.variable} ${dmMono.variable} ${handwriting.variable}`}
     >
       <head>
-        <meta name="theme-color" content="#191510" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
