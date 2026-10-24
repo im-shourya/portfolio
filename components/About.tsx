@@ -54,7 +54,7 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
             <p className="text-[13px] text-c-yellow">Full-stack developer &amp; community builder</p>
             <div className="mt-4 space-y-5 text-[18px] sm:text-[20px] leading-[1.6] text-ink max-w-[58ch]">
               <p>
-                I&apos;m a Computer Science undergrad at <span className="text-ink-strong">SRMIST, Chennai</span> (2025 to
+                I&apos;m <span className="text-ink-strong">Shourya Parashar</span>, a Computer Science undergrad at <span className="text-ink-strong">SRMIST, Chennai</span> (2025 to
                 2029). My last build, a voice RAG system, runs its core retrieval pipeline at a 7.87ms P50, about 25x
                 under its 200ms budget.
               </p>
@@ -82,7 +82,7 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
                   key={label}
                   href={href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   className="label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-c-yellow transition-colors"
                 >
                   <Icon size={14} />
