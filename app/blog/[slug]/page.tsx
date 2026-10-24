@@ -48,10 +48,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   }
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
       
-      <div className="flex-1 pt-28 sm:pt-36 pb-24">
+      <main className="flex-1 pt-28 sm:pt-36 pb-24">
         <article className="max-w-[820px] mx-auto px-4 sm:px-6 relative z-10">
           <Link
             href="/blog"
@@ -99,9 +99,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             </Link>
           </footer>
         </article>
-      </div>
+      </main>
 
       <Footer />
-    </main>
+    </div>
   );
 }

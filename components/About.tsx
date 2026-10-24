@@ -22,13 +22,14 @@ const links = [
   { Icon: WriteIcon, label: 'dev.to', href: 'https://dev.to/im-shourya' },
 ];
 
-export default function About() {
+// `as` is h1 on the section's own route, h2 on the home page.
+export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="about" className="py-16 sm:py-24 scroll-mt-20">
       <Container>
         <header className="text-center">
           <p className="font-hand text-[22px] text-ink">about me!</p>
-          <h2 className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">What&apos;s up</h2>
+          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">What&apos;s up</Heading>
         </header>
 
         <div className="mt-14 grid md:grid-cols-[minmax(0,340px)_1fr] gap-14 md:gap-20 items-center">

@@ -24,12 +24,12 @@ export const metadata: Metadata = {
 
 export default function CertificationsPage() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex-1 pt-16">
-        <Certifications />
-      </div>
+      <main className="flex-1 pt-16">
+        <Certifications as="h1" />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
