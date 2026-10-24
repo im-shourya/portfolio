@@ -139,9 +139,9 @@ function Group({ label, note, items, tag }: (typeof groups)[number]) {
         <h3 className={`inline-block ${tag} text-c-ink px-3 py-1.5 text-[15px] font-semibold -rotate-1`}>{label}</h3>
         <p className="font-hand text-[19px] text-ink-muted mt-3">{note}</p>
       </div>
-      <ol className="border-t border-white/[0.09]">
+      <ol className="border-t border-[color:var(--rule)]">
         {items.map((item) => (
-          <li key={item.company} className="grid sm:grid-cols-[160px_1fr] gap-x-8 gap-y-2 py-6 border-b border-white/[0.09]">
+          <li key={item.company} className="grid sm:grid-cols-[160px_1fr] gap-x-8 gap-y-2 py-6 border-b border-[color:var(--rule)]">
             <p className="label-mono !text-[11px] !tracking-[0.14em] text-ink-muted pt-1.5">{item.roles[0].date}</p>
             <div>
               <p className="text-[13px] text-ink-muted">{item.company}</p>
@@ -172,7 +172,7 @@ function Group({ label, note, items, tag }: (typeof groups)[number]) {
 // `as` is h1 on the section's own route, h2 on the home page.
 export default function Experience({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
-    <section id="journey" className="py-16 sm:py-24 scroll-mt-20">
+    <section id="journey" className="paper-section edge-zigzag my-8 py-20 sm:py-28 scroll-mt-20">
       <Container>
         <header className="mb-14">
           <p className="font-hand text-[22px] text-ink">the story so far</p>
