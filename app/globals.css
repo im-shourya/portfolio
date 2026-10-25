@@ -1049,6 +1049,16 @@ html[data-sl="1"] .splash-name span { transform: translateY(-0.5em) rotate(8deg)
 html[data-sl="2"] .splash-name span { transform: scale(0.2) rotate(-14deg); }
 html[data-sl="3"] .splash-name span { transform: translateX(-0.6em) skewX(-12deg); }
 
+/* Background (data-sb): 0 warm black (default) · 1 cream paper · 2 blue · 3 pink */
+html[data-sb="1"] .splash { background-color: var(--c-paper); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(25, 21, 16, 0.07) 33px, rgba(25, 21, 16, 0.07) 34px); }
+html[data-sb="1"] .splash-name { color: var(--c-ink); }
+html[data-sb="1"] .splash-note { color: #3A3227; }
+html[data-sb="2"] .splash { background-color: var(--c-blue); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(255, 255, 255, 0.07) 33px, rgba(255, 255, 255, 0.07) 34px); }
+html[data-sb="3"] .splash { background-color: var(--c-pink); background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(25, 21, 16, 0.08) 33px, rgba(25, 21, 16, 0.08) 34px); }
+html[data-sb="3"] .splash-name { color: var(--c-ink); }
+html[data-sb="3"] .splash-note { color: var(--c-ink); }
+html[data-sb="2"] .splash-note { color: #FDFDFB; }
+
 @media (prefers-reduced-motion: reduce) {
   .splash { display: none; }
 }
