@@ -20,7 +20,28 @@ function onDark(hex: string) {
   return `#${hex}`;
 }
 
-/** Brand logo from Simple Icons (CC0). `tone="dark"` for dark surfaces, `"light"` for white tiles. */
+/**
+ * Every distinct logo's path, once, as <symbol>s that TechLogo points at with <use>.
+ * Render it once per page, before the logos. Inlining the path in each logo
+ * repeated ~180 KB of paths in the HTML and again in the RSC payload.
+ */
+export function TechLogoSprite({ icons }: { icons: SimpleIcon[] }) {
+  const unique = [...new Map(icons.map((icon) => [icon.slug, icon])).values()];
+  return (
+    <svg width="0" height="0" className="absolute" aria-hidden focusable="false">
+      {unique.map((icon) => (
+        <symbol key={icon.slug} id={`si-${icon.slug}`} viewBox="0 0 24 24">
+          <path d={icon.path} />
+        </symbol>
+      ))}
+    </svg>
+  );
+}
+
+/**
+ * Brand logo from Simple Icons (CC0), drawn from TechLogoSprite's symbols.
+ * `tone="dark"` for dark surfaces, `"light"` for white tiles.
+ */
 export default function TechLogo({
   icon,
   size = 14,
@@ -33,7 +54,7 @@ export default function TechLogo({
   const fill = tone === 'dark' ? onDark(icon.hex) : `#${icon.hex}`;
   return (
     <svg role="img" viewBox="0 0 24 24" width={size} height={size} fill={fill} aria-hidden focusable="false">
-      <path d={icon.path} />
+      <use href={`#si-${icon.slug}`} />
     </svg>
   );
 }

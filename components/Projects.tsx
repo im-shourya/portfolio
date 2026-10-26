@@ -115,7 +115,7 @@ function Slab({ project, idx }: { project: Project; idx: number }) {
           <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-4">
             {project.metrics.map((metric) => (
               <div key={metric.label} className="flex flex-col">
-                <dt className="order-last label-mono !text-[11px] sm:!text-[10px] !tracking-[0.12em] opacity-70 mt-2">{metric.label}</dt>
+                <dt className="order-last label-mono !text-[11px] sm:!text-[10px] !tracking-[0.12em] opacity-90 mt-2">{metric.label}</dt>
                 <dd className="text-[28px] font-semibold leading-none tracking-tight">{metric.value}</dd>
               </div>
             ))}
