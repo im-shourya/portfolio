@@ -16,5 +16,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
     eyebrow: `Notes · ${post?.readTime ?? ''}`,
     title: post?.title ?? 'Notes',
     footer: 'Shourya Parashar — shouryaparashar.in/blog',
+    photo: 'avatar',
   });
 }
