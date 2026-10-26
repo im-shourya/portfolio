@@ -5,7 +5,7 @@ import {
   type SimpleIcon,
 } from 'simple-icons';
 import { Container } from './SectionHeader';
-import TechLogo from './TechLogo';
+import TechLogo, { TechLogoSprite } from './TechLogo';
 import type { CrayonColor } from './projects-data';
 
 type StackFile = { name: string; logos: SimpleIcon[] };
@@ -154,12 +154,12 @@ function FolderCard({ folder }: { folder: Folder }) {
         })}
       </div>
       <div className={`folder-front p-5 flex flex-col justify-end ${onBlue ? 'text-white' : 'text-c-ink'}`}>
-        <p className="text-[13px] flex items-center gap-2 opacity-80">
+        <p className="text-[13px] flex items-center gap-2 opacity-90">
           <span className="w-1.5 h-1.5 rounded-full bg-current" aria-hidden />
           {folder.category}
         </p>
         <h3 className="text-[24px] leading-tight font-semibold tracking-tight mt-1">«{folder.title}»</h3>
-        <p className="text-[13px] mt-2 opacity-75">{folder.note ?? folder.files.map((f) => f.name).join(' · ')}</p>
+        <p className="text-[13px] mt-2 opacity-90">{folder.note ?? folder.files.map((f) => f.name).join(' · ')}</p>
       </div>
     </li>
   );
@@ -169,6 +169,7 @@ function FolderCard({ folder }: { folder: Folder }) {
 export default function TechStack({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
     <section id="tech" className="py-16 sm:py-24 scroll-mt-20 overflow-hidden">
+      <TechLogoSprite icons={[...ribbonA, ...ribbonB, ...folders.flatMap((f) => f.files.flatMap((file) => file.logos))]} />
       <Container>
         <header className="relative text-center">
           <Heading className="font-display text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">The Stack</Heading>
