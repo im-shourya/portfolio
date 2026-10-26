@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Google_Sans, Handjet, DM_Mono, Just_Me_Again_Down_Here } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import MotionProvider from '@/components/MotionProvider'
+import Preloader, { SPLASH_SCRIPT } from '@/components/Preloader'
 import { DESCRIPTION, personJsonLd, websiteJsonLd } from '@/lib/seo'
 import './globals.css'
 
@@ -113,9 +114,12 @@ export default function RootLayout({
     <html 
       lang="en" 
       data-scroll-behavior="smooth"
+      // SPLASH_SCRIPT sets the splash variant attributes before React hydrates.
+      suppressHydrationWarning
       className={`bg-background ${googleSans.variable} ${handjet.variable} ${dmMono.variable} ${handwriting.variable}`}
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: SPLASH_SCRIPT }} />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
@@ -127,6 +131,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased paper-lines">
+        <Preloader />
         <div className="grain" aria-hidden />
         <MotionProvider>
           {children}
