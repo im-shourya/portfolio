@@ -21,7 +21,8 @@ jobs:
         id: notes
         run: |
           # Get the previous tag (if any)
-          PREV_TAG=$(git tag --sort=-version:refname | head -n 2 | tail -n 1)
+          # Only v* tags count, so a stray tag can't become the comparison point.
+          PREV_TAG=$(git tag --list 'v*' --sort=-version:refname | head -n 2 | tail -n 1)
           if [ -z "$PREV_TAG" ] || [ "$PREV_TAG" = "${{ github.ref_name }}" ]; then
             echo "body=🚀 Initial release" >> "$GITHUB_OUTPUT"
           else
@@ -38,6 +39,6 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
+          # The notes step already lists the commits; GitHub's generated notes would repeat them.
           body: ${{ steps.notes.outputs.body }}
 
