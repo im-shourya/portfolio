@@ -3,7 +3,7 @@ import { Container } from './SectionHeader';
 
 const socials = [
   { Icon: GithubIcon, label: 'GitHub', href: 'https://github.com/im-shourya' },
-  { Icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/in/im-shourya' },
+  { Icon: LinkedinIcon, label: 'LinkedIn', href: 'https://www.linkedin.com/in/im-shourya' },
   { Icon: WriteIcon, label: 'dev.to', href: 'https://dev.to/im-shourya' },
 ];
 

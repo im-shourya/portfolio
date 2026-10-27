@@ -3,7 +3,7 @@ import { GithubIcon, LinkedinIcon, MailIcon, WriteIcon } from './icons';
 
 const links = [
   { Icon: GithubIcon, href: 'https://github.com/im-shourya', label: 'GitHub' },
-  { Icon: LinkedinIcon, href: 'https://linkedin.com/in/im-shourya', label: 'LinkedIn' },
+  { Icon: LinkedinIcon, href: 'https://www.linkedin.com/in/im-shourya', label: 'LinkedIn' },
   { Icon: WriteIcon, href: 'https://dev.to/im-shourya', label: 'dev.to' },
   { Icon: MailIcon, href: 'mailto:parasharshourya07@gmail.com', label: 'Email' },
 ];
