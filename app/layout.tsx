@@ -88,8 +88,9 @@ export const metadata: Metadata = {
     title: 'Shourya Parashar | Full Stack Developer',
     description: DESCRIPTION,
   },
+  // summary: the share image is a near-square portrait, which the large card would crop to 2:1.
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     creator: '@im_SParashar',
     site: '@im_SParashar',
     title: 'Shourya Parashar | Full Stack Developer',
