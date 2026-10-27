@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: 'https://shouryaparashar.in/services',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     images: ['/twitter-image'],
     title: 'Services | Shourya Parashar',
     description: 'Professional web development services offered by Shourya Parashar, including frontend architecture, full-stack web applications, and technical consulting.',
