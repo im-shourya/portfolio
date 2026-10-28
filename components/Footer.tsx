@@ -8,6 +8,8 @@ const links = [
   { Icon: MailIcon, href: 'mailto:parasharshourya07@gmail.com', label: 'Email' },
 ];
 
+const REPO = 'https://github.com/im-shourya/portfolio';
+
 const footerColors = ['bg-c-yellow', 'bg-c-pink', 'bg-[#92D14F]', 'bg-c-cyan'];
 
 // Every section's own page. The header nav jumps to home-page anchors, so
@@ -25,12 +27,16 @@ const pages = [
 ];
 
 export default function Footer() {
+  // First published in 2026; the range grows from there.
+  const year = new Date().getFullYear();
+  const copyrightYears = year > 2026 ? `2026–${year}` : '2026';
+
   return (
     <footer className="paper-lines">
       <div className="max-w-[1264px] mx-auto px-4 sm:px-6 pt-16 pb-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-8">
           <div>
-            <p className="font-display text-[64px] sm:text-[88px] text-ink-strong">Shourya Parashar</p>
+            <p data-reveal="title" className="font-display text-[64px] sm:text-[88px] text-ink-strong">Shourya Parashar</p>
             <p className="label-mono mt-3 flex items-center gap-2.5 text-ink">
               <span className="w-2 h-2 rounded-full bg-c-blue" aria-hidden />
               Full-stack developer
@@ -62,9 +68,17 @@ export default function Footer() {
             ))}
           </ul>
         </nav>
-        <p className="mt-8 pt-6 border-t border-white/[0.07] text-[13px] text-ink-muted">
-          &copy; {new Date().getFullYear()} Shourya Parashar
-        </p>
+        <div className="mt-8 pt-6 border-t border-white/[0.07] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[13px] text-ink-muted">
+          <p>&copy; {copyrightYears} Shourya Parashar. All rights reserved.</p>
+          <p className="flex flex-wrap gap-x-5 gap-y-2">
+            <a href={`${REPO}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer" className="apple-link hover:text-ink-strong">
+              Code under MIT
+            </a>
+            <a href={`${REPO}/blob/main/NOTICE.md`} target="_blank" rel="noopener noreferrer" className="apple-link hover:text-ink-strong">
+              Licenses &amp; credits
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

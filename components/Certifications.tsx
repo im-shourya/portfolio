@@ -31,15 +31,15 @@ const certs = [
 // `as` is h1 on the section's own route, h2 on the home page.
 export default function Certifications({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
-    <section id="certs" className="py-16 sm:py-24 scroll-mt-20">
+    <section id="certs" className="defer-render py-16 sm:py-24 scroll-mt-20">
       <Container>
         <header className="text-center">
-          <p className="font-hand text-[22px] text-ink">pinned to the wall</p>
-          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Recognition</Heading>
+          <p data-reveal className="font-hand text-[22px] text-ink">pinned to the wall</p>
+          <Heading data-reveal="title" className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">Recognition</Heading>
         </header>
         <ul className="mt-16 grid md:grid-cols-3 gap-10 md:gap-8 md:pb-8">
-          {certs.map((cert) => (
-            <li key={cert.name} className={`relative ${cert.paper} ${cert.tilt} text-c-ink p-2.5 shadow-[0_20px_40px_rgba(0,0,0,0.4)]`}>
+          {certs.map((cert, i) => (
+            <li key={cert.name} data-reveal="pop" style={{ ['--d' as string]: i }} className={`lift relative ${cert.paper} ${cert.tilt} text-c-ink p-2.5 shadow-[0_20px_40px_rgba(0,0,0,0.4)]`}>
               <span className="tape -top-3 left-1/2 -translate-x-1/2 rotate-2" aria-hidden />
               {/* Certificate double rule */}
               <div className="h-full border-2 border-c-ink/80 outline outline-1 outline-c-ink/30 outline-offset-[-7px] p-6 sm:p-7 flex flex-col">

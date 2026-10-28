@@ -119,12 +119,12 @@ function Ribbon({ logos, className, reverse }: { logos: SimpleIcon[]; className:
   );
 }
 
-function FolderCard({ folder }: { folder: Folder }) {
+function FolderCard({ folder, index }: { folder: Folder; index: number }) {
   const onBlue = folder.color === 'blue';
   const n = folder.files.length;
   return (
     // Focusable so keyboard users can open the folder too.
-    <li tabIndex={0} className="folder outline-none rounded-[16px] focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-4 focus-visible:ring-offset-background" style={{ ['--folder' as string]: folderColor[folder.color] }}>
+    <li tabIndex={0} data-reveal style={{ ['--folder' as string]: folderColor[folder.color], ['--d' as string]: index % 3 }} className="folder outline-none rounded-[16px] focus-visible:ring-2 focus-visible:ring-c-yellow focus-visible:ring-offset-4 focus-visible:ring-offset-background">
       <div className="folder-back" aria-hidden />
       <div className="folder-items" aria-hidden>
         {folder.files.map((file, i) => {
@@ -168,33 +168,33 @@ function FolderCard({ folder }: { folder: Folder }) {
 // `as` is h1 on the section's own route, h2 on the home page.
 export default function TechStack({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   return (
-    <section id="tech" className="py-16 sm:py-24 scroll-mt-20 overflow-hidden">
+    <section id="tech" className="defer-render py-16 sm:py-24 scroll-mt-20 overflow-hidden">
       <TechLogoSprite icons={[...ribbonA, ...ribbonB, ...folders.flatMap((f) => f.files.flatMap((file) => file.logos))]} />
       <Container>
         <header className="relative text-center">
-          <Heading className="font-display text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">The Stack</Heading>
-          <span className="hidden sm:block absolute left-[14%] top-[62%] -rotate-[8deg] rounded-full bg-c-green/90 text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
+          <Heading data-reveal="title" className="font-display text-[clamp(4rem,12vw,8.5rem)] text-ink-strong">The Stack</Heading>
+          <span data-reveal="pop" style={{ ['--d' as string]: 3 }} className="hidden sm:block absolute left-[14%] top-[62%] -rotate-[8deg] rounded-full bg-c-green/90 text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
             TypeScript first
           </span>
-          <span className="hidden sm:block absolute right-[14%] top-[2%] rotate-[7deg] rounded-full bg-c-pink text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
+          <span data-reveal="pop" style={{ ['--d' as string]: 4 }} className="hidden sm:block absolute right-[14%] top-[2%] rotate-[7deg] rounded-full bg-c-pink text-c-ink px-4 py-1.5 text-[13px] sm:text-[15px] font-semibold">
             always learning
           </span>
-          <p className="mt-6 text-[16px] text-ink-muted max-w-[44ch] mx-auto">
+          <p data-reveal style={{ ['--d' as string]: 2 }} className="mt-6 text-[16px] text-ink-muted max-w-[44ch] mx-auto">
             Tools I use to build fast, tested applications.
           </p>
         </header>
       </Container>
 
       {/* Crossed ribbons */}
-      <div className="relative my-12 sm:my-16 h-[130px]">
+      <div data-reveal className="relative my-12 sm:my-16 h-[130px]">
         <Ribbon logos={ribbonA} className="absolute inset-x-[-5%] top-4 rotate-[-3deg] bg-c-yellow text-c-ink" />
         <Ribbon logos={ribbonB} reverse className="absolute inset-x-[-5%] top-14 rotate-[2.5deg] bg-[#0E0B08] text-c-paper border-y border-white/10" />
       </div>
 
       <Container>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8">
-          {folders.map((folder) => (
-            <FolderCard key={folder.category} folder={folder} />
+          {folders.map((folder, i) => (
+            <FolderCard key={folder.category} folder={folder} index={i} />
           ))}
 
         </ul>

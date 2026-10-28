@@ -28,13 +28,13 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
     <section id="about" className="paper-section edge-torn my-8 py-20 sm:py-28 scroll-mt-20">
       <Container>
         <header className="text-center">
-          <p className="font-hand text-[22px] text-ink">about me!</p>
-          <Heading className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">What&apos;s up</Heading>
+          <p data-reveal className="font-hand text-[22px] text-ink">about me!</p>
+          <Heading data-reveal="title" className="font-display mt-3 text-[clamp(4rem,12vw,8rem)] text-ink-strong">What&apos;s up</Heading>
         </header>
 
         <div className="mt-14 grid md:grid-cols-[minmax(0,340px)_1fr] gap-14 md:gap-20 items-center">
           {/* Polaroid */}
-          <figure className="relative mx-auto w-[260px] sm:w-[300px] -rotate-[4deg] bg-[#FDFDFB] p-3 pb-14 shadow-[0_22px_44px_rgba(25,21,16,0.28)]">
+          <figure data-reveal="pop" className="lift relative mx-auto w-[260px] sm:w-[300px] -rotate-[4deg] bg-[#FDFDFB] p-3 pb-14 shadow-[0_22px_44px_rgba(25,21,16,0.28)]">
             <span className="tape -top-3 left-6 -rotate-[14deg] !bg-c-cyan/70" aria-hidden />
             <span className="tape -top-3 right-6 rotate-[12deg] !bg-c-yellow/70" aria-hidden />
             <Image
@@ -50,7 +50,7 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
             </figcaption>
           </figure>
 
-          <div>
+          <div data-reveal style={{ ['--d' as string]: 2 }}>
             <p className="text-[13px] text-[color:var(--accent-text)]">Full-stack developer &amp; community builder</p>
             <div className="mt-4 space-y-5 text-[18px] sm:text-[20px] leading-[1.6] text-ink max-w-[58ch]">
               <p>
@@ -66,10 +66,12 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
             </div>
 
             <ul className="mt-8 flex flex-wrap gap-3" aria-label="Current roles">
-              {roles.map((role) => (
+              {roles.map((role, i) => (
                 <li
                   key={role.label}
-                  className={`${role.tag} ${role.bg} ${role.text} inline-flex items-center whitespace-nowrap h-12 sm:h-14 px-5 sm:px-6 text-[16px] sm:text-[19px] font-semibold tracking-tight`}
+                  data-reveal="pop"
+                  style={{ ['--d' as string]: 3 + i }}
+                  className={`wiggle ${role.tag} ${role.bg} ${role.text} inline-flex items-center whitespace-nowrap h-12 sm:h-14 px-5 sm:px-6 text-[16px] sm:text-[19px] font-semibold tracking-tight`}
                 >
                   {role.label}
                 </li>
@@ -83,7 +85,7 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
                   href={href}
                   target="_blank"
                   rel="me noopener noreferrer"
-                  className="hit label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-[color:var(--accent-text)] transition-colors"
+                  className="hit nudge label-mono inline-flex items-center gap-2 text-ink-strong border-b-2 border-current pb-1 hover:text-[color:var(--accent-text)] transition-colors"
                 >
                   <Icon size={14} />
                   {label}
@@ -96,11 +98,11 @@ export default function About({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {})
 
         {/* Numbers on index cards */}
         <dl className="mt-20 grid sm:grid-cols-3 gap-6 sm:gap-8">
-          {highlights.map((h) => (
-            <div key={h.value} className={`relative ${h.bg} ${h.tilt} text-c-ink px-6 pt-7 pb-6 shadow-[0_14px_30px_rgba(25,21,16,0.22)] flex flex-col`}>
+          {highlights.map((h, i) => (
+            <div key={h.value} data-reveal style={{ ['--d' as string]: i }} className={`lift relative ${h.bg} ${h.tilt} text-c-ink px-6 pt-7 pb-6 shadow-[0_14px_30px_rgba(25,21,16,0.22)] flex flex-col`}>
               <span className="tape -top-2.5 left-1/2 -translate-x-1/2 -rotate-3" aria-hidden />
               <dt className="order-last text-[14px] leading-snug mt-2 opacity-80">{h.label}</dt>
-              <dd className="font-display text-[72px]">{h.value}</dd>
+              <dd data-count className="font-display text-[72px] tabular-nums">{h.value}</dd>
             </div>
           ))}
         </dl>
